@@ -1,0 +1,21 @@
+[
+ {
+  "at": "2026-11-20T14:52+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ"
+  ],
+  "added": [
+   "KOSPI:한국전력",
+   "KOSPI:KB금융",
+   "KOSPI:아모레퍼시픽",
+   "KOSDAQ:알테오젠",
+   "KOSDAQ:글로벌텍스프리",
+   "SP500:Danaher",
+   "SP500:Exxon Mobil",
+   "SP500:PG&E",
+   "NASDAQ:Amazon",
+   "NASDAQ:Microsoft"
+  ]
+ }
+]
