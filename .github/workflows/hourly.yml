@@ -38,6 +38,7 @@ jobs:
         run: |
           MK="${{ github.event.inputs.markets }}"
           python scripts/run.py --markets "${MK:-auto}"
+          python scripts/review.py
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"

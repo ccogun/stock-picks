@@ -106,14 +106,15 @@ function drawScore(){
 }
 function drawTabs(){
   const box=$("#tabs"); box.replaceChildren();
-  for(const k of [...Object.keys(MK),"ALL"]){
-    const b=el("button", state.tab===k?"on":"", k==="ALL"?"전체 기록":MK[k]);
+  for(const k of [...Object.keys(MK),"ALL","LEARN"]){
+    const b=el("button", state.tab===k?"on":"", k==="ALL"?"전체 기록":k==="LEARN"?"학습":MK[k]);
     b.addEventListener("click",()=>{state.tab=k; drawTabs(); drawList();}); box.append(b);
   }
 }
 function drawList(){
   const box=$("#list"); box.replaceChildren();
   if(state.tab==="ALL") return drawHistory(box);
+  if(state.tab==="LEARN") return drawLearn(box);
   const m=state.market[state.tab];
   if(m) box.append(el("div","note", "시장 국면: "+m.regime+" — "+m.note + (m.lastScan? " · 마지막 스캔 "+m.lastScan.replace("T"," "):"")));
   for(const meth of ["investor","chart"]){
@@ -172,6 +173,36 @@ async function drawChart(host,p){
   if(rec) cs.setMarkers([{time:rec.time,position:"belowBar",color:"#8b7cf6",shape:"arrowUp",text:"추천"}]);
   ch.timeScale().fitContent();
   new ResizeObserver(()=>ch.applyOptions({width:box.clientWidth})).observe(box);
+}
+const SIG={breakout:"고점 돌파",pullback:"눌림 반등",ext:"시간외 갭"};
+async function drawLearn(box){
+  box.append(el("div","note","추천 결과를 분석해 다음 추천 기준을 자동으로 조정합니다. 성과 지표는 추천 후 10거래일 시점의 지수 대비 초과수익이며, 표본 8건 이상일 때만 조금씩 바꿉니다."));
+  const bust="?t="+Date.now();
+  const [rv,ls]=await Promise.all([fetch("data/review.json"+bust).then(r=>r.ok?r.json():null).catch(()=>null),
+                                    fetch("data/lessons.md"+bust).then(r=>r.ok?r.text():"").catch(()=>"")]);
+  if(!rv){ box.append(el("div","empty","아직 분석할 결과가 없습니다.")); return; }
+  const tbl=(title,obj,label)=>{
+    box.append(el("h2",null,title));
+    const t=el("table"); const h=el("tr");
+    ["구분","평가","적중률","평균 초과","진행 중"].forEach((x,i)=>h.append(el("th",i?"r":"",x))); t.append(h);
+    const ks=Object.keys(obj||{}); if(!ks.length){box.append(el("div","empty","데이터 없음"));return;}
+    ks.forEach(k=>{const s=obj[k]; const r=el("tr");
+      r.append(el("td",null,label?label(k):k), el("td","r",(s.n||0)+"건"), el("td","r",s.n?s.hit+"%":"–"),
+        el("td","r "+cls(s.avg),s.n?pct(s.avg).replace("%","%p"):"–"), el("td","r",(s.open||0)+"건")); t.append(r);});
+    box.append(t);
+  };
+  tbl("방식별",rv.overall,k=>METHOD[k]);
+  tbl("차트 신호별",rv.bySignal,k=>SIG[k]||k);
+  tbl("투자자 방식 근거 유형별",rv.byStyle);
+  tbl("시장 국면별",rv.byRegime);
+  box.append(el("h2",null,"최근 기준 변경"));
+  const ch=rv.recentChanges||[];
+  if(!ch.length) box.append(el("div","empty","아직 변경 없음 — 결과가 쌓이면(신호별 8건 이상) 조정을 시작합니다."));
+  ch.slice().reverse().forEach(c=>{const d=el("div","card");
+    d.append(el("div","meta",c.at.replace("T"," ")+" · "+c.param+": "+c.old+" → "+c.new)); d.append(el("div",null,c.reason)); box.append(d);});
+  box.append(el("h2",null,"Claude의 복기 노트"));
+  const n=el("div","card"); n.style.whiteSpace="pre-wrap"; n.style.fontSize="14px";
+  n.textContent=ls||"아직 작성된 노트가 없습니다."; box.append(n);
 }
 function drawHistory(box){
   box.append(el("h2",null,"전체 추천 기록"));

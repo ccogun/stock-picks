@@ -1,0 +1,127 @@
+{
+ "updated": "2026-11-21T02:55+09:00",
+ "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
+ "overall": {
+  "chart": {
+   "n": 0,
+   "open": 6
+  },
+  "investor": {
+   "n": 1,
+   "open": 11,
+   "hit": 0.0,
+   "avg": -17.55,
+   "best": -17.55,
+   "worst": -17.55
+  }
+ },
+ "byMarket": {
+  "KOSPI": {
+   "chart": {
+    "n": 0,
+    "open": 0
+   },
+   "investor": {
+    "n": 0,
+    "open": 3
+   }
+  },
+  "KOSDAQ": {
+   "chart": {
+    "n": 0,
+    "open": 0
+   },
+   "investor": {
+    "n": 1,
+    "open": 1,
+    "hit": 0.0,
+    "avg": -17.55,
+    "best": -17.55,
+    "worst": -17.55
+   }
+  },
+  "SP500": {
+   "chart": {
+    "n": 0,
+    "open": 3
+   },
+   "investor": {
+    "n": 0,
+    "open": 5
+   }
+  },
+  "NASDAQ": {
+   "chart": {
+    "n": 0,
+    "open": 3
+   },
+   "investor": {
+    "n": 0,
+    "open": 2
+   }
+  }
+ },
+ "bySignal": {
+  "breakout": {
+   "n": 0,
+   "open": 6
+  }
+ },
+ "byRegime": {
+  "하락": {
+   "n": 1,
+   "open": 4,
+   "hit": 0.0,
+   "avg": -17.55,
+   "best": -17.55,
+   "worst": -17.55
+  },
+  "조정": {
+   "n": 0,
+   "open": 13
+  }
+ },
+ "byStyle": {
+  "수급": {
+   "n": 1,
+   "open": 1,
+   "hit": 0.0,
+   "avg": -17.55,
+   "best": -17.55,
+   "worst": -17.55
+  },
+  "액티브ETF": {
+   "n": 0,
+   "open": 2
+  },
+  "정책": {
+   "n": 0,
+   "open": 1
+  },
+  "13F": {
+   "n": 0,
+   "open": 7
+  }
+ },
+ "stopOuts": 1,
+ "params": {
+  "rs_min": 70,
+  "rs_min_bear": 85,
+  "breakout_vol": 1.5,
+  "pullback_vol": 1.0,
+  "pullback_rsi_lo": 45,
+  "pullback_rsi_hi": 62,
+  "rsi_max": 78,
+  "ext_gap_min": 0.02,
+  "ext_gap_max": 0.15,
+  "weight": {
+   "breakout": 10,
+   "pullback": 0,
+   "ext": 0
+  },
+  "pullback_in_bear": false,
+  "investor_stop": 0.08,
+  "investor_target": 0.15
+ },
+ "recentChanges": []
+}

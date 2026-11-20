@@ -14,6 +14,7 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 
+from params import load_params
 from common import (DATA, HOLD_DAYS, MARKETS, MAX_NEW_PER_DAY, GOOD_EXCESS, BAD_EXCESS, PRICES,
                     fmt_price, load_json, now_kst, region_recent, safe_name, save_json, session_phase,
                     session_state)
@@ -24,10 +25,46 @@ LOG_FILE = DATA / "runs.json"
 
 
 # ───────────────────────── 시세 수집 ─────────────────────────
+def _kr_code(t: str) -> str | None:
+    if t in ("^KS11", "^KQ11"):
+        return t[1:]
+    if t.endswith((".KS", ".KQ")):
+        return t[:-3]
+    return None
+
+
+def download_kr(tickers: list[str], period: str) -> dict[str, pd.DataFrame]:
+    """한국 종목·지수는 FinanceDataReader(네이버·KRX)로 받는다. 야후가 당일 봉을 빠뜨리는 문제 회피."""
+    from concurrent.futures import ThreadPoolExecutor
+    from datetime import timedelta
+    try:
+        import FinanceDataReader as fdr
+    except ImportError:
+        return {}
+    days = 760 if period == "2y" else 400
+    start = (now_kst() - timedelta(days=days)).strftime("%Y-%m-%d")
+
+    def one(t):
+        try:
+            df = fdr.DataReader(_kr_code(t), start)
+            df = df[["Open", "High", "Low", "Close", "Volume"]].dropna(subset=["Close"])
+            df = df[df["Close"] > 0]
+            if len(df) >= 30:
+                df.index = pd.to_datetime(df.index).tz_localize(None)
+                return t, df.astype(float)
+        except Exception:  # noqa: BLE001
+            pass
+        return t, None
+
+    with ThreadPoolExecutor(8) as ex:
+        return {t: df for t, df in ex.map(one, tickers) if df is not None}
+
+
 def download(tickers: list[str], period: str = "1y") -> dict[str, pd.DataFrame]:
     import yfinance as yf
-    out: dict[str, pd.DataFrame] = {}
     tickers = sorted(set(tickers))
+    out: dict[str, pd.DataFrame] = download_kr([t for t in tickers if _kr_code(t)], period)
+    tickers = [t for t in tickers if t not in out]   # 못 받은 것은 야후로
     for i in range(0, len(tickers), 150):
         chunk = tickers[i:i + 150]
         try:
@@ -115,6 +152,7 @@ def regime(idx: pd.DataFrame) -> dict:
 def screen(market: str, universe: list[list[str]], data: dict[str, pd.DataFrame], idx: pd.DataFrame,
            reg: dict, frac: float) -> list[dict]:
     cfg = MARKETS[market]
+    P = load_params()
     idx_r63 = ret(idx["Close"], 63)
     rows = []
     for ticker, name in universe:
@@ -140,11 +178,12 @@ def screen(market: str, universe: list[list[str]], data: dict[str, pd.DataFrame]
         near_high = last >= hi52 * 0.85
         if not (trend and near_high) or math.isnan(r63) or math.isnan(r):
             continue
-        breakout = last > prev20_hi and vol_ratio >= 1.5 and c.iloc[-1] > c.iloc[-2]
+        breakout = last > prev20_hi and vol_ratio >= P["breakout_vol"] and c.iloc[-1] > c.iloc[-2]
         low3 = float(df["Low"].tail(3).min())
-        pullback = (low3 <= ma20.iloc[-1] * 1.01 and last > ma20.iloc[-1] and 45 <= r <= 62
-                    and c.iloc[-1] > c.iloc[-2] and vol_ratio >= 1.0)
-        if not (breakout or pullback) or r >= 78:
+        pullback = (low3 <= ma20.iloc[-1] * 1.01 and last > ma20.iloc[-1]
+                    and P["pullback_rsi_lo"] <= r <= P["pullback_rsi_hi"]
+                    and c.iloc[-1] > c.iloc[-2] and vol_ratio >= P["pullback_vol"])
+        if not (breakout or pullback) or r >= P["rsi_max"]:
             continue
         rows.append(dict(ticker=ticker, name=name, last=last, rsi=r, atr=a, hi52=hi52, r63=r63,
                          rs=r63 - idx_r63, vol_ratio=vol_ratio, breakout=breakout,
@@ -156,11 +195,13 @@ def screen(market: str, universe: list[list[str]], data: dict[str, pd.DataFrame]
     all_rs = [ret(d["Close"], 63) for t, _ in universe if (d := data.get(t)) is not None and len(d) > 63]
     all_rs = pd.Series([x for x in all_rs if not math.isnan(x)])
     cand["rs_pct"] = cand["r63"].apply(lambda x: float((all_rs < x).mean() * 100) if len(all_rs) else 50.0)
-    min_pct = 85 if reg["regime"] == "하락" else 70
+    min_pct = P["rs_min_bear"] if reg["regime"] == "하락" else P["rs_min"]
     cand = cand[cand["rs_pct"] >= min_pct]
-    if reg["regime"] == "하락":
+    if reg["regime"] == "하락" and not P["pullback_in_bear"]:
         cand = cand[cand["breakout"]]  # 약세장에서는 돌파 신호만
-    cand["score"] = cand["rs_pct"] + np.minimum(cand["vol_ratio"], 4) * 5 + cand["breakout"] * 10
+    w = P["weight"]
+    cand["score"] = (cand["rs_pct"] + np.minimum(cand["vol_ratio"], 4) * 5
+                     + np.where(cand["breakout"], w["breakout"], w["pullback"]))
     return cand.sort_values("score", ascending=False).to_dict("records")
 
 
@@ -168,6 +209,7 @@ def screen_ext(market: str, universe: list[list[str]], data: dict[str, pd.DataFr
                reg: dict, phase: str) -> list[dict]:
     """미국 시간외: 추세 종목 중 프리·애프터마켓 가격이 직전 고점을 갭으로 넘는 종목."""
     cfg = MARKETS[market]
+    P = load_params()
     idx_r63 = ret(idx["Close"], 63)
     pre = []
     for ticker, name in universe:
@@ -198,11 +240,11 @@ def screen_ext(market: str, universe: list[list[str]], data: dict[str, pd.DataFr
         hi20 = float(df["High"].tail(20).max())
         px = e["price"]
         gap = px / last_close - 1
-        if gap < 0.02 or gap > 0.15 or px <= hi20:   # 15% 넘는 급등은 추격하지 않음
+        if gap < P["ext_gap_min"] or gap > P["ext_gap_max"] or px <= hi20:   # 과도한 급등은 추격하지 않음
             continue
         r63 = ret(c, 63)
         rs_pct = float((all_rs < r63).mean() * 100) if len(all_rs) else 50.0
-        if rs_pct < (85 if reg["regime"] == "하락" else 70):
+        if rs_pct < (P["rs_min_bear"] if reg["regime"] == "하락" else P["rs_min"]):
             continue
         rows.append(dict(ticker=ticker, name=name, last=px, rsi=float(rsi(c).iloc[-1]), atr=float(atr(df).iloc[-1]),
                          hi52=float(df["High"].tail(252).max()), r63=r63, rs=r63 - idx_r63, rs_pct=rs_pct,
@@ -249,31 +291,48 @@ def close_on(df: pd.DataFrame, date_str: str) -> float | None:
     return float(s.iloc[-1]) if len(s) else None
 
 
+MIN_DAYS_FOR_VERDICT = 3   # 3거래일 전에는 손절 이탈이 아니면 '판단 중'
+SNAPSHOTS = (5, 10, 20)     # 학습용: 5·10·20거래일 시점의 지수 대비 초과수익 기록
+
+
 def track(p: dict, df: pd.DataFrame | None, idx: pd.DataFrame | None) -> None:
     if df is None or len(df) == 0:
         return
+    P = load_params()
     if not p.get("recPrice"):
         p["recPrice"] = round(close_on(df, p["recDate"]) or float(df["Close"].iloc[-1]), 4)
-    if not p.get("stop"):   # 손절·목표가를 안 준 추천은 -8% / +15% 기본값
-        p["stop"] = round(float(p["recPrice"]) * 0.92, 4)
+    if not p.get("stop"):   # 손절·목표가를 안 준 추천은 기본값(학습으로 조정)
+        p["stop"] = round(float(p["recPrice"]) * (1 - P["investor_stop"]), 4)
     if not p.get("target"):
-        p["target"] = round(float(p["recPrice"]) * 1.15, 4)
+        p["target"] = round(float(p["recPrice"]) * (1 + P["investor_target"]), 4)
     if idx is not None and not p.get("recIndex"):
         p["recIndex"] = close_on(idx, p["recDate"])
+    last_date = df.index[-1]
+    if last_date < pd.Timestamp(p["recDate"]) and p.get("lastDate"):
+        return   # 시세가 추천일보다 오래됨(데이터 지연) — 이전 값 유지
     after = df[df.index >= pd.Timestamp(p["recDate"])]
     last = float(df["Close"].iloc[-1])
     rp = float(p["recPrice"])
     p["lastPrice"] = round(last, 4)
-    p["lastDate"] = df.index[-1].strftime("%Y-%m-%d")
+    p["lastDate"] = last_date.strftime("%Y-%m-%d")
     p["ret"] = round((last / rp - 1) * 100, 2)
     if len(after):
         p["maxRet"] = round((float(after["High"].max()) / rp - 1) * 100, 2)
         p["minRet"] = round((float(after["Low"].min()) / rp - 1) * 100, 2)
     if idx is not None and p.get("recIndex"):
-        p["benchRet"] = round((float(idx["Close"].iloc[-1]) / p["recIndex"] - 1) * 100, 2)
-        p["excess"] = round(p["ret"] - p["benchRet"], 2)
+        bench = close_on(idx, p["lastDate"])          # 종목과 같은 날짜의 지수로 비교
+        if bench:
+            p["benchRet"] = round((bench / p["recIndex"] - 1) * 100, 2)
+            p["excess"] = round(p["ret"] - p["benchRet"], 2)
     days = max(len(after) - 1, 0)
     p["daysHeld"] = days
+    snaps = p.setdefault("snap", {})
+    for n in SNAPSHOTS:
+        if days >= n and str(n) not in snaps and len(after) > n and idx is not None and p.get("recIndex"):
+            d_n = after.index[n].strftime("%Y-%m-%d")
+            px, bx = float(after["Close"].iloc[n]), close_on(idx, d_n)
+            if bx:
+                snaps[str(n)] = round((px / rp - 1) * 100 - (bx / p["recIndex"] - 1) * 100, 2)
     if p.get("status") != "active":
         return
     exc = p.get("excess", p["ret"]) / 100
@@ -285,14 +344,19 @@ def track(p: dict, df: pd.DataFrame | None, idx: pd.DataFrame | None) -> None:
         p["status"] = "closed"
         p["verdict"] = "잘한 추천" if exc > 0 else "아쉬운 추천"
         p["closeReason"] = f"평가 기간 {HOLD_DAYS}거래일 종료"
-    elif target_hit or exc >= GOOD_EXCESS:
-        p["verdict"] = "잘한 추천" + (" (목표 도달)" if target_hit else "")
+    elif target_hit:
+        p["verdict"] = "잘한 추천 (목표 도달)"
+    elif days < MIN_DAYS_FOR_VERDICT:
+        p["verdict"] = "판단 중"
+    elif exc >= GOOD_EXCESS:
+        p["verdict"] = "잘한 추천"
     elif exc <= BAD_EXCESS:
         p["verdict"] = "아쉬운 추천"
     else:
         p["verdict"] = "판단 중"
     if p["status"] == "closed":
         p["closedAt"] = p["lastDate"]
+        p["outcome"] = p.get("excess")   # 최종 지수 대비 초과수익(학습용)
 
 
 def describe_chart(df: pd.DataFrame, currency: str) -> str:
@@ -344,7 +408,9 @@ def ingest_inbox(picks: list[dict]) -> list[str]:
                      "ticker": it["ticker"], "name": it["name"], "currency": MARKETS[m]["currency"],
                      "recAt": rec_at, "recDate": day, "recPrice": it.get("recPrice"),
                      "reasons": [str(r) for r in it["reasons"]][:5], "source": it.get("source", ""),
-                     "status": "active", "verdict": "판단 중"}
+                     "status": "active", "verdict": "판단 중",
+                     "features": {"style": it.get("style", "기타"),
+                                  "regime": (load_json(MARKET_FILE, {}).get(m) or {}).get("regime")}}
                 for k in ("stop", "target"):
                     if it.get(k):
                         p[k] = float(it[k])
@@ -424,6 +490,10 @@ def main() -> None:
                      "recAt": now.isoformat(timespec="minutes"), "recDate": today,
                      "recPrice": round(c["last"], 4), "recIndex": float(idx["Close"].iloc[-1]),
                      "reasons": reasons, "source": "차트 분석(추세·돌파·상대강도)",
+                     "features": {"signal": ("ext" if c.get("ext") else ("breakout" if c["breakout"] else "pullback")),
+                                  "regime": mkt_info[m]["regime"], "rsPct": round(c["rs_pct"], 1),
+                                  "volRatio": round(c["vol_ratio"], 2), "rsi": round(c["rsi"], 1),
+                                  "gap": round(c.get("gap", 0) * 100, 2)},
                      "status": "active", "verdict": "판단 중", **extra}
                 picks.append(p)
                 write_prices(c["ticker"], data[c["ticker"]])
