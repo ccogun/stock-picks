@@ -182,5 +182,15 @@
    "NASDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-21T07:46+09:00",
+  "scanned": [
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "NASDAQ:iRhythm Holdings"
+  ]
  }
 ]
