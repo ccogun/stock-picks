@@ -133,5 +133,20 @@
    "NASDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-21T03:19+09:00",
+  "scanned": [
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "SP500:Accenture(strategy)",
+   "SP500:TJX Companies(strategy)",
+   "SP500:Arch Capital Group(strategy)",
+   "NASDAQ:Comcast Corporation(strategy)",
+   "NASDAQ:Amgen Inc.(strategy)",
+   "NASDAQ:PepsiCo, Inc.(strategy)"
+  ]
  }
 ]

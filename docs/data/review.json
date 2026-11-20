@@ -1,55 +1,95 @@
 {
- "updated": "2026-11-21T03:19+09:00",
+ "updated": "2026-11-21T03:20+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
+  "investor": {
+   "n": 0,
+   "open": 12
+  },
   "chart": {
    "n": 0,
    "open": 6
   },
-  "investor": {
+  "strategy": {
    "n": 0,
-   "open": 12
+   "open": 6
+  },
+  "swing": {
+   "n": 0,
+   "open": 0
   }
  },
  "byMarket": {
   "KOSPI": {
+   "investor": {
+    "n": 0,
+    "open": 3
+   },
    "chart": {
     "n": 0,
     "open": 0
    },
-   "investor": {
+   "strategy": {
     "n": 0,
-    "open": 3
+    "open": 0
+   },
+   "swing": {
+    "n": 0,
+    "open": 0
    }
   },
   "KOSDAQ": {
+   "investor": {
+    "n": 0,
+    "open": 2
+   },
    "chart": {
     "n": 0,
     "open": 0
    },
-   "investor": {
+   "strategy": {
     "n": 0,
-    "open": 2
+    "open": 0
+   },
+   "swing": {
+    "n": 0,
+    "open": 0
    }
   },
   "SP500": {
-   "chart": {
-    "n": 0,
-    "open": 3
-   },
    "investor": {
     "n": 0,
     "open": 5
-   }
-  },
-  "NASDAQ": {
+   },
    "chart": {
     "n": 0,
     "open": 3
    },
+   "strategy": {
+    "n": 0,
+    "open": 3
+   },
+   "swing": {
+    "n": 0,
+    "open": 0
+   }
+  },
+  "NASDAQ": {
    "investor": {
     "n": 0,
     "open": 2
+   },
+   "chart": {
+    "n": 0,
+    "open": 3
+   },
+   "strategy": {
+    "n": 0,
+    "open": 3
+   },
+   "swing": {
+    "n": 0,
+    "open": 0
    }
   }
  },
@@ -57,6 +97,22 @@
   "breakout": {
    "n": 0,
    "open": 6
+  },
+  "bollinger": {
+   "n": 0,
+   "open": 2
+  },
+  "macd": {
+   "n": 0,
+   "open": 1
+  },
+  "value": {
+   "n": 0,
+   "open": 2
+  },
+  "dividend": {
+   "n": 0,
+   "open": 1
   }
  },
  "byRegime": {
@@ -66,7 +122,7 @@
   },
   "조정": {
    "n": 0,
-   "open": 13
+   "open": 19
   }
  },
  "byStyle": {
@@ -101,8 +157,24 @@
   "weight": {
    "breakout": 10,
    "pullback": 0,
-   "ext": 0
+   "ext": 0,
+   "value": 0,
+   "dividend": 0,
+   "quality": 0,
+   "reversal": 0,
+   "macd": 0,
+   "bollinger": 0,
+   "swing": 0
   },
+  "value_per_max_kr": 12,
+  "value_per_max_us": 18,
+  "value_pbr_max_kr": 1.0,
+  "value_pbr_max_us": 3.0,
+  "div_min_kr": 0.04,
+  "div_min_us": 0.03,
+  "quality_roe_min": 0.15,
+  "reversal_rsi": 30,
+  "swing_vol": 2.0,
   "pullback_in_bear": false,
   "investor_stop": 0.08,
   "investor_target": 0.15
