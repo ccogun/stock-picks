@@ -48,10 +48,19 @@ def _sp500() -> list[list[str]]:
 
 def _nasdaq100() -> list[list[str]]:
     for t in _wiki_tables("https://en.wikipedia.org/wiki/Nasdaq-100"):
-        cols = {c.lower(): c for c in t.columns.astype(str)}
-        if "ticker" in cols and ("company" in cols or "security" in cols):
-            name_col = cols.get("company") or cols.get("security")
-            return [[str(s).replace(".", "-"), str(n)] for s, n in zip(t[cols["ticker"]], t[name_col])]
+        if isinstance(t.columns, pd.MultiIndex):
+            t.columns = [str(c[-1]) for c in t.columns]
+        cols = {str(c).strip().lower(): c for c in t.columns}
+        tk = cols.get("ticker") or cols.get("symbol")
+        nm = cols.get("company") or cols.get("security") or cols.get("name")
+        if tk is not None and nm is not None and len(t) >= 90:
+            return [[str(s).strip().replace(".", "-"), str(n)] for s, n in zip(t[tk], t[nm])]
+    # 예비: stockanalysis 목록
+    t = _wiki_tables("https://stockanalysis.com/list/nasdaq-100-stocks/")[0]
+    cols = {str(c).strip().lower(): c for c in t.columns}
+    tk, nm = cols.get("symbol"), cols.get("company name") or cols.get("company")
+    if tk is not None and nm is not None and len(t) >= 90:
+        return [[str(s).strip().replace(".", "-"), str(n)] for s, n in zip(t[tk], t[nm])]
     raise RuntimeError("Nasdaq-100 table not found")
 
 
@@ -69,11 +78,14 @@ def get_universe(force: bool = False) -> dict[str, list[list[str]]]:
     if cached.get("updated"):
         age = datetime.now(KST) - datetime.fromisoformat(cached["updated"])
         fresh = age < timedelta(days=7)
-    if fresh and not force:
+    if fresh and not force and all(len(cached["markets"].get(m, [])) >= 20 for m in BUILDERS):
         return cached["markets"]
 
     markets = {}
     for m, build in BUILDERS.items():
+        if fresh and not force and len(cached["markets"].get(m, [])) >= 20:
+            markets[m] = cached["markets"][m]
+            continue
         try:
             lst = build()
             if len(lst) < 20:
