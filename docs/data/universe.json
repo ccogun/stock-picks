@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T14:52:05+09:00",
+ "updated": "2026-11-20T14:53:48+09:00",
  "markets": {
   "KOSPI": [
    [
@@ -3422,35 +3422,407 @@
   "NASDAQ": [
    [
     "AAPL",
-    "Apple"
+    "Apple Inc."
    ],
    [
     "MSFT",
-    "Microsoft"
+    "Microsoft Corporation"
    ],
    [
     "NVDA",
-    "NVIDIA"
+    "NVIDIA Corporation"
    ],
    [
     "AMZN",
-    "Amazon"
+    "Amazon.com, Inc."
+   ],
+   [
+    "AMD",
+    "Advanced Micro Devices, Inc."
+   ],
+   [
+    "MU",
+    "Micron Technology, Inc."
+   ],
+   [
+    "TSLA",
+    "Tesla, Inc."
+   ],
+   [
+    "META",
+    "Meta Platforms, Inc."
+   ],
+   [
+    "WMT",
+    "Walmart Inc."
+   ],
+   [
+    "AVGO",
+    "Broadcom Inc."
+   ],
+   [
+    "SPCX",
+    "Space Exploration Technologies Corp."
+   ],
+   [
+    "GOOGL",
+    "Alphabet Inc."
+   ],
+   [
+    "GOOG",
+    "Alphabet Inc."
    ],
    [
     "COST",
-    "Costco"
+    "Costco Wholesale Corporation"
    ],
    [
-    "PEP",
-    "PepsiCo"
+    "CSCO",
+    "Cisco Systems, Inc."
    ],
    [
-    "GILD",
-    "Gilead"
+    "PLTR",
+    "Palantir Technologies Inc."
+   ],
+   [
+    "PANW",
+    "Palo Alto Networks, Inc."
+   ],
+   [
+    "INTC",
+    "Intel Corporation"
    ],
    [
     "AMAT",
-    "Applied Materials"
+    "Applied Materials, Inc."
+   ],
+   [
+    "TXN",
+    "Texas Instruments Incorporated"
+   ],
+   [
+    "LRCX",
+    "Lam Research Corporation"
+   ],
+   [
+    "CRWD",
+    "CrowdStrike Holdings, Inc."
+   ],
+   [
+    "NFLX",
+    "Netflix, Inc."
+   ],
+   [
+    "AMGN",
+    "Amgen Inc."
+   ],
+   [
+    "LIN",
+    "Linde plc"
+   ],
+   [
+    "GILD",
+    "Gilead Sciences, Inc."
+   ],
+   [
+    "PEP",
+    "PepsiCo, Inc."
+   ],
+   [
+    "KLAC",
+    "KLA Corporation"
+   ],
+   [
+    "ADI",
+    "Analog Devices, Inc."
+   ],
+   [
+    "TMUS",
+    "T-Mobile US, Inc."
+   ],
+   [
+    "QCOM",
+    "QUALCOMM Incorporated"
+   ],
+   [
+    "SHOP",
+    "Shopify Inc."
+   ],
+   [
+    "ISRG",
+    "Intuitive Surgical, Inc."
+   ],
+   [
+    "VRTX",
+    "Vertex Pharmaceuticals Incorporated"
+   ],
+   [
+    "ASML",
+    "ASML Holding N.V."
+   ],
+   [
+    "MRVL",
+    "Marvell Technology, Inc."
+   ],
+   [
+    "ADP",
+    "Automatic Data Processing, Inc."
+   ],
+   [
+    "SBUX",
+    "Starbucks Corporation"
+   ],
+   [
+    "STX",
+    "Seagate Technology Holdings plc"
+   ],
+   [
+    "APP",
+    "AppLovin Corporation"
+   ],
+   [
+    "BKNG",
+    "Booking Holdings Inc."
+   ],
+   [
+    "SNDK",
+    "Sandisk Corporation"
+   ],
+   [
+    "MAR",
+    "Marriott International, Inc."
+   ],
+   [
+    "WDC",
+    "Western Digital Corporation"
+   ],
+   [
+    "FTNT",
+    "Fortinet, Inc."
+   ],
+   [
+    "REGN",
+    "Regeneron Pharmaceuticals, Inc."
+   ],
+   [
+    "CSX",
+    "CSX Corporation"
+   ],
+   [
+    "CEG",
+    "Constellation Energy Corporation"
+   ],
+   [
+    "ADBE",
+    "Adobe Inc."
+   ],
+   [
+    "CMCSA",
+    "Comcast Corporation"
+   ],
+   [
+    "CTAS",
+    "Cintas Corporation"
+   ],
+   [
+    "MNST",
+    "Monster Beverage Corporation"
+   ],
+   [
+    "INTU",
+    "Intuit Inc."
+   ],
+   [
+    "CDNS",
+    "Cadence Design Systems, Inc."
+   ],
+   [
+    "MDLZ",
+    "Mondelez International, Inc."
+   ],
+   [
+    "SNPS",
+    "Synopsys, Inc."
+   ],
+   [
+    "MRNA",
+    "Moderna, Inc."
+   ],
+   [
+    "ARM",
+    "Arm Holdings plc"
+   ],
+   [
+    "ORLY",
+    "O'Reilly Automotive, Inc."
+   ],
+   [
+    "ABNB",
+    "Airbnb, Inc."
+   ],
+   [
+    "ROST",
+    "Ross Stores, Inc."
+   ],
+   [
+    "HON",
+    "Honeywell International Inc."
+   ],
+   [
+    "MELI",
+    "MercadoLibre, Inc."
+   ],
+   [
+    "AEP",
+    "American Electric Power Company, Inc."
+   ],
+   [
+    "DASH",
+    "DoorDash, Inc."
+   ],
+   [
+    "MPWR",
+    "Monolithic Power Systems, Inc."
+   ],
+   [
+    "NXPI",
+    "NXP Semiconductors N.V."
+   ],
+   [
+    "FAST",
+    "Fastenal Company"
+   ],
+   [
+    "PDD",
+    "PDD Holdings Inc."
+   ],
+   [
+    "DDOG",
+    "Datadog, Inc."
+   ],
+   [
+    "PCAR",
+    "PACCAR Inc"
+   ],
+   [
+    "IDXX",
+    "IDEXX Laboratories, Inc."
+   ],
+   [
+    "ADSK",
+    "Autodesk, Inc."
+   ],
+   [
+    "CCEP",
+    "Coca-Cola Europacific Partners PLC"
+   ],
+   [
+    "XEL",
+    "Xcel Energy Inc."
+   ],
+   [
+    "FANG",
+    "Diamondback Energy, Inc."
+   ],
+   [
+    "HONA",
+    "Honeywell Aerospace Inc."
+   ],
+   [
+    "PYPL",
+    "PayPal Holdings, Inc."
+   ],
+   [
+    "LITE",
+    "Lumentum Holdings Inc."
+   ],
+   [
+    "EXC",
+    "Exelon Corporation"
+   ],
+   [
+    "KDP",
+    "Keurig Dr Pepper Inc."
+   ],
+   [
+    "BKR",
+    "Baker Hughes Company"
+   ],
+   [
+    "ROP",
+    "Roper Technologies, Inc."
+   ],
+   [
+    "FER",
+    "Ferrovial N.V."
+   ],
+   [
+    "PAYX",
+    "Paychex, Inc."
+   ],
+   [
+    "TTWO",
+    "Take-Two Interactive Software, Inc."
+   ],
+   [
+    "TRI",
+    "Thomson Reuters Corporation"
+   ],
+   [
+    "GEHC",
+    "GE HealthCare Technologies Inc."
+   ],
+   [
+    "ALAB",
+    "Astera Labs, Inc."
+   ],
+   [
+    "ODFL",
+    "Old Dominion Freight Line, Inc."
+   ],
+   [
+    "TER",
+    "Teradyne, Inc."
+   ],
+   [
+    "WDAY",
+    "Workday, Inc."
+   ],
+   [
+    "MCHP",
+    "Microchip Technology Incorporated"
+   ],
+   [
+    "MSTR",
+    "Strategy Inc"
+   ],
+   [
+    "RKLB",
+    "Rocket Lab Corporation"
+   ],
+   [
+    "DXCM",
+    "DexCom, Inc."
+   ],
+   [
+    "CPRT",
+    "Copart, Inc."
+   ],
+   [
+    "AXON",
+    "Axon Enterprise, Inc."
+   ],
+   [
+    "NBIS",
+    "Nebius Group N.V."
+   ],
+   [
+    "CRWV",
+    "CoreWeave, Inc."
+   ],
+   [
+    "ALNY",
+    "Alnylam Pharmaceuticals, Inc."
    ]
   ]
  }

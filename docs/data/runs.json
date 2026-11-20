@@ -17,5 +17,13 @@
    "NASDAQ:Amazon",
    "NASDAQ:Microsoft"
   ]
+ },
+ {
+  "at": "2026-11-20T14:53+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ"
+  ],
+  "added": []
  }
 ]
