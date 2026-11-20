@@ -56,22 +56,32 @@ def session_state(region: str, at: datetime | None = None) -> tuple[bool, float]
     return True, max(done / total, 0.05)
 
 
-def region_recent(region: str, at: datetime | None = None, grace_min: int = 90) -> bool:
-    """장중이거나 장 마감 후 grace_min분 이내면 True (마감 직후 한 번 더 분석)."""
+# 거래 가능 시간(정규장 + 시간외). 한국: 넥스트레이드 08:00~20:00, 미국: 프리 04:00 ~ 애프터 20:00(동부)
+EXTENDED = {"KR": (time(8, 0), time(20, 0)), "US": (time(4, 0), time(20, 0))}
+
+
+def session_phase(region: str, at: datetime | None = None) -> str:
+    """'regular' | 'pre' | 'after' | 'closed'"""
     at = at or datetime.now(KST)
+    local = at.astimezone(KST if region == "KR" else NY)
+    if local.weekday() >= 5:
+        return "closed"
     open_, _ = session_state(region, at)
     if open_:
-        return True
-    if region == "KR":
-        local = at.astimezone(KST)
-        close_m = 15 * 60 + 30
-    else:
-        local = at.astimezone(NY)
-        close_m = 16 * 60
-    if local.weekday() >= 5:
-        return False
-    m = local.hour * 60 + local.minute
-    return close_m <= m <= close_m + grace_min
+        return "regular"
+    s, e = EXTENDED[region]
+    t = local.time()
+    reg_start = time(9, 0) if region == "KR" else time(9, 30)
+    if s <= t < reg_start:
+        return "pre"
+    if t <= e:
+        return "after" if t > reg_start else "closed"
+    return "closed"
+
+
+def region_recent(region: str, at: datetime | None = None) -> bool:
+    """정규장 또는 시간외 거래 시간이면 True."""
+    return session_phase(region, at) != "closed"
 
 
 def load_json(path: Path, default):

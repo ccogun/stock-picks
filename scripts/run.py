@@ -15,7 +15,8 @@ import numpy as np
 import pandas as pd
 
 from common import (DATA, HOLD_DAYS, MARKETS, MAX_NEW_PER_DAY, GOOD_EXCESS, BAD_EXCESS, PRICES,
-                    fmt_price, load_json, now_kst, region_recent, safe_name, save_json, session_state)
+                    fmt_price, load_json, now_kst, region_recent, safe_name, save_json, session_phase,
+                    session_state)
 
 PICKS_FILE = DATA / "picks.json"
 MARKET_FILE = DATA / "market.json"
@@ -42,6 +43,32 @@ def download(tickers: list[str], period: str = "1y") -> dict[str, pd.DataFrame]:
                 if len(df) >= 30:
                     df.index = pd.to_datetime(df.index).tz_localize(None)
                     out[t] = df.astype(float)
+            except Exception:  # noqa: BLE001
+                pass
+    return out
+
+
+def download_ext(tickers: list[str]) -> dict[str, dict]:
+    """미국 프리·애프터마켓 최신 가격 (5분봉, prepost=True). {ticker: {price, at, vol}}"""
+    import yfinance as yf
+    out: dict[str, dict] = {}
+    tickers = sorted(set(tickers))
+    for i in range(0, len(tickers), 100):
+        chunk = tickers[i:i + 100]
+        try:
+            raw = yf.download(chunk, period="2d", interval="5m", prepost=True, group_by="ticker",
+                              auto_adjust=False, threads=True, progress=False)
+        except Exception as e:  # noqa: BLE001
+            print(f"[ext] 실패: {e}")
+            continue
+        for t in chunk:
+            try:
+                df = raw[t] if isinstance(raw.columns, pd.MultiIndex) else raw
+                df = df.dropna(subset=["Close"])
+                if len(df):
+                    ts = pd.Timestamp(df.index[-1])
+                    out[t] = {"price": float(df["Close"].iloc[-1]), "at": ts.isoformat(),
+                              "vol": float(df["Volume"].tail(36).sum())}
             except Exception:  # noqa: BLE001
                 pass
     return out
@@ -137,6 +164,54 @@ def screen(market: str, universe: list[list[str]], data: dict[str, pd.DataFrame]
     return cand.sort_values("score", ascending=False).to_dict("records")
 
 
+def screen_ext(market: str, universe: list[list[str]], data: dict[str, pd.DataFrame], idx: pd.DataFrame,
+               reg: dict, phase: str) -> list[dict]:
+    """미국 시간외: 추세 종목 중 프리·애프터마켓 가격이 직전 고점을 갭으로 넘는 종목."""
+    cfg = MARKETS[market]
+    idx_r63 = ret(idx["Close"], 63)
+    pre = []
+    for ticker, name in universe:
+        df = data.get(ticker)
+        if df is None or len(df) < 130:
+            continue
+        c = df["Close"]
+        last = float(c.iloc[-1])
+        ma50 = float(c.rolling(50).mean().iloc[-1])
+        ma200s = c.rolling(200, min_periods=120).mean()
+        value = float(df["Volume"].iloc[-20:].mean() * c.iloc[-20:].mean())
+        if value >= cfg["min_value"] and last > ma50 > ma200s.iloc[-1] and ma200s.iloc[-1] > ma200s.iloc[-21] \
+                and last >= float(df["High"].tail(252).max()) * 0.85:
+            pre.append((ticker, name))
+    if not pre:
+        return []
+    ext = download_ext([t for t, _ in pre])
+    all_rs = pd.Series([x for t, _ in universe if (d := data.get(t)) is not None and len(d) > 63
+                        and not math.isnan(x := ret(d["Close"], 63))])
+    rows = []
+    for ticker, name in pre:
+        e = ext.get(ticker)
+        if not e:
+            continue
+        df = data[ticker]
+        c = df["Close"]
+        last_close = float(c.iloc[-1])
+        hi20 = float(df["High"].tail(20).max())
+        px = e["price"]
+        gap = px / last_close - 1
+        if gap < 0.02 or gap > 0.15 or px <= hi20:   # 15% 넘는 급등은 추격하지 않음
+            continue
+        r63 = ret(c, 63)
+        rs_pct = float((all_rs < r63).mean() * 100) if len(all_rs) else 50.0
+        if rs_pct < (85 if reg["regime"] == "하락" else 70):
+            continue
+        rows.append(dict(ticker=ticker, name=name, last=px, rsi=float(rsi(c).iloc[-1]), atr=float(atr(df).iloc[-1]),
+                         hi52=float(df["High"].tail(252).max()), r63=r63, rs=r63 - idx_r63, rs_pct=rs_pct,
+                         vol_ratio=0.0, breakout=True, gap=gap, ext=phase, extAt=e["at"],
+                         ma20=float(c.rolling(20).mean().iloc[-1]), ma50=float(c.rolling(50).mean().iloc[-1])))
+    rows.sort(key=lambda r: (r["rs_pct"] + min(r["gap"] * 100, 10) * 2), reverse=True)
+    return rows
+
+
 def chart_reasons(c: dict, market: str, reg: dict) -> tuple[list[str], dict]:
     cur = MARKETS[market]["currency"]
     label = MARKETS[market]["label"]
@@ -144,8 +219,14 @@ def chart_reasons(c: dict, market: str, reg: dict) -> tuple[list[str], dict]:
     stop = max(last - 2 * c["atr"], c["ma50"] * 0.97) if c["breakout"] else max(last - 2 * c["atr"], c["ma50"] * 0.98)
     stop = min(stop, last * 0.97)
     target = last + 2 * (last - stop)
-    sig = (f"20일 고점 돌파 + 거래량이 평소의 {c['vol_ratio']:.1f}배 (장중 경과 시간 보정)" if c["breakout"]
-           else f"20일선까지 눌린 뒤 반등, 거래량 평소의 {c['vol_ratio']:.1f}배")
+    if c.get("ext"):
+        ph = "프리마켓" if c["ext"] == "pre" else "애프터마켓"
+        sig = (f"{ph}에서 전일 종가 대비 {c['gap'] * 100:+.1f}% 갭으로 20일 고점 돌파 "
+               f"(시간외 가격 기준, 정규장 거래량 확인 필요)")
+    elif c["breakout"]:
+        sig = f"20일 고점 돌파 + 거래량이 평소의 {c['vol_ratio']:.1f}배 (장중 경과 시간 보정)"
+    else:
+        sig = f"20일선까지 눌린 뒤 반등, 거래량 평소의 {c['vol_ratio']:.1f}배"
     lines = [
         f"신호: {sig}",
         f"추세: 주가 > 50일선 > 200일선 정배열, 200일선 상승 중 · 52주 고점 대비 {(last / c['hi52'] - 1) * 100:+.1f}%",
@@ -302,7 +383,8 @@ def main() -> None:
     idx_data = download([c["index"] for c in MARKETS.values()], period="2y")
     for m, c in MARKETS.items():
         if c["index"] in idx_data:
-            mkt_info[m] = {**regime(idx_data[c["index"]]), "label": c["label"],
+            mkt_info[m] = {**mkt_info.get(m, {}), **regime(idx_data[c["index"]]), "label": c["label"],
+                           "phase": session_phase(c["region"], now),
                            "updated": now.isoformat(timespec="minutes")}
             write_prices(c["index"], idx_data[c["index"]])
 
@@ -316,9 +398,13 @@ def main() -> None:
             if idx is None:
                 continue
             open_, frac = session_state(cfg["region"], now)
+            phase = session_phase(cfg["region"], now)
             data = download([t for t, _ in uni[m]], period="1y")
-            print(f"[{m}] 시세 {len(data)}/{len(uni[m])}종목, 장중={open_}, 경과={frac:.2f}")
-            cands = screen(m, uni[m], data, idx, mkt_info[m], frac if open_ else 1.0)
+            print(f"[{m}] 시세 {len(data)}/{len(uni[m])}종목, 구간={phase}, 경과={frac:.2f}")
+            if cfg["region"] == "US" and phase in ("pre", "after"):
+                cands = screen_ext(m, uni[m], data, idx, mkt_info[m], phase)
+            else:
+                cands = screen(m, uni[m], data, idx, mkt_info[m], frac if open_ else 1.0)
             active = {p["ticker"] for p in picks if p["status"] == "active"}  # 시장 중복 추천 방지
             added_today = sum(1 for p in picks if p["market"] == m and p["method"] == "chart"
                               and p["recDate"] == today)
@@ -352,6 +438,20 @@ def main() -> None:
             if p["method"] != "chart" and p["status"] == "active":
                 p["chartNote"] = describe_chart(pdata[p["ticker"]], p["currency"])
             write_prices(p["ticker"], pdata[p["ticker"]])
+
+    # 미국 시간외 가격(참고용): 프리·애프터마켓이면 진행 중 미국 종목에 시간외 가격 표시
+    us_phase = session_phase("US", now)
+    us_active = [p for p in picks if p["status"] == "active" and MARKETS[p["market"]]["region"] == "US"]
+    if us_phase in ("pre", "after") and us_active:
+        ext = download_ext([p["ticker"] for p in us_active])
+        for p in us_active:
+            e = ext.get(p["ticker"])
+            if e and p.get("recPrice"):
+                p["ext"] = {"phase": us_phase, "price": round(e["price"], 4), "at": e["at"],
+                            "ret": round((e["price"] / float(p["recPrice"]) - 1) * 100, 2)}
+    elif us_phase == "regular":
+        for p in us_active:
+            p.pop("ext", None)
 
     db = {"updated": now.isoformat(timespec="minutes"), "picks": picks}
     save_json(PICKS_FILE, db)

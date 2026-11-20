@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AI 주식 추천 · 성과 추적</title>
+<title>주식 분석</title>
 <meta name="theme-color" content="#0f1115">
+<meta name="apple-mobile-web-app-title" content="주식 분석">
+<meta name="application-name" content="주식 분석">
 <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
 <style>
   :root{--bg:#0f1115;--card:#181b22;--line:#262a33;--text:#e8eaf0;--sub:#9aa1ad;--up:#ef4b55;--down:#3b82f6;
@@ -48,7 +50,7 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>AI 주식 추천 · 성과 추적</h1>
+  <h1>주식 분석</h1>
   <div class="sub" id="updated">불러오는 중…</div>
   <div class="grid" id="markets"></div>
   <div class="score" id="score"></div>
@@ -83,6 +85,7 @@ function drawMarkets(){
     const m=state.market[k]; const d=el("div","mk");
     d.append(el("b",null,MK[k]+" "));
     if(m){ d.append(el("span","tag t-"+m.regime,m.regime));
+      if(m.phase && m.phase!=="regular") d.append(el("span","tag",(m.phase==="pre"?" 프리장":m.phase==="after"?" 시간외":" 휴장")));
       d.append(el("div","v "+cls(m.chg1d), Number(m.close).toLocaleString()+"  "+pct(m.chg1d)));
       d.append(el("div","meta","고점 대비 "+pct(m.fromPeak)+" · 20일 "+pct(m.chg20d)));
     } else d.append(el("div","meta","데이터 대기"));
@@ -136,6 +139,7 @@ function card(p){
   line.append(document.createTextNode("  현재 "+price(p.lastPrice,p.currency)+" · 최고 "+pct(p.maxRet)+" · 최저 "+pct(p.minRet)
     + (p.closeReason? " · "+p.closeReason : "")));
   c.append(line);
+  if(p.ext) c.append(el("div","meta "+cls(p.ext.ret), (p.ext.phase==="pre"?"프리마켓 ":"애프터마켓 ")+price(p.ext.price,p.currency)+" (추천가 대비 "+pct(p.ext.ret)+", 참고용)"));
   if(p.source) c.append(el("div","meta","근거: "+p.source));
   const ol=el("ol"); (p.reasons||[]).slice(0,5).forEach(r=>ol.append(el("li",null,r))); c.append(ol);
   const det=el("details"); det.append(el("summary",null,"차트 보기"));
