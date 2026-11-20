@@ -381,12 +381,17 @@ def main() -> None:
 
     # 지수는 항상 받는다
     idx_data = download([c["index"] for c in MARKETS.values()], period="2y")
+    for t in [c["index"] for c in MARKETS.values() if c["index"] not in idx_data]:
+        idx_data.update(download([t], period="2y"))   # 빠진 지수는 한 번 더
     for m, c in MARKETS.items():
         if c["index"] in idx_data:
             mkt_info[m] = {**mkt_info.get(m, {}), **regime(idx_data[c["index"]]), "label": c["label"],
                            "phase": session_phase(c["region"], now),
                            "updated": now.isoformat(timespec="minutes")}
             write_prices(c["index"], idx_data[c["index"]])
+        else:
+            print(f"[index] {m} 지수 시세 없음 — 이전 값 유지")
+            mkt_info.setdefault(m, {})["phase"] = session_phase(c["region"], now)
 
     log = {"at": now.isoformat(timespec="minutes"), "scanned": scan, "added": list(inbox_added)}
     if scan:
