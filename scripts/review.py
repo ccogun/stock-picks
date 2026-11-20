@@ -20,8 +20,9 @@ WINDOW = 30   # 최근 30건 기준
 
 def outcome(p: dict) -> float | None:
     snap = p.get("snap") or {}
-    if "10" in snap:
-        return snap["10"]
+    key = "5" if p.get("method") == "swing" else "10"   # 단기 스윙은 5거래일 기준
+    if key in snap:
+        return snap[key]
     if p.get("status") == "closed":
         return p.get("outcome", p.get("excess"))
     return None
@@ -78,15 +79,19 @@ def main() -> None:
     picks = sorted(picks, key=lambda p: p["recAt"])
     chart = [p for p in picks if p["method"] == "chart"]
     inv = [p for p in picks if p["method"] == "investor"]
+    strat = [p for p in picks if p["method"] == "strategy"]
+    swing = [p for p in picks if p["method"] == "swing"]
+    tech = chart + strat + swing
     sig = lambda p: (p.get("features") or {}).get("signal")  # noqa: E731
 
     review = {
         "updated": now.isoformat(timespec="minutes"),
         "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
-        "overall": {"chart": stats(chart), "investor": stats(inv)},
-        "byMarket": {m: {"chart": stats([p for p in chart if p["market"] == m]),
-                         "investor": stats([p for p in inv if p["market"] == m])} for m in MARKETS},
-        "bySignal": group(chart, sig),
+        "overall": {"investor": stats(inv), "chart": stats(chart), "strategy": stats(strat), "swing": stats(swing)},
+        "byMarket": {m: {k: stats([p for p in lst if p["market"] == m])
+                         for k, lst in (("investor", inv), ("chart", chart), ("strategy", strat), ("swing", swing))}
+                     for m in MARKETS},
+        "bySignal": group(tech, sig),
         "byRegime": group(picks, lambda p: (p.get("features") or {}).get("regime")),
         "byStyle": group(inv, lambda p: (p.get("features") or {}).get("style")),
         "stopOuts": sum(1 for p in picks if p.get("closeReason") == "손절선 이탈"),
@@ -97,18 +102,24 @@ def main() -> None:
     vals = {**DEFAULTS, **state.get("values", {})}
     for s, knob, step_tight, step_loose in (("breakout", "breakout_vol", 0.25, -0.1),
                                             ("pullback", "pullback_vol", 0.2, -0.1),
-                                            ("ext", "ext_gap_min", 0.01, -0.005)):
-        st = stats([p for p in chart if sig(p) == s][-WINDOW:])
+                                            ("ext", "ext_gap_min", 0.01, -0.005),
+                                            ("swing", "swing_vol", 0.25, -0.1),
+                                            ("value", None, 0, 0), ("dividend", None, 0, 0),
+                                            ("quality", None, 0, 0), ("reversal", None, 0, 0),
+                                            ("macd", None, 0, 0), ("bollinger", None, 0, 0)):
+        st = stats([p for p in tech if sig(p) == s][-WINDOW:])
         if st["n"] < MIN_N:
             continue
         w = {**DEFAULTS["weight"], **vals.get("weight", {})}[s]
         if st["hit"] < 40 and st["avg"] < 0:
             why = f"{s} 신호 최근 {st['n']}건 적중 {st['hit']}%, 평균 {st['avg']}%p → 기준 강화"
-            adjust(state, knob, round(vals[knob] + step_tight, 3), why, now)
+            if knob:
+                adjust(state, knob, round(vals[knob] + step_tight, 3), why, now)
             adjust(state, "weight", w - 5, why, now, sub=s)
         elif st["hit"] > 60 and st["avg"] > 1:
             why = f"{s} 신호 최근 {st['n']}건 적중 {st['hit']}%, 평균 {st['avg']}%p → 기준 완화"
-            adjust(state, knob, round(vals[knob] + step_loose, 3), why, now)
+            if knob:
+                adjust(state, knob, round(vals[knob] + step_loose, 3), why, now)
             adjust(state, "weight", w + 5, why, now, sub=s)
 
     # ── 시장 국면별 상대강도 하한 조정 ──

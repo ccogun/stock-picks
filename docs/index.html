@@ -62,7 +62,7 @@
 </div>
 <script>
 const MK = {KOSPI:"코스피",KOSDAQ:"코스닥",SP500:"S&P 500",NASDAQ:"나스닥"};
-const METHOD = {investor:"투자자 방식",chart:"차트 분석"};
+const METHOD = {investor:"투자자 방식",chart:"차트 분석",strategy:"전통 전략",swing:"단기 스윙"};
 let state = {picks:[], market:{}, tab:"KOSPI"};
 const $ = (s)=>document.querySelector(s);
 const el = (tag, cls, text)=>{const e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e;};
@@ -117,11 +117,12 @@ function drawList(){
   if(state.tab==="LEARN") return drawLearn(box);
   const m=state.market[state.tab];
   if(m) box.append(el("div","note", "시장 국면: "+m.regime+" — "+m.note + (m.lastScan? " · 마지막 스캔 "+m.lastScan.replace("T"," "):"")));
-  for(const meth of ["investor","chart"]){
-    box.append(el("h2",null,METHOD[meth]));
+  for(const meth of ["investor","chart","strategy","swing"]){
+    box.append(el("h2",null,METHOD[meth]+(meth==="swing"?" (1~5일 · 모의 검증)":"")));
+    if(meth==="swing") box.append(el("div","note","실제 매수 전 성과를 검증하는 단계입니다. 학습 탭에서 지수 대비 성과가 꾸준히 좋게 나오는지 확인하세요."));
     const items = state.picks.filter(p=>p.market===state.tab && p.method===meth && p.status==="active")
                              .sort((a,b)=>b.recAt.localeCompare(a.recAt));
-    if(!items.length) box.append(el("div","empty", meth==="chart" ? "지금은 조건을 통과한 차트 신호가 없습니다. 신호가 잡히면 바로 추가됩니다." : "아직 추천이 없습니다."));
+    if(!items.length) box.append(el("div","empty", meth==="investor" ? "아직 추천이 없습니다." : "지금은 조건을 통과한 종목이 없습니다. 신호가 잡히면 바로 추가됩니다."));
     items.forEach(p=>box.append(card(p)));
   }
   const closed = state.picks.filter(p=>p.market===state.tab && p.status==="closed").sort((a,b)=>(b.closedAt||"").localeCompare(a.closedAt||""));
@@ -174,9 +175,10 @@ async function drawChart(host,p){
   ch.timeScale().fitContent();
   new ResizeObserver(()=>ch.applyOptions({width:box.clientWidth})).observe(box);
 }
-const SIG={breakout:"고점 돌파",pullback:"눌림 반등",ext:"시간외 갭"};
+const SIG={breakout:"고점 돌파",pullback:"눌림 반등",ext:"시간외 갭",value:"가치",dividend:"고배당",quality:"퀄리티",
+  reversal:"역추세(RSI)",macd:"MACD",bollinger:"볼린저밴드",swing:"단기 스윙"};
 async function drawLearn(box){
-  box.append(el("div","note","추천 결과를 분석해 다음 추천 기준을 자동으로 조정합니다. 성과 지표는 추천 후 10거래일 시점의 지수 대비 초과수익이며, 표본 8건 이상일 때만 조금씩 바꿉니다."));
+  box.append(el("div","note","추천 결과를 분석해 다음 추천 기준을 자동으로 조정합니다. 성과 지표는 추천 후 10거래일(단기 스윙은 5거래일) 시점의 지수 대비 초과수익이며, 표본 8건 이상일 때만 조금씩 바꿉니다."));
   const bust="?t="+Date.now();
   const [rv,ls]=await Promise.all([fetch("data/review.json"+bust).then(r=>r.ok?r.json():null).catch(()=>null),
                                     fetch("data/lessons.md"+bust).then(r=>r.ok?r.text():"").catch(()=>"")]);
@@ -192,7 +194,7 @@ async function drawLearn(box){
     box.append(t);
   };
   tbl("방식별",rv.overall,k=>METHOD[k]);
-  tbl("차트 신호별",rv.bySignal,k=>SIG[k]||k);
+  tbl("신호·전략별",rv.bySignal,k=>SIG[k]||k);
   tbl("투자자 방식 근거 유형별",rv.byStyle);
   tbl("시장 국면별",rv.byRegime);
   box.append(el("h2",null,"최근 기준 변경"));
@@ -211,7 +213,7 @@ function drawHistory(box){
   t.append(h);
   [...state.picks].sort((a,b)=>b.recAt.localeCompare(a.recAt)).forEach(p=>{
     const r=el("tr");
-    r.append(el("td",null,p.name), el("td",null,MK[p.market]+" · "+(p.method==="chart"?"차트":"투자자")),
+    r.append(el("td",null,p.name), el("td",null,MK[p.market]+" · "+({chart:"차트",investor:"투자자",strategy:"전략",swing:"스윙"}[p.method]||p.method)),
       el("td",null,p.recDate.slice(5)), el("td","r "+cls(p.ret),pct(p.ret)), el("td","r "+cls(p.excess),pct(p.excess)),
       el("td",vcls(p.verdict),(p.verdict||"판단 중")+(p.status==="closed"?" (종료)":"")));
     t.append(r);

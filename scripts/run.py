@@ -336,17 +336,18 @@ def track(p: dict, df: pd.DataFrame | None, idx: pd.DataFrame | None) -> None:
     if p.get("status") != "active":
         return
     exc = p.get("excess", p["ret"]) / 100
+    hold = 5 if p["method"] == "swing" else HOLD_DAYS
     stop_hit = p.get("stop") and last < float(p["stop"])
     target_hit = p.get("target") and len(after) and float(after["High"].max()) >= float(p["target"])
     if stop_hit:
         p["status"], p["verdict"], p["closeReason"] = "closed", "아쉬운 추천", "손절선 이탈"
-    elif days >= HOLD_DAYS:
+    elif days >= hold:
         p["status"] = "closed"
         p["verdict"] = "잘한 추천" if exc > 0 else "아쉬운 추천"
-        p["closeReason"] = f"평가 기간 {HOLD_DAYS}거래일 종료"
+        p["closeReason"] = f"평가 기간 {hold}거래일 종료"
     elif target_hit:
         p["verdict"] = "잘한 추천 (목표 도달)"
-    elif days < MIN_DAYS_FOR_VERDICT:
+    elif days < (1 if p["method"] == "swing" else MIN_DAYS_FOR_VERDICT):
         p["verdict"] = "판단 중"
     elif exc >= GOOD_EXCESS:
         p["verdict"] = "잘한 추천"
@@ -502,6 +503,39 @@ def main() -> None:
                 log["added"].append(f"{m}:{c['name']}")
             mkt_info[m]["lastScan"] = now.isoformat(timespec="minutes")
             mkt_info[m]["candidates"] = len(cands)
+
+            # 전통 전략 + 단기 스윙 (시간외 미국은 정규장 가격이 아니라 건너뜀)
+            if cfg["region"] == "US" and phase in ("pre", "after"):
+                continue
+            from fundamentals import refresh
+            from strategies import screen_strategies, screen_swing, strategy_reasons, swing_reasons
+            P = load_params()
+            fund = refresh([t for t, _ in uni[m]])
+            groups = [("strategy", screen_strategies(m, uni[m], data, mkt_info[m], P, fund), strategy_reasons,
+                       "전통 투자 전략"),
+                      ("swing", screen_swing(m, uni[m], data, mkt_info[m], P, frac if open_ else 1.0)
+                       if phase == "regular" else [], swing_reasons, "단기 스윙(1~5일, 모의 검증)")]
+            for method, lst, reason_fn, src in groups:
+                n_today = sum(1 for p in picks if p["market"] == m and p["method"] == method and p["recDate"] == today)
+                for o in lst:
+                    if n_today >= MAX_NEW_PER_DAY:
+                        break
+                    if o["ticker"] in active:
+                        continue
+                    reasons, extra = reason_fn(o, m, mkt_info[m])
+                    x = o["x"]
+                    picks.append({"id": f"{today}-{m}-{method}-{o['ticker']}", "market": m, "method": method,
+                                  "ticker": o["ticker"], "name": o["name"], "currency": cfg["currency"],
+                                  "recAt": now.isoformat(timespec="minutes"), "recDate": today,
+                                  "recPrice": round(x["c"], 4), "recIndex": float(idx["Close"].iloc[-1]),
+                                  "reasons": reasons, "source": src,
+                                  "features": {"signal": o["signal"], "regime": mkt_info[m]["regime"],
+                                               "rsPct": round(o["rs_pct"], 1), "rsi": round(x["rsi"], 1)},
+                                  "status": "active", "verdict": "판단 중", **extra})
+                    write_prices(o["ticker"], data[o["ticker"]])
+                    active.add(o["ticker"])
+                    n_today += 1
+                    log["added"].append(f"{m}:{o['name']}({method})")
 
     # 추적: 진행 중 + 최근 종료 종목
     need = [p["ticker"] for p in picks if p["status"] == "active" or not p.get("lastPrice")]
