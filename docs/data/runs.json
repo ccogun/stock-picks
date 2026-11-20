@@ -89,5 +89,17 @@
    "NASDAQ:Cintas Corporation",
    "NASDAQ:Mondelez International, Inc."
   ]
+ },
+ {
+  "at": "2026-11-21T00:45+09:00",
+  "scanned": [
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "SP500:Intercontinental Exchange",
+   "SP500:Mastercard",
+   "NASDAQ:Coca-Cola Europacific Partners PLC"
+  ]
  }
 ]
