@@ -75,5 +75,19 @@
    "NASDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-21T00:18+09:00",
+  "scanned": [
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "SP500:Apple Inc.",
+   "SP500:Berkshire Hathaway",
+   "SP500:Gilead Sciences",
+   "NASDAQ:Cintas Corporation",
+   "NASDAQ:Mondelez International, Inc."
+  ]
  }
 ]
