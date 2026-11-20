@@ -1,0 +1,45 @@
+name: hourly-scan
+
+on:
+  schedule:
+    - cron: "10 0-7 * * 1-5"    # 한국장 09:10~16:10 KST 매시간
+    - cron: "40 13-21 * * 1-5"  # 미국장 매시간 (서머타임 포함)
+  workflow_dispatch:
+    inputs:
+      markets:
+        description: "auto / all / KOSPI,KOSDAQ,SP500,NASDAQ"
+        default: "auto"
+  push:
+    paths: ["docs/data/inbox/**", "scripts/**"]   # Claude가 추천을 넣으면 바로 가격·차트 채움
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writer
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Scan & track
+        run: |
+          MK="${{ github.event.inputs.markets }}"
+          python scripts/run.py --markets "${MK:-auto}"
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          git diff --cached --quiet && exit 0
+          git commit -m "data: $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') 갱신"
+          for i in 1 2 3; do git pull --rebase -X theirs && git push && break; sleep 5; done

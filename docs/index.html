@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI 주식 추천 · 성과 추적</title>
+<meta name="theme-color" content="#0f1115">
+<script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+<style>
+  :root{--bg:#0f1115;--card:#181b22;--line:#262a33;--text:#e8eaf0;--sub:#9aa1ad;--up:#ef4b55;--down:#3b82f6;
+        --good:#22c55e;--bad:#f97316;--wait:#a1a1aa;--accent:#8b7cf6}
+  @media (prefers-color-scheme: light){:root{--bg:#f6f7f9;--card:#fff;--line:#e5e7eb;--text:#111827;--sub:#6b7280}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR",sans-serif}
+  .wrap{max-width:860px;margin:0 auto;padding:16px 14px 60px}
+  h1{font-size:20px;margin:4px 0 2px}
+  .sub{color:var(--sub);font-size:12.5px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 0}
+  @media(min-width:640px){.grid{grid-template-columns:repeat(4,1fr)}}
+  .mk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+  .mk b{font-size:13px}.mk .v{font-size:17px;font-weight:700;margin-top:2px}
+  .tag{display:inline-block;font-size:11.5px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);color:var(--sub)}
+  .t-상승{color:var(--up);border-color:var(--up)}.t-하락{color:var(--down);border-color:var(--down)}.t-조정{color:var(--wait)}
+  .score{display:flex;gap:8px;margin:4px 0 14px;flex-wrap:wrap}
+  .score div{flex:1;min-width:120px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+  .score .n{font-size:20px;font-weight:700}
+  .tabs{display:flex;gap:6px;overflow-x:auto;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5}
+  .tabs button{flex:none;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:99px;padding:6px 14px;font-size:14px}
+  .tabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  h2{font-size:16px;margin:18px 0 8px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+  .row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .name{font-weight:700;font-size:16px}.tk{color:var(--sub);font-size:12px;margin-left:4px}
+  .ret{font-weight:700;font-size:17px;text-align:right;white-space:nowrap}
+  .up{color:var(--up)}.down{color:var(--down)}
+  .meta{color:var(--sub);font-size:12.5px;margin-top:2px}
+  .v-good{color:var(--good);border-color:var(--good)}.v-bad{color:var(--bad);border-color:var(--bad)}
+  ol{margin:8px 0 0;padding-left:20px}ol li{margin:2px 0;font-size:14px}
+  .chart{height:260px;margin-top:10px;border-radius:10px;overflow:hidden}
+  .note{font-size:12.5px;color:var(--sub);margin-top:6px}
+  details summary{cursor:pointer;color:var(--accent);font-size:13.5px;margin-top:8px;list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  .empty{color:var(--sub);font-size:13.5px;padding:10px 2px}
+  .disc{margin-top:26px;font-size:12px;color:var(--sub);border-top:1px solid var(--line);padding-top:12px}
+  table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left}
+  th{color:var(--sub);font-weight:500}td.r,th.r{text-align:right}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>AI 주식 추천 · 성과 추적</h1>
+  <div class="sub" id="updated">불러오는 중…</div>
+  <div class="grid" id="markets"></div>
+  <div class="score" id="score"></div>
+  <div class="tabs" id="tabs"></div>
+  <div id="list"></div>
+  <div class="disc">이 화면은 자동 분석 결과를 기록한 것으로 투자 권유가 아닙니다. 수익률은 추천 시점 가격 대비이며,
+    '지수 대비'는 같은 기간 해당 지수 수익률과의 차이입니다. 평가 기간은 20거래일, 손절선 이탈 시 조기 종료합니다.
+    투자 판단과 책임은 본인에게 있습니다.</div>
+</div>
+<script>
+const MK = {KOSPI:"코스피",KOSDAQ:"코스닥",SP500:"S&P 500",NASDAQ:"나스닥"};
+const METHOD = {investor:"투자자 방식",chart:"차트 분석"};
+let state = {picks:[], market:{}, tab:"KOSPI"};
+const $ = (s)=>document.querySelector(s);
+const el = (tag, cls, text)=>{const e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e;};
+const pct = (v)=> (v==null||isNaN(v)) ? "–" : (v>0?"+":"")+Number(v).toFixed(2)+"%";
+const cls = (v)=> v>0?"up":(v<0?"down":"");
+const price = (v,c)=> v==null?"–":(c==="KRW"? Math.round(v).toLocaleString("ko-KR")+"원" : "$"+Number(v).toFixed(2));
+const vcls = (v)=> !v?"":(v.startsWith("잘한")?"v-good":(v.startsWith("아쉬운")?"v-bad":""));
+
+async function load(){
+  const bust = "?t="+Date.now();
+  const [p,m] = await Promise.all([fetch("data/picks.json"+bust).then(r=>r.ok?r.json():{picks:[]}),
+                                   fetch("data/market.json"+bust).then(r=>r.ok?r.json():{})]);
+  state.picks = p.picks||[]; state.market = m;
+  $("#updated").textContent = "마지막 갱신 " + (p.updated||"–").replace("T"," ") + " (한국시간)";
+  drawMarkets(); drawScore(); drawTabs(); drawList();
+}
+function drawMarkets(){
+  const box=$("#markets"); box.replaceChildren();
+  for(const k of Object.keys(MK)){
+    const m=state.market[k]; const d=el("div","mk");
+    d.append(el("b",null,MK[k]+" "));
+    if(m){ d.append(el("span","tag t-"+m.regime,m.regime));
+      d.append(el("div","v "+cls(m.chg1d), Number(m.close).toLocaleString()+"  "+pct(m.chg1d)));
+      d.append(el("div","meta","고점 대비 "+pct(m.fromPeak)+" · 20일 "+pct(m.chg20d)));
+    } else d.append(el("div","meta","데이터 대기"));
+    box.append(d);
+  }
+}
+function drawScore(){
+  const closed = state.picks.filter(p=>p.status==="closed");
+  const good = closed.filter(p=>(p.verdict||"").startsWith("잘한")).length;
+  const withEx = state.picks.filter(p=>p.excess!=null);
+  const avgEx = withEx.length? withEx.reduce((a,p)=>a+p.excess,0)/withEx.length : null;
+  const items = [["전체 추천", state.picks.length+"개"],
+    ["진행 중", state.picks.filter(p=>p.status==="active").length+"개"],
+    ["적중률(종료분)", closed.length? Math.round(good/closed.length*100)+"% ("+good+"/"+closed.length+")" : "–"],
+    ["평균 지수 대비", pct(avgEx)]];
+  const box=$("#score"); box.replaceChildren();
+  for(const [k,v] of items){const d=el("div"); d.append(el("div","sub",k)); d.append(el("div","n",v)); box.append(d);}
+}
+function drawTabs(){
+  const box=$("#tabs"); box.replaceChildren();
+  for(const k of [...Object.keys(MK),"ALL"]){
+    const b=el("button", state.tab===k?"on":"", k==="ALL"?"전체 기록":MK[k]);
+    b.addEventListener("click",()=>{state.tab=k; drawTabs(); drawList();}); box.append(b);
+  }
+}
+function drawList(){
+  const box=$("#list"); box.replaceChildren();
+  if(state.tab==="ALL") return drawHistory(box);
+  const m=state.market[state.tab];
+  if(m) box.append(el("div","note", "시장 국면: "+m.regime+" — "+m.note + (m.lastScan? " · 마지막 스캔 "+m.lastScan.replace("T"," "):"")));
+  for(const meth of ["investor","chart"]){
+    box.append(el("h2",null,METHOD[meth]));
+    const items = state.picks.filter(p=>p.market===state.tab && p.method===meth && p.status==="active")
+                             .sort((a,b)=>b.recAt.localeCompare(a.recAt));
+    if(!items.length) box.append(el("div","empty", meth==="chart" ? "지금은 조건을 통과한 차트 신호가 없습니다. 신호가 잡히면 바로 추가됩니다." : "아직 추천이 없습니다."));
+    items.forEach(p=>box.append(card(p)));
+  }
+  const closed = state.picks.filter(p=>p.market===state.tab && p.status==="closed").sort((a,b)=>(b.closedAt||"").localeCompare(a.closedAt||""));
+  if(closed.length){ box.append(el("h2",null,"종료된 추천")); closed.slice(0,20).forEach(p=>box.append(card(p))); }
+}
+function card(p){
+  const c=el("div","card");
+  const top=el("div","row"); const left=el("div");
+  const nm=el("span","name",p.name); left.append(nm, el("span","tk",p.ticker));
+  left.append(el("div","meta", METHOD[p.method]+" · "+p.recAt.replace("T"," ").slice(0,16)+" 추천 · "+price(p.recPrice,p.currency)));
+  const right=el("div"); right.append(el("div","ret "+cls(p.ret), pct(p.ret)));
+  right.append(el("div","meta", "지수 대비 "+pct(p.excess)));
+  top.append(left,right); c.append(top);
+  const line=el("div","meta");
+  line.append(el("span","tag "+vcls(p.verdict), p.verdict||"판단 중"));
+  line.append(document.createTextNode("  현재 "+price(p.lastPrice,p.currency)+" · 최고 "+pct(p.maxRet)+" · 최저 "+pct(p.minRet)
+    + (p.closeReason? " · "+p.closeReason : "")));
+  c.append(line);
+  if(p.source) c.append(el("div","meta","근거: "+p.source));
+  const ol=el("ol"); (p.reasons||[]).slice(0,5).forEach(r=>ol.append(el("li",null,r))); c.append(ol);
+  const det=el("details"); det.append(el("summary",null,"차트 보기"));
+  det.addEventListener("toggle",()=>{ if(det.open && !det.dataset.done){det.dataset.done=1; drawChart(det,p);} });
+  c.append(det);
+  return c;
+}
+async function drawChart(host,p){
+  const box=el("div","chart"); host.append(box);
+  if(p.chartNote) host.append(el("div","note",p.chartNote));
+  let j; try{ j=await fetch("data/prices/"+p.ticker.replace("^","IDX_")+".json?t="+Date.now()).then(r=>r.json()); }
+  catch(e){ box.replaceWith(el("div","empty","차트 데이터가 아직 없습니다. 다음 갱신 때 채워집니다.")); return; }
+  const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+  const ch = LightweightCharts.createChart(box,{width:box.clientWidth,height:260,
+    layout:{background:{color:"transparent"},textColor:dark?"#9aa1ad":"#6b7280"},
+    grid:{vertLines:{visible:false},horzLines:{color:dark?"#262a33":"#eef0f3"}},
+    rightPriceScale:{borderVisible:false},timeScale:{borderVisible:false},handleScroll:false,handleScale:false});
+  const d=j.d.map(r=>({time:r[0],open:r[1],high:r[2],low:r[3],close:r[4],v:r[5]}));
+  const cs=ch.addCandlestickSeries({upColor:"#ef4b55",downColor:"#3b82f6",borderVisible:false,wickUpColor:"#ef4b55",wickDownColor:"#3b82f6"});
+  cs.setData(d);
+  const ma=(n)=>d.map((x,i)=>i<n-1?null:{time:x.time,value:d.slice(i-n+1,i+1).reduce((a,y)=>a+y.close,0)/n}).filter(Boolean);
+  ch.addLineSeries({color:"#f59e0b",lineWidth:1.5,priceLineVisible:false,lastValueVisible:false}).setData(ma(20));
+  ch.addLineSeries({color:"#60a5fa",lineWidth:1.5,priceLineVisible:false,lastValueVisible:false}).setData(ma(50));
+  const vs=ch.addHistogramSeries({priceFormat:{type:"volume"},priceScaleId:"v",color:dark?"#3a3f4b":"#d1d5db"});
+  ch.priceScale("v").applyOptions({scaleMargins:{top:0.82,bottom:0}});
+  vs.setData(d.map(x=>({time:x.time,value:x.v})));
+  if(p.stop) cs.createPriceLine({price:+p.stop,color:"#ef4444",lineStyle:2,lineWidth:1,title:"손절"});
+  if(p.target) cs.createPriceLine({price:+p.target,color:"#22c55e",lineStyle:2,lineWidth:1,title:"목표"});
+  const rec=d.find(x=>x.time>=p.recDate);
+  if(rec) cs.setMarkers([{time:rec.time,position:"belowBar",color:"#8b7cf6",shape:"arrowUp",text:"추천"}]);
+  ch.timeScale().fitContent();
+  new ResizeObserver(()=>ch.applyOptions({width:box.clientWidth})).observe(box);
+}
+function drawHistory(box){
+  box.append(el("h2",null,"전체 추천 기록"));
+  const t=el("table"); const h=el("tr");
+  ["종목","시장·방식","추천일","수익률","지수 대비","평가"].forEach((x,i)=>h.append(el("th",i>=3&&i<=4?"r":"",x)));
+  t.append(h);
+  [...state.picks].sort((a,b)=>b.recAt.localeCompare(a.recAt)).forEach(p=>{
+    const r=el("tr");
+    r.append(el("td",null,p.name), el("td",null,MK[p.market]+" · "+(p.method==="chart"?"차트":"투자자")),
+      el("td",null,p.recDate.slice(5)), el("td","r "+cls(p.ret),pct(p.ret)), el("td","r "+cls(p.excess),pct(p.excess)),
+      el("td",vcls(p.verdict),(p.verdict||"판단 중")+(p.status==="closed"?" (종료)":"")));
+    t.append(r);
+  });
+  box.append(t);
+}
+load();
+setInterval(load, 10*60*1000);
+</script>
+</body>
+</html>
