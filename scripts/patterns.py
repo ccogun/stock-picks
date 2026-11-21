@@ -47,7 +47,7 @@ KR = {
 }
 
 # 사용자가 지목한 종목: 기준 통과 여부와 관계없이 모든 가격대 성과를 따로 기록
-WATCH = {"BE": "사용자 관찰: 160달러 근처 매수 시 수익이 많았음"}
+WATCH = {"BE": {"note": "사용자 관찰: 160달러 근처 매수 시 수익이 많았음", "level": 160}}
 
 PIV = 10          # 스윙 저점 좌우 기간
 BAND = 0.03       # 가격대 폭 ±3%
@@ -139,14 +139,15 @@ def main() -> None:
                           "currency": "USD" if mk == "US" else "KRW", **best,
                           "near": -5 <= best["distPct"] <= 8})
     watch = []
-    for t, why in WATCH.items():
+    for t, w in WATCH.items():
         df = data.get(t)
         if df is None:
             continue
-        zs = [r for r in (evaluate(df, z, strict=False) for z in zones(df)) if r]
+        cand = zones(df) + ([{"center": float(w["level"]), "pivots": 0}] if w.get("level") else [])
+        zs = [r for r in (evaluate(df, z, strict=False) for z in cand) if r]
         for r in zs:
             r["pass"] = r["events"] >= MIN_EVENTS and r["winRate"] >= 70 and r["avgRet20"] - r["baseline20"] >= 3
-        watch.append({"ticker": t, "name": names.get(t, t), "note": why, "zones": zs})
+        watch.append({"ticker": t, "name": names.get(t, t), "note": w["note"], "level": w.get("level"), "zones": zs})
     items.sort(key=lambda x: (not x["near"], abs(x["distPct"])))
     out = {"updated": datetime.now(KST).isoformat(timespec="minutes"),
            "method": "최근 3년 스윙 저점이 3번 이상 모인 ±3% 가격대에, 위에서 처음 닿았을 때 매수 가정. "
