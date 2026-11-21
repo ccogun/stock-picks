@@ -106,7 +106,7 @@ def evaluate(df: pd.DataFrame, z: dict, strict: bool = True) -> dict | None:
             i += H2  # 같은 하락에서 중복 집계 방지
         else:
             i += 1
-    if len(ev) < (MIN_EVENTS if strict else 2):
+    if len(ev) < (MIN_EVENTS if strict else 1):
         return None
     r20 = np.array([e["ret20"] for e in ev])
     base = (pd.Series(close).shift(-H2) / pd.Series(close) - 1).dropna().mean() * 100
