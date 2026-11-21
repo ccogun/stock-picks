@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T10:09+09:00",
+ "updated": "2026-11-21T10:13+09:00",
  "method": "최근 3년 스윙 저점이 3번 이상 모인 ±3% 가격대에, 위에서 처음 닿았을 때 매수 가정. 이벤트 4회 이상·20일 승률 70% 이상·평균 수익이 평소보다 +3%p 이상인 것만.",
  "scanned": 75,
  "items": [
@@ -2442,6 +2442,57 @@
     }
    ],
    "near": false
+  }
+ ],
+ "watch": [
+  {
+   "ticker": "BE",
+   "name": "Bloom Energy",
+   "note": "사용자 관찰: 160달러 근처 매수 시 수익이 많았음",
+   "zones": [
+    {
+     "center": 9.12,
+     "low": 8.85,
+     "high": 9.39,
+     "pivots": 3,
+     "events": 3,
+     "winRate": 100,
+     "avgRet20": 72.3,
+     "avgRet10": 16.1,
+     "baseline20": 11.9,
+     "avgMdd": -4.1,
+     "breakRate": 0,
+     "lastClose": 168.11,
+     "distPct": 1743.3,
+     "history": [
+      {
+       "date": "2024-02-16",
+       "entry": 9.39,
+       "ret10": -3.9,
+       "ret20": 4.1,
+       "mdd": -10.4,
+       "broke": false
+      },
+      {
+       "date": "2024-04-22",
+       "entry": 9.32,
+       "ret10": 30.9,
+       "ret20": 38.6,
+       "mdd": -2.1,
+       "broke": false
+      },
+      {
+       "date": "2024-10-23",
+       "entry": 9.04,
+       "ret10": 21.3,
+       "ret20": 174.3,
+       "mdd": 0.1,
+       "broke": false
+      }
+     ],
+     "pass": false
+    }
+   ]
   }
  ]
 }
