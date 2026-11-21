@@ -22,9 +22,10 @@
   .mk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
   .mk b{font-size:13px}.mk .v{font-size:17px;font-weight:700;margin-top:2px}
   .tag{display:inline-block;font-size:11.5px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);color:var(--sub)}
+  .h-유지{color:var(--down);border-color:var(--down)}.h-일부{color:#eab308;border-color:#eab308}.h-정리{color:var(--up);border-color:var(--up)}
   .t-상승{color:var(--up);border-color:var(--up)}.t-하락{color:var(--down);border-color:var(--down)}.t-조정{color:var(--wait)}
   .score{display:flex;gap:8px;margin:4px 0 14px;flex-wrap:wrap}
-  .score div{flex:1;min-width:120px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+  .score>div{flex:1;min-width:120px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
   .score .n{font-size:20px;font-weight:700}
   .tabs{display:flex;gap:6px;overflow-x:auto;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5}
   .tabs button{flex:none;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:99px;padding:6px 14px;font-size:14px}
@@ -53,6 +54,7 @@
   <h1>주식 분석</h1>
   <div class="sub" id="updated">불러오는 중…</div>
   <div class="grid" id="markets"></div>
+  <div id="hedge"></div>
   <div class="score" id="score"></div>
   <div class="tabs" id="tabs"></div>
   <div id="list"></div>
@@ -77,7 +79,25 @@ async function load(){
                                    fetch("data/market.json"+bust).then(r=>r.ok?r.json():{})]);
   state.picks = p.picks||[]; state.market = m;
   $("#updated").textContent = "마지막 갱신 " + (p.updated||"–").replace("T"," ") + " (한국시간)";
-  drawMarkets(); drawScore(); drawTabs(); drawList();
+  drawMarkets(); drawHedge(); drawScore(); drawTabs(); drawList();
+}
+async function drawHedge(){
+  const box=$("#hedge"); box.replaceChildren();
+  const h=await fetch("data/hedge.json?t="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
+  if(!h) return;
+  const c=el("div","card"); const top=el("div","row");
+  top.append(el("span","name","인버스 점검"), el("span","meta",(h.updated||"").replace("T"," ")+" 판정"));
+  c.append(top);
+  for(const [k,lab] of [["US","미국"],["KR","한국"]]){
+    const m=h[k]; if(!m) continue;
+    const line=el("div","meta"); line.style.marginTop="6px";
+    line.append(el("b",null,lab+" "), el("span","tag h-"+(m.signal||"").split(" ")[0], m.signal||"–"));
+    const nums=[]; if(m.vix!=null) nums.push("VIX "+m.vix); if(m.vkospi!=null) nums.push("VKOSPI "+m.vkospi); if(m.fearGreed!=null) nums.push("공탐 "+m.fearGreed);
+    line.append(document.createTextNode("  "+(nums.length?nums.join(" · ")+" — ":"")+(m.reason||"")));
+    c.append(line);
+  }
+  c.append(el("div","note","유지 → 일부 익절 고려(투매·반등 위험) → 정리 신호(VIX 꺾임·저점 방어·공탐 회복·정책 전환). 참고 신호이며 매매 판단은 본인 몫입니다."));
+  box.append(c);
 }
 function drawMarkets(){
   const box=$("#markets"); box.replaceChildren();
@@ -106,8 +126,8 @@ function drawScore(){
 }
 function drawTabs(){
   const box=$("#tabs"); box.replaceChildren();
-  for(const k of [...Object.keys(MK),"ALL","LEARN"]){
-    const b=el("button", state.tab===k?"on":"", k==="ALL"?"전체 기록":k==="LEARN"?"학습":MK[k]);
+  for(const k of [...Object.keys(MK),"PAT","ALL","LEARN"]){
+    const b=el("button", state.tab===k?"on":"", k==="ALL"?"전체 기록":k==="LEARN"?"학습":k==="PAT"?"가격대 패턴":MK[k]);
     b.addEventListener("click",()=>{state.tab=k; drawTabs(); drawList();}); box.append(b);
   }
 }
@@ -115,6 +135,7 @@ function drawList(){
   const box=$("#list"); box.replaceChildren();
   if(state.tab==="ALL") return drawHistory(box);
   if(state.tab==="LEARN") return drawLearn(box);
+  if(state.tab==="PAT") return drawPatterns(box);
   const m=state.market[state.tab];
   if(m) box.append(el("div","note", "시장 국면: "+m.regime+" — "+m.note + (m.lastScan? " · 마지막 스캔 "+m.lastScan.replace("T"," "):"")));
   for(const meth of ["investor","chart","strategy","swing"]){
@@ -205,6 +226,27 @@ async function drawLearn(box){
   box.append(el("h2",null,"Claude의 복기 노트"));
   const n=el("div","card"); n.style.whiteSpace="pre-wrap"; n.style.fontSize="14px";
   n.textContent=ls||"아직 작성된 노트가 없습니다."; box.append(n);
+}
+async function drawPatterns(box){
+  const j=await fetch("data/patterns.json?t="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
+  box.append(el("h2",null,"대형주 가격대 규칙성"));
+  if(!j){ box.append(el("div","empty","아직 분석 전입니다. 매일 미국 장 마감 후 갱신됩니다.")); return; }
+  box.append(el("div","note",j.method+" · "+j.scanned+"종목 검사 · "+(j.updated||"").replace("T"," ")+" 갱신. 과거 통계이며 하락장·악재에서는 지지 가격대가 깨질 수 있습니다(이탈률 참고)."));
+  if(!j.items.length){ box.append(el("div","empty","조건을 통과한 패턴이 없습니다.")); return; }
+  const t=el("table"); const h=el("tr");
+  ["종목","가격대","현재가(거리)","횟수","20일 승률","평균 20일","평균 낙폭","이탈률"].forEach((x,i)=>h.append(el("th",i>=2?"r":"",x))); t.append(h);
+  j.items.forEach(p=>{const r=el("tr"); const cur=p.currency;
+    const nm=el("td",null,p.name+(p.near?" ●":"")); nm.title=p.ticker;
+    r.append(nm, el("td",null,price(p.low,cur)+"~"+price(p.high,cur)),
+      el("td","r",price(p.lastClose,cur)+" ("+pct(p.distPct)+")"), el("td","r",p.events+"회"),
+      el("td","r",p.winRate+"%"), el("td","r "+cls(p.avgRet20),pct(p.avgRet20)), el("td","r down",pct(p.avgMdd)), el("td","r",p.breakRate+"%"));
+    r.style.cursor="pointer"; r.addEventListener("click",()=>{ const nx=r.nextSibling; if(nx&&nx.dataset.d){nx.remove();return;}
+      const d=el("tr"); d.dataset.d=1; const td=el("td"); td.colSpan=8; td.className="meta";
+      td.textContent="최근 진입: "+p.history.map(e=>e.date.slice(2)+" "+price(e.entry,cur)+" → 20일 "+pct(e.ret20)).join(" / ")+" · 평소 20일 평균 "+pct(p.baseline20);
+      d.append(td); r.after(d); });
+    t.append(r);});
+  const wrap=el("div"); wrap.style.overflowX="auto"; wrap.append(t); box.append(wrap);
+  box.append(el("div","note","● = 현재가가 가격대 근처(-5%~+8%). 행을 누르면 최근 진입 사례가 보입니다."));
 }
 function drawHistory(box){
   box.append(el("h2",null,"전체 추천 기록"));
