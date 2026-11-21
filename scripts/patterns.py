@@ -46,6 +46,9 @@ KR = {
     "196170.KQ": "알테오젠", "247540.KQ": "에코프로비엠",
 }
 
+# 사용자가 지목한 종목: 기준 통과 여부와 관계없이 모든 가격대 성과를 따로 기록
+WATCH = {"BE": "사용자 관찰: 160달러 근처 매수 시 수익이 많았음"}
+
 PIV = 10          # 스윙 저점 좌우 기간
 BAND = 0.03       # 가격대 폭 ±3%
 MIN_PIVOTS = 3
@@ -85,7 +88,7 @@ def zones(df: pd.DataFrame) -> list[dict]:
     return [{"center": float(np.median(g)), "pivots": len(g)} for g in groups if len(g) >= MIN_PIVOTS]
 
 
-def evaluate(df: pd.DataFrame, z: dict) -> dict | None:
+def evaluate(df: pd.DataFrame, z: dict, strict: bool = True) -> dict | None:
     c = z["center"]; up = c * (1 + BAND); lo = c * (1 - BAND)
     low = df["Low"].to_numpy(); close = df["Close"].to_numpy(); idx = df.index
     ev = []
@@ -103,13 +106,13 @@ def evaluate(df: pd.DataFrame, z: dict) -> dict | None:
             i += H2  # 같은 하락에서 중복 집계 방지
         else:
             i += 1
-    if len(ev) < MIN_EVENTS:
+    if len(ev) < (MIN_EVENTS if strict else 2):
         return None
     r20 = np.array([e["ret20"] for e in ev])
     base = (pd.Series(close).shift(-H2) / pd.Series(close) - 1).dropna().mean() * 100
     win = float((r20 > 0).mean() * 100)
     avg = float(r20.mean())
-    if win < 70 or avg - base < 3:
+    if strict and (win < 70 or avg - base < 3):
         return None
     last = float(close[-1])
     return {"center": round(c, 2), "low": round(lo, 2), "high": round(up, 2), "pivots": z["pivots"],
@@ -135,11 +138,20 @@ def main() -> None:
             items.append({"ticker": t, "name": names[t], "market": mk,
                           "currency": "USD" if mk == "US" else "KRW", **best,
                           "near": -5 <= best["distPct"] <= 8})
+    watch = []
+    for t, why in WATCH.items():
+        df = data.get(t)
+        if df is None:
+            continue
+        zs = [r for r in (evaluate(df, z, strict=False) for z in zones(df)) if r]
+        for r in zs:
+            r["pass"] = r["events"] >= MIN_EVENTS and r["winRate"] >= 70 and r["avgRet20"] - r["baseline20"] >= 3
+        watch.append({"ticker": t, "name": names.get(t, t), "note": why, "zones": zs})
     items.sort(key=lambda x: (not x["near"], abs(x["distPct"])))
     out = {"updated": datetime.now(KST).isoformat(timespec="minutes"),
            "method": "최근 3년 스윙 저점이 3번 이상 모인 ±3% 가격대에, 위에서 처음 닿았을 때 매수 가정. "
                      "이벤트 4회 이상·20일 승률 70% 이상·평균 수익이 평소보다 +3%p 이상인 것만.",
-           "scanned": len(data), "items": items}
+           "scanned": len(data), "items": items, "watch": watch}
     (DATA / "patterns.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"[patterns] {len(data)}종목 스캔, {len(items)}개 패턴")
 
