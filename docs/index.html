@@ -247,6 +247,13 @@ async function drawPatterns(box){
     t.append(r);});
   const wrap=el("div"); wrap.style.overflowX="auto"; wrap.append(t); box.append(wrap);
   box.append(el("div","note","● = 현재가가 가격대 근처(-5%~+8%). 행을 누르면 최근 진입 사례가 보입니다."));
+  (j.watch||[]).forEach(w=>{ box.append(el("h2",null,"관찰 종목: "+w.name+" ("+w.ticker+")"));
+    box.append(el("div","note",w.note+" — 기준(4회 이상·승률 70%)과 관계없이 모든 가격대를 표시"));
+    w.zones.forEach(z=>{ const c=el("div","card");
+      c.append(el("div",null,price(z.low,"USD")+"~"+price(z.high,"USD")+" · 현재 "+price(z.lastClose,"USD")+" ("+pct(z.distPct)+")"));
+      c.append(el("div","meta",z.events+"회 · 20일 승률 "+z.winRate+"% · 평균 10일 "+pct(z.avgRet10)+" / 20일 "+pct(z.avgRet20)+" (평소 "+pct(z.baseline20)+") · 평균 낙폭 "+pct(z.avgMdd)+(z.pass?" · 기준 통과":" · 표본 부족")));
+      c.append(el("div","meta",z.history.map(e=>e.date+" "+price(e.entry,"USD")+" → 20일 "+pct(e.ret20)).join(" / ")));
+      box.append(c); }); });
 }
 function drawHistory(box){
   box.append(el("h2",null,"전체 추천 기록"));
