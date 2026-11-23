@@ -313,5 +313,24 @@
    "NASDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-24T00:29+09:00",
+  "scanned": [
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "SP500:Okta, Inc.",
+   "SP500:Biogen",
+   "SP500:Procter & Gamble",
+   "SP500:Veeva Systems(strategy)",
+   "SP500:Revvity(strategy)",
+   "SP500:Expeditors International(strategy)",
+   "NASDAQ:Regeneron Pharmaceuticals, Inc.",
+   "NASDAQ:NXP Semiconductors N.V.(strategy)",
+   "NASDAQ:Palantir Technologies Inc.(strategy)",
+   "NASDAQ:PDD Holdings Inc.(strategy)"
+  ]
  }
 ]

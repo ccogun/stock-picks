@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T22:47+09:00",
+ "updated": "2026-11-24T00:30+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
   "investor": {
@@ -8,11 +8,11 @@
   },
   "chart": {
    "n": 0,
-   "open": 7
+   "open": 11
   },
   "strategy": {
    "n": 0,
-   "open": 12
+   "open": 18
   },
   "swing": {
    "n": 0,
@@ -63,11 +63,11 @@
    },
    "chart": {
     "n": 0,
-    "open": 3
+    "open": 6
    },
    "strategy": {
     "n": 0,
-    "open": 3
+    "open": 6
    },
    "swing": {
     "n": 0,
@@ -81,11 +81,11 @@
    },
    "chart": {
     "n": 0,
-    "open": 3
+    "open": 4
    },
    "strategy": {
     "n": 0,
-    "open": 3
+    "open": 6
    },
    "swing": {
     "n": 0,
@@ -98,23 +98,31 @@
    "n": 0,
    "open": 7
   },
+  "pullback": {
+   "n": 0,
+   "open": 4
+  },
   "bollinger": {
    "n": 0,
-   "open": 2
+   "open": 4
   },
   "macd": {
    "n": 0,
-   "open": 2
+   "open": 3
   },
   "value": {
    "n": 0,
-   "open": 2
+   "open": 3
   },
   "dividend": {
    "n": 0,
    "open": 4
   },
   "quality": {
+   "n": 0,
+   "open": 2
+  },
+  "reversal": {
    "n": 0,
    "open": 2
   },
@@ -130,7 +138,7 @@
   },
   "조정": {
    "n": 0,
-   "open": 21
+   "open": 31
   }
  },
  "byStyle": {
