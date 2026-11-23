@@ -228,5 +228,20 @@
   "at": "2026-11-21T10:40+09:00",
   "scanned": [],
   "added": []
+ },
+ {
+  "at": "2026-11-23T09:06+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ"
+  ],
+  "added": [
+   "KOSPI:삼성E&A(strategy)",
+   "KOSPI:삼양식품(strategy)",
+   "KOSPI:셀트리온(strategy)",
+   "KOSDAQ:티엘비(strategy)",
+   "KOSDAQ:카카오게임즈(strategy)",
+   "KOSDAQ:티에프이(strategy)"
+  ]
  }
 ]

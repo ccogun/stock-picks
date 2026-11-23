@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T10:40+09:00",
+ "updated": "2026-11-23T09:07+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
   "investor": {
@@ -12,7 +12,7 @@
   },
   "strategy": {
    "n": 0,
-   "open": 6
+   "open": 12
   },
   "swing": {
    "n": 0,
@@ -31,7 +31,7 @@
    },
    "strategy": {
     "n": 0,
-    "open": 0
+    "open": 3
    },
    "swing": {
     "n": 0,
@@ -49,7 +49,7 @@
    },
    "strategy": {
     "n": 0,
-    "open": 0
+    "open": 3
    },
    "swing": {
     "n": 0,
@@ -104,7 +104,7 @@
   },
   "macd": {
    "n": 0,
-   "open": 1
+   "open": 2
   },
   "value": {
    "n": 0,
@@ -112,13 +112,17 @@
   },
   "dividend": {
    "n": 0,
-   "open": 1
+   "open": 4
+  },
+  "quality": {
+   "n": 0,
+   "open": 2
   }
  },
  "byRegime": {
   "하락": {
    "n": 0,
-   "open": 5
+   "open": 11
   },
   "조정": {
    "n": 0,
