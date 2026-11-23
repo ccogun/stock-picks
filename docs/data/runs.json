@@ -243,5 +243,15 @@
    "KOSDAQ:카카오게임즈(strategy)",
    "KOSDAQ:티에프이(strategy)"
   ]
+ },
+ {
+  "at": "2026-11-23T10:44+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ"
+  ],
+  "added": [
+   "KOSDAQ:CJ ENM(swing)"
+  ]
  }
 ]
