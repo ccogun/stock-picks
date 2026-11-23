@@ -269,5 +269,15 @@
    "KOSDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-23T15:32+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ"
+  ],
+  "added": [
+   "KOSDAQ:디케이티"
+  ]
  }
 ]

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T13:36+09:00",
+ "updated": "2026-11-23T15:32+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
   "investor": {
@@ -8,7 +8,7 @@
   },
   "chart": {
    "n": 0,
-   "open": 6
+   "open": 7
   },
   "strategy": {
    "n": 0,
@@ -45,7 +45,7 @@
    },
    "chart": {
     "n": 0,
-    "open": 0
+    "open": 1
    },
    "strategy": {
     "n": 0,
@@ -96,7 +96,7 @@
  "bySignal": {
   "breakout": {
    "n": 0,
-   "open": 6
+   "open": 7
   },
   "bollinger": {
    "n": 0,
@@ -126,7 +126,7 @@
  "byRegime": {
   "하락": {
    "n": 0,
-   "open": 12
+   "open": 13
   },
   "조정": {
    "n": 0,
