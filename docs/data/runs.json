@@ -372,5 +372,22 @@
    "NASDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-24T08:17+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ",
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "KOSPI:한국콜마(strategy)",
+   "KOSPI:한미사이언스(strategy)",
+   "KOSPI:케이씨텍(strategy)",
+   "KOSDAQ:프로티나(strategy)",
+   "KOSDAQ:펌텍코리아(strategy)",
+   "KOSDAQ:리브스메드(strategy)"
+  ]
  }
 ]
