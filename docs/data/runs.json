@@ -389,5 +389,17 @@
    "KOSDAQ:펌텍코리아(strategy)",
    "KOSDAQ:리브스메드(strategy)"
   ]
+ },
+ {
+  "at": "2026-11-24T09:09+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ",
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "KOSDAQ:원익홀딩스(swing)"
+  ]
  }
 ]
