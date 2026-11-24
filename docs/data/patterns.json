@@ -1,8 +1,178 @@
 {
- "updated": "2026-11-24T07:37+09:00",
+ "updated": "2026-11-25T07:42+09:00",
  "method": "최근 3년 스윙 저점이 3번 이상 모인 ±3% 가격대에, 위에서 처음 닿았을 때 매수 가정. 이벤트 4회 이상·20일 승률 70% 이상·평균 수익이 평소보다 +3%p 이상인 것만.",
  "scanned": 75,
  "items": [
+  {
+   "ticker": "247540.KQ",
+   "name": "에코프로비엠",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 88300.0,
+   "low": 85651.0,
+   "high": 90949.0,
+   "pivots": 3,
+   "events": 4,
+   "winRate": 75,
+   "avgRet20": 7.8,
+   "avgRet10": 5.4,
+   "baseline20": -2.1,
+   "avgMdd": -7.2,
+   "breakRate": 50,
+   "lastClose": 88400.0,
+   "distPct": 0.1,
+   "history": [
+    {
+     "date": "2025-04-02",
+     "entry": 90949.0,
+     "ret10": 7.1,
+     "ret20": 11.6,
+     "mdd": -4.3,
+     "broke": false
+    },
+    {
+     "date": "2025-05-20",
+     "entry": 88300.0,
+     "ret10": 3.9,
+     "ret20": 2.9,
+     "mdd": -8.2,
+     "broke": true
+    },
+    {
+     "date": "2026-07-29",
+     "entry": 90949.0,
+     "ret10": 25.8,
+     "ret20": 27.9,
+     "mdd": -0.7,
+     "broke": false
+    },
+    {
+     "date": "2026-10-26",
+     "entry": 89600.0,
+     "ret10": -15.3,
+     "ret20": -11.4,
+     "mdd": -15.6,
+     "broke": true
+    }
+   ],
+   "near": true
+  },
+  {
+   "ticker": "373220.KS",
+   "name": "LG에너지솔루션",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 311000.0,
+   "low": 301670.0,
+   "high": 320330.0,
+   "pivots": 8,
+   "events": 4,
+   "winRate": 75,
+   "avgRet20": 3.8,
+   "avgRet10": 1.7,
+   "baseline20": -0.1,
+   "avgMdd": -7.3,
+   "breakRate": 25,
+   "lastClose": 314500.0,
+   "distPct": 1.1,
+   "history": [
+    {
+     "date": "2024-07-24",
+     "entry": 320330.0,
+     "ret10": 1.3,
+     "ret20": 13.3,
+     "mdd": -2.9,
+     "broke": false
+    },
+    {
+     "date": "2025-04-03",
+     "entry": 315000.0,
+     "ret10": 8.7,
+     "ret20": 1.7,
+     "mdd": -1.4,
+     "broke": false
+    },
+    {
+     "date": "2025-05-07",
+     "entry": 320330.0,
+     "ret10": -13.4,
+     "ret20": -9.2,
+     "mdd": -17.0,
+     "broke": true
+    },
+    {
+     "date": "2026-07-08",
+     "entry": 315500.0,
+     "ret10": 10.3,
+     "ret20": 9.4,
+     "mdd": -7.9,
+     "broke": false
+    }
+   ],
+   "near": true
+  },
+  {
+   "ticker": "UBER",
+   "name": "Uber",
+   "market": "US",
+   "currency": "USD",
+   "center": 63.42,
+   "low": 61.52,
+   "high": 65.32,
+   "pivots": 5,
+   "events": 5,
+   "winRate": 100,
+   "avgRet20": 13.6,
+   "avgRet10": 6.8,
+   "baseline20": 0.7,
+   "avgMdd": -7.5,
+   "breakRate": 0,
+   "lastClose": 64.7,
+   "distPct": 2.0,
+   "history": [
+    {
+     "date": "2024-05-08",
+     "entry": 65.32,
+     "ret10": 0.2,
+     "ret20": 5.5,
+     "mdd": -3.7,
+     "broke": false
+    },
+    {
+     "date": "2024-07-25",
+     "entry": 65.32,
+     "ret10": 5.6,
+     "ret20": 12.2,
+     "mdd": -16.0,
+     "broke": false
+    },
+    {
+     "date": "2024-12-05",
+     "entry": 65.23,
+     "ret10": -7.7,
+     "ret20": 1.7,
+     "mdd": -9.0,
+     "broke": false
+    },
+    {
+     "date": "2025-01-30",
+     "entry": 65.32,
+     "ret10": 22.9,
+     "ret20": 16.4,
+     "mdd": -2.8,
+     "broke": false
+    },
+    {
+     "date": "2025-04-04",
+     "entry": 64.62,
+     "ret10": 12.8,
+     "ret20": 32.2,
+     "mdd": -6.2,
+     "broke": false
+    }
+   ],
+   "near": true
+  },
   {
    "ticker": "ISRG",
    "name": "Intuitive Surgical",
@@ -19,8 +189,8 @@
    "baseline20": 1.2,
    "avgMdd": -1.5,
    "breakRate": 0,
-   "lastClose": 416.23,
-   "distPct": -0.4,
+   "lastClose": 434.46,
+   "distPct": 4.0,
    "history": [
     {
      "date": "2024-07-17",
@@ -73,8 +243,8 @@
    "baseline20": 3.5,
    "avgMdd": -2.6,
    "breakRate": 0,
-   "lastClose": 143700.0,
-   "distPct": -0.9,
+   "lastClose": 151400.0,
+   "distPct": 4.4,
    "history": [
     {
      "date": "2026-03-04",
@@ -112,192 +282,6 @@
    "near": true
   },
   {
-   "ticker": "UBER",
-   "name": "Uber",
-   "market": "US",
-   "currency": "USD",
-   "center": 63.42,
-   "low": 61.52,
-   "high": 65.32,
-   "pivots": 5,
-   "events": 5,
-   "winRate": 100,
-   "avgRet20": 13.6,
-   "avgRet10": 6.8,
-   "baseline20": 0.7,
-   "avgMdd": -7.5,
-   "breakRate": 0,
-   "lastClose": 64.07,
-   "distPct": 1.0,
-   "history": [
-    {
-     "date": "2024-05-08",
-     "entry": 65.32,
-     "ret10": 0.2,
-     "ret20": 5.5,
-     "mdd": -3.7,
-     "broke": false
-    },
-    {
-     "date": "2024-07-25",
-     "entry": 65.32,
-     "ret10": 5.6,
-     "ret20": 12.2,
-     "mdd": -16.0,
-     "broke": false
-    },
-    {
-     "date": "2024-12-05",
-     "entry": 65.23,
-     "ret10": -7.7,
-     "ret20": 1.7,
-     "mdd": -9.0,
-     "broke": false
-    },
-    {
-     "date": "2025-01-30",
-     "entry": 65.32,
-     "ret10": 22.9,
-     "ret20": 16.4,
-     "mdd": -2.8,
-     "broke": false
-    },
-    {
-     "date": "2025-04-04",
-     "entry": 64.62,
-     "ret10": 12.8,
-     "ret20": 32.2,
-     "mdd": -6.2,
-     "broke": false
-    }
-   ],
-   "near": true
-  },
-  {
-   "ticker": "000270.KS",
-   "name": "기아",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 89500.0,
-   "low": 86815.0,
-   "high": 92185.0,
-   "pivots": 9,
-   "events": 5,
-   "winRate": 80,
-   "avgRet20": 6.7,
-   "avgRet10": -0.2,
-   "baseline20": 0.9,
-   "avgMdd": -4.3,
-   "breakRate": 20,
-   "lastClose": 86400.0,
-   "distPct": -3.5,
-   "history": [
-    {
-     "date": "2024-01-04",
-     "entry": 92185.0,
-     "ret10": -5.3,
-     "ret20": 15.3,
-     "mdd": -6.8,
-     "broke": false
-    },
-    {
-     "date": "2024-10-22",
-     "entry": 92185.0,
-     "ret10": 5.2,
-     "ret20": 3.4,
-     "mdd": -2.9,
-     "broke": false
-    },
-    {
-     "date": "2024-11-29",
-     "entry": 92185.0,
-     "ret10": 6.4,
-     "ret20": 9.2,
-     "mdd": -0.2,
-     "broke": false
-    },
-    {
-     "date": "2025-02-12",
-     "entry": 91700.0,
-     "ret10": 2.6,
-     "ret20": 9.5,
-     "mdd": 0.2,
-     "broke": false
-    },
-    {
-     "date": "2025-03-31",
-     "entry": 92185.0,
-     "ret10": -10.0,
-     "ret20": -3.8,
-     "mdd": -11.8,
-     "broke": true
-    }
-   ],
-   "near": true
-  },
-  {
-   "ticker": "006400.KS",
-   "name": "삼성SDI",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 379750.0,
-   "low": 368357.5,
-   "high": 391142.5,
-   "pivots": 4,
-   "events": 5,
-   "winRate": 80,
-   "avgRet20": 10.5,
-   "avgRet10": 7.4,
-   "baseline20": 1.6,
-   "avgMdd": -4.4,
-   "breakRate": 20,
-   "lastClose": 396000.0,
-   "distPct": 4.3,
-   "history": [
-    {
-     "date": "2024-01-17",
-     "entry": 379000.0,
-     "ret10": -1.7,
-     "ret20": 6.7,
-     "mdd": -9.8,
-     "broke": true
-    },
-    {
-     "date": "2024-04-16",
-     "entry": 386500.0,
-     "ret10": 12.3,
-     "ret20": 11.5,
-     "mdd": -0.1,
-     "broke": false
-    },
-    {
-     "date": "2024-05-29",
-     "entry": 385000.0,
-     "ret10": 1.7,
-     "ret20": -6.2,
-     "mdd": -6.2,
-     "broke": false
-    },
-    {
-     "date": "2026-03-04",
-     "entry": 351000.0,
-     "ret10": 15.4,
-     "ret20": 23.1,
-     "mdd": 6.8,
-     "broke": false
-    },
-    {
-     "date": "2026-07-09",
-     "entry": 391142.5,
-     "ret10": 9.4,
-     "ret20": 17.3,
-     "mdd": -12.7,
-     "broke": false
-    }
-   ],
-   "near": true
-  },
-  {
    "ticker": "HD",
    "name": "Home Depot",
    "market": "US",
@@ -313,8 +297,8 @@
    "baseline20": 0.3,
    "avgMdd": -3.2,
    "breakRate": 0,
-   "lastClose": 346.06,
-   "distPct": 4.4,
+   "lastClose": 353.69,
+   "distPct": 6.7,
    "history": [
     {
      "date": "2025-04-07",
@@ -368,109 +352,171 @@
    "near": true
   },
   {
-   "ticker": "373220.KS",
-   "name": "LG에너지솔루션",
+   "ticker": "000270.KS",
+   "name": "기아",
    "market": "KR",
    "currency": "KRW",
-   "center": 311000.0,
-   "low": 301670.0,
-   "high": 320330.0,
-   "pivots": 8,
-   "events": 4,
-   "winRate": 75,
-   "avgRet20": 3.8,
-   "avgRet10": 1.7,
-   "baseline20": -0.1,
-   "avgMdd": -7.3,
-   "breakRate": 25,
-   "lastClose": 291500.0,
-   "distPct": -6.3,
+   "center": 89500.0,
+   "low": 86815.0,
+   "high": 92185.0,
+   "pivots": 9,
+   "events": 5,
+   "winRate": 80,
+   "avgRet20": 6.7,
+   "avgRet10": -0.2,
+   "baseline20": 0.8,
+   "avgMdd": -4.3,
+   "breakRate": 20,
+   "lastClose": 95600.0,
+   "distPct": 6.8,
    "history": [
     {
-     "date": "2024-07-24",
-     "entry": 320330.0,
-     "ret10": 1.3,
-     "ret20": 13.3,
+     "date": "2024-01-04",
+     "entry": 92185.0,
+     "ret10": -5.3,
+     "ret20": 15.3,
+     "mdd": -6.8,
+     "broke": false
+    },
+    {
+     "date": "2024-10-22",
+     "entry": 92185.0,
+     "ret10": 5.2,
+     "ret20": 3.4,
      "mdd": -2.9,
      "broke": false
     },
     {
-     "date": "2025-04-03",
-     "entry": 315000.0,
-     "ret10": 8.7,
-     "ret20": 1.7,
-     "mdd": -1.4,
+     "date": "2024-11-29",
+     "entry": 92185.0,
+     "ret10": 6.4,
+     "ret20": 9.2,
+     "mdd": -0.2,
      "broke": false
     },
     {
-     "date": "2025-05-07",
-     "entry": 320330.0,
-     "ret10": -13.4,
-     "ret20": -9.2,
-     "mdd": -17.0,
-     "broke": true
+     "date": "2025-02-12",
+     "entry": 91700.0,
+     "ret10": 2.6,
+     "ret20": 9.5,
+     "mdd": 0.2,
+     "broke": false
     },
     {
-     "date": "2026-07-08",
-     "entry": 315500.0,
-     "ret10": 10.3,
-     "ret20": 9.4,
-     "mdd": -7.9,
+     "date": "2025-03-31",
+     "entry": 92185.0,
+     "ret10": -10.0,
+     "ret20": -3.8,
+     "mdd": -11.8,
+     "broke": true
+    }
+   ],
+   "near": true
+  },
+  {
+   "ticker": "035720.KS",
+   "name": "카카오",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 32725.0,
+   "low": 31743.25,
+   "high": 33706.75,
+   "pivots": 4,
+   "events": 4,
+   "winRate": 75,
+   "avgRet20": 11.7,
+   "avgRet10": 6.6,
+   "baseline20": -0.7,
+   "avgMdd": -2.1,
+   "breakRate": 0,
+   "lastClose": 30350.0,
+   "distPct": -7.3,
+   "history": [
+    {
+     "date": "2024-09-09",
+     "entry": 33706.75,
+     "ret10": 9.0,
+     "ret20": 11.7,
+     "mdd": 0.3,
+     "broke": false
+    },
+    {
+     "date": "2024-11-11",
+     "entry": 33700.0,
+     "ret10": 7.3,
+     "ret20": 25.5,
+     "mdd": -3.4,
+     "broke": false
+    },
+    {
+     "date": "2026-06-24",
+     "entry": 33706.75,
+     "ret10": 2.8,
+     "ret20": 10.2,
+     "mdd": -4.3,
+     "broke": false
+    },
+    {
+     "date": "2026-08-21",
+     "entry": 33706.75,
+     "ret10": 7.4,
+     "ret20": -0.5,
+     "mdd": -1.2,
      "broke": false
     }
    ],
    "near": false
   },
   {
-   "ticker": "247540.KQ",
-   "name": "에코프로비엠",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 88300.0,
-   "low": 85651.0,
-   "high": 90949.0,
-   "pivots": 3,
+   "ticker": "CEG",
+   "name": "Constellation Energy",
+   "market": "US",
+   "currency": "USD",
+   "center": 224.9,
+   "low": 218.16,
+   "high": 231.65,
+   "pivots": 4,
    "events": 4,
    "winRate": 75,
-   "avgRet20": 7.8,
-   "avgRet10": 5.4,
-   "baseline20": -2.0,
-   "avgMdd": -7.2,
-   "breakRate": 50,
-   "lastClose": 79400.0,
-   "distPct": -10.1,
+   "avgRet20": 10.5,
+   "avgRet10": 1.0,
+   "baseline20": 3.3,
+   "avgMdd": -5.2,
+   "breakRate": 25,
+   "lastClose": 244.84,
+   "distPct": 8.9,
    "history": [
     {
-     "date": "2025-04-02",
-     "entry": 90949.0,
-     "ret10": 7.1,
-     "ret20": 11.6,
-     "mdd": -4.3,
+     "date": "2024-11-04",
+     "entry": 225.95,
+     "ret10": 1.9,
+     "ret20": 9.5,
+     "mdd": -2.1,
      "broke": false
     },
     {
-     "date": "2025-05-20",
-     "entry": 88300.0,
-     "ret10": 3.9,
-     "ret20": 2.9,
-     "mdd": -8.2,
-     "broke": true
-    },
-    {
-     "date": "2026-07-29",
-     "entry": 90949.0,
-     "ret10": 25.8,
-     "ret20": 27.9,
-     "mdd": -0.7,
+     "date": "2024-12-10",
+     "entry": 231.65,
+     "ret10": -0.8,
+     "ret20": 31.7,
+     "mdd": -5.2,
      "broke": false
     },
     {
-     "date": "2026-10-26",
-     "entry": 89600.0,
-     "ret10": -15.3,
-     "ret20": -11.4,
+     "date": "2025-03-03",
+     "entry": 231.65,
+     "ret10": -5.7,
+     "ret20": -13.0,
      "mdd": -15.6,
      "broke": true
+    },
+    {
+     "date": "2026-07-01",
+     "entry": 231.65,
+     "ret10": 8.7,
+     "ret20": 13.8,
+     "mdd": 2.1,
+     "broke": false
     }
    ],
    "near": false
@@ -491,8 +537,8 @@
    "baseline20": 2.2,
    "avgMdd": -4.0,
    "breakRate": 20,
-   "lastClose": 597.6,
-   "distPct": 11.2,
+   "lastClose": 589.82,
+   "distPct": 9.8,
    "history": [
     {
      "date": "2024-11-15",
@@ -538,308 +584,6 @@
    "near": false
   },
   {
-   "ticker": "035720.KS",
-   "name": "카카오",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 32725.0,
-   "low": 31743.25,
-   "high": 33706.75,
-   "pivots": 4,
-   "events": 4,
-   "winRate": 75,
-   "avgRet20": 11.7,
-   "avgRet10": 6.6,
-   "baseline20": -0.7,
-   "avgMdd": -2.1,
-   "breakRate": 0,
-   "lastClose": 28950.0,
-   "distPct": -11.5,
-   "history": [
-    {
-     "date": "2024-09-09",
-     "entry": 33706.75,
-     "ret10": 9.0,
-     "ret20": 11.7,
-     "mdd": 0.3,
-     "broke": false
-    },
-    {
-     "date": "2024-11-11",
-     "entry": 33700.0,
-     "ret10": 7.3,
-     "ret20": 25.5,
-     "mdd": -3.4,
-     "broke": false
-    },
-    {
-     "date": "2026-06-24",
-     "entry": 33706.75,
-     "ret10": 2.8,
-     "ret20": 10.2,
-     "mdd": -4.3,
-     "broke": false
-    },
-    {
-     "date": "2026-08-21",
-     "entry": 33706.75,
-     "ret10": 7.4,
-     "ret20": -0.5,
-     "mdd": -1.2,
-     "broke": false
-    }
-   ],
-   "near": false
-  },
-  {
-   "ticker": "SMCI",
-   "name": "Super Micro",
-   "market": "US",
-   "currency": "USD",
-   "center": 27.75,
-   "low": 26.92,
-   "high": 28.58,
-   "pivots": 5,
-   "events": 7,
-   "winRate": 86,
-   "avgRet20": 27.1,
-   "avgRet10": 7.2,
-   "baseline20": 4.2,
-   "avgMdd": -11.5,
-   "breakRate": 43,
-   "lastClose": 24.53,
-   "distPct": -11.6,
-   "history": [
-    {
-     "date": "2024-10-31",
-     "entry": 28.58,
-     "ret10": -37.0,
-     "ret20": 14.2,
-     "mdd": -39.6,
-     "broke": true
-    },
-    {
-     "date": "2025-01-27",
-     "entry": 28.58,
-     "ret10": 49.2,
-     "ret20": 59.3,
-     "mdd": -10.0,
-     "broke": false
-    },
-    {
-     "date": "2025-04-04",
-     "entry": 28.58,
-     "ret10": 3.2,
-     "ret20": 12.6,
-     "mdd": -3.4,
-     "broke": false
-    },
-    {
-     "date": "2026-01-13",
-     "entry": 28.58,
-     "ret10": 9.2,
-     "ret20": 12.1,
-     "mdd": -2.9,
-     "broke": false
-    },
-    {
-     "date": "2026-03-20",
-     "entry": 20.53,
-     "ret10": 7.4,
-     "ret20": 40.3,
-     "mdd": -5.1,
-     "broke": true
-    },
-    {
-     "date": "2026-06-17",
-     "entry": 27.78,
-     "ret10": -2.0,
-     "ret20": -13.0,
-     "mdd": -15.8,
-     "broke": true
-    }
-   ],
-   "near": false
-  },
-  {
-   "ticker": "CEG",
-   "name": "Constellation Energy",
-   "market": "US",
-   "currency": "USD",
-   "center": 224.9,
-   "low": 218.16,
-   "high": 231.65,
-   "pivots": 4,
-   "events": 4,
-   "winRate": 75,
-   "avgRet20": 10.5,
-   "avgRet10": 1.0,
-   "baseline20": 3.3,
-   "avgMdd": -5.2,
-   "breakRate": 25,
-   "lastClose": 251.72,
-   "distPct": 11.9,
-   "history": [
-    {
-     "date": "2024-11-04",
-     "entry": 225.95,
-     "ret10": 1.9,
-     "ret20": 9.5,
-     "mdd": -2.1,
-     "broke": false
-    },
-    {
-     "date": "2024-12-10",
-     "entry": 231.65,
-     "ret10": -0.8,
-     "ret20": 31.7,
-     "mdd": -5.2,
-     "broke": false
-    },
-    {
-     "date": "2025-03-03",
-     "entry": 231.65,
-     "ret10": -5.7,
-     "ret20": -13.0,
-     "mdd": -15.6,
-     "broke": true
-    },
-    {
-     "date": "2026-07-01",
-     "entry": 231.65,
-     "ret10": 8.7,
-     "ret20": 13.8,
-     "mdd": 2.1,
-     "broke": false
-    }
-   ],
-   "near": false
-  },
-  {
-   "ticker": "005380.KS",
-   "name": "현대차",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 215500.0,
-   "low": 209035.0,
-   "high": 221965.0,
-   "pivots": 4,
-   "events": 4,
-   "winRate": 75,
-   "avgRet20": 6.0,
-   "avgRet10": 5.7,
-   "baseline20": 2.3,
-   "avgMdd": -2.3,
-   "breakRate": 0,
-   "lastClose": 247500.0,
-   "distPct": 14.8,
-   "history": [
-    {
-     "date": "2024-04-02",
-     "entry": 220000.0,
-     "ret10": 6.1,
-     "ret20": 13.2,
-     "mdd": -2.5,
-     "broke": false
-    },
-    {
-     "date": "2024-08-05",
-     "entry": 221965.0,
-     "ret10": 15.3,
-     "ret20": 7.0,
-     "mdd": 2.7,
-     "broke": false
-    },
-    {
-     "date": "2024-09-11",
-     "entry": 221965.0,
-     "ret10": 9.9,
-     "ret20": 6.1,
-     "mdd": 1.6,
-     "broke": false
-    },
-    {
-     "date": "2024-10-25",
-     "entry": 221965.0,
-     "ret10": -8.3,
-     "ret20": -2.2,
-     "mdd": -11.1,
-     "broke": false
-    }
-   ],
-   "near": false
-  },
-  {
-   "ticker": "QCOM",
-   "name": "Qualcomm",
-   "market": "US",
-   "currency": "USD",
-   "center": 140.51,
-   "low": 136.3,
-   "high": 144.73,
-   "pivots": 6,
-   "events": 6,
-   "winRate": 83,
-   "avgRet20": 6.9,
-   "avgRet10": 5.1,
-   "baseline20": 1.4,
-   "avgMdd": -3.2,
-   "breakRate": 17,
-   "lastClose": 165.38,
-   "distPct": 17.7,
-   "history": [
-    {
-     "date": "2024-01-31",
-     "entry": 144.73,
-     "ret10": 6.4,
-     "ret20": 9.0,
-     "mdd": -3.8,
-     "broke": false
-    },
-    {
-     "date": "2025-04-03",
-     "entry": 139.42,
-     "ret10": -2.0,
-     "ret20": 0.3,
-     "mdd": -13.4,
-     "broke": true
-    },
-    {
-     "date": "2025-05-23",
-     "entry": 144.73,
-     "ret10": 7.4,
-     "ret20": 7.6,
-     "mdd": -0.9,
-     "broke": false
-    },
-    {
-     "date": "2025-08-06",
-     "entry": 144.73,
-     "ret10": 7.4,
-     "ret20": 10.3,
-     "mdd": 0.1,
-     "broke": false
-    },
-    {
-     "date": "2026-02-03",
-     "entry": 144.73,
-     "ret10": -1.0,
-     "ret20": -3.6,
-     "mdd": -8.3,
-     "broke": false
-    },
-    {
-     "date": "2026-08-03",
-     "entry": 144.73,
-     "ret10": 12.1,
-     "ret20": 17.8,
-     "mdd": 7.2,
-     "broke": false
-    }
-   ],
-   "near": false
-  },
-  {
    "ticker": "CRM",
    "name": "Salesforce",
    "market": "US",
@@ -855,8 +599,8 @@
    "baseline20": 0.1,
    "avgMdd": -4.6,
    "breakRate": 12,
-   "lastClose": 185.46,
-   "distPct": -18.6,
+   "lastClose": 193.26,
+   "distPct": -15.2,
    "history": [
     {
      "date": "2025-04-07",
@@ -910,63 +654,265 @@
    "near": false
   },
   {
-   "ticker": "COIN",
-   "name": "Coinbase",
+   "ticker": "QCOM",
+   "name": "Qualcomm",
    "market": "US",
    "currency": "USD",
-   "center": 140.97,
-   "low": 136.74,
-   "high": 145.2,
+   "center": 140.51,
+   "low": 136.3,
+   "high": 144.73,
    "pivots": 6,
-   "events": 5,
-   "winRate": 80,
-   "avgRet20": 18.9,
-   "avgRet10": 9.7,
-   "baseline20": 2.2,
-   "avgMdd": -5.3,
-   "breakRate": 20,
-   "lastClose": 108.78,
-   "distPct": -22.8,
+   "events": 6,
+   "winRate": 83,
+   "avgRet20": 6.9,
+   "avgRet10": 5.1,
+   "baseline20": 1.4,
+   "avgMdd": -3.2,
+   "breakRate": 17,
+   "lastClose": 164.96,
+   "distPct": 17.4,
    "history": [
     {
-     "date": "2024-01-03",
-     "entry": 145.2,
-     "ret10": -14.4,
-     "ret20": -11.2,
-     "mdd": -18.7,
+     "date": "2024-01-31",
+     "entry": 144.73,
+     "ret10": 6.4,
+     "ret20": 9.0,
+     "mdd": -3.8,
+     "broke": false
+    },
+    {
+     "date": "2025-04-03",
+     "entry": 139.42,
+     "ret10": -2.0,
+     "ret20": 0.3,
+     "mdd": -13.4,
      "broke": true
     },
     {
-     "date": "2025-04-07",
-     "entry": 145.2,
-     "ret10": 30.9,
-     "ret20": 35.6,
-     "mdd": 1.5,
+     "date": "2025-05-23",
+     "entry": 144.73,
+     "ret10": 7.4,
+     "ret20": 7.6,
+     "mdd": -0.9,
      "broke": false
     },
     {
-     "date": "2026-02-05",
-     "entry": 145.2,
-     "ret10": 18.0,
-     "ret20": 35.8,
-     "mdd": -4.0,
+     "date": "2025-08-06",
+     "entry": 144.73,
+     "ret10": 7.4,
+     "ret20": 10.3,
+     "mdd": 0.1,
      "broke": false
     },
     {
-     "date": "2026-06-25",
-     "entry": 142.52,
-     "ret10": 11.6,
-     "ret20": 11.1,
-     "mdd": -2.3,
+     "date": "2026-02-03",
+     "entry": 144.73,
+     "ret10": -1.0,
+     "ret20": -3.6,
+     "mdd": -8.3,
      "broke": false
     },
     {
-     "date": "2026-07-31",
-     "entry": 145.2,
-     "ret10": 2.3,
-     "ret20": 23.0,
+     "date": "2026-08-03",
+     "entry": 144.73,
+     "ret10": 12.1,
+     "ret20": 17.8,
+     "mdd": 7.2,
+     "broke": false
+    }
+   ],
+   "near": false
+  },
+  {
+   "ticker": "SMCI",
+   "name": "Super Micro",
+   "market": "US",
+   "currency": "USD",
+   "center": 27.75,
+   "low": 26.92,
+   "high": 28.58,
+   "pivots": 5,
+   "events": 7,
+   "winRate": 86,
+   "avgRet20": 27.1,
+   "avgRet10": 7.2,
+   "baseline20": 4.2,
+   "avgMdd": -11.5,
+   "breakRate": 43,
+   "lastClose": 22.62,
+   "distPct": -18.5,
+   "history": [
+    {
+     "date": "2024-10-31",
+     "entry": 28.58,
+     "ret10": -37.0,
+     "ret20": 14.2,
+     "mdd": -39.6,
+     "broke": true
+    },
+    {
+     "date": "2025-01-27",
+     "entry": 28.58,
+     "ret10": 49.2,
+     "ret20": 59.3,
+     "mdd": -10.0,
+     "broke": false
+    },
+    {
+     "date": "2025-04-04",
+     "entry": 28.58,
+     "ret10": 3.2,
+     "ret20": 12.6,
+     "mdd": -3.4,
+     "broke": false
+    },
+    {
+     "date": "2026-01-13",
+     "entry": 28.58,
+     "ret10": 9.2,
+     "ret20": 12.1,
      "mdd": -2.9,
      "broke": false
+    },
+    {
+     "date": "2026-03-20",
+     "entry": 20.53,
+     "ret10": 7.4,
+     "ret20": 40.3,
+     "mdd": -5.1,
+     "broke": true
+    },
+    {
+     "date": "2026-06-17",
+     "entry": 27.78,
+     "ret10": -2.0,
+     "ret20": -13.0,
+     "mdd": -15.8,
+     "broke": true
+    }
+   ],
+   "near": false
+  },
+  {
+   "ticker": "006400.KS",
+   "name": "삼성SDI",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 379750.0,
+   "low": 368357.5,
+   "high": 391142.5,
+   "pivots": 4,
+   "events": 5,
+   "winRate": 80,
+   "avgRet20": 10.5,
+   "avgRet10": 7.4,
+   "baseline20": 1.6,
+   "avgMdd": -4.4,
+   "breakRate": 20,
+   "lastClose": 450000.0,
+   "distPct": 18.5,
+   "history": [
+    {
+     "date": "2024-01-17",
+     "entry": 379000.0,
+     "ret10": -1.7,
+     "ret20": 6.7,
+     "mdd": -9.8,
+     "broke": true
+    },
+    {
+     "date": "2024-04-16",
+     "entry": 386500.0,
+     "ret10": 12.3,
+     "ret20": 11.5,
+     "mdd": -0.1,
+     "broke": false
+    },
+    {
+     "date": "2024-05-29",
+     "entry": 385000.0,
+     "ret10": 1.7,
+     "ret20": -6.2,
+     "mdd": -6.2,
+     "broke": false
+    },
+    {
+     "date": "2026-03-04",
+     "entry": 351000.0,
+     "ret10": 15.4,
+     "ret20": 23.1,
+     "mdd": 6.8,
+     "broke": false
+    },
+    {
+     "date": "2026-07-09",
+     "entry": 391142.5,
+     "ret10": 9.4,
+     "ret20": 17.3,
+     "mdd": -12.7,
+     "broke": false
+    }
+   ],
+   "near": false
+  },
+  {
+   "ticker": "012450.KS",
+   "name": "한화에어로스페이스",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 783000.0,
+   "low": 759510.0,
+   "high": 806490.0,
+   "pivots": 5,
+   "events": 5,
+   "winRate": 80,
+   "avgRet20": 18.0,
+   "avgRet10": 14.7,
+   "baseline20": 6.1,
+   "avgMdd": -6.0,
+   "breakRate": 20,
+   "lastClose": 628000.0,
+   "distPct": -19.8,
+   "history": [
+    {
+     "date": "2025-07-02",
+     "entry": 806490.0,
+     "ret10": 5.9,
+     "ret20": 21.1,
+     "mdd": -5.8,
+     "broke": false
+    },
+    {
+     "date": "2025-08-20",
+     "entry": 806490.0,
+     "ret10": 16.7,
+     "ret20": 27.7,
+     "mdd": 2.5,
+     "broke": false
+    },
+    {
+     "date": "2025-12-01",
+     "entry": 806490.0,
+     "ret10": 12.6,
+     "ret20": 16.7,
+     "mdd": -1.9,
+     "broke": false
+    },
+    {
+     "date": "2026-07-29",
+     "entry": 806490.0,
+     "ret10": 43.3,
+     "ret20": 42.6,
+     "mdd": 0.3,
+     "broke": false
+    },
+    {
+     "date": "2026-10-13",
+     "entry": 806490.0,
+     "ret10": -4.8,
+     "ret20": -18.3,
+     "mdd": -25.0,
+     "broke": true
     }
    ],
    "near": false
@@ -987,8 +933,8 @@
    "baseline20": 1.6,
    "avgMdd": -1.4,
    "breakRate": 0,
-   "lastClose": 1097.91,
-   "distPct": 24.3,
+   "lastClose": 1091.71,
+   "distPct": 23.6,
    "history": [
     {
      "date": "2025-01-02",
@@ -1042,116 +988,62 @@
    "near": false
   },
   {
-   "ticker": "012450.KS",
-   "name": "한화에어로스페이스",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 783000.0,
-   "low": 759510.0,
-   "high": 806490.0,
-   "pivots": 5,
-   "events": 5,
-   "winRate": 80,
-   "avgRet20": 18.0,
-   "avgRet10": 14.7,
-   "baseline20": 6.1,
-   "avgMdd": -6.0,
-   "breakRate": 20,
-   "lastClose": 575000.0,
-   "distPct": -26.6,
-   "history": [
-    {
-     "date": "2025-07-02",
-     "entry": 806490.0,
-     "ret10": 5.9,
-     "ret20": 21.1,
-     "mdd": -5.8,
-     "broke": false
-    },
-    {
-     "date": "2025-08-20",
-     "entry": 806490.0,
-     "ret10": 16.7,
-     "ret20": 27.7,
-     "mdd": 2.5,
-     "broke": false
-    },
-    {
-     "date": "2025-12-01",
-     "entry": 806490.0,
-     "ret10": 12.6,
-     "ret20": 16.7,
-     "mdd": -1.9,
-     "broke": false
-    },
-    {
-     "date": "2026-07-29",
-     "entry": 806490.0,
-     "ret10": 43.3,
-     "ret20": 42.6,
-     "mdd": 0.3,
-     "broke": false
-    },
-    {
-     "date": "2026-10-13",
-     "entry": 806490.0,
-     "ret10": -4.8,
-     "ret20": -18.3,
-     "mdd": -25.0,
-     "broke": true
-    }
-   ],
-   "near": false
-  },
-  {
-   "ticker": "PLTR",
-   "name": "Palantir",
+   "ticker": "COIN",
+   "name": "Coinbase",
    "market": "US",
    "currency": "USD",
-   "center": 124.46,
-   "low": 120.72,
-   "high": 128.19,
+   "center": 140.97,
+   "low": 136.74,
+   "high": 145.2,
    "pivots": 6,
-   "events": 4,
-   "winRate": 100,
-   "avgRet20": 16.7,
-   "avgRet10": 8.6,
-   "baseline20": 7.8,
-   "avgMdd": -5.8,
-   "breakRate": 25,
-   "lastClose": 159.36,
-   "distPct": 28.0,
+   "events": 5,
+   "winRate": 80,
+   "avgRet20": 18.9,
+   "avgRet10": 9.7,
+   "baseline20": 2.1,
+   "avgMdd": -5.3,
+   "breakRate": 20,
+   "lastClose": 102.35,
+   "distPct": -27.4,
    "history": [
     {
-     "date": "2026-02-12",
-     "entry": 128.19,
-     "ret10": 7.0,
-     "ret20": 17.8,
-     "mdd": -1.5,
-     "broke": false
-    },
-    {
-     "date": "2026-04-10",
-     "entry": 128.06,
-     "ret10": 11.7,
-     "ret20": 7.6,
-     "mdd": 0.9,
-     "broke": false
-    },
-    {
-     "date": "2026-06-09",
-     "entry": 128.19,
-     "ret10": -11.5,
-     "ret20": 0.7,
-     "mdd": -17.0,
+     "date": "2024-01-03",
+     "entry": 145.2,
+     "ret10": -14.4,
+     "ret20": -11.2,
+     "mdd": -18.7,
      "broke": true
     },
     {
-     "date": "2026-07-22",
-     "entry": 124.57,
-     "ret10": 27.2,
-     "ret20": 40.6,
-     "mdd": -5.4,
+     "date": "2025-04-07",
+     "entry": 145.2,
+     "ret10": 30.9,
+     "ret20": 35.6,
+     "mdd": 1.5,
+     "broke": false
+    },
+    {
+     "date": "2026-02-05",
+     "entry": 145.2,
+     "ret10": 18.0,
+     "ret20": 35.8,
+     "mdd": -4.0,
+     "broke": false
+    },
+    {
+     "date": "2026-06-25",
+     "entry": 142.52,
+     "ret10": 11.6,
+     "ret20": 11.1,
+     "mdd": -2.3,
+     "broke": false
+    },
+    {
+     "date": "2026-07-31",
+     "entry": 145.2,
+     "ret10": 2.3,
+     "ret20": 23.0,
+     "mdd": -2.9,
      "broke": false
     }
    ],
@@ -1173,8 +1065,8 @@
    "baseline20": 1.8,
    "avgMdd": -3.8,
    "breakRate": 0,
-   "lastClose": 24850.0,
-   "distPct": -29.0,
+   "lastClose": 25400.0,
+   "distPct": -27.4,
    "history": [
     {
      "date": "2025-07-14",
@@ -1220,6 +1112,176 @@
    "near": false
   },
   {
+   "ticker": "005380.KS",
+   "name": "현대차",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 215500.0,
+   "low": 209035.0,
+   "high": 221965.0,
+   "pivots": 4,
+   "events": 4,
+   "winRate": 75,
+   "avgRet20": 6.0,
+   "avgRet10": 5.7,
+   "baseline20": 2.3,
+   "avgMdd": -2.3,
+   "breakRate": 0,
+   "lastClose": 275000.0,
+   "distPct": 27.6,
+   "history": [
+    {
+     "date": "2024-04-02",
+     "entry": 220000.0,
+     "ret10": 6.1,
+     "ret20": 13.2,
+     "mdd": -2.5,
+     "broke": false
+    },
+    {
+     "date": "2024-08-05",
+     "entry": 221965.0,
+     "ret10": 15.3,
+     "ret20": 7.0,
+     "mdd": 2.7,
+     "broke": false
+    },
+    {
+     "date": "2024-09-11",
+     "entry": 221965.0,
+     "ret10": 9.9,
+     "ret20": 6.1,
+     "mdd": 1.6,
+     "broke": false
+    },
+    {
+     "date": "2024-10-25",
+     "entry": 221965.0,
+     "ret10": -8.3,
+     "ret20": -2.2,
+     "mdd": -11.1,
+     "broke": false
+    }
+   ],
+   "near": false
+  },
+  {
+   "ticker": "PLTR",
+   "name": "Palantir",
+   "market": "US",
+   "currency": "USD",
+   "center": 124.46,
+   "low": 120.72,
+   "high": 128.19,
+   "pivots": 6,
+   "events": 4,
+   "winRate": 100,
+   "avgRet20": 16.7,
+   "avgRet10": 8.6,
+   "baseline20": 7.7,
+   "avgMdd": -5.8,
+   "breakRate": 25,
+   "lastClose": 161.18,
+   "distPct": 29.5,
+   "history": [
+    {
+     "date": "2026-02-12",
+     "entry": 128.19,
+     "ret10": 7.0,
+     "ret20": 17.8,
+     "mdd": -1.5,
+     "broke": false
+    },
+    {
+     "date": "2026-04-10",
+     "entry": 128.06,
+     "ret10": 11.7,
+     "ret20": 7.6,
+     "mdd": 0.9,
+     "broke": false
+    },
+    {
+     "date": "2026-06-09",
+     "entry": 128.19,
+     "ret10": -11.5,
+     "ret20": 0.7,
+     "mdd": -17.0,
+     "broke": true
+    },
+    {
+     "date": "2026-07-22",
+     "entry": 124.57,
+     "ret10": 27.2,
+     "ret20": 40.6,
+     "mdd": -5.4,
+     "broke": false
+    }
+   ],
+   "near": false
+  },
+  {
+   "ticker": "NOW",
+   "name": "ServiceNow",
+   "market": "US",
+   "currency": "USD",
+   "center": 134.52,
+   "low": 130.49,
+   "high": 138.56,
+   "pivots": 6,
+   "events": 5,
+   "winRate": 80,
+   "avgRet20": 11.0,
+   "avgRet10": 5.0,
+   "baseline20": -0.0,
+   "avgMdd": -6.1,
+   "breakRate": 20,
+   "lastClose": 91.74,
+   "distPct": -31.8,
+   "history": [
+    {
+     "date": "2024-01-02",
+     "entry": 137.5,
+     "ret10": 5.8,
+     "ret20": 11.3,
+     "mdd": -2.4,
+     "broke": false
+    },
+    {
+     "date": "2024-04-25",
+     "entry": 138.56,
+     "ret10": 4.4,
+     "ret20": 9.4,
+     "mdd": -1.3,
+     "broke": false
+    },
+    {
+     "date": "2024-05-30",
+     "entry": 128.66,
+     "ret10": 10.3,
+     "ret20": 22.3,
+     "mdd": -0.8,
+     "broke": false
+    },
+    {
+     "date": "2025-04-07",
+     "entry": 138.56,
+     "ret10": 10.7,
+     "ret20": 39.3,
+     "mdd": 2.9,
+     "broke": false
+    },
+    {
+     "date": "2026-01-13",
+     "entry": 138.19,
+     "ret10": -6.2,
+     "ret20": -27.2,
+     "mdd": -29.1,
+     "broke": true
+    }
+   ],
+   "near": false
+  },
+  {
    "ticker": "MA",
    "name": "Mastercard",
    "market": "US",
@@ -1235,8 +1297,8 @@
    "baseline20": 1.3,
    "avgMdd": -2.1,
    "breakRate": 0,
-   "lastClose": 635.48,
-   "distPct": 29.7,
+   "lastClose": 647.44,
+   "distPct": 32.1,
    "history": [
     {
      "date": "2024-10-31",
@@ -1297,8 +1359,8 @@
    "baseline20": 1.0,
    "avgMdd": -5.5,
    "breakRate": 20,
-   "lastClose": 120.27,
-   "distPct": 30.0,
+   "lastClose": 122.51,
+   "distPct": 32.5,
    "history": [
     {
      "date": "2024-07-22",
@@ -1344,232 +1406,54 @@
    "near": false
   },
   {
-   "ticker": "NOW",
-   "name": "ServiceNow",
+   "ticker": "ANET",
+   "name": "Arista Networks",
    "market": "US",
    "currency": "USD",
-   "center": 134.52,
-   "low": 130.49,
-   "high": 138.56,
+   "center": 120.81,
+   "low": 117.19,
+   "high": 124.44,
    "pivots": 6,
-   "events": 5,
-   "winRate": 80,
-   "avgRet20": 11.0,
-   "avgRet10": 5.0,
-   "baseline20": 0.0,
-   "avgMdd": -6.1,
-   "breakRate": 20,
-   "lastClose": 91.72,
-   "distPct": -31.8,
-   "history": [
-    {
-     "date": "2024-01-02",
-     "entry": 137.5,
-     "ret10": 5.8,
-     "ret20": 11.3,
-     "mdd": -2.4,
-     "broke": false
-    },
-    {
-     "date": "2024-04-25",
-     "entry": 138.56,
-     "ret10": 4.4,
-     "ret20": 9.4,
-     "mdd": -1.3,
-     "broke": false
-    },
-    {
-     "date": "2024-05-30",
-     "entry": 128.66,
-     "ret10": 10.3,
-     "ret20": 22.3,
-     "mdd": -0.8,
-     "broke": false
-    },
-    {
-     "date": "2025-04-07",
-     "entry": 138.56,
-     "ret10": 10.7,
-     "ret20": 39.3,
-     "mdd": 2.9,
-     "broke": false
-    },
-    {
-     "date": "2026-01-13",
-     "entry": 138.19,
-     "ret10": -6.2,
-     "ret20": -27.2,
-     "mdd": -29.1,
-     "broke": true
-    }
-   ],
-   "near": false
-  },
-  {
-   "ticker": "ABBV",
-   "name": "AbbVie",
-   "market": "US",
-   "currency": "USD",
-   "center": 211.69,
-   "low": 205.34,
-   "high": 218.04,
-   "pivots": 5,
-   "events": 5,
-   "winRate": 100,
-   "avgRet20": 5.7,
-   "avgRet10": 6.3,
-   "baseline20": 2.1,
-   "avgMdd": -1.5,
-   "breakRate": 0,
-   "lastClose": 288.45,
-   "distPct": 36.3,
-   "history": [
-    {
-     "date": "2025-09-25",
-     "entry": 218.04,
-     "ret10": 5.8,
-     "ret20": 4.7,
-     "mdd": -0.2,
-     "broke": false
-    },
-    {
-     "date": "2025-10-31",
-     "entry": 218.04,
-     "ret10": 6.6,
-     "ret20": 3.2,
-     "mdd": -2.9,
-     "broke": false
-    },
-    {
-     "date": "2026-01-05",
-     "entry": 218.04,
-     "ret10": -1.8,
-     "ret20": 3.5,
-     "mdd": -3.7,
-     "broke": false
-    },
-    {
-     "date": "2026-03-18",
-     "entry": 208.34,
-     "ret10": 3.2,
-     "ret20": 0.3,
-     "mdd": -3.2,
-     "broke": false
-    },
-    {
-     "date": "2026-06-18",
-     "entry": 216.49,
-     "ret10": 17.7,
-     "ret20": 17.0,
-     "mdd": 2.5,
-     "broke": false
-    }
-   ],
-   "near": false
-  },
-  {
-   "ticker": "MSFT",
-   "name": "Microsoft",
-   "market": "US",
-   "currency": "USD",
-   "center": 352.74,
-   "low": 342.16,
-   "high": 363.32,
-   "pivots": 4,
    "events": 4,
-   "winRate": 100,
-   "avgRet20": 12.6,
-   "avgRet10": 4.8,
-   "baseline20": 1.2,
-   "avgMdd": -0.8,
+   "winRate": 75,
+   "avgRet20": 14.9,
+   "avgRet10": 11.5,
+   "baseline20": 4.0,
+   "avgMdd": -4.4,
    "breakRate": 0,
-   "lastClose": 492.5,
-   "distPct": 39.6,
+   "lastClose": 168.56,
+   "distPct": 39.5,
    "history": [
     {
-     "date": "2023-12-04",
-     "entry": 363.32,
-     "ret10": 2.6,
-     "ret20": 2.0,
-     "mdd": 0.2,
+     "date": "2025-11-18",
+     "entry": 123.45,
+     "ret10": 3.5,
+     "ret20": -0.9,
+     "mdd": -7.2,
      "broke": false
     },
     {
-     "date": "2025-04-04",
-     "entry": 359.84,
-     "ret10": -0.2,
-     "ret20": 21.2,
-     "mdd": -4.2,
+     "date": "2026-01-08",
+     "entry": 123.72,
+     "ret10": 10.2,
+     "ret20": 11.1,
+     "mdd": -3.0,
      "broke": false
     },
     {
-     "date": "2026-03-27",
-     "entry": 356.77,
-     "ret10": 7.7,
-     "ret20": 19.1,
-     "mdd": -0.1,
+     "date": "2026-02-24",
+     "entry": 124.44,
+     "ret10": 12.2,
+     "ret20": 5.1,
+     "mdd": -1.7,
      "broke": false
     },
     {
-     "date": "2026-06-25",
-     "entry": 352.83,
-     "ret10": 9.1,
-     "ret20": 8.2,
-     "mdd": 0.7,
-     "broke": false
-    }
-   ],
-   "near": false
-  },
-  {
-   "ticker": "329180.KS",
-   "name": "HD현대중공업",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 420500.0,
-   "low": 407885.0,
-   "high": 433115.0,
-   "pivots": 4,
-   "events": 4,
-   "winRate": 100,
-   "avgRet20": 21.4,
-   "avgRet10": 11.3,
-   "baseline20": 3.5,
-   "avgMdd": 0.2,
-   "breakRate": 0,
-   "lastClose": 238500.0,
-   "distPct": -43.3,
-   "history": [
-    {
-     "date": "2025-08-20",
-     "entry": 433115.0,
-     "ret10": 16.6,
-     "ret20": 16.8,
-     "mdd": 4.4,
-     "broke": false
-    },
-    {
-     "date": "2026-04-01",
-     "entry": 433115.0,
-     "ret10": 9.6,
-     "ret20": 59.3,
-     "mdd": 0.4,
-     "broke": false
-    },
-    {
-     "date": "2026-07-29",
-     "entry": 433115.0,
-     "ret10": 14.5,
-     "ret20": 8.5,
-     "mdd": -1.8,
-     "broke": false
-    },
-    {
-     "date": "2026-09-02",
-     "entry": 422000.0,
-     "ret10": 4.4,
-     "ret20": 0.9,
-     "mdd": -2.1,
+     "date": "2026-03-26",
+     "entry": 122.55,
+     "ret10": 20.2,
+     "ret20": 44.4,
+     "mdd": -5.8,
      "broke": false
     }
    ],
@@ -1591,8 +1475,8 @@
    "baseline20": -2.6,
    "avgMdd": -5.2,
    "breakRate": 33,
-   "lastClose": 33.76,
-   "distPct": -43.5,
+   "lastClose": 35.75,
+   "distPct": -40.2,
    "history": [
     {
      "date": "2025-04-03",
@@ -1646,54 +1530,170 @@
    "near": false
   },
   {
-   "ticker": "ANET",
-   "name": "Arista Networks",
-   "market": "US",
-   "currency": "USD",
-   "center": 120.81,
-   "low": 117.19,
-   "high": 124.44,
-   "pivots": 6,
+   "ticker": "329180.KS",
+   "name": "HD현대중공업",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 420500.0,
+   "low": 407885.0,
+   "high": 433115.0,
+   "pivots": 4,
    "events": 4,
-   "winRate": 75,
-   "avgRet20": 14.9,
-   "avgRet10": 11.5,
-   "baseline20": 4.0,
-   "avgMdd": -4.4,
+   "winRate": 100,
+   "avgRet20": 21.4,
+   "avgRet10": 11.3,
+   "baseline20": 3.4,
+   "avgMdd": 0.2,
    "breakRate": 0,
-   "lastClose": 178.31,
-   "distPct": 47.6,
+   "lastClose": 250500.0,
+   "distPct": -40.4,
    "history": [
     {
-     "date": "2025-11-18",
-     "entry": 123.45,
-     "ret10": 3.5,
-     "ret20": -0.9,
-     "mdd": -7.2,
+     "date": "2025-08-20",
+     "entry": 433115.0,
+     "ret10": 16.6,
+     "ret20": 16.8,
+     "mdd": 4.4,
      "broke": false
     },
     {
-     "date": "2026-01-08",
-     "entry": 123.72,
-     "ret10": 10.2,
-     "ret20": 11.1,
-     "mdd": -3.0,
+     "date": "2026-04-01",
+     "entry": 433115.0,
+     "ret10": 9.6,
+     "ret20": 59.3,
+     "mdd": 0.4,
      "broke": false
     },
     {
-     "date": "2026-02-24",
-     "entry": 124.44,
-     "ret10": 12.2,
-     "ret20": 5.1,
-     "mdd": -1.7,
+     "date": "2026-07-29",
+     "entry": 433115.0,
+     "ret10": 14.5,
+     "ret20": 8.5,
+     "mdd": -1.8,
      "broke": false
     },
     {
-     "date": "2026-03-26",
-     "entry": 122.55,
-     "ret10": 20.2,
-     "ret20": 44.4,
-     "mdd": -5.8,
+     "date": "2026-09-02",
+     "entry": 422000.0,
+     "ret10": 4.4,
+     "ret20": 0.9,
+     "mdd": -2.1,
+     "broke": false
+    }
+   ],
+   "near": false
+  },
+  {
+   "ticker": "MSFT",
+   "name": "Microsoft",
+   "market": "US",
+   "currency": "USD",
+   "center": 352.74,
+   "low": 342.16,
+   "high": 363.32,
+   "pivots": 4,
+   "events": 4,
+   "winRate": 100,
+   "avgRet20": 12.6,
+   "avgRet10": 4.8,
+   "baseline20": 1.2,
+   "avgMdd": -0.8,
+   "breakRate": 0,
+   "lastClose": 496.13,
+   "distPct": 40.7,
+   "history": [
+    {
+     "date": "2023-12-04",
+     "entry": 363.32,
+     "ret10": 2.6,
+     "ret20": 2.0,
+     "mdd": 0.2,
+     "broke": false
+    },
+    {
+     "date": "2025-04-04",
+     "entry": 359.84,
+     "ret10": -0.2,
+     "ret20": 21.2,
+     "mdd": -4.2,
+     "broke": false
+    },
+    {
+     "date": "2026-03-27",
+     "entry": 356.77,
+     "ret10": 7.7,
+     "ret20": 19.1,
+     "mdd": -0.1,
+     "broke": false
+    },
+    {
+     "date": "2026-06-25",
+     "entry": 352.83,
+     "ret10": 9.1,
+     "ret20": 8.2,
+     "mdd": 0.7,
+     "broke": false
+    }
+   ],
+   "near": false
+  },
+  {
+   "ticker": "ABBV",
+   "name": "AbbVie",
+   "market": "US",
+   "currency": "USD",
+   "center": 211.69,
+   "low": 205.34,
+   "high": 218.04,
+   "pivots": 5,
+   "events": 5,
+   "winRate": 100,
+   "avgRet20": 5.7,
+   "avgRet10": 6.3,
+   "baseline20": 2.1,
+   "avgMdd": -1.5,
+   "breakRate": 0,
+   "lastClose": 300.28,
+   "distPct": 41.8,
+   "history": [
+    {
+     "date": "2025-09-25",
+     "entry": 218.04,
+     "ret10": 5.8,
+     "ret20": 4.7,
+     "mdd": -0.2,
+     "broke": false
+    },
+    {
+     "date": "2025-10-31",
+     "entry": 218.04,
+     "ret10": 6.6,
+     "ret20": 3.2,
+     "mdd": -2.9,
+     "broke": false
+    },
+    {
+     "date": "2026-01-05",
+     "entry": 218.04,
+     "ret10": -1.8,
+     "ret20": 3.5,
+     "mdd": -3.7,
+     "broke": false
+    },
+    {
+     "date": "2026-03-18",
+     "entry": 208.34,
+     "ret10": 3.2,
+     "ret20": 0.3,
+     "mdd": -3.2,
+     "broke": false
+    },
+    {
+     "date": "2026-06-18",
+     "entry": 216.49,
+     "ret10": 17.7,
+     "ret20": 17.0,
+     "mdd": 2.5,
      "broke": false
     }
    ],
@@ -1715,8 +1715,8 @@
    "baseline20": 1.6,
    "avgMdd": -2.3,
    "breakRate": 0,
-   "lastClose": 156.9,
-   "distPct": 49.7,
+   "lastClose": 158.23,
+   "distPct": 50.9,
    "history": [
     {
      "date": "2024-12-17",
@@ -1785,8 +1785,8 @@
    "baseline20": 2.7,
    "avgMdd": -2.4,
    "breakRate": 0,
-   "lastClose": 547.04,
-   "distPct": 70.9,
+   "lastClose": 540.63,
+   "distPct": 68.9,
    "history": [
     {
      "date": "2024-05-02",
@@ -1832,60 +1832,6 @@
    "near": false
   },
   {
-   "ticker": "MRK",
-   "name": "Merck",
-   "market": "US",
-   "currency": "USD",
-   "center": 76.66,
-   "low": 74.36,
-   "high": 78.96,
-   "pivots": 5,
-   "events": 4,
-   "winRate": 100,
-   "avgRet20": 5.8,
-   "avgRet10": 4.7,
-   "baseline20": 1.1,
-   "avgMdd": -2.0,
-   "breakRate": 0,
-   "lastClose": 135.47,
-   "distPct": 76.7,
-   "history": [
-    {
-     "date": "2025-04-08",
-     "entry": 78.95,
-     "ret10": -0.3,
-     "ret20": 0.2,
-     "mdd": -3.8,
-     "broke": false
-    },
-    {
-     "date": "2025-06-17",
-     "entry": 78.28,
-     "ret10": 5.3,
-     "ret20": 4.1,
-     "mdd": -1.5,
-     "broke": false
-    },
-    {
-     "date": "2025-07-21",
-     "entry": 78.96,
-     "ret10": 1.1,
-     "ret20": 6.7,
-     "mdd": -2.9,
-     "broke": false
-    },
-    {
-     "date": "2025-09-25",
-     "entry": 77.6,
-     "ret10": 12.8,
-     "ret20": 12.3,
-     "mdd": 0.1,
-     "broke": false
-    }
-   ],
-   "near": false
-  },
-  {
    "ticker": "TSLA",
    "name": "Tesla",
    "market": "US",
@@ -1898,11 +1844,11 @@
    "winRate": 80,
    "avgRet20": 13.5,
    "avgRet10": 6.7,
-   "baseline20": 2.5,
+   "baseline20": 2.4,
    "avgMdd": -8.5,
    "breakRate": 40,
-   "lastClose": 385.46,
-   "distPct": 79.9,
+   "lastClose": 384.68,
+   "distPct": 79.5,
    "history": [
     {
      "date": "2024-01-12",
@@ -1948,6 +1894,60 @@
    "near": false
   },
   {
+   "ticker": "MRK",
+   "name": "Merck",
+   "market": "US",
+   "currency": "USD",
+   "center": 76.66,
+   "low": 74.36,
+   "high": 78.96,
+   "pivots": 5,
+   "events": 4,
+   "winRate": 100,
+   "avgRet20": 5.8,
+   "avgRet10": 4.7,
+   "baseline20": 1.1,
+   "avgMdd": -2.0,
+   "breakRate": 0,
+   "lastClose": 141.57,
+   "distPct": 84.7,
+   "history": [
+    {
+     "date": "2025-04-08",
+     "entry": 78.95,
+     "ret10": -0.3,
+     "ret20": 0.2,
+     "mdd": -3.8,
+     "broke": false
+    },
+    {
+     "date": "2025-06-17",
+     "entry": 78.28,
+     "ret10": 5.3,
+     "ret20": 4.1,
+     "mdd": -1.5,
+     "broke": false
+    },
+    {
+     "date": "2025-07-21",
+     "entry": 78.96,
+     "ret10": 1.1,
+     "ret20": 6.7,
+     "mdd": -2.9,
+     "broke": false
+    },
+    {
+     "date": "2025-09-25",
+     "entry": 77.6,
+     "ret10": 12.8,
+     "ret20": 12.3,
+     "mdd": 0.1,
+     "broke": false
+    }
+   ],
+   "near": false
+  },
+  {
    "ticker": "GOOGL",
    "name": "Alphabet",
    "market": "US",
@@ -1963,8 +1963,8 @@
    "baseline20": 2.5,
    "avgMdd": -3.1,
    "breakRate": 0,
-   "lastClose": 282.1,
-   "distPct": 88.9,
+   "lastClose": 279.05,
+   "distPct": 86.8,
    "history": [
     {
      "date": "2024-04-16",
@@ -2017,8 +2017,8 @@
    "baseline20": 2.8,
    "avgMdd": -4.6,
    "breakRate": 12,
-   "lastClose": 1364.6,
-   "distPct": 90.0,
+   "lastClose": 1407.59,
+   "distPct": 96.0,
    "history": [
     {
      "date": "2024-11-18",
@@ -2087,8 +2087,8 @@
    "baseline20": 3.7,
    "avgMdd": -0.6,
    "breakRate": 0,
-   "lastClose": 321.26,
-   "distPct": 104.8,
+   "lastClose": 318.03,
+   "distPct": 102.7,
    "history": [
     {
      "date": "2024-05-13",
@@ -2149,8 +2149,8 @@
    "baseline20": 3.4,
    "avgMdd": -3.1,
    "breakRate": 0,
-   "lastClose": 246500.0,
-   "distPct": 113.6,
+   "lastClose": 265500.0,
+   "distPct": 130.1,
    "history": [
     {
      "date": "2024-01-17",
@@ -2203,8 +2203,8 @@
    "baseline20": 4.2,
    "avgMdd": -0.8,
    "breakRate": 0,
-   "lastClose": 363.6,
-   "distPct": 172.8,
+   "lastClose": 349.2,
+   "distPct": 162.0,
    "history": [
     {
      "date": "2024-03-15",
@@ -2254,11 +2254,11 @@
    "winRate": 86,
    "avgRet20": 12.0,
    "avgRet10": 14.5,
-   "baseline20": 3.3,
+   "baseline20": 3.2,
    "avgMdd": -3.2,
    "breakRate": 0,
-   "lastClose": 59.66,
-   "distPct": 216.7,
+   "lastClose": 54.8,
+   "distPct": 190.9,
    "history": [
     {
      "date": "2024-09-04",
@@ -2324,11 +2324,11 @@
    "winRate": 100,
    "avgRet20": 11.9,
    "avgRet10": 15.2,
-   "baseline20": 8.4,
+   "baseline20": 8.3,
    "avgMdd": -2.6,
    "breakRate": 0,
-   "lastClose": 707.7,
-   "distPct": 737.4,
+   "lastClose": 629.79,
+   "distPct": 645.2,
    "history": [
     {
      "date": "2024-08-05",
@@ -2382,11 +2382,11 @@
      "winRate": 100,
      "avgRet20": 72.3,
      "avgRet10": 16.1,
-     "baseline20": 11.8,
+     "baseline20": 11.7,
      "avgMdd": -4.1,
      "breakRate": 0,
-     "lastClose": 168.15,
-     "distPct": 1743.7,
+     "lastClose": 156.41,
+     "distPct": 1615.0,
      "history": [
       {
        "date": "2024-02-16",
@@ -2424,11 +2424,11 @@
      "winRate": 100,
      "avgRet20": 31.9,
      "avgRet10": 28.2,
-     "baseline20": 11.8,
+     "baseline20": 11.7,
      "avgMdd": -4.5,
      "breakRate": 0,
-     "lastClose": 168.15,
-     "distPct": 5.1,
+     "lastClose": 156.41,
+     "distPct": -2.2,
      "history": [
       {
        "date": "2026-07-28",
