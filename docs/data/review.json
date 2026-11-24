@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T12:15+09:00",
+ "updated": "2026-11-24T13:27+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
   "investor": {
@@ -15,16 +15,20 @@
    "open": 11
   },
   "strategy": {
-   "n": 0,
-   "open": 24
+   "n": 1,
+   "open": 23,
+   "hit": 0.0,
+   "avg": -14.15,
+   "best": -14.15,
+   "worst": -14.15
   },
   "swing": {
-   "n": 1,
-   "open": 1,
+   "n": 2,
+   "open": 0,
    "hit": 0.0,
-   "avg": -7.65,
+   "avg": -9.96,
    "best": -7.65,
-   "worst": -7.65
+   "worst": -12.26
   }
  },
  "byMarket": {
@@ -60,16 +64,20 @@
     "open": 1
    },
    "strategy": {
-    "n": 0,
-    "open": 6
+    "n": 1,
+    "open": 5,
+    "hit": 0.0,
+    "avg": -14.15,
+    "best": -14.15,
+    "worst": -14.15
    },
    "swing": {
-    "n": 1,
-    "open": 1,
+    "n": 2,
+    "open": 0,
     "hit": 0.0,
-    "avg": -7.65,
+    "avg": -9.96,
     "best": -7.65,
-    "worst": -7.65
+    "worst": -12.26
    }
   },
   "SP500": {
@@ -135,30 +143,34 @@
    "open": 8
   },
   "quality": {
-   "n": 0,
-   "open": 2
+   "n": 1,
+   "open": 1,
+   "hit": 0.0,
+   "avg": -14.15,
+   "best": -14.15,
+   "worst": -14.15
   },
   "reversal": {
    "n": 0,
    "open": 2
   },
   "swing": {
-   "n": 1,
-   "open": 1,
+   "n": 2,
+   "open": 0,
    "hit": 0.0,
-   "avg": -7.65,
+   "avg": -9.96,
    "best": -7.65,
-   "worst": -7.65
+   "worst": -12.26
   }
  },
  "byRegime": {
   "하락": {
-   "n": 2,
-   "open": 18,
+   "n": 4,
+   "open": 16,
    "hit": 0.0,
-   "avg": -9.55,
+   "avg": -11.38,
    "best": -7.65,
-   "worst": -11.46
+   "worst": -14.15
   },
   "조정": {
    "n": 0,
@@ -191,7 +203,7 @@
    "open": 2
   }
  },
- "stopOuts": 2,
+ "stopOuts": 4,
  "params": {
   "rs_min": 70,
   "rs_min_bear": 85,
