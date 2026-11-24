@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T22:44+09:00",
+ "updated": "2026-11-25T00:27+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
   "investor": {
@@ -12,11 +12,11 @@
   },
   "chart": {
    "n": 0,
-   "open": 11
+   "open": 14
   },
   "strategy": {
    "n": 1,
-   "open": 23,
+   "open": 29,
    "hit": 0.0,
    "avg": -14.15,
    "best": -14.15,
@@ -24,7 +24,7 @@
   },
   "swing": {
    "n": 2,
-   "open": 0,
+   "open": 1,
    "hit": 0.0,
    "avg": -9.96,
    "best": -7.65,
@@ -87,15 +87,15 @@
    },
    "chart": {
     "n": 0,
-    "open": 6
+    "open": 9
    },
    "strategy": {
     "n": 0,
-    "open": 6
+    "open": 9
    },
    "swing": {
     "n": 0,
-    "open": 0
+    "open": 1
    }
   },
   "NASDAQ": {
@@ -109,7 +109,7 @@
    },
    "strategy": {
     "n": 0,
-    "open": 6
+    "open": 9
    },
    "swing": {
     "n": 0,
@@ -120,15 +120,15 @@
  "bySignal": {
   "breakout": {
    "n": 0,
-   "open": 7
+   "open": 9
   },
   "pullback": {
    "n": 0,
-   "open": 4
+   "open": 5
   },
   "bollinger": {
    "n": 0,
-   "open": 4
+   "open": 6
   },
   "macd": {
    "n": 0,
@@ -140,11 +140,11 @@
   },
   "dividend": {
    "n": 0,
-   "open": 8
+   "open": 11
   },
   "quality": {
    "n": 1,
-   "open": 1,
+   "open": 2,
    "hit": 0.0,
    "avg": -14.15,
    "best": -14.15,
@@ -156,7 +156,7 @@
   },
   "swing": {
    "n": 2,
-   "open": 0,
+   "open": 1,
    "hit": 0.0,
    "avg": -9.96,
    "best": -7.65,
@@ -174,7 +174,7 @@
   },
   "조정": {
    "n": 0,
-   "open": 31
+   "open": 41
   }
  },
  "byStyle": {

@@ -475,5 +475,24 @@
    "NASDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-25T00:26+09:00",
+  "scanned": [
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "SP500:Dollar Tree",
+   "SP500:Agilent Technologies",
+   "SP500:Kroger",
+   "SP500:General Mills(strategy)",
+   "SP500:Idexx Laboratories(strategy)",
+   "SP500:Kraft Heinz(strategy)",
+   "SP500:Dollar General(swing)",
+   "NASDAQ:Intuitive Surgical, Inc.(strategy)",
+   "NASDAQ:CrowdStrike Holdings, Inc.(strategy)",
+   "NASDAQ:Exelon Corporation(strategy)"
+  ]
  }
 ]
