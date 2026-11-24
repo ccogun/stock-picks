@@ -534,5 +534,21 @@
    "NASDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-25T08:15+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ",
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "KOSPI:이수스페셜티케미컬(strategy)",
+   "KOSPI:코웨이(strategy)",
+   "KOSPI:한미약품(strategy)",
+   "KOSDAQ:와이지엔터테인먼트(strategy)",
+   "KOSDAQ:코스메카코리아(strategy)"
+  ]
  }
 ]
