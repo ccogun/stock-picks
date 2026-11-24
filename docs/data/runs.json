@@ -494,5 +494,13 @@
    "NASDAQ:CrowdStrike Holdings, Inc.(strategy)",
    "NASDAQ:Exelon Corporation(strategy)"
   ]
+ },
+ {
+  "at": "2026-11-25T02:22+09:00",
+  "scanned": [
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": []
  }
 ]
