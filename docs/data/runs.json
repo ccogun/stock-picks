@@ -550,5 +550,17 @@
    "KOSDAQ:와이지엔터테인먼트(strategy)",
    "KOSDAQ:코스메카코리아(strategy)"
   ]
+ },
+ {
+  "at": "2026-11-25T09:07+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ",
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "KOSDAQ:안랩(strategy)"
+  ]
  }
 ]
