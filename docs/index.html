@@ -304,18 +304,120 @@ async function drawPatterns(box){
       c.append(el("div","meta",z.history.map(e=>e.date+" "+price(e.entry,"USD")+" → 20일 "+pct(e.ret20)).join(" / ")));
       box.append(c); }); });
 }
+// ── 내가 산 종목 (이 기기 브라우저에만 저장) ──
+const HKEY="sp_holdings_v1";
+function getHold(){ try{ return JSON.parse(localStorage.getItem(HKEY)||"{}"); }catch(e){ return {}; } }
+function setHold(id,v){ const all=getHold(); if(v) all[id]=v; else delete all[id];
+  try{ localStorage.setItem(HKEY,JSON.stringify(all)); return true; }catch(e){ return false; } }
+let histMine=false;
+
+function makeSheet(title){
+  const bg=el("div","modal"); const sh=el("div","sheet"); bg.append(sh);
+  const hd=el("div","sheet-head"); const x=el("button",null,"닫기");
+  hd.append(el("b",null,title),x); sh.append(hd);
+  const esc=e=>{if(e.key==="Escape") close();};
+  function close(){ bg.remove(); document.body.style.overflow=""; document.removeEventListener("keydown",esc); }
+  x.addEventListener("click",close); bg.addEventListener("click",e=>{if(e.target===bg) close();});
+  document.addEventListener("keydown",esc);
+  document.body.style.overflow="hidden"; document.body.append(bg);
+  return {sh,close};
+}
+function kv(box,k,v,c){ const r=el("div","row"); r.style.padding="5px 0"; r.style.borderBottom="1px solid var(--line)";
+  r.append(el("span","sub",k), el("b",c||"",v)); box.append(r); }
+
+// 대응 방향: 추천 손절·목표가와 지금 가격으로 판단 (참고용 규칙)
+function advice(p, base){
+  const cur=p.lastPrice, cu=p.currency, rp=+p.recPrice;
+  if(p.entry==="pending") return ["다음 정규장 시가에 진입가가 확정됩니다. 그 전에는 추격 매수하지 마세요."];
+  if(!cur||!rp) return ["시세 대기 중입니다."];
+  const b=base||rp, r=b/rp;                     // 내 매수가 기준이면 같은 비율로 환산
+  const stop=p.stop?p.stop*r:null, tgt=p.target?p.target*r:null;
+  const tgt2=tgt?b+(tgt-b)*1.8:null, gain=(cur/b-1)*100;
+  const out=[];
+  if(p.status==="closed"){
+    out.push("추천이 종료됐습니다("+(p.closeReason||"평가 종료")+"). 보유 중이면 계속 들고 갈 새 이유가 없는 한 정리를 검토하세요.");
+    return out;
+  }
+  if(stop && cur<=stop) out.push("손절선 "+price(stop,cu)+" 아래입니다. 원칙대로라면 정리할 구간입니다.");
+  else if(tgt && cur>=tgt){
+    out.push("1차 목표 "+price(tgt,cu)+" 도달 — 절반 익절을 고려하세요.");
+    out.push("나머지는 손절선을 매수가("+price(b,cu)+")로 올려 본전을 지키고, 2차 목표 "+price(tgt2,cu)+"까지 보유를 검토하세요.");
+  } else if(gain>0){
+    out.push("보유 — 1차 익절 목표 "+price(tgt,cu)+" ("+pct((tgt/b-1)*100)+"), 손절선 "+price(stop,cu)+".");
+    if(tgt && cur>=b+(tgt-b)/2) out.push("목표까지 절반 이상 왔습니다. 손절선을 매수가 "+price(b,cu)+"로 올려 수익을 지키세요.");
+  } else {
+    out.push("매수가 아래지만 손절선 위입니다. 추가 매수(물타기)보다 손절선 "+price(stop,cu)+" 이탈 여부를 지켜보세요.");
+    if(tgt) out.push("반등 시 1차 목표는 "+price(tgt,cu)+"입니다.");
+  }
+  if(p.method==="swing") out.push("단기 스윙(모의 검증)이라 5거래일이 지나면 결과와 관계없이 정리하는 것이 원칙입니다.");
+  return out;
+}
+
+function openDetail(p){
+  const {sh}=makeSheet(p.name);
+  sh.append(el("div","meta",p.ticker+" · "+MK[p.market]+" · "+(METHOD[p.method]||p.method)));
+  const info=el("div","card");
+  kv(info,"추천 일시",p.recAt.replace("T"," ").slice(0,16)+(p.recDate!==p.recAt.slice(0,10)?" (기준일 "+p.recDate+")":""));
+  kv(info,"추천 가격",p.entry==="pending"?"진입 대기":price(p.recPrice,p.currency));
+  kv(info,"현재 가격",price(p.lastPrice,p.currency)+(p.lastDate?" ("+p.lastDate.slice(5)+")":""));
+  kv(info,"수익률",counting(p)?pct(p.ret):"집계 전",counting(p)?cls(p.ret):"");
+  kv(info,"지수 대비",counting(p)?pct(p.excess).replace("%","%p"):"–",counting(p)?cls(p.excess):"");
+  if(counting(p)) kv(info,"추천 후 최고 / 최저",pct(p.maxRet)+" / "+pct(p.minRet));
+  kv(info,"손절가 / 1차 목표가",(p.stop?price(p.stop,p.currency):"–")+" / "+(p.target?price(p.target,p.currency):"–"));
+  kv(info,"평가",(p.verdict||"판단 중")+(p.status==="closed"?" (종료)":""),vcls(p.verdict));
+  if(p.entryNote) info.append(el("div","note",p.entryNote));
+  sh.append(info);
+
+  // 내 매수 기록
+  const mine=el("div","card"); sh.append(el("h2",null,"내 매수"));
+  const hold=getHold()[p.id];
+  const lab=el("label"); lab.style.display="flex"; lab.style.alignItems="center"; lab.style.gap="8px";
+  const cb=el("input"); cb.type="checkbox"; cb.checked=!!hold; cb.style.width="20px"; cb.style.height="20px";
+  lab.append(cb, el("span",null,"이 종목을 샀어요"));
+  const row=el("div"); row.style.marginTop="8px"; row.style.display=hold?"flex":"none"; row.style.gap="8px"; row.style.alignItems="center";
+  const inp=el("input"); inp.type="number"; inp.inputMode="decimal"; inp.step="any"; inp.placeholder="매수가";
+  inp.value=hold&&hold.price?hold.price:""; Object.assign(inp.style,{flex:"1",padding:"8px",borderRadius:"8px",border:"1px solid var(--line)",background:"var(--bg)",color:"var(--text)",fontSize:"16px"});
+  const save=el("button",null,"저장"); Object.assign(save.style,{border:"1px solid var(--accent)",background:"var(--accent)",color:"#fff",borderRadius:"8px",padding:"8px 14px",fontSize:"15px"});
+  row.append(el("span","sub",p.currency==="KRW"?"원":"$"),inp,save);
+  const msg=el("div","meta");
+  mine.append(lab,row,msg); sh.append(mine);
+  const adv=el("div","card"); sh.append(el("h2",null,"대응 방향")); sh.append(adv);
+  const drawAdv=()=>{ adv.replaceChildren(); const hd=getHold()[p.id]; const base=hd&&hd.price?+hd.price:null;
+    if(base&&p.lastPrice){ adv.append(el("div","meta "+cls(p.lastPrice/base-1),"내 매수가 "+price(base,p.currency)+" 기준 수익률 "+pct((p.lastPrice/base-1)*100))); }
+    advice(p,base).forEach(t=>adv.append(el("div",null,"• "+t)));
+    adv.append(el("div","note",base?"내 매수가 기준으로 손절·목표가를 같은 비율로 환산했습니다.":"추천 가격 기준입니다. 매수가를 입력하면 내 가격 기준으로 바뀝니다."));
+    adv.append(el("div","note","규칙에 따른 참고용 안내이며 투자 권유가 아닙니다.")); };
+  const persist=()=>{ const v=parseFloat(inp.value); const ok=setHold(p.id, cb.checked?{price:isNaN(v)?null:v, at:new Date().toISOString().slice(0,10)}:null);
+    msg.textContent=ok?(cb.checked?"저장했어요 (이 기기에만 저장됩니다)":"매수 표시를 지웠어요"):"저장하지 못했어요 (브라우저 저장소를 쓸 수 없음)";
+    drawAdv(); if(state.tab==="ALL") drawList(); };
+  cb.addEventListener("change",()=>{ row.style.display=cb.checked?"flex":"none"; persist(); if(cb.checked) inp.focus(); });
+  save.addEventListener("click",persist);
+  inp.addEventListener("keydown",e=>{ if(e.key==="Enter") persist(); });
+  drawAdv();
+  sh.append(el("h2",null,"추천 사유·차트")); sh.append(card(p));
+}
+
 function drawHistory(box){
   box.append(el("h2",null,"전체 추천 기록"));
+  const hold=getHold();
+  const tg=el("label","meta"); tg.style.display="flex"; tg.style.gap="6px"; tg.style.alignItems="center"; tg.style.margin="0 0 8px";
+  const c=el("input"); c.type="checkbox"; c.checked=histMine; c.addEventListener("change",()=>{histMine=c.checked; drawList();});
+  tg.append(c, document.createTextNode("내가 산 종목만 보기 ("+Object.keys(hold).filter(id=>state.picks.some(p=>p.id===id)).length+"개)"));
+  box.append(tg);
+  box.append(el("div","note","행을 누르면 추천가·현재가·대응 방향을 보고, 산 종목은 매수가를 기록할 수 있어요."));
   const t=el("table"); const h=el("tr");
   ["종목","시장·방식","추천일","수익률","지수 대비","평가"].forEach((x,i)=>h.append(el("th",i>=3&&i<=4?"r":"",x)));
   t.append(h);
-  [...state.picks].sort((a,b)=>b.recAt.localeCompare(a.recAt)).forEach(p=>{
-    const r=el("tr");
-    r.append(el("td",null,p.name), el("td",null,MK[p.market]+" · "+({chart:"차트",investor:"투자자",strategy:"전략",swing:"스윙"}[p.method]||p.method)),
+  [...state.picks].filter(p=>!histMine||hold[p.id]).sort((a,b)=>b.recAt.localeCompare(a.recAt)).forEach(p=>{
+    const r=el("tr"); r.style.cursor="pointer";
+    const nm=el("td",null,(hold[p.id]?"✓ ":"")+p.name); if(hold[p.id]) nm.style.fontWeight="700";
+    r.append(nm, el("td",null,MK[p.market]+" · "+({chart:"차트",investor:"투자자",strategy:"전략",swing:"스윙"}[p.method]||p.method)),
       el("td",null,p.recDate.slice(5)), el("td","r "+(counting(p)?cls(p.ret):""),counting(p)?pct(p.ret):(p.entry==="pending"?"진입 대기":"집계 전")), el("td","r "+(counting(p)?cls(p.excess):""),counting(p)?pct(p.excess):"–"),
       el("td",vcls(p.verdict),(p.verdict||"판단 중")+(p.status==="closed"?" (종료)":"")));
+    r.addEventListener("click",()=>openDetail(p));
     t.append(r);
   });
+  if(histMine && !t.querySelector("tr+tr")) box.append(el("div","empty","아직 산 종목으로 표시한 게 없어요."));
   box.append(t);
 }
 load();
