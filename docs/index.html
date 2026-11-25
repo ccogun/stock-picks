@@ -180,7 +180,7 @@ function card(p){
   top.append(left,right); c.append(top);
   const line=el("div","meta");
   line.append(el("span","tag "+vcls(p.verdict), p.verdict||"판단 중"));
-  line.append(document.createTextNode("  현재 "+price(p.lastPrice,p.currency)+(counting(p)?" · 최고 "+pct(p.maxRet)+" · 최저 "+pct(p.minRet):" · 오늘 추천")
+  line.append(document.createTextNode("  "+(p.status==="closed"?"종료가 ":"현재 ")+price(p.lastPrice,p.currency)+(counting(p)?" · 최고 "+pct(p.maxRet)+" · 최저 "+pct(p.minRet):" · 오늘 추천")
     + (p.closeReason? " · "+p.closeReason : "")));
   c.append(line);
   if(p.ext && counting(p)) c.append(el("div","meta "+cls(p.ext.ret), (p.ext.phase==="pre"?"프리마켓 ":"애프터마켓 ")+price(p.ext.price,p.currency)+" (추천가 대비 "+pct(p.ext.ret)+", 참고용)"));
@@ -388,7 +388,7 @@ function openDetail(p){
   const info=el("div","card");
   kv(info,"추천 일시",p.recAt.replace("T"," ").slice(0,16)+(p.recDate!==p.recAt.slice(0,10)?" (기준일 "+p.recDate+")":""));
   kv(info,"추천 가격",p.entry==="pending"?"진입 대기":price(p.recPrice,p.currency));
-  kv(info,"현재 가격",price(p.lastPrice,p.currency)+(p.lastDate?" ("+p.lastDate.slice(5)+")":""));
+  kv(info,p.status==="closed"?"종료 가격":"현재 가격",price(p.lastPrice,p.currency)+(p.lastDate?" ("+p.lastDate.slice(5)+")":""));
   kv(info,"수익률",counting(p)?pct(p.ret):"집계 전",counting(p)?cls(p.ret):"");
   kv(info,"지수 대비",counting(p)?pct(p.excess).replace("%","%p"):"–",counting(p)?cls(p.excess):"");
   if(counting(p)) kv(info,"추천 후 최고 / 최저",pct(p.maxRet)+" / "+pct(p.minRet));

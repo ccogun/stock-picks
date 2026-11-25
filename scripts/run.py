@@ -413,6 +413,31 @@ def track(p: dict, df: pd.DataFrame | None, idx: pd.DataFrame | None) -> None:
         p["outcome"] = p.get("excess")   # 최종 지수 대비 초과수익(학습용)
 
 
+def freeze_closed(p: dict, df: pd.DataFrame, idx: pd.DataFrame | None) -> None:
+    """종료일 종가 기준으로 최종 성과를 고정한다."""
+    end = pd.Timestamp(p.get("closedAt") or p.get("lastDate"))
+    upto = df[df.index <= end]
+    if not len(upto) or not p.get("recPrice"):
+        return
+    rp = float(p["recPrice"])
+    last = float(upto["Close"].iloc[-1])
+    p["lastPrice"], p["lastDate"] = round(last, 4), upto.index[-1].strftime("%Y-%m-%d")
+    p["exitPrice"] = p["lastPrice"]
+    p["ret"] = round((last / rp - 1) * 100, 2)
+    held = upto[upto.index >= pd.Timestamp(p["recDate"])]
+    if len(held):
+        p["maxRet"] = round((float(held["High"].max()) / rp - 1) * 100, 2)
+        p["minRet"] = round((float(held["Low"].min()) / rp - 1) * 100, 2)
+        p["daysHeld"] = max(len(held) - 1, 0)
+    if idx is not None and p.get("recIndex"):
+        b = close_on(idx, p["lastDate"])
+        if b:
+            p["benchRet"] = round((b / p["recIndex"] - 1) * 100, 2)
+            p["excess"] = round(p["ret"] - p["benchRet"], 2)
+            p["outcome"] = p["excess"]
+    p["frozen"] = True
+
+
 def describe_chart(df: pd.DataFrame, currency: str) -> str:
     """투자자 방식 추천처럼 차트 설명이 없는 종목에 현재 차트 상태를 글로 붙인다."""
     c = df["Close"]
@@ -630,6 +655,18 @@ def main() -> None:
     pdata = download(need, period="1y") if need else {}
     for p in picks:
         idx = idx_data.get(MARKETS[p["market"]]["index"])
+        if p["status"] == "closed":
+            # 종료된 추천은 종료일 기준으로 고정 (같은 종목이 다시 추천돼도 이전 기록이 바뀌지 않게)
+            if not p.get("frozen"):
+                df_c = pdata.get(p["ticker"])
+                if df_c is None:
+                    saved = load_json(PRICES / f"{safe_name(p['ticker'])}.json", {}).get("d")
+                    if saved:
+                        df_c = pd.DataFrame([r[1:] for r in saved], index=pd.to_datetime([r[0] for r in saved]),
+                                            columns=["Open", "High", "Low", "Close", "Volume"])
+                if df_c is not None:
+                    freeze_closed(p, df_c, idx)
+            continue
         if p["ticker"] in pdata:
             track(p, pdata[p["ticker"]], idx)
             if p["method"] != "chart" and p["status"] == "active":
