@@ -1,0 +1,10 @@
+{
+ "at": "2026-11-25T19:30+09:00",
+ "samples": [
+  "005930.KS: ValueError No tables found status=200 len=86742",
+  "009150.KS: ValueError No tables found status=200 len=86740",
+  "000660.KS: ValueError No tables found status=200 len=86748",
+  "373220.KS: ValueError No tables found status=200 len=86756",
+  "207940.KS: ValueError No tables found status=200 len=86760"
+ ]
+}
