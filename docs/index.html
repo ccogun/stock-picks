@@ -230,8 +230,8 @@ function openGroup(title,list,mode){
   const bg=el("div","modal"); const sh=el("div","sheet"); bg.append(sh);
   const hd=el("div","sheet-head"); const x=el("button",null,"닫기");
   hd.append(el("b",null,title+" · "+list.length+"건"),x); sh.append(hd);
-  const close=()=>{bg.remove(); document.body.style.overflow=""; document.removeEventListener("keydown",esc);};
-  const esc=e=>{if(e.key==="Escape") close();};
+  const close=()=>{bg.remove(); if(!document.querySelector(".modal")) document.body.style.overflow=""; document.removeEventListener("keydown",esc);};
+  const esc=e=>{const ms=document.querySelectorAll(".modal"); if(e.key==="Escape" && ms[ms.length-1]===bg) close();};
   x.addEventListener("click",close); bg.addEventListener("click",e=>{if(e.target===bg) close();});
   document.addEventListener("keydown",esc);
   const sec=(name,arr,showScore)=>{
@@ -239,7 +239,10 @@ function openGroup(title,list,mode){
     sh.append(el("h2",null,name+" ("+arr.length+"건)"));
     arr.forEach(p=>{ if(showScore){const o=outcomeOf(p);
         sh.append(el("div","score-line "+cls(o),"평가 지표(지수 대비 "+(p.method==="swing"?"5":"10")+"거래일 또는 종료 시점): "+pct(o).replace("%","%p")));}
-      sh.append(card(p)); });
+      const cd=card(p); cd.style.cursor="pointer";
+      const more=el("div","meta","눌러서 추천가·대응 방향 보기 ›"); more.style.color="var(--accent)"; more.style.marginTop="6px"; cd.append(more);
+      cd.addEventListener("click",e=>{ if(e.target.closest("details")) return; openDetail(p); });
+      sh.append(cd); });
   };
   if(mode!=="open") sec("평가 완료 — 성과순",ev,true);
   if(mode!=="eval") sec("진행 중",op,false);
@@ -324,8 +327,8 @@ function makeSheet(title){
   const bg=el("div","modal"); const sh=el("div","sheet"); bg.append(sh);
   const hd=el("div","sheet-head"); const x=el("button",null,"닫기");
   hd.append(el("b",null,title),x); sh.append(hd);
-  const esc=e=>{if(e.key==="Escape") close();};
-  function close(){ bg.remove(); document.body.style.overflow=""; document.removeEventListener("keydown",esc); }
+  const esc=e=>{const ms=document.querySelectorAll(".modal"); if(e.key==="Escape" && ms[ms.length-1]===bg) close();};
+  function close(){ bg.remove(); if(!document.querySelector(".modal")) document.body.style.overflow=""; document.removeEventListener("keydown",esc); }
   x.addEventListener("click",close); bg.addEventListener("click",e=>{if(e.target===bg) close();});
   document.addEventListener("keydown",esc);
   document.body.style.overflow="hidden"; document.body.append(bg);
