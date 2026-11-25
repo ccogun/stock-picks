@@ -24,6 +24,8 @@ DEFAULTS = {
     "div_min_kr": 0.04, "div_min_us": 0.03, "quality_roe_min": 0.15, "reversal_rsi": 30,
     # 단기 스윙
     "swing_vol": 2.0,
+    # 수급: 외국인·기관 5일 동반 순매수 종목 가산점(한국)
+    "flow_bonus": 10,
     "pullback_in_bear": False,
     "investor_stop": 0.08,    # 투자자 방식 기본 손절·목표
     "investor_target": 0.15,
@@ -32,7 +34,7 @@ DEFAULTS = {
 # 조정 가능한 범위
 BOUNDS = {
     "rs_min": (60, 90), "rs_min_bear": (75, 95), "breakout_vol": (1.2, 3.0), "pullback_vol": (0.8, 2.0),
-    "ext_gap_min": (0.01, 0.05), "weight": (-20, 20), "swing_vol": (1.5, 4.0),
+    "ext_gap_min": (0.01, 0.05), "weight": (-20, 20), "swing_vol": (1.5, 4.0), "flow_bonus": (0, 30),
 }
 
 

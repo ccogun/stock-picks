@@ -297,6 +297,7 @@ async function drawLearn(box){
   tbl("신호·전략별",rv.bySignal,k=>SIG[k]||k,(p,k)=>TECH.includes(p.method)&&F(p).signal===k);
   tbl("투자자 방식 근거 유형별",rv.byStyle,null,(p,k)=>p.method==="investor"&&F(p).style===k);
   tbl("시장 국면별",rv.byRegime,null,(p,k)=>F(p).regime===k);
+  tbl("한국 수급별 (외국인·기관 5일)",rv.byFlow,null,(p,k)=>["KOSPI","KOSDAQ"].includes(p.market)&&F(p).flow===k);
   box.append(el("h2",null,"최근 기준 변경"));
   const ch=rv.recentChanges||[];
   if(!ch.length) box.append(el("div","empty","아직 변경 없음 — 결과가 쌓이면(신호별 8건 이상) 조정을 시작합니다."));

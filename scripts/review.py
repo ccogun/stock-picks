@@ -94,6 +94,8 @@ def main() -> None:
         "bySignal": group(tech, sig),
         "byRegime": group(picks, lambda p: (p.get("features") or {}).get("regime")),
         "byStyle": group(inv, lambda p: (p.get("features") or {}).get("style")),
+        "byFlow": group([p for p in picks if p["market"] in ("KOSPI", "KOSDAQ")],
+                        lambda p: (p.get("features") or {}).get("flow")),
         "stopOuts": sum(1 for p in picks if p.get("closeReason") == "손절선 이탈"),
     }
 
@@ -131,6 +133,17 @@ def main() -> None:
             adjust(state, knob, vals[knob] + 5, f"{regime_name}장 차트 추천 적중 {st['hit']}% → 상대강도 기준 상향", now)
         elif st["hit"] > 60 and st["avg"] > 1:
             adjust(state, knob, vals[knob] - 2, f"{regime_name}장 차트 추천 적중 {st['hit']}% → 상대강도 기준 완화", now)
+
+    # ── 수급 가산점 조정: 동반 순매수 종목이 나머지보다 나은지 ──
+    kr = [p for p in picks if p["market"] in ("KOSPI", "KOSDAQ") and (p.get("features") or {}).get("flow")]
+    both = stats([p for p in kr if p["features"]["flow"] == "동반 순매수"][-WINDOW:])
+    rest = stats([p for p in kr if p["features"]["flow"] != "동반 순매수"][-WINDOW:])
+    if both["n"] >= MIN_N and rest["n"] >= MIN_N:
+        gap = both["avg"] - rest["avg"]
+        if gap > 2:
+            adjust(state, "flow_bonus", vals["flow_bonus"] + 5, f"수급 동반 종목이 평균 {gap:+.1f}%p 우수 → 가산점 상향", now)
+        elif gap < -2:
+            adjust(state, "flow_bonus", vals["flow_bonus"] - 5, f"수급 동반 종목이 평균 {gap:+.1f}%p 열위 → 가산점 하향", now)
 
     # ── 손절 폭 조정 (투자자 방식) ──
     closed_inv = [p for p in inv if p.get("status") == "closed"][-WINDOW:]

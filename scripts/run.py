@@ -479,6 +479,9 @@ def ingest_inbox(picks: list[dict]) -> list[str]:
                         p[k] = float(it[k])
                 if (ef := entry_from(m, rec_at)):
                     p.update(entry="pending", entryFrom=ef, verdict="진입 대기")
+                if MARKETS[m]["region"] == "KR":
+                    from flows import FLOW_FILE, flow_tag
+                    p["features"]["flow"] = flow_tag(load_json(FLOW_FILE, {}).get(it["ticker"]))
                 picks.append(p)
                 added.append(f"{m}:{it['name']}")
             except (KeyError, TypeError) as e:
@@ -542,6 +545,15 @@ def main() -> None:
                 cands = screen_ext(m, uni[m], data, idx, mkt_info[m], phase)
             else:
                 cands = screen(m, uni[m], data, idx, mkt_info[m], frac if open_ else 1.0)
+            flows = {}
+            if cfg["region"] == "KR":
+                from flows import flow_tag, refresh as refresh_flows
+                flows = refresh_flows([t for t, _ in uni[m]])
+                fb = load_params()["flow_bonus"]
+                for c in cands:
+                    c["flow"] = flow_tag(flows.get(c["ticker"]))
+                    c["score"] = c.get("score", 0) + (fb if c["flow"] == "동반 순매수" else 0)
+                cands.sort(key=lambda c: -c.get("score", 0))
             active = {p["ticker"] for p in picks if p["status"] == "active"}  # 시장 중복 추천 방지
             added_today = sum(1 for p in picks if p["market"] == m and p["method"] == "chart"
                               and p["recDate"] == today)
@@ -563,6 +575,9 @@ def main() -> None:
                      "status": "active", "verdict": "판단 중", **extra}
                 if (ef := entry_from(m, now)):
                     p.update(entry="pending", entryFrom=ef, verdict="진입 대기")
+                if c.get("flow"):
+                    p["features"]["flow"] = c["flow"]
+                    p["reasons"][3] += f" · 수급(5일): 외국인·기관 {c['flow']}"
                 picks.append(p)
                 write_prices(c["ticker"], data[c["ticker"]])
                 active.add(c["ticker"])
@@ -601,6 +616,10 @@ def main() -> None:
                                   "status": "active", "verdict": "판단 중", **extra})
                     if (ef := entry_from(m, now)):
                         picks[-1].update(entry="pending", entryFrom=ef, verdict="진입 대기")
+                    if cfg["region"] == "KR":
+                        tag = flow_tag(flows.get(o["ticker"]))
+                        picks[-1]["features"]["flow"] = tag
+                        picks[-1]["reasons"][3] += f" · 수급(5일): 외국인·기관 {tag}"
                     write_prices(o["ticker"], data[o["ticker"]])
                     active.add(o["ticker"])
                     n_today += 1
