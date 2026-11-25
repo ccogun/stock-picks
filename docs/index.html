@@ -268,7 +268,7 @@ function openGroup(title,list,mode){
   close=mountModal(bg);
 }
 const SIG={breakout:"고점 돌파",pullback:"눌림 반등",ext:"시간외 갭",value:"가치",dividend:"고배당",quality:"퀄리티",
-  reversal:"역추세(RSI)",macd:"MACD",bollinger:"볼린저밴드",swing:"단기 스윙"};
+  reversal:"역추세(RSI)",macd:"MACD",bollinger:"볼린저밴드",swing:"단기 스윙",trendline:"빗각 지지선"};
 async function drawLearn(box){
   box.append(el("div","note","추천 결과를 분석해 다음 추천 기준을 자동으로 조정합니다. 성과 지표는 추천 후 10거래일(단기 스윙은 5거래일) 시점의 지수 대비 초과수익이며, 표본 8건 이상일 때만 조금씩 바꿉니다."));
   const bust="?t="+Date.now();

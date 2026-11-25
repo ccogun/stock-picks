@@ -8,7 +8,45 @@ import pandas as pd
 
 from common import MARKETS, fmt_price
 
-SIG_LABEL = {"value": "가치(저PER·저PBR)", "dividend": "고배당", "quality": "퀄리티(고ROE·저부채)",
+def _pivots(arr: np.ndarray, k: int = 3, low: bool = True) -> list[int]:
+    out = []
+    for i in range(k, len(arr) - k):
+        w = arr[i - k:i + k + 1]
+        if (low and arr[i] == w.min()) or (not low and arr[i] == w.max()):
+            out.append(i)
+    return out
+
+
+def trendline(df: pd.DataFrame, look: int = 90) -> dict | None:
+    """최근 두 저점을 잇는 빗각 지지선과 두 고점을 잇는 저항선을 오늘 날짜로 연장한다."""
+    d = df.tail(look)
+    lo, hi, cl = d["Low"].to_numpy(), d["High"].to_numpy(), d["Close"].to_numpy()
+    n = len(d)
+    pl = [i for i in _pivots(lo) if i < n - 2]
+    if len(pl) < 2:
+        return None
+    i2 = pl[-1]
+    cands = [i for i in pl[:-1] if i2 - i >= 5]
+    if not cands or n - 1 - i2 > 40:
+        return None
+    i1 = min(cands, key=lambda i: lo[i])            # 더 앞쪽의 의미 있는 저점
+    slope = (lo[i2] - lo[i1]) / (i2 - i1)
+    line = lambda i: lo[i1] + slope * (i - i1)       # noqa: E731
+    # 두 번째 저점 이후 종가가 선을 깨지 않았어야 유효
+    if any(cl[j] < line(j) * 0.99 for j in range(i2 + 1, n - 1)):
+        return None
+    res = None
+    ph = [i for i in _pivots(hi, low=False) if i < n - 2]
+    if len(ph) >= 2 and ph[-1] - ph[-2] >= 5:
+        h1, h2 = ph[-2], ph[-1]
+        rs = (hi[h2] - hi[h1]) / (h2 - h1)
+        res = hi[h1] + rs * (n - 1 - h1)
+    return {"support": float(line(n - 1)), "slope_pct": float(slope / lo[i2] * 100), "touches": 2,
+            "resist": float(res) if res is not None else None,
+            "p1": d.index[i1].strftime("%m/%d"), "p2": d.index[i2].strftime("%m/%d")}
+
+
+SIG_LABEL = {"trendline": "빗각 지지선 반등", "value": "가치(저PER·저PBR)", "dividend": "고배당", "quality": "퀄리티(고ROE·저부채)",
              "reversal": "역추세(RSI 과매도 탈출)", "macd": "MACD 골든크로스", "bollinger": "볼린저밴드 하단 반등",
              "swing": "단기 스윙"}
 
@@ -105,8 +143,19 @@ def screen_strategies(market: str, universe: list[list[str]], data: dict, reg: d
         # 볼린저 하단 반등 (장기 상승 추세 안에서)
         if x["low3"] <= x["bb_lo3"] * 1.005 and x["c"] > x["bb_lo"] and up_today and x["c"] > x["ma200"]:
             sigs.append(("bollinger", "볼린저밴드 하단을 찍고 다시 밴드 안으로 반등", 45 + rs_pct / 4))
+        # 빗각 지지선: 두 저점을 이은 선에 닿고 양봉으로 반등
+        tl = trendline(df)
+        if tl and tl["support"] > 0:
+            sup = tl["support"]
+            rng = x["h"] - x["l"]
+            if x["l"] <= sup * 1.015 and x["c"] >= sup and x["c"] > x["o"] and rng > 0 \
+                    and (x["c"] - x["l"]) / rng >= 0.5:
+                x["tl"] = tl
+                kind = "하락" if tl["slope_pct"] < 0 else "상승"
+                sigs.append(("trendline", f"{tl['p1']}·{tl['p2']} 저점을 이은 {kind} 빗각 지지선({sup:,.0f})에서 양봉 반등",
+                             45 + rs_pct / 4))
         if reg["regime"] == "하락":
-            sigs = [s for s in sigs if s[0] in ("value", "dividend", "quality") or rs_pct >= 60]
+            sigs = [s for s in sigs if s[0] in ("value", "dividend", "quality", "trendline") or rs_pct >= 60]
         for s, why, sc in sigs:
             out.append({"ticker": ticker, "name": name, "signal": s, "why": why, "x": x, "f": f,
                         "rs_pct": rs_pct, "score": sc + P["weight"].get(s, 0)})
@@ -132,6 +181,10 @@ def strategy_reasons(o: dict, market: str, reg: dict) -> tuple[list[str], dict]:
     cur, label, x, f = MARKETS[market]["currency"], MARKETS[market]["label"], o["x"], o["f"]
     kind = "fundamental" if o["signal"] in ("value", "dividend", "quality") else "technical"
     stop, target = _stops(x, kind)
+    if o["signal"] == "trendline" and x.get("tl"):
+        tl = x["tl"]   # 손절: 지지선 2.5% 아래 / 목표: 저항선(있으면) 또는 손익비 2:1
+        stop = min(max(tl["support"] * 0.975, x["c"] - 2 * x["atr"]), x["c"] * 0.97)
+        target = tl["resist"] if tl.get("resist") and tl["resist"] > x["c"] * 1.03 else x["c"] + 2 * (x["c"] - stop)
     c = x["c"]
     pos = "20일선·50일선 위" if c > x["ma20"] and c > x["ma50"] else ("20일선 위" if c > x["ma20"] else "20일선 아래")
     extra = []
@@ -154,7 +207,9 @@ def strategy_reasons(o: dict, market: str, reg: dict) -> tuple[list[str], dict]:
             "quality": "실적이 우수한 종목이 50일선(파랑) 위 상승 추세에 있는 구간입니다.",
             "reversal": "RSI가 30 아래(과매도)로 떨어졌다가 다시 올라온 반등 초입입니다.",
             "macd": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다.",
-            "bollinger": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다."}[o["signal"]]
+            "bollinger": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다.",
+            "trendline": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 "
+                         "손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다."}[o["signal"]]
     return lines, {"stop": round(stop, 2), "target": round(target, 2),
                    "chartNote": note + " 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다."}
 

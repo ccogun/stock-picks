@@ -108,7 +108,8 @@ def main() -> None:
                                             ("swing", "swing_vol", 0.25, -0.1),
                                             ("value", None, 0, 0), ("dividend", None, 0, 0),
                                             ("quality", None, 0, 0), ("reversal", None, 0, 0),
-                                            ("macd", None, 0, 0), ("bollinger", None, 0, 0)):
+                                            ("macd", None, 0, 0), ("bollinger", None, 0, 0),
+                                            ("trendline", None, 0, 0)):
         st = stats([p for p in tech if sig(p) == s][-WINDOW:])
         if st["n"] < MIN_N:
             continue
