@@ -47,6 +47,14 @@
   .disc{margin-top:26px;font-size:12px;color:var(--sub);border-top:1px solid var(--line);padding-top:12px}
   table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left}
   th{color:var(--sub);font-weight:500}td.r,th.r{text-align:right}
+  .linkcell{color:var(--accent);text-decoration:underline;cursor:pointer}
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;display:flex;align-items:flex-end;justify-content:center}
+  @media(min-width:640px){.modal{align-items:center}}
+  .sheet{background:var(--bg);width:100%;max-width:860px;max-height:88vh;overflow:auto;border-radius:16px 16px 0 0;padding:14px 14px 30px}
+  @media(min-width:640px){.sheet{border-radius:16px}}
+  .sheet-head{display:flex;justify-content:space-between;align-items:center;position:sticky;top:-14px;background:var(--bg);padding:6px 0 10px;z-index:2}
+  .sheet-head b{font-size:16px}.sheet-head button{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:99px;padding:5px 14px;font-size:14px}
+  .score-line{font-size:12.5px;margin:0 0 4px 2px}
 </style>
 </head>
 <body>
@@ -196,6 +204,34 @@ async function drawChart(host,p){
   ch.timeScale().fitContent();
   new ResizeObserver(()=>ch.applyOptions({width:box.clientWidth})).observe(box);
 }
+function outcomeOf(p){
+  const s=p.snap||{}; const k=p.method==="swing"?"5":"10";
+  if(s[k]!=null) return s[k];
+  if(p.status==="closed") return p.outcome!=null?p.outcome:(p.excess!=null?p.excess:null);
+  return null;
+}
+function openGroup(title,list,mode){
+  const ev=list.filter(p=>outcomeOf(p)!=null).sort((a,b)=>outcomeOf(b)-outcomeOf(a));
+  const op=list.filter(p=>outcomeOf(p)==null).sort((a,b)=>b.recAt.localeCompare(a.recAt));
+  const bg=el("div","modal"); const sh=el("div","sheet"); bg.append(sh);
+  const hd=el("div","sheet-head"); const x=el("button",null,"닫기");
+  hd.append(el("b",null,title+" · "+list.length+"건"),x); sh.append(hd);
+  const close=()=>{bg.remove(); document.body.style.overflow=""; document.removeEventListener("keydown",esc);};
+  const esc=e=>{if(e.key==="Escape") close();};
+  x.addEventListener("click",close); bg.addEventListener("click",e=>{if(e.target===bg) close();});
+  document.addEventListener("keydown",esc);
+  const sec=(name,arr,showScore)=>{
+    if(!arr.length) return;
+    sh.append(el("h2",null,name+" ("+arr.length+"건)"));
+    arr.forEach(p=>{ if(showScore){const o=outcomeOf(p);
+        sh.append(el("div","score-line "+cls(o),"평가 지표(지수 대비 "+(p.method==="swing"?"5":"10")+"거래일 또는 종료 시점): "+pct(o).replace("%","%p")));}
+      sh.append(card(p)); });
+  };
+  if(mode!=="open") sec("평가 완료 — 성과순",ev,true);
+  if(mode!=="eval") sec("진행 중",op,false);
+  if(!sh.querySelector(".card")) sh.append(el("div","empty","해당 종목이 없습니다."));
+  document.body.style.overflow="hidden"; document.body.append(bg);
+}
 const SIG={breakout:"고점 돌파",pullback:"눌림 반등",ext:"시간외 갭",value:"가치",dividend:"고배당",quality:"퀄리티",
   reversal:"역추세(RSI)",macd:"MACD",bollinger:"볼린저밴드",swing:"단기 스윙"};
 async function drawLearn(box){
@@ -204,20 +240,28 @@ async function drawLearn(box){
   const [rv,ls]=await Promise.all([fetch("data/review.json"+bust).then(r=>r.ok?r.json():null).catch(()=>null),
                                     fetch("data/lessons.md"+bust).then(r=>r.ok?r.text():"").catch(()=>"")]);
   if(!rv){ box.append(el("div","empty","아직 분석할 결과가 없습니다.")); return; }
-  const tbl=(title,obj,label)=>{
+  box.append(el("div","note","표의 종목명·건수를 누르면 해당 종목만 모아서 볼 수 있습니다."));
+  const F=p=>p.features||{};
+  const tbl=(title,obj,label,pick)=>{
     box.append(el("h2",null,title));
     const t=el("table"); const h=el("tr");
     ["구분","평가","적중률","평균 초과","진행 중"].forEach((x,i)=>h.append(el("th",i?"r":"",x))); t.append(h);
     const ks=Object.keys(obj||{}); if(!ks.length){box.append(el("div","empty","데이터 없음"));return;}
-    ks.forEach(k=>{const s=obj[k]; const r=el("tr");
-      r.append(el("td",null,label?label(k):k), el("td","r",(s.n||0)+"건"), el("td","r",s.n?s.hit+"%":"–"),
-        el("td","r "+cls(s.avg),s.n?pct(s.avg).replace("%","%p"):"–"), el("td","r",(s.open||0)+"건")); t.append(r);});
+    ks.forEach(k=>{const s=obj[k]; const r=el("tr"); const name=label?label(k):k;
+      const list=()=>state.picks.filter(p=>pick(p,k));
+      const link=(td,mode,n)=>{ if(n>0){td.classList.add("linkcell");
+        td.addEventListener("click",()=>openGroup(name+(mode==="eval"?" · 평가 완료":mode==="open"?" · 진행 중":""),list(),mode));} return td;};
+      r.append(link(el("td",null,name),"all",(s.n||0)+(s.open||0)),
+        link(el("td","r",(s.n||0)+"건"),"eval",s.n||0), el("td","r",s.n?s.hit+"%":"–"),
+        el("td","r "+cls(s.avg),s.n?pct(s.avg).replace("%","%p"):"–"),
+        link(el("td","r",(s.open||0)+"건"),"open",s.open||0)); t.append(r);});
     box.append(t);
   };
-  tbl("방식별",rv.overall,k=>METHOD[k]);
-  tbl("신호·전략별",rv.bySignal,k=>SIG[k]||k);
-  tbl("투자자 방식 근거 유형별",rv.byStyle);
-  tbl("시장 국면별",rv.byRegime);
+  const TECH=["chart","strategy","swing"];
+  tbl("방식별",rv.overall,k=>METHOD[k],(p,k)=>p.method===k);
+  tbl("신호·전략별",rv.bySignal,k=>SIG[k]||k,(p,k)=>TECH.includes(p.method)&&F(p).signal===k);
+  tbl("투자자 방식 근거 유형별",rv.byStyle,null,(p,k)=>p.method==="investor"&&F(p).style===k);
+  tbl("시장 국면별",rv.byRegime,null,(p,k)=>F(p).regime===k);
   box.append(el("h2",null,"최근 기준 변경"));
   const ch=rv.recentChanges||[];
   if(!ch.length) box.append(el("div","empty","아직 변경 없음 — 결과가 쌓이면(신호별 8건 이상) 조정을 시작합니다."));
