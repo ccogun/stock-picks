@@ -230,13 +230,14 @@
     "style": "13F",
     "regime": "조정"
    },
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 229.09,
     "at": "2026-11-24T17:25:00-05:00",
     "ret": 0.67
-   }
+   },
+   "entry": "pending",
+   "entryFrom": "2026-11-20"
   },
   {
    "id": "2026-11-20-SP500-investor-XOM",
@@ -274,13 +275,14 @@
     "style": "13F",
     "regime": "조정"
    },
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 159.0,
     "at": "2026-11-24T18:50:00-05:00",
     "ret": 0.04
-   }
+   },
+   "entry": "pending",
+   "entryFrom": "2026-11-20"
   },
   {
    "id": "2026-11-20-SP500-investor-PCG",
@@ -318,13 +320,14 @@
     "style": "13F",
     "regime": "조정"
    },
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 14.23,
     "at": "2026-11-24T18:25:00-05:00",
     "ret": 2.08
-   }
+   },
+   "entry": "pending",
+   "entryFrom": "2026-11-20"
   },
   {
    "id": "2026-11-20-NASDAQ-investor-AMZN",
@@ -362,13 +365,14 @@
     "style": "13F",
     "regime": "조정"
    },
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 251.65,
     "at": "2026-11-24T19:05:00-05:00",
     "ret": -2.22
-   }
+   },
+   "entry": "pending",
+   "entryFrom": "2026-11-20"
   },
   {
    "id": "2026-11-20-NASDAQ-investor-MSFT",
@@ -406,13 +410,14 @@
     "style": "13F",
     "regime": "조정"
    },
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 494.3222,
     "at": "2026-11-24T19:02:54-05:00",
     "ret": -0.8
-   }
+   },
+   "entry": "pending",
+   "entryFrom": "2026-11-20"
   },
   {
    "id": "2026-11-21-SP500-chart-AAPL",
@@ -1112,7 +1117,9 @@
     "price": 99.48,
     "at": "2026-11-24T16:00:00-05:00",
     "ret": 5.03
-   }
+   },
+   "entry": "pending",
+   "entryFrom": "2026-11-21"
   },
   {
    "id": "2026-11-23-KOSPI-strategy-028050.KS",
@@ -1443,7 +1450,8 @@
    "benchRet": 3.54,
    "excess": -1.06,
    "daysHeld": 2,
-   "snap": {}
+   "entry": "pending",
+   "entryFrom": "2026-11-24"
   },
   {
    "id": "2026-11-24-SP500-chart-OKTA",
@@ -1939,9 +1947,10 @@
    "benchRet": 6.32,
    "excess": -2.71,
    "daysHeld": 1,
-   "snap": {},
    "maxRet": 5.67,
-   "minRet": -1.55
+   "minRet": -1.55,
+   "entry": "pending",
+   "entryFrom": "2026-11-24"
   },
   {
    "id": "2026-11-24-KOSPI-strategy-008930.KS",
@@ -1979,9 +1988,10 @@
    "benchRet": 6.32,
    "excess": -2.22,
    "daysHeld": 1,
-   "snap": {},
    "maxRet": 5.91,
-   "minRet": 0.7
+   "minRet": 0.7,
+   "entry": "pending",
+   "entryFrom": "2026-11-24"
   },
   {
    "id": "2026-11-24-KOSPI-strategy-281820.KS",
@@ -2019,9 +2029,10 @@
    "benchRet": 6.32,
    "excess": -5.73,
    "daysHeld": 1,
-   "snap": {},
    "maxRet": 13.54,
-   "minRet": 0.48
+   "minRet": 0.48,
+   "entry": "pending",
+   "entryFrom": "2026-11-24"
   },
   {
    "id": "2026-11-24-KOSDAQ-strategy-468530.KQ",
@@ -2059,9 +2070,10 @@
    "benchRet": 4.79,
    "excess": -1.49,
    "daysHeld": 1,
-   "snap": {},
    "maxRet": 6.44,
-   "minRet": -1.32
+   "minRet": -1.32,
+   "entry": "pending",
+   "entryFrom": "2026-11-24"
   },
   {
    "id": "2026-11-24-KOSDAQ-strategy-251970.KQ",
@@ -2099,9 +2111,10 @@
    "benchRet": 4.79,
    "excess": -2.82,
    "daysHeld": 1,
-   "snap": {},
    "maxRet": 3.67,
-   "minRet": -4.2
+   "minRet": -4.2,
+   "entry": "pending",
+   "entryFrom": "2026-11-24"
   },
   {
    "id": "2026-11-24-KOSDAQ-strategy-491000.KQ",
@@ -2139,9 +2152,10 @@
    "benchRet": 4.79,
    "excess": 3.62,
    "daysHeld": 1,
-   "snap": {},
    "maxRet": 16.59,
-   "minRet": 1.1
+   "minRet": 1.1,
+   "entry": "pending",
+   "entryFrom": "2026-11-24"
   },
   {
    "id": "2026-11-24-KOSDAQ-swing-030530.KQ",
@@ -2658,9 +2672,10 @@
    "benchRet": 0.0,
    "excess": 2.05,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": 4.99,
-   "minRet": 1.54
+   "minRet": 1.54,
+   "entry": "pending",
+   "entryFrom": "2026-11-25"
   },
   {
    "id": "2026-11-25-KOSPI-strategy-021240.KS",
@@ -2698,9 +2713,10 @@
    "benchRet": 0.0,
    "excess": 1.41,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": 2.31,
-   "minRet": 0.5
+   "minRet": 0.5,
+   "entry": "pending",
+   "entryFrom": "2026-11-25"
   },
   {
    "id": "2026-11-25-KOSPI-strategy-128940.KS",
@@ -2738,9 +2754,10 @@
    "benchRet": 0.0,
    "excess": 1.55,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": 4.44,
-   "minRet": 0.89
+   "minRet": 0.89,
+   "entry": "pending",
+   "entryFrom": "2026-11-25"
   },
   {
    "id": "2026-11-25-KOSDAQ-strategy-122870.KQ",
@@ -2778,9 +2795,10 @@
    "benchRet": 0.0,
    "excess": -2.66,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": 1.17,
-   "minRet": -2.98
+   "minRet": -2.98,
+   "entry": "pending",
+   "entryFrom": "2026-11-25"
   },
   {
    "id": "2026-11-25-KOSDAQ-strategy-241710.KQ",
@@ -2818,9 +2836,10 @@
    "benchRet": 0.0,
    "excess": 4.72,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": 6.91,
-   "minRet": 3.94
+   "minRet": 3.94,
+   "entry": "pending",
+   "entryFrom": "2026-11-25"
   },
   {
    "id": "2026-11-25-KOSDAQ-strategy-053800.KQ",

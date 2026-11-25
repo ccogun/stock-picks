@@ -167,6 +167,8 @@ def screen(market: str, universe: list[list[str]], data: dict[str, pd.DataFrame]
         value = avg_vol * float(c.iloc[-21:-1].mean())
         if not (value >= cfg["min_value"] and avg_vol > 0):
             continue
+        if cfg["region"] == "KR" and last / float(c.iloc[-2]) - 1 >= 0.25:
+            continue   # 상한가 근처는 실제로 사기 어려워 제외
         r = float(rsi(c).iloc[-1])
         a = float(atr(df).iloc[-1])
         hi52 = float(df["High"].tail(252).max())
@@ -295,8 +297,59 @@ MIN_DAYS_FOR_VERDICT = 3   # 3거래일 전에는 손절 이탈이 아니면 '�
 SNAPSHOTS = (5, 10, 20)     # 학습용: 5·10·20거래일 시점의 지수 대비 초과수익 기록
 
 
+def entry_from(market: str, at) -> str | None:
+    """정규장 밖에서 한 추천은 '그 뒤 첫 정규장 시가'를 진입가로 쓴다. 기준 날짜를 돌려준다(정규장 중이면 None)."""
+    from datetime import datetime as _dt, timedelta as _td
+    if isinstance(at, str):
+        at = _dt.fromisoformat(at)
+    ph = session_phase(MARKETS[market]["region"], at)
+    if ph == "regular":
+        return None
+    from datetime import time as _t
+    region = MARKETS[market]["region"]
+    local = at.astimezone(KST if region == "KR" else NY)
+    start = _t(9, 0) if region == "KR" else _t(9, 30)
+    d = local.replace(tzinfo=None)
+    if local.time() >= start:   # 장 마감 후면 다음 날 이후 첫 거래일, 장 시작 전이면 그날 정규장
+        d += _td(days=1)
+    return d.strftime("%Y-%m-%d")
+
+
+def settle_entry(p: dict, df: pd.DataFrame, idx: pd.DataFrame | None) -> bool:
+    """진입 대기 중이면 첫 정규장 시가로 진입가를 확정한다. 아직 그 거래일이 없으면 False."""
+    if p.get("entry") != "pending":
+        return True
+    bars = df[df.index >= pd.Timestamp(p["entryFrom"])]
+    if not len(bars):
+        return False
+    d, b = bars.index[0], bars.iloc[0]
+    old, new = p.get("recPrice"), round(float(b["Open"]), 4)
+    p["recPrice"], p["recDate"] = new, d.strftime("%Y-%m-%d")
+    if idx is not None:
+        io = idx[idx.index >= d]
+        p["recIndex"] = float(io["Open"].iloc[0]) if len(io) else close_on(idx, p["recDate"])
+    if old and float(old) > 0:      # 손절·목표가는 진입가에 맞춰 같은 비율로 이동
+        r = new / float(old)
+        for k in ("stop", "target"):
+            if p.get(k):
+                p[k] = round(float(p[k]) * r, 4)
+    note = f"추천 시각이 정규장 밖이라 {p['recDate']} 정규장 시가로 진입가 확정"
+    prev = df[df.index < d]["Close"]
+    if MARKETS[p["market"]]["region"] == "KR" and len(prev) and new >= float(prev.iloc[-1]) * 1.29:
+        note += " (시초가 상한가 — 실제로는 사기 어려웠을 수 있음)"
+    p["entry"], p["entryNote"] = "open", note
+    p.pop("snap", None)
+    return True
+
+
 def track(p: dict, df: pd.DataFrame | None, idx: pd.DataFrame | None) -> None:
     if df is None or len(df) == 0:
+        return
+    if not settle_entry(p, df, idx):
+        p["daysHeld"], p["verdict"] = 0, "진입 대기"
+        for k in ("ret", "excess", "benchRet", "maxRet", "minRet"):
+            p.pop(k, None)
+        p["lastPrice"], p["lastDate"] = round(float(df["Close"].iloc[-1]), 4), df.index[-1].strftime("%Y-%m-%d")
         return
     P = load_params()
     if not p.get("recPrice"):
@@ -424,6 +477,8 @@ def ingest_inbox(picks: list[dict]) -> list[str]:
                 for k in ("stop", "target"):
                     if it.get(k):
                         p[k] = float(it[k])
+                if (ef := entry_from(m, rec_at)):
+                    p.update(entry="pending", entryFrom=ef, verdict="진입 대기")
                 picks.append(p)
                 added.append(f"{m}:{it['name']}")
             except (KeyError, TypeError) as e:
@@ -506,6 +561,8 @@ def main() -> None:
                                   "volRatio": round(c["vol_ratio"], 2), "rsi": round(c["rsi"], 1),
                                   "gap": round(c.get("gap", 0) * 100, 2)},
                      "status": "active", "verdict": "판단 중", **extra}
+                if (ef := entry_from(m, now)):
+                    p.update(entry="pending", entryFrom=ef, verdict="진입 대기")
                 picks.append(p)
                 write_prices(c["ticker"], data[c["ticker"]])
                 active.add(c["ticker"])
@@ -542,6 +599,8 @@ def main() -> None:
                                   "features": {"signal": o["signal"], "regime": mkt_info[m]["regime"],
                                                "rsPct": round(o["rs_pct"], 1), "rsi": round(x["rsi"], 1)},
                                   "status": "active", "verdict": "판단 중", **extra})
+                    if (ef := entry_from(m, now)):
+                        picks[-1].update(entry="pending", entryFrom=ef, verdict="진입 대기")
                     write_prices(o["ticker"], data[o["ticker"]])
                     active.add(o["ticker"])
                     n_today += 1

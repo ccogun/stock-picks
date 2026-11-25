@@ -73,6 +73,8 @@ def screen_strategies(market: str, universe: list[list[str]], data: dict, reg: d
         x = _ind(df)
         if not x or x["rsi"] >= P["rsi_max"]:
             continue
+        if kr and x["c"] / x["prev"] - 1 >= 0.25:
+            continue   # 상한가 근처 제외
         f = fund.get(ticker) or {}
         up_today = x["c"] > x["prev"]
         rs_pct = _pct_rank(rs_all, x["r63"])
