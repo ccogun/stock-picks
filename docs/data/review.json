@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T18:41+09:00",
+ "updated": "2026-11-25T19:03+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
   "investor": {
@@ -211,6 +211,7 @@
    "open": 2
   }
  },
+ "byFlow": {},
  "stopOuts": 6,
  "params": {
   "rs_min": 70,
@@ -243,6 +244,7 @@
   "quality_roe_min": 0.15,
   "reversal_rsi": 30,
   "swing_vol": 2.0,
+  "flow_bonus": 10,
   "pullback_in_bear": false,
   "investor_stop": 0.08,
   "investor_target": 0.15
