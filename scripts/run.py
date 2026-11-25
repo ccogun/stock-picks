@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 
 from params import load_params
-from common import (DATA, HOLD_DAYS, MARKETS, MAX_NEW_PER_DAY, GOOD_EXCESS, BAD_EXCESS, PRICES,
+from common import (KST, NY, DATA, HOLD_DAYS, MARKETS, MAX_NEW_PER_DAY, GOOD_EXCESS, BAD_EXCESS, PRICES,
                     fmt_price, load_json, now_kst, region_recent, safe_name, save_json, session_phase,
                     session_state)
 
@@ -389,6 +389,15 @@ def write_prices(ticker: str, df: pd.DataFrame, keep: int = 160) -> None:
     save_json(PRICES / f"{safe_name(ticker)}.json", {"t": ticker, "d": rows})
 
 
+def market_date(market: str, at) -> str:
+    """추천일은 그 시장 현지 날짜로 기록한다(미국 종목을 한국 새벽에 추천해도 미국 거래일 기준)."""
+    from datetime import datetime as _dt
+    if isinstance(at, str):
+        at = _dt.fromisoformat(at)
+    tz = KST if MARKETS[market]["region"] == "KR" else NY
+    return at.astimezone(tz).strftime("%Y-%m-%d")
+
+
 def ingest_inbox(picks: list[dict]) -> list[str]:
     """Claude가 docs/data/inbox/ 에 넣은 투자자 방식 추천을 picks에 합친다."""
     added = []
@@ -399,7 +408,7 @@ def ingest_inbox(picks: list[dict]) -> list[str]:
             try:
                 m = it["market"]
                 rec_at = it.get("recAt") or now_kst().isoformat(timespec="minutes")
-                day = rec_at[:10]
+                day = market_date(m, rec_at) if m in MARKETS else rec_at[:10]
                 active = {p["ticker"] for p in picks if p["status"] == "active"}
                 n_day = sum(1 for p in picks if p["market"] == m and p["method"] == "investor" and p["recDate"] == day)
                 if m not in MARKETS or it["ticker"] in active or n_day >= MAX_NEW_PER_DAY:
@@ -469,6 +478,7 @@ def main() -> None:
             idx = idx_data.get(cfg["index"])
             if idx is None:
                 continue
+            today = market_date(m, now)   # 이 시장 현지 날짜
             open_, frac = session_state(cfg["region"], now)
             phase = session_phase(cfg["region"], now)
             data = download([t for t, _ in uni[m]], period="1y")

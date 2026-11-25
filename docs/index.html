@@ -123,7 +123,7 @@ function drawMarkets(){
 function drawScore(){
   const closed = state.picks.filter(p=>p.status==="closed");
   const good = closed.filter(p=>(p.verdict||"").startsWith("잘한")).length;
-  const withEx = state.picks.filter(p=>p.excess!=null);
+  const withEx = state.picks.filter(p=>p.excess!=null && counting(p));
   const avgEx = withEx.length? withEx.reduce((a,p)=>a+p.excess,0)/withEx.length : null;
   const items = [["전체 추천", state.picks.length+"개"],
     ["진행 중", state.picks.filter(p=>p.status==="active").length+"개"],
@@ -157,20 +157,23 @@ function drawList(){
   const closed = state.picks.filter(p=>p.market===state.tab && p.status==="closed").sort((a,b)=>(b.closedAt||"").localeCompare(a.closedAt||""));
   if(closed.length){ box.append(el("h2",null,"종료된 추천")); closed.slice(0,20).forEach(p=>box.append(card(p))); }
 }
+const counting=p=>(p.daysHeld||0)>=1;   // 추천일 다음 거래일 종가부터 집계
 function card(p){
   const c=el("div","card");
   const top=el("div","row"); const left=el("div");
   const nm=el("span","name",p.name); left.append(nm, el("span","tk",p.ticker));
   left.append(el("div","meta", METHOD[p.method]+" · "+p.recAt.replace("T"," ").slice(0,16)+" 추천 · "+price(p.recPrice,p.currency)));
-  const right=el("div"); right.append(el("div","ret "+cls(p.ret), pct(p.ret)));
-  right.append(el("div","meta", "지수 대비 "+pct(p.excess)));
+  const right=el("div");
+  if(counting(p)){ right.append(el("div","ret "+cls(p.ret), pct(p.ret)));
+    right.append(el("div","meta", "지수 대비 "+pct(p.excess))); }
+  else { right.append(el("div","ret","집계 전")); right.append(el("div","meta","다음 거래일 종가부터")); }
   top.append(left,right); c.append(top);
   const line=el("div","meta");
   line.append(el("span","tag "+vcls(p.verdict), p.verdict||"판단 중"));
-  line.append(document.createTextNode("  현재 "+price(p.lastPrice,p.currency)+" · 최고 "+pct(p.maxRet)+" · 최저 "+pct(p.minRet)
+  line.append(document.createTextNode("  현재 "+price(p.lastPrice,p.currency)+(counting(p)?" · 최고 "+pct(p.maxRet)+" · 최저 "+pct(p.minRet):" · 오늘 추천")
     + (p.closeReason? " · "+p.closeReason : "")));
   c.append(line);
-  if(p.ext) c.append(el("div","meta "+cls(p.ext.ret), (p.ext.phase==="pre"?"프리마켓 ":"애프터마켓 ")+price(p.ext.price,p.currency)+" (추천가 대비 "+pct(p.ext.ret)+", 참고용)"));
+  if(p.ext && counting(p)) c.append(el("div","meta "+cls(p.ext.ret), (p.ext.phase==="pre"?"프리마켓 ":"애프터마켓 ")+price(p.ext.price,p.currency)+" (추천가 대비 "+pct(p.ext.ret)+", 참고용)"));
   if(p.source) c.append(el("div","meta","근거: "+p.source));
   const ol=el("ol"); (p.reasons||[]).slice(0,5).forEach(r=>ol.append(el("li",null,r))); c.append(ol);
   const det=el("details"); det.append(el("summary",null,"차트 보기"));
@@ -307,7 +310,7 @@ function drawHistory(box){
   [...state.picks].sort((a,b)=>b.recAt.localeCompare(a.recAt)).forEach(p=>{
     const r=el("tr");
     r.append(el("td",null,p.name), el("td",null,MK[p.market]+" · "+({chart:"차트",investor:"투자자",strategy:"전략",swing:"스윙"}[p.method]||p.method)),
-      el("td",null,p.recDate.slice(5)), el("td","r "+cls(p.ret),pct(p.ret)), el("td","r "+cls(p.excess),pct(p.excess)),
+      el("td",null,p.recDate.slice(5)), el("td","r "+(counting(p)?cls(p.ret):""),counting(p)?pct(p.ret):"집계 전"), el("td","r "+(counting(p)?cls(p.excess):""),counting(p)?pct(p.excess):"–"),
       el("td",vcls(p.verdict),(p.verdict||"판단 중")+(p.status==="closed"?" (종료)":"")));
     t.append(r);
   });

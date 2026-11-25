@@ -422,7 +422,7 @@
    "name": "Apple Inc.",
    "currency": "USD",
    "recAt": "2026-11-21T00:18+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 349.54,
    "recIndex": 7139.4599609375,
    "reasons": [
@@ -450,7 +450,6 @@
    },
    "maxRet": 1.38,
    "minRet": -1.17,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 353.43,
@@ -466,7 +465,7 @@
    "name": "Berkshire Hathaway",
    "currency": "USD",
    "recAt": "2026-11-21T00:18+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 576.1,
    "recIndex": 7139.4599609375,
    "reasons": [
@@ -494,7 +493,6 @@
    },
    "maxRet": 0.64,
    "minRet": -1.35,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 577.49,
@@ -510,7 +508,7 @@
    "name": "Gilead Sciences",
    "currency": "USD",
    "recAt": "2026-11-21T00:18+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 170.02,
    "recIndex": 7139.4599609375,
    "reasons": [
@@ -538,7 +536,6 @@
    },
    "maxRet": 5.68,
    "minRet": -1.79,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 178.51,
@@ -554,7 +551,7 @@
    "name": "Cintas Corporation",
    "currency": "USD",
    "recAt": "2026-11-21T00:18+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 226.09,
    "recIndex": 23510.57421875,
    "reasons": [
@@ -582,7 +579,6 @@
    },
    "maxRet": 0.53,
    "minRet": -2.7,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 225.76,
@@ -598,7 +594,7 @@
    "name": "Mondelez International, Inc.",
    "currency": "USD",
    "recAt": "2026-11-21T00:18+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 66.95,
    "recIndex": 23510.57421875,
    "reasons": [
@@ -626,7 +622,6 @@
    },
    "maxRet": 0.5,
    "minRet": -2.58,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 66.8,
@@ -642,7 +637,7 @@
    "name": "Intercontinental Exchange",
    "currency": "USD",
    "recAt": "2026-11-21T00:45+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 173.5925,
    "reasons": [
     "근거 투자자: 퍼싱스퀘어(빌 애크먼) 3분기 13F 신규 편입 — 663만 주, 약 10억 달러(포트폴리오 3.3%)",
@@ -670,7 +665,6 @@
    },
    "maxRet": 1.5,
    "minRet": -1.81,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 174.89,
@@ -686,7 +680,7 @@
    "name": "Mastercard",
    "currency": "USD",
    "recAt": "2026-11-21T00:45+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 634.54,
    "reasons": [
     "근거 투자자: 바이킹 글로벌(안드레아스 할보르센) 3분기 13F 신규 편입 — 약 8.2억 달러(포트폴리오 2.5%)",
@@ -714,7 +708,6 @@
    },
    "maxRet": 2.23,
    "minRet": -0.87,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 650.0,
@@ -730,7 +723,7 @@
    "name": "Coca-Cola Europacific Partners PLC",
    "currency": "USD",
    "recAt": "2026-11-21T00:45+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 116.65,
    "recIndex": 23297.8984375,
    "reasons": [
@@ -758,7 +751,6 @@
    },
    "maxRet": 0.75,
    "minRet": -2.26,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 117.32,
@@ -774,7 +766,7 @@
    "name": "Accenture",
    "currency": "USD",
    "recAt": "2026-11-21T03:19+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 224.375,
    "recIndex": 7030.08984375,
    "reasons": [
@@ -802,7 +794,6 @@
    "benchRet": 2.43,
    "excess": 1.11,
    "daysHeld": 1,
-   "snap": {},
    "maxRet": 4.48,
    "minRet": -1.91,
    "ext": {
@@ -820,7 +811,7 @@
    "name": "TJX Companies",
    "currency": "USD",
    "recAt": "2026-11-21T03:19+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 140.31,
    "recIndex": 7030.08984375,
    "reasons": [
@@ -848,7 +839,6 @@
    "benchRet": 2.43,
    "excess": 0.1,
    "daysHeld": 1,
-   "snap": {},
    "maxRet": 3.11,
    "minRet": -2.09,
    "ext": {
@@ -866,7 +856,7 @@
    "name": "Arch Capital Group",
    "currency": "USD",
    "recAt": "2026-11-21T03:19+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 110.0,
    "recIndex": 7030.08984375,
    "reasons": [
@@ -894,7 +884,6 @@
    "benchRet": 2.43,
    "excess": -2.71,
    "daysHeld": 1,
-   "snap": {},
    "maxRet": 0.42,
    "minRet": -3.05,
    "ext": {
@@ -912,7 +901,7 @@
    "name": "Comcast Corporation",
    "currency": "USD",
    "recAt": "2026-11-21T03:19+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 25.2109,
    "recIndex": 23069.880859375,
    "reasons": [
@@ -940,7 +929,6 @@
    "benchRet": 2.88,
    "excess": -2.21,
    "daysHeld": 1,
-   "snap": {},
    "maxRet": 1.68,
    "minRet": -3.65,
    "ext": {
@@ -958,7 +946,7 @@
    "name": "Amgen Inc.",
    "currency": "USD",
    "recAt": "2026-11-21T03:19+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 439.365,
    "recIndex": 23069.880859375,
    "reasons": [
@@ -986,7 +974,6 @@
    "benchRet": 2.88,
    "excess": 4.99,
    "daysHeld": 1,
-   "snap": {},
    "maxRet": 7.91,
    "minRet": 0.14,
    "ext": {
@@ -1004,7 +991,7 @@
    "name": "PepsiCo, Inc.",
    "currency": "USD",
    "recAt": "2026-11-21T03:19+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 142.055,
    "recIndex": 23069.880859375,
    "reasons": [
@@ -1032,7 +1019,6 @@
    "benchRet": 2.88,
    "excess": -2.44,
    "daysHeld": 1,
-   "snap": {},
    "maxRet": 1.09,
    "minRet": -2.75,
    "ext": {
@@ -1050,7 +1036,7 @@
    "name": "Elevance Health",
    "currency": "USD",
    "recAt": "2026-11-21T05:45+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 396.18,
    "reasons": [
     "근거 투자자: 이사 Ramiro G. Peru가 11/19 보통주 1,000주를 평균 $383.86에 매수($38.4만, Form 4, 매수 후 직접보유 11,908주) — 2주 이내 공시, 현재가(약 $390)가 매수가 위에서 유지",
@@ -1075,7 +1061,6 @@
    "benchRet": 3.68,
    "excess": -4.94,
    "daysHeld": 1,
-   "snap": {},
    "chartNote": "차트 상태: 20일선·50일선 아래(하락 추세, 분할 접근 필요) · 200일선 위. RSI 40(중립), 52주 고점 대비 -13.2%. 주황선 20일선($417.45), 파란선 50일선($414.46), ▲가 추천 시점입니다.",
    "maxRet": 0.01,
    "minRet": -4.81,
@@ -1094,7 +1079,7 @@
    "name": "iRhythm Holdings",
    "currency": "USD",
    "recAt": "2026-11-21T07:45+09:00",
-   "recDate": "2026-11-21",
+   "recDate": "2026-11-20",
    "recPrice": 94.72,
    "reasons": [
     "근거 투자자: 이사 Abhijit Talwalkar가 11/19 장내 매수 7,900주(평균 $96.67, 약 $76만, Form 4 코드 P, 10b5-1 언급 없음) — 회사도 11/10 $2억 자사주 매입 승인 후 11/17 JP모건과 $1억 ASR(가속 매입) 체결",
@@ -1119,7 +1104,6 @@
    "benchRet": 4.93,
    "excess": 0.1,
    "daysHeld": 1,
-   "snap": {},
    "chartNote": "차트 상태: 20일선·50일선 아래(하락 추세, 분할 접근 필요) · 200일선 아래. RSI 46(중립), 52주 고점 대비 -48.3%. 주황선 20일선($104.63), 파란선 50일선($108.68), ▲가 추천 시점입니다.",
    "maxRet": 5.47,
    "minRet": 1.1,
@@ -1469,7 +1453,7 @@
    "name": "Okta, Inc.",
    "currency": "USD",
    "recAt": "2026-11-24T00:29+09:00",
-   "recDate": "2026-11-24",
+   "recDate": "2026-11-23",
    "recPrice": 210.435,
    "recIndex": 7274.56005859375,
    "reasons": [
@@ -1499,7 +1483,6 @@
    "benchRet": -1.01,
    "excess": -4.84,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": -0.9,
    "minRet": -6.07,
    "ext": {
@@ -1517,7 +1500,7 @@
    "name": "Biogen",
    "currency": "USD",
    "recAt": "2026-11-24T00:29+09:00",
-   "recDate": "2026-11-24",
+   "recDate": "2026-11-23",
    "recPrice": 257.405,
    "recIndex": 7274.56005859375,
    "reasons": [
@@ -1547,7 +1530,6 @@
    "benchRet": -1.01,
    "excess": 5.56,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": 4.83,
    "minRet": 0.18,
    "ext": {
@@ -1565,7 +1547,7 @@
    "name": "Procter & Gamble",
    "currency": "USD",
    "recAt": "2026-11-24T00:29+09:00",
-   "recDate": "2026-11-24",
+   "recDate": "2026-11-23",
    "recPrice": 169.46,
    "recIndex": 7274.56005859375,
    "reasons": [
@@ -1595,7 +1577,6 @@
    "benchRet": -1.01,
    "excess": 2.79,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": 2.25,
    "minRet": 0.22,
    "ext": {
@@ -1613,7 +1594,7 @@
    "name": "Veeva Systems",
    "currency": "USD",
    "recAt": "2026-11-24T00:29+09:00",
-   "recDate": "2026-11-24",
+   "recDate": "2026-11-23",
    "recPrice": 273.675,
    "recIndex": 7274.56005859375,
    "reasons": [
@@ -1641,7 +1622,6 @@
    "benchRet": -1.01,
    "excess": 0.99,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": 1.09,
    "minRet": -2.25,
    "ext": {
@@ -1659,7 +1639,7 @@
    "name": "Revvity",
    "currency": "USD",
    "recAt": "2026-11-24T00:29+09:00",
-   "recDate": "2026-11-24",
+   "recDate": "2026-11-23",
    "recPrice": 154.245,
    "recIndex": 7274.56005859375,
    "reasons": [
@@ -1687,7 +1667,6 @@
    "benchRet": -1.01,
    "excess": 0.31,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": 1.68,
    "minRet": -2.03,
    "ext": {
@@ -1705,7 +1684,7 @@
    "name": "Expeditors International",
    "currency": "USD",
    "recAt": "2026-11-24T00:29+09:00",
-   "recDate": "2026-11-24",
+   "recDate": "2026-11-23",
    "recPrice": 197.94,
    "recIndex": 7274.56005859375,
    "reasons": [
@@ -1733,7 +1712,6 @@
    "benchRet": -1.01,
    "excess": 0.94,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": -0.04,
    "minRet": -2.98,
    "ext": {
@@ -1751,7 +1729,7 @@
    "name": "Regeneron Pharmaceuticals, Inc.",
    "currency": "USD",
    "recAt": "2026-11-24T00:29+09:00",
-   "recDate": "2026-11-24",
+   "recDate": "2026-11-23",
    "recPrice": 936.2794,
    "recIndex": 24277.79296875,
    "reasons": [
@@ -1781,7 +1759,6 @@
    "benchRet": -2.24,
    "excess": 7.67,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": 5.54,
    "minRet": 1.3,
    "ext": {
@@ -1799,7 +1776,7 @@
    "name": "NXP Semiconductors N.V.",
    "currency": "USD",
    "recAt": "2026-11-24T00:29+09:00",
-   "recDate": "2026-11-24",
+   "recDate": "2026-11-23",
    "recPrice": 259.46,
    "recIndex": 24277.79296875,
    "reasons": [
@@ -1827,7 +1804,6 @@
    "benchRet": -2.24,
    "excess": -5.49,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": -4.42,
    "minRet": -9.82,
    "ext": {
@@ -1845,7 +1821,7 @@
    "name": "Palantir Technologies Inc.",
    "currency": "USD",
    "recAt": "2026-11-24T00:29+09:00",
-   "recDate": "2026-11-24",
+   "recDate": "2026-11-23",
    "recPrice": 160.5235,
    "recIndex": 24277.79296875,
    "reasons": [
@@ -1873,7 +1849,6 @@
    "benchRet": -2.24,
    "excess": 2.65,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": 1.55,
    "minRet": -1.7,
    "ext": {
@@ -1891,7 +1866,7 @@
    "name": "PDD Holdings Inc.",
    "currency": "USD",
    "recAt": "2026-11-24T00:29+09:00",
-   "recDate": "2026-11-24",
+   "recDate": "2026-11-23",
    "recPrice": 86.06,
    "recIndex": 24277.79296875,
    "reasons": [
@@ -1919,7 +1894,6 @@
    "benchRet": -2.24,
    "excess": 3.59,
    "daysHeld": 0,
-   "snap": {},
    "maxRet": 1.67,
    "minRet": -2.25,
    "ext": {
@@ -2220,7 +2194,7 @@
    "name": "Dollar Tree",
    "currency": "USD",
    "recAt": "2026-11-25T00:26+09:00",
-   "recDate": "2026-11-25",
+   "recDate": "2026-11-24",
    "recPrice": 154.025,
    "recIndex": 7170.22021484375,
    "reasons": [
@@ -2250,7 +2224,6 @@
    "benchRet": 0.0,
    "excess": 0.26,
    "daysHeld": 0,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 155.79,
@@ -2266,7 +2239,7 @@
    "name": "Agilent Technologies",
    "currency": "USD",
    "recAt": "2026-11-25T00:26+09:00",
-   "recDate": "2026-11-25",
+   "recDate": "2026-11-24",
    "recPrice": 183.1775,
    "recIndex": 7170.22021484375,
    "reasons": [
@@ -2296,7 +2269,6 @@
    "benchRet": 0.0,
    "excess": 0.11,
    "daysHeld": 0,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 184.4,
@@ -2312,7 +2284,7 @@
    "name": "Kroger",
    "currency": "USD",
    "recAt": "2026-11-25T00:26+09:00",
-   "recDate": "2026-11-25",
+   "recDate": "2026-11-24",
    "recPrice": 69.51,
    "recIndex": 7170.22021484375,
    "reasons": [
@@ -2342,7 +2314,6 @@
    "benchRet": 0.0,
    "excess": -0.03,
    "daysHeld": 0,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 69.99,
@@ -2358,7 +2329,7 @@
    "name": "General Mills",
    "currency": "USD",
    "recAt": "2026-11-25T00:26+09:00",
-   "recDate": "2026-11-25",
+   "recDate": "2026-11-24",
    "recPrice": 35.65,
    "recIndex": 7170.22021484375,
    "reasons": [
@@ -2386,7 +2357,6 @@
    "benchRet": 0.0,
    "excess": 0.0,
    "daysHeld": 0,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 35.62,
@@ -2402,7 +2372,7 @@
    "name": "Idexx Laboratories",
    "currency": "USD",
    "recAt": "2026-11-25T00:26+09:00",
-   "recDate": "2026-11-25",
+   "recDate": "2026-11-24",
    "recPrice": 699.415,
    "recIndex": 7170.22021484375,
    "reasons": [
@@ -2430,7 +2400,6 @@
    "benchRet": 0.0,
    "excess": -0.02,
    "daysHeld": 0,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 712.08,
@@ -2446,7 +2415,7 @@
    "name": "Kraft Heinz",
    "currency": "USD",
    "recAt": "2026-11-25T00:26+09:00",
-   "recDate": "2026-11-25",
+   "recDate": "2026-11-24",
    "recPrice": 25.493,
    "recIndex": 7170.22021484375,
    "reasons": [
@@ -2474,7 +2443,6 @@
    "benchRet": 0.0,
    "excess": 0.03,
    "daysHeld": 0,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 25.5113,
@@ -2490,7 +2458,7 @@
    "name": "Dollar General",
    "currency": "USD",
    "recAt": "2026-11-25T00:26+09:00",
-   "recDate": "2026-11-25",
+   "recDate": "2026-11-24",
    "recPrice": 139.4551,
    "recIndex": 7170.22021484375,
    "reasons": [
@@ -2518,7 +2486,6 @@
    "benchRet": 0.0,
    "excess": 0.0,
    "daysHeld": 0,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 138.967,
@@ -2534,7 +2501,7 @@
    "name": "Intuitive Surgical, Inc.",
    "currency": "USD",
    "recAt": "2026-11-25T00:26+09:00",
-   "recDate": "2026-11-25",
+   "recDate": "2026-11-24",
    "recPrice": 429.17,
    "recIndex": 23619.578125,
    "reasons": [
@@ -2562,7 +2529,6 @@
    "benchRet": 0.0,
    "excess": 0.0,
    "daysHeld": 0,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 434.46,
@@ -2578,7 +2544,7 @@
    "name": "CrowdStrike Holdings, Inc.",
    "currency": "USD",
    "recAt": "2026-11-25T00:26+09:00",
-   "recDate": "2026-11-25",
+   "recDate": "2026-11-24",
    "recPrice": 209.079,
    "recIndex": 23619.578125,
    "reasons": [
@@ -2606,7 +2572,6 @@
    "benchRet": 0.0,
    "excess": -0.06,
    "daysHeld": 0,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 209.742,
@@ -2622,7 +2587,7 @@
    "name": "Exelon Corporation",
    "currency": "USD",
    "recAt": "2026-11-25T00:26+09:00",
-   "recDate": "2026-11-25",
+   "recDate": "2026-11-24",
    "recPrice": 46.415,
    "recIndex": 23619.578125,
    "reasons": [
@@ -2650,7 +2615,6 @@
    "benchRet": 0.0,
    "excess": -0.03,
    "daysHeld": 0,
-   "snap": {},
    "ext": {
     "phase": "after",
     "price": 46.23,
