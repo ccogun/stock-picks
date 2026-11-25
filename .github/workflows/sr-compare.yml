@@ -1,0 +1,36 @@
+name: sr-compare
+
+on:
+  workflow_dispatch:
+  push:
+    paths: ["scripts/sr_compare.py"]
+  schedule:
+    - cron: "30 22 * * 6"   # 매주 일요일 07:30 KST 재검증
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writer
+  cancel-in-progress: false
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python scripts/sr_compare.py
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/sr_compare.json
+          git diff --cached --quiet && exit 0
+          git commit -m "data: 지지선 방법 비교 $(TZ=Asia/Seoul date '+%Y-%m-%d') 갱신"
+          for i in 1 2 3; do git pull --rebase -X theirs && git push && break; sleep 5; done
