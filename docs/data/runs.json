@@ -700,5 +700,21 @@
    "NASDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-25T23:37+09:00",
+  "scanned": [
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "SP500:Coca-Cola Company (The)",
+   "SP500:Walmart(strategy)",
+   "SP500:Consolidated Edison(strategy)",
+   "SP500:Altria(strategy)",
+   "NASDAQ:Xcel Energy Inc.(strategy)",
+   "NASDAQ:Vertex Pharmaceuticals Incorporated(strategy)",
+   "NASDAQ:Ferrovial N.V.(strategy)"
+  ]
  }
 ]

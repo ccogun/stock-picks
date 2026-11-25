@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T21:27+09:00",
+ "updated": "2026-11-25T23:38+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
   "investor": {
@@ -11,15 +11,19 @@
    "worst": -11.31
   },
   "chart": {
-   "n": 0,
-   "open": 15
+   "n": 1,
+   "open": 15,
+   "hit": 0.0,
+   "avg": -5.1,
+   "best": -5.1,
+   "worst": -5.1
   },
   "strategy": {
-   "n": 3,
-   "open": 33,
+   "n": 4,
+   "open": 38,
    "hit": 0.0,
-   "avg": -11.69,
-   "best": -6.35,
+   "avg": -10.03,
+   "best": -5.05,
    "worst": -14.71
   },
   "swing": {
@@ -90,12 +94,16 @@
     "open": 6
    },
    "chart": {
-    "n": 0,
-    "open": 9
+    "n": 1,
+    "open": 9,
+    "hit": 0.0,
+    "avg": -5.1,
+    "best": -5.1,
+    "worst": -5.1
    },
    "strategy": {
     "n": 0,
-    "open": 9
+    "open": 12
    },
    "swing": {
     "n": 0,
@@ -112,8 +120,12 @@
     "open": 4
    },
    "strategy": {
-    "n": 0,
-    "open": 9
+    "n": 1,
+    "open": 11,
+    "hit": 0.0,
+    "avg": -5.05,
+    "best": -5.05,
+    "worst": -5.05
    },
    "swing": {
     "n": 0,
@@ -127,16 +139,24 @@
    "open": 10
   },
   "pullback": {
-   "n": 0,
-   "open": 5
+   "n": 1,
+   "open": 5,
+   "hit": 0.0,
+   "avg": -5.1,
+   "best": -5.1,
+   "worst": -5.1
   },
   "bollinger": {
-   "n": 0,
-   "open": 7
+   "n": 1,
+   "open": 7,
+   "hit": 0.0,
+   "avg": -5.05,
+   "best": -5.05,
+   "worst": -5.05
   },
   "macd": {
    "n": 0,
-   "open": 7
+   "open": 9
   },
   "value": {
    "n": 0,
@@ -162,6 +182,10 @@
    "n": 0,
    "open": 2
   },
+  "trendline": {
+   "n": 0,
+   "open": 3
+  },
   "swing": {
    "n": 2,
    "open": 2,
@@ -181,8 +205,12 @@
    "worst": -14.71
   },
   "조정": {
-   "n": 0,
-   "open": 41
+   "n": 2,
+   "open": 46,
+   "hit": 0.0,
+   "avg": -5.07,
+   "best": -5.05,
+   "worst": -5.1
   }
  },
  "byStyle": {
@@ -212,7 +240,7 @@
   }
  },
  "byFlow": {},
- "stopOuts": 6,
+ "stopOuts": 8,
  "params": {
   "rs_min": 70,
   "rs_min_bear": 85,
