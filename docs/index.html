@@ -22,7 +22,6 @@
   .mk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
   .mk b{font-size:13px}.mk .v{font-size:17px;font-weight:700;margin-top:2px}
   .tag{display:inline-block;font-size:11.5px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);color:var(--sub)}
-  .h-유지{color:var(--down);border-color:var(--down)}.h-일부{color:#eab308;border-color:#eab308}.h-정리{color:var(--up);border-color:var(--up)}
   .t-상승{color:var(--up);border-color:var(--up)}.t-하락{color:var(--down);border-color:var(--down)}.t-조정{color:var(--wait)}
   .score{display:flex;gap:8px;margin:4px 0 14px;flex-wrap:wrap}
   .score>div{flex:1;min-width:120px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
@@ -67,7 +66,6 @@
   <h1>주식 분석</h1>
   <div class="sub" id="updated">불러오는 중…</div>
   <div class="grid" id="markets"></div>
-  <div id="hedge"></div>
   <div class="score" id="score"></div>
   <div class="tabs" id="tabs"></div>
   <div id="list"></div>
@@ -94,25 +92,7 @@ async function load(){
                                    fetch("data/market.json"+bust).then(r=>r.ok?r.json():{})]);
   state.picks = p.picks||[]; state.market = m;
   $("#updated").textContent = "마지막 갱신 " + (p.updated||"–").replace("T"," ") + " (한국시간)";
-  drawMarkets(); drawHedge(); drawScore(); drawTabs(); drawList();
-}
-async function drawHedge(){
-  const box=$("#hedge"); box.replaceChildren();
-  const h=await fetch("data/hedge.json?t="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
-  if(!h) return;
-  const c=el("div","card"); const top=el("div","row");
-  top.append(el("span","name","인버스 점검"), el("span","meta",(h.updated||"").replace("T"," ")+" 판정"));
-  c.append(top);
-  for(const [k,lab] of [["US","미국"],["KR","한국"]]){
-    const m=h[k]; if(!m) continue;
-    const line=el("div","meta"); line.style.marginTop="6px";
-    line.append(el("b",null,lab+" "), el("span","tag h-"+(m.signal||"").split(" ")[0], m.signal||"–"));
-    const nums=[]; if(m.vix!=null) nums.push("VIX "+m.vix); if(m.vkospi!=null) nums.push("VKOSPI "+m.vkospi); if(m.fearGreed!=null) nums.push("공탐 "+m.fearGreed);
-    line.append(document.createTextNode("  "+(nums.length?nums.join(" · ")+" — ":"")+(m.reason||"")));
-    c.append(line);
-  }
-  c.append(el("div","note","유지 → 일부 익절 고려(투매·반등 위험) → 정리 신호(VIX 꺾임·저점 방어·공탐 회복·정책 전환). 참고 신호이며 매매 판단은 본인 몫입니다."));
-  box.append(c);
+  drawMarkets(); drawScore(); drawTabs(); drawList();
 }
 function drawMarkets(){
   const box=$("#markets"); box.replaceChildren();
