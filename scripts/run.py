@@ -507,6 +507,9 @@ def ingest_inbox(picks: list[dict]) -> list[str]:
                 if MARKETS[m]["region"] == "KR":
                     from flows import FLOW_FILE, flow_tag
                     p["features"]["flow"] = flow_tag(load_json(FLOW_FILE, {}).get(it["ticker"]))
+                    if p["features"]["flow"] == "동반 순매도":
+                        print(f"[inbox] 건너뜀(외국인·기관 동반 순매도): {it.get('name')}")
+                        continue
                 picks.append(p)
                 added.append(f"{m}:{it['name']}")
             except (KeyError, TypeError) as e:
@@ -578,6 +581,8 @@ def main() -> None:
                 for c in cands:
                     c["flow"] = flow_tag(flows.get(c["ticker"]))
                     c["score"] = c.get("score", 0) + (fb if c["flow"] == "동반 순매수" else 0)
+                # 외국인·기관이 5일 동안 둘 다 순매도한 종목은 제외
+                cands = [c for c in cands if c["flow"] != "동반 순매도"]
                 cands.sort(key=lambda c: -c.get("score", 0))
             active = {p["ticker"] for p in picks if p["status"] == "active"}  # 시장 중복 추천 방지
             added_today = sum(1 for p in picks if p["market"] == m and p["method"] == "chart"
@@ -622,6 +627,9 @@ def main() -> None:
                        "전통 투자 전략"),
                       ("swing", screen_swing(m, uni[m], data, mkt_info[m], P, frac if open_ else 1.0)
                        if phase == "regular" else [], swing_reasons, "단기 스윙(1~5일, 모의 검증)")]
+            if cfg["region"] == "KR":   # 전통 전략·단기 스윙도 동반 순매도 종목 제외
+                groups = [(mth, [o for o in lst if flow_tag(flows.get(o["ticker"])) != "동반 순매도"], fn, sr)
+                          for mth, lst, fn, sr in groups]
             for method, lst, reason_fn, src in groups:
                 n_today = sum(1 for p in picks if p["market"] == m and p["method"] == method and p["recDate"] == today)
                 for o in lst:

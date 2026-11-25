@@ -145,4 +145,4 @@ def flow_tag(f: dict | None) -> str:
         return "동반 순매수"
     if fb or ib:
         return "한쪽 순매수"
-    return "순매도"
+    return "동반 순매도"
