@@ -15,6 +15,7 @@ import requests
 from common import DATA, load_json, now_kst, save_json
 
 FLOW_FILE = DATA / "flows.json"
+LAST_ERR: list[str] = []
 UA = {"User-Agent": "Mozilla/5.0 (stock-picks bot)", "Referer": "https://finance.naver.com/"}
 
 
@@ -31,8 +32,10 @@ def _fetch(ticker: str) -> tuple[str, dict | None]:
         r = requests.get(f"https://finance.naver.com/item/frgn.naver?code={code}", headers=UA, timeout=10)
         r.encoding = "euc-kr"
         tables = pd.read_html(StringIO(r.text))
-    except Exception:  # noqa: BLE001
+    except Exception as e:  # noqa: BLE001
+        LAST_ERR.append(f"{ticker}: {type(e).__name__} {e}"[:300] + (f" status={r.status_code} len={len(r.text)}" if "r" in locals() else ""))
         return ticker, None
+    LAST_ERR.append(f"{ticker}: tables={[ (t.shape, [str(c) for c in t.columns][:9]) for t in tables[:4]]}"[:900])
     for t in tables:
         if t.shape[1] < 7:
             continue
@@ -85,6 +88,8 @@ def refresh(tickers: list[str], force: bool = False) -> dict:
         cache["_updated"] = now.isoformat(timespec="minutes")
         save_json(FLOW_FILE, cache)
     print(f"[flows] {got}/{len(tickers)}종목 수급 갱신")
+    if not got:   # 진단용: 실패 원인 샘플 저장
+        save_json(DATA / "flows_debug.json", {"at": now.isoformat(timespec="minutes"), "samples": LAST_ERR[:5]})
     return cache
 
 
