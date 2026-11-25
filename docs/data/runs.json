@@ -574,5 +574,15 @@
   "added": [
    "KOSDAQ:CJ ENM(swing)"
   ]
+ },
+ {
+  "at": "2026-11-25T10:46+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ"
+  ],
+  "added": [
+   "KOSPI:코스맥스"
+  ]
  }
 ]
