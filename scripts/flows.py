@@ -102,30 +102,35 @@ def _fetch_html(ticker: str) -> tuple[str, dict | None]:
 
 
 def refresh(tickers: list[str], force: bool = False) -> dict:
-    """하루 한 번(장 마감 후 또는 오늘 자료가 없을 때) 갱신."""
+    """종목별로 오래된 것만 갱신. 장 마감 후에는 오늘 자료가 들어올 때까지 매 실행 다시 확인한다."""
+    from datetime import datetime, timedelta
     cache = load_json(FLOW_FILE, {})
     now = now_kst()
-    last = cache.get("_updated", "")
+    today = now.strftime("%Y-%m-%d")
     after_close = now.hour * 60 + now.minute >= 15 * 60 + 40
-    if force or not last:
-        need = True
-    else:
-        from datetime import datetime, timedelta
-        last_dt = datetime.fromisoformat(last)
-        today_close = now.replace(hour=15, minute=40, second=0, microsecond=0)
-        need = (after_close and last_dt < today_close) or (now - last_dt > timedelta(hours=20))
-    if not need:
+
+    def stale(t):
+        x = cache.get(t)
+        if force or not x or not x.get("at"):
+            return True
+        if after_close and x.get("date", "") < today:
+            return True
+        return now - datetime.fromisoformat(x["at"]) > timedelta(hours=20)
+
+    todo = [t for t in dict.fromkeys(tickers) if stale(t)]
+    if not todo:
         return cache
     got = 0
     with ThreadPoolExecutor(6) as ex:
-        for t, d in ex.map(_fetch, list(dict.fromkeys(tickers))):
+        for t, d in ex.map(_fetch, todo):
             if d:
+                d["at"] = now.isoformat(timespec="minutes")
                 cache[t] = d
                 got += 1
     if got:
         cache["_updated"] = now.isoformat(timespec="minutes")
         save_json(FLOW_FILE, cache)
-    print(f"[flows] {got}/{len(tickers)}종목 수급 갱신")
+    print(f"[flows] {got}/{len(todo)}종목 수급 갱신")
     if not got:   # 진단용: 실패 원인 샘플 저장
         save_json(DATA / "flows_debug.json", {"at": now.isoformat(timespec="minutes"), "samples": LAST_ERR[:5]})
     return cache
