@@ -716,5 +716,13 @@
    "NASDAQ:Vertex Pharmaceuticals Incorporated(strategy)",
    "NASDAQ:Ferrovial N.V.(strategy)"
   ]
+ },
+ {
+  "at": "2026-11-26T07:55+09:00",
+  "scanned": [
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": []
  }
 ]
