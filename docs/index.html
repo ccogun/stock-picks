@@ -224,16 +224,34 @@ function outcomeOf(p){
   if(p.status==="closed") return p.outcome!=null?p.outcome:(p.excess!=null?p.excess:null);
   return null;
 }
+// ── 팝업 창 관리: 폰의 뒤로가기 = 닫기 ──
+const MODALS=[];
+function mountModal(bg){
+  const entry={bg};
+  const esc=e=>{ if(e.key==="Escape" && MODALS[MODALS.length-1]===entry) requestClose(); };
+  entry.remove=()=>{ bg.remove(); document.removeEventListener("keydown",esc); if(!MODALS.length) document.body.style.overflow=""; };
+  MODALS.push(entry);
+  try{ history.pushState({spModal:MODALS.length},""); entry.hist=true; }catch(e){}
+  function requestClose(){
+    if(MODALS[MODALS.length-1]!==entry) return;
+    if(entry.hist) history.back();          // popstate에서 실제로 닫힘
+    else { MODALS.pop(); entry.remove(); }
+  }
+  document.addEventListener("keydown",esc);
+  bg.addEventListener("click",e=>{ if(e.target===bg) requestClose(); });
+  document.body.style.overflow="hidden"; document.body.append(bg);
+  return requestClose;
+}
+window.addEventListener("popstate",()=>{ const m=MODALS.pop(); if(m) m.remove(); });
+
 function openGroup(title,list,mode){
   const ev=list.filter(p=>outcomeOf(p)!=null).sort((a,b)=>outcomeOf(b)-outcomeOf(a));
   const op=list.filter(p=>outcomeOf(p)==null).sort((a,b)=>b.recAt.localeCompare(a.recAt));
   const bg=el("div","modal"); const sh=el("div","sheet"); bg.append(sh);
   const hd=el("div","sheet-head"); const x=el("button",null,"닫기");
   hd.append(el("b",null,title+" · "+list.length+"건"),x); sh.append(hd);
-  const close=()=>{bg.remove(); if(!document.querySelector(".modal")) document.body.style.overflow=""; document.removeEventListener("keydown",esc);};
-  const esc=e=>{const ms=document.querySelectorAll(".modal"); if(e.key==="Escape" && ms[ms.length-1]===bg) close();};
-  x.addEventListener("click",close); bg.addEventListener("click",e=>{if(e.target===bg) close();});
-  document.addEventListener("keydown",esc);
+  let close=()=>{};
+  x.addEventListener("click",()=>close());
   const sec=(name,arr,showScore)=>{
     if(!arr.length) return;
     sh.append(el("h2",null,name+" ("+arr.length+"건)"));
@@ -247,7 +265,7 @@ function openGroup(title,list,mode){
   if(mode!=="open") sec("평가 완료 — 성과순",ev,true);
   if(mode!=="eval") sec("진행 중",op,false);
   if(!sh.querySelector(".card")) sh.append(el("div","empty","해당 종목이 없습니다."));
-  document.body.style.overflow="hidden"; document.body.append(bg);
+  close=mountModal(bg);
 }
 const SIG={breakout:"고점 돌파",pullback:"눌림 반등",ext:"시간외 갭",value:"가치",dividend:"고배당",quality:"퀄리티",
   reversal:"역추세(RSI)",macd:"MACD",bollinger:"볼린저밴드",swing:"단기 스윙"};
@@ -327,11 +345,8 @@ function makeSheet(title){
   const bg=el("div","modal"); const sh=el("div","sheet"); bg.append(sh);
   const hd=el("div","sheet-head"); const x=el("button",null,"닫기");
   hd.append(el("b",null,title),x); sh.append(hd);
-  const esc=e=>{const ms=document.querySelectorAll(".modal"); if(e.key==="Escape" && ms[ms.length-1]===bg) close();};
-  function close(){ bg.remove(); if(!document.querySelector(".modal")) document.body.style.overflow=""; document.removeEventListener("keydown",esc); }
-  x.addEventListener("click",close); bg.addEventListener("click",e=>{if(e.target===bg) close();});
-  document.addEventListener("keydown",esc);
-  document.body.style.overflow="hidden"; document.body.append(bg);
+  const close=mountModal(bg);
+  x.addEventListener("click",()=>close());
   return {sh,close};
 }
 function kv(box,k,v,c){ const r=el("div","row"); r.style.padding="5px 0"; r.style.borderBottom="1px solid var(--line)";
