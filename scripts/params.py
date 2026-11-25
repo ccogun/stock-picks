@@ -18,7 +18,7 @@ DEFAULTS = {
     "ext_gap_min": 0.02,      # 미국 시간외 갭 하한
     "ext_gap_max": 0.15,
     "weight": {"breakout": 10, "pullback": 0, "ext": 0,      # 신호별 가산점(순위)
-               "value": 0, "dividend": 0, "quality": 0, "reversal": 0, "macd": 0, "bollinger": 0, "swing": 0, "trendline": 0},
+               "value": 0, "dividend": 0, "quality": 0, "reversal": 0, "macd": 0, "bollinger": 0, "swing": 0, "trendline": 0, "zone": 0},
     # 전통 전략
     "value_per_max_kr": 12, "value_per_max_us": 18, "value_pbr_max_kr": 1.0, "value_pbr_max_us": 3.0,
     "div_min_kr": 0.04, "div_min_us": 0.03, "quality_roe_min": 0.15, "reversal_rsi": 30,

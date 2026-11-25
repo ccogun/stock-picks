@@ -46,7 +46,32 @@ def trendline(df: pd.DataFrame, look: int = 90) -> dict | None:
             "p1": d.index[i1].strftime("%m/%d"), "p2": d.index[i2].strftime("%m/%d")}
 
 
-SIG_LABEL = {"trendline": "빗각 지지선 반등", "value": "가치(저PER·저PBR)", "dividend": "고배당", "quality": "퀄리티(고ROE·저부채)",
+def zone_bounce(df: pd.DataFrame, piv_n: int = 20, band: float = 0.03) -> dict | None:
+    """좌우 20일 스윙 저점이 2번 이상 모인 가격대에 어제 위에서 처음 닿고, 오늘 반등 확인.
+    (워크포워드 검증에서 지지선 방법 중 가장 나았던 조합 — sr_compare.json)"""
+    low, close = df["Low"].to_numpy(), df["Close"].to_numpy()
+    n = len(low)
+    if n < 2 * piv_n + 10:
+        return None
+    t = n - 2                                   # 어제
+    piv = [low[i] for i in range(piv_n, t - piv_n) if low[i] == low[i - piv_n:i + piv_n + 1].min()]
+    piv.sort()
+    groups: list[list[float]] = []
+    for v in piv:
+        if groups and v <= np.mean(groups[-1]) * (1 + 2 * band):
+            groups[-1].append(v)
+        else:
+            groups.append([v])
+    for g in groups:
+        if len(g) < 2:
+            continue
+        c = float(np.median(g)); up = c * (1 + band)
+        if low[t] <= up and low[t - 5:t].min() > up and close[-1] >= up * 0.99 and close[-1] > close[-2]:
+            return {"center": c, "low": c * (1 - band), "high": up, "pivots": len(g)}
+    return None
+
+
+SIG_LABEL = {"zone": "지지 가격대 반등 확인", "trendline": "빗각 지지선 반등", "value": "가치(저PER·저PBR)", "dividend": "고배당", "quality": "퀄리티(고ROE·저부채)",
              "reversal": "역추세(RSI 과매도 탈출)", "macd": "MACD 골든크로스", "bollinger": "볼린저밴드 하단 반등",
              "swing": "단기 스윙"}
 
@@ -143,6 +168,12 @@ def screen_strategies(market: str, universe: list[list[str]], data: dict, reg: d
         # 볼린저 하단 반등 (장기 상승 추세 안에서)
         if x["low3"] <= x["bb_lo3"] * 1.005 and x["c"] > x["bb_lo"] and up_today and x["c"] > x["ma200"]:
             sigs.append(("bollinger", "볼린저밴드 하단을 찍고 다시 밴드 안으로 반등", 45 + rs_pct / 4))
+        # 지지 가격대 반등 확인 (검증상 가장 나은 지지선 방식)
+        zb = zone_bounce(df)
+        if zb:
+            x["zone"] = zb
+            sigs.append(("zone", f"스윙 저점 {zb['pivots']}번 모인 가격대({zb['low']:,.0f}~{zb['high']:,.0f})에 어제 닿고 오늘 반등 확인",
+                         50 + rs_pct / 4))
         # 빗각 지지선: 두 저점을 이은 선에 닿고 양봉으로 반등
         tl = trendline(df)
         if tl and tl["support"] > 0:
@@ -155,7 +186,7 @@ def screen_strategies(market: str, universe: list[list[str]], data: dict, reg: d
                 sigs.append(("trendline", f"{tl['p1']}·{tl['p2']} 저점을 이은 {kind} 빗각 지지선({sup:,.0f})에서 양봉 반등",
                              45 + rs_pct / 4))
         if reg["regime"] == "하락":
-            sigs = [s for s in sigs if s[0] in ("value", "dividend", "quality", "trendline") or rs_pct >= 60]
+            sigs = [s for s in sigs if s[0] in ("value", "dividend", "quality", "trendline", "zone") or rs_pct >= 60]
         for s, why, sc in sigs:
             out.append({"ticker": ticker, "name": name, "signal": s, "why": why, "x": x, "f": f,
                         "rs_pct": rs_pct, "score": sc + P["weight"].get(s, 0)})
@@ -181,6 +212,10 @@ def strategy_reasons(o: dict, market: str, reg: dict) -> tuple[list[str], dict]:
     cur, label, x, f = MARKETS[market]["currency"], MARKETS[market]["label"], o["x"], o["f"]
     kind = "fundamental" if o["signal"] in ("value", "dividend", "quality") else "technical"
     stop, target = _stops(x, kind)
+    if o["signal"] == "zone" and x.get("zone"):
+        zb = x["zone"]   # 손절: 가격대 하단 3% 아래 / 목표: 손익비 2:1
+        stop = min(zb["low"] * 0.97, x["c"] * 0.97)
+        target = x["c"] + 2 * (x["c"] - stop)
     if o["signal"] == "trendline" and x.get("tl"):
         tl = x["tl"]   # 손절: 지지선 2.5% 아래 / 목표: 저항선(있으면) 또는 손익비 2:1
         stop = min(max(tl["support"] * 0.975, x["c"] - 2 * x["atr"]), x["c"] * 0.97)
@@ -208,6 +243,8 @@ def strategy_reasons(o: dict, market: str, reg: dict) -> tuple[list[str], dict]:
             "reversal": "RSI가 30 아래(과매도)로 떨어졌다가 다시 올라온 반등 초입입니다.",
             "macd": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다.",
             "bollinger": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다.",
+            "zone": "여러 번 바닥이 됐던 가격대에 닿은 다음 날 반등을 확인하고 산 자리(▲)입니다. 가격대 아래로 "
+                    "3% 넘게 내려가면 지지가 깨진 것으로 보고 종료합니다.",
             "trendline": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 "
                          "손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다."}[o["signal"]]
     return lines, {"stop": round(stop, 2), "target": round(target, 2),

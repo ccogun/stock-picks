@@ -109,7 +109,7 @@ def main() -> None:
                                             ("value", None, 0, 0), ("dividend", None, 0, 0),
                                             ("quality", None, 0, 0), ("reversal", None, 0, 0),
                                             ("macd", None, 0, 0), ("bollinger", None, 0, 0),
-                                            ("trendline", None, 0, 0)):
+                                            ("trendline", None, 0, 0), ("zone", None, 0, 0)):
         st = stats([p for p in tech if sig(p) == s][-WINDOW:])
         if st["n"] < MIN_N:
             continue

@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: "50 21 * * 1-5"   # 미국 장 마감 후(한국 06:50) 하루 한 번
   workflow_dispatch:
+  push:
+    paths: ["scripts/patterns.py"]
 
 permissions:
   contents: write

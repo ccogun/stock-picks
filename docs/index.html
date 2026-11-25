@@ -248,7 +248,7 @@ function openGroup(title,list,mode){
   close=mountModal(bg);
 }
 const SIG={breakout:"고점 돌파",pullback:"눌림 반등",ext:"시간외 갭",value:"가치",dividend:"고배당",quality:"퀄리티",
-  reversal:"역추세(RSI)",macd:"MACD",bollinger:"볼린저밴드",swing:"단기 스윙",trendline:"빗각 지지선"};
+  reversal:"역추세(RSI)",macd:"MACD",bollinger:"볼린저밴드",swing:"단기 스윙",trendline:"빗각 지지선",zone:"지지 가격대 반등"};
 async function drawLearn(box){
   box.append(el("div","note","추천 결과를 분석해 다음 추천 기준을 자동으로 조정합니다. 성과 지표는 추천 후 10거래일(단기 스윙은 5거래일) 시점의 지수 대비 초과수익이며, 표본 8건 이상일 때만 조금씩 바꿉니다."));
   const bust="?t="+Date.now();
@@ -289,30 +289,43 @@ async function drawLearn(box){
 }
 async function drawPatterns(box){
   const j=await fetch("data/patterns.json?t="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
-  box.append(el("h2",null,"대형주 가격대 규칙성"));
+  box.append(el("h2",null,"대형주 지지 가격대"));
   if(!j){ box.append(el("div","empty","아직 분석 전입니다. 매일 미국 장 마감 후 갱신됩니다.")); return; }
-  box.append(el("div","note",j.method+" · "+j.scanned+"종목 검사 · "+(j.updated||"").replace("T"," ")+" 갱신. 과거 통계이며 하락장·악재에서는 지지 가격대가 깨질 수 있습니다(이탈률 참고)."));
-  if(!j.items.length){ box.append(el("div","empty","조건을 통과한 패턴이 없습니다.")); return; }
+  const v=j.validation||{};
+  if(v.piv20_confirm){ const c=el("div","card");
+    c.append(el("b",null,"이 방법의 실제 검증 결과"));
+    c.append(el("div","meta","대형주 75종목 6년, 그 시점 정보만으로 계산(미래 정보 없음) · 20거래일 뒤 기준"));
+    const t=el("table"); const hr=el("tr"); ["매수 방법","횟수","승률","평균","평소 대비"].forEach((x,i)=>hr.append(el("th",i?"r":"",x))); t.append(hr);
+    [["반등 확인 후 매수",v.piv20_confirm],["가격대 닿자마자 매수",v.piv20],["그냥 3% 눌림 매수(비교)",v.dip]].forEach(([n,s])=>{ if(!s) return;
+      const r=el("tr"); r.append(el("td",null,n),el("td","r",s.n+"회"),el("td","r",s.win20+"%"),el("td","r "+cls(s.avg20),pct(s.avg20)),
+        el("td","r "+cls(s.excessTicker20),pct(s.excessTicker20).replace("%","%p"))); t.append(r); });
+    c.append(t);
+    c.append(el("div","note","반등을 확인하고 사는 쪽이 가장 나았지만 차이가 크지 않고 표본도 많지 않습니다. 확률을 조금 높이는 참고 도구로 보세요."));
+    box.append(c); }
+  box.append(el("div","note",j.method+" · "+j.scanned+"종목 · "+(j.updated||"").replace("T"," ")+" 갱신"));
+  if(!j.items.length){ box.append(el("div","empty","현재가 근처의 지지 가격대가 없습니다.")); return; }
   const t=el("table"); const h=el("tr");
-  ["종목","가격대","현재가(거리)","횟수","20일 승률","평균 20일","평균 낙폭","이탈률"].forEach((x,i)=>h.append(el("th",i>=2?"r":"",x))); t.append(h);
+  ["종목","가격대","현재가(거리)","상태","과거(확인 후)"].forEach((x,i)=>h.append(el("th",i>=2&&i!==3?"r":"",x))); t.append(h);
   j.items.forEach(p=>{const r=el("tr"); const cur=p.currency;
-    const nm=el("td",null,p.name+(p.near?" ●":"")); nm.title=p.ticker;
-    r.append(nm, el("td",null,price(p.low,cur)+"~"+price(p.high,cur)),
-      el("td","r",price(p.lastClose,cur)+" ("+pct(p.distPct)+")"), el("td","r",p.events+"회"),
-      el("td","r",p.winRate+"%"), el("td","r "+cls(p.avgRet20),pct(p.avgRet20)), el("td","r down",pct(p.avgMdd)), el("td","r",p.breakRate+"%"));
+    const nm=el("td",null,p.name); nm.append(mkb(p.market==="US"?"SP500":"KOSPI")); nm.lastChild.textContent=p.market==="US"?"미국":"한국";
+    const st=el("td",null,p.status||(p.near?"근처":"–"));
+    if(p.status&&p.status.startsWith("반등")) st.style.color="var(--good)"; else if(p.status&&p.status.startsWith("도달")) st.style.color="#eab308"; else if(p.status) st.style.color="var(--bad)";
+    const past=p.confEvents? p.confEvents+"회 "+p.confWinRate+"%" : (p.events? "닿음 "+p.events+"회 "+p.winRate+"%" : "사례 없음");
+    r.append(nm, el("td",null,price(p.low,cur)+"~"+price(p.high,cur)), el("td","r",price(p.lastClose,cur)+" ("+pct(p.distPct)+")"), st, el("td","r",past));
     r.style.cursor="pointer"; r.addEventListener("click",()=>{ const nx=r.nextSibling; if(nx&&nx.dataset.d){nx.remove();return;}
-      const d=el("tr"); d.dataset.d=1; const td=el("td"); td.colSpan=8; td.className="meta";
-      td.textContent="최근 진입: "+p.history.map(e=>e.date.slice(2)+" "+price(e.entry,cur)+" → 20일 "+pct(e.ret20)).join(" / ")+" · 평소 20일 평균 "+pct(p.baseline20);
+      const d=el("tr"); d.dataset.d=1; const td=el("td"); td.colSpan=5; td.className="meta"; td.style.whiteSpace="normal";
+      td.textContent=(p.history.length? "과거 사례: "+p.history.map(e=>e.date.slice(2)+" "+price(e.entry,cur)+(e.ret20!=null?" → 20일 "+pct(e.ret20):" (진행 중)")+(e.confirmed?" · 반등확인"+(e.cret20!=null?" "+pct(e.cret20):""):"")).join(" / ") : "그 가격대가 생긴 뒤 아직 닿은 적이 없습니다.")
+        +" · 이 종목 평소 20일 평균 "+pct(p.baseline20)+(p.breakRate!=null?" · 이탈률 "+p.breakRate+"%":"");
       d.append(td); r.after(d); });
     t.append(r);});
   const wrap=el("div"); wrap.style.overflowX="auto"; wrap.append(t); box.append(wrap);
-  box.append(el("div","note","● = 현재가가 가격대 근처(-5%~+8%). 행을 누르면 최근 진입 사례가 보입니다."));
+  box.append(el("div","note","상태: '도달'은 오늘 가격대에 닿음(내일 반등 확인 필요), '반등 확인'은 어제 닿고 오늘 반등(매수 후보). 행을 누르면 과거 사례가 보입니다. 종목별 과거 사례는 표본이 적어 참고만 하세요."));
   (j.watch||[]).forEach(w=>{ box.append(el("h2",null,"관찰 종목: "+w.name+" ("+w.ticker+")"));
-    box.append(el("div","note",w.note+" — 기준(4회 이상·승률 70%)과 관계없이 모든 가격대를 표시"));
+    box.append(el("div","note",w.note));
     w.zones.forEach(z=>{ const c=el("div","card");
-      c.append(el("div",null,price(z.low,"USD")+"~"+price(z.high,"USD")+" · 현재 "+price(z.lastClose,"USD")+" ("+pct(z.distPct)+")"));
-      c.append(el("div","meta",z.events+"회 · 20일 승률 "+z.winRate+"% · 평균 10일 "+pct(z.avgRet10)+" / 20일 "+pct(z.avgRet20)+" (평소 "+pct(z.baseline20)+") · 평균 낙폭 "+pct(z.avgMdd)+(z.pass?" · 기준 통과":" · 표본 부족")));
-      c.append(el("div","meta",z.history.map(e=>e.date+" "+price(e.entry,"USD")+" → 20일 "+pct(e.ret20)).join(" / ")));
+      c.append(el("div",null,price(z.low,"USD")+"~"+price(z.high,"USD")+" · 현재 "+price(z.lastClose,"USD")+" ("+pct(z.distPct)+")"+(z.status?" · "+z.status:"")));
+      c.append(el("div","meta","닿은 횟수 "+z.events+"회"+(z.events?" · 20일 승률 "+z.winRate+"% · 평균 "+pct(z.avgRet20):"")+" · 반등 확인 "+z.confEvents+"회"+(z.confEvents?" (승률 "+z.confWinRate+"%)":"")+" · 평소 "+pct(z.baseline20)));
+      if(z.history.length) c.append(el("div","meta",z.history.map(e=>e.date+" "+price(e.entry,"USD")+(e.ret20!=null?" → 20일 "+pct(e.ret20):"")).join(" / ")));
       box.append(c); }); });
 }
 // ── 내가 산 종목 (이 기기 브라우저에만 저장) ──
