@@ -740,5 +740,15 @@
    "KOSDAQ:서부T&D(strategy)",
    "KOSDAQ:셀트리온제약(strategy)"
   ]
+ },
+ {
+  "at": "2026-11-26T08:14+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ",
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": []
  }
 ]
