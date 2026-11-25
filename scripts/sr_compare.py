@@ -69,10 +69,13 @@ def hvn_levels(df: pd.DataFrame, upto: int, look: int = 250) -> list[float]:
 
 def evaluate_ticker(df: pd.DataFrame) -> dict[str, list[dict]]:
     low, close = df["Low"].to_numpy(), df["Close"].to_numpy()
+    opn, high, vol = df["Open"].to_numpy(), df["High"].to_numpy(), df["Volume"].to_numpy()
+    vavg = pd.Series(vol).rolling(20).mean().shift(1).to_numpy()
     n = len(df)
     ma = {k: pd.Series(close).rolling(k).mean().to_numpy() for k in (50, 200)}
     res: dict[str, list[dict]] = {k: [] for k in
-                                  ("piv5", "piv10", "piv20", "hvn", "ma50", "ma200", "piv10_hvn", "dip")}
+                                  ("piv5", "piv10", "piv20", "hvn", "ma50", "ma200", "piv10_hvn", "dip",
+                                   "piv20_trend", "piv20_confirm", "piv20_trend_confirm", "piv20_vol", "dip_trend")}
     last_ev = {k: -999 for k in res}
     levels: dict[str, list[float]] = {}
     start = 260
@@ -85,23 +88,38 @@ def evaluate_ticker(df: pd.DataFrame) -> dict[str, list[dict]]:
             levels["piv10_hvn"] = [z for z in levels["piv10"] if any(abs(h / z - 1) <= 0.02 for h in levels["hvn"])]
         prev_min = low[t - 5:t].min()
 
-        def record(k, entry):
-            if t - last_ev[k] < GAP:
+        def record(k, entry, d=0):
+            """d=1이면 다음 날 종가에 진입(반등 확인 후 매수)."""
+            s0 = t + d
+            if t - last_ev[k] < GAP or s0 + H2 >= n:
                 return
             last_ev[k] = t
-            fut_lo = low[t + 1:t + H2 + 1]
-            fut_cl = close[t + 1:t + H2 + 1]
-            up = np.where(df["High"].to_numpy()[t + 1:t + H2 + 1] >= entry * 1.05)[0]
+            fut_lo = low[s0 + 1:s0 + H2 + 1]
+            fut_cl = close[s0 + 1:s0 + H2 + 1]
+            up = np.where(high[s0 + 1:s0 + H2 + 1] >= entry * 1.05)[0]
             dn = np.where(fut_lo <= entry * 0.95)[0]
             bounce = len(up) > 0 and (len(dn) == 0 or up[0] < dn[0])
-            res[k].append({"r10": close[t + H1] / entry - 1, "r20": close[t + H2] / entry - 1,
+            res[k].append({"r10": close[s0 + H1] / entry - 1, "r20": close[s0 + H2] / entry - 1,
                            "mdd": fut_lo.min() / entry - 1, "bounce": bounce,
                            "broke": bool((fut_cl < entry * 0.94).any()), "year": df.index[t].year})
 
+        uptrend = not np.isnan(ma[200][t]) and close[t] > ma[200][t]
         for k in ("piv5", "piv10", "piv20", "hvn", "piv10_hvn"):
             for L in levels.get(k, []):
                 if prev_min > L * 1.03 and low[t] <= L * 1.01:
                     record(k, L * 1.01)
+                    if k == "piv20":
+                        # 반등 확인: 다음 날 종가가 지지선 위 + 전날보다 상승 → 다음 날 종가 매수
+                        conf = close[t + 1] >= L * 1.01 and close[t + 1] > close[t]
+                        if uptrend:
+                            record("piv20_trend", L * 1.01)
+                        if conf:
+                            record("piv20_confirm", close[t + 1], d=1)
+                        if conf and uptrend:
+                            record("piv20_trend_confirm", close[t + 1], d=1)
+                        rng = high[t] - low[t]
+                        if rng > 0 and vavg[t] > 0 and vol[t] >= 1.5 * vavg[t] and (close[t] - low[t]) / rng >= 0.6:
+                            record("piv20_vol", close[t])   # 거래량 동반 + 아래꼬리(매수세) 종가 매수
                     break
         for k, m in (("ma50", ma[50]), ("ma200", ma[200])):
             L = m[t]
@@ -109,6 +127,8 @@ def evaluate_ticker(df: pd.DataFrame) -> dict[str, list[dict]]:
                 record(k, L * 1.01)
         if low[t] <= prev_min * 0.97:
             record("dip", close[t])
+            if uptrend:
+                record("dip_trend", close[t])
     return res
 
 
