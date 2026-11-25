@@ -666,5 +666,15 @@
    "NASDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-25T19:44+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ",
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": []
  }
 ]
