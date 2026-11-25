@@ -26,7 +26,45 @@ def _num(s) -> float:
         return float("nan")
 
 
+def _fetch_api(ticker: str) -> dict | None:
+    """네이버 모바일 증권 JSON (일별 투자자 순매수)."""
+    code = ticker.split(".")[0]
+    r = requests.get(f"https://m.stock.naver.com/api/stock/{code}/trend?pageSize=20", headers=UA, timeout=10)
+    data = r.json()
+    rows = data if isinstance(data, list) else (data.get("trends") or data.get("result") or data.get("data") or [])
+    if not rows or not isinstance(rows, list) or not isinstance(rows[0], dict):
+        LAST_ERR.append(f"{ticker}: api status={r.status_code} body={r.text[:300]}")
+        return None
+    keys = list(rows[0].keys())
+    fk = next((k for k in keys if "foreign" in k.lower() and "pure" in k.lower()), None)
+    ik = next((k for k in keys if "organ" in k.lower() and "pure" in k.lower()), None)
+    pk = next((k for k in keys if "closeprice" in k.lower()), None)
+    vk = next((k for k in keys if "volume" in k.lower()), None)
+    dk = next((k for k in keys if "date" in k.lower()), keys[0])
+    if not (fk and ik and pk):
+        LAST_ERR.append(f"{ticker}: api keys={keys}")
+        return None
+    fr = [_num(x[fk]) for x in rows]; ins = [_num(x[ik]) for x in rows]; px = [_num(x[pk]) for x in rows]
+    vol = [_num(x[vk]) for x in rows] if vk else None
+    avg_val = sum(v * p for v, p in zip(vol, px)) / len(px) if vol else float("nan")
+    net5 = sum((fr[i] + ins[i]) * px[i] for i in range(min(5, len(px))))
+    d0 = str(rows[0][dk])
+    return {"date": f"{d0[:4]}-{d0[4:6]}-{d0[6:8]}" if d0.isdigit() and len(d0) == 8 else d0,
+            "f1": fr[0], "i1": ins[0], "f5": sum(fr[:5]), "i5": sum(ins[:5]),
+            "v5": round(net5 / avg_val, 3) if avg_val and avg_val == avg_val else None, "src": "api"}
+
+
 def _fetch(ticker: str) -> tuple[str, dict | None]:
+    try:
+        d = _fetch_api(ticker)
+        if d:
+            return ticker, d
+    except Exception as e:  # noqa: BLE001
+        LAST_ERR.append(f"{ticker}: api {type(e).__name__} {e}"[:300])
+    return _fetch_html(ticker)
+
+
+def _fetch_html(ticker: str) -> tuple[str, dict | None]:
     code = ticker.split(".")[0]
     try:
         r = requests.get(f"https://finance.naver.com/item/frgn.naver?code={code}", headers=UA, timeout=10)
