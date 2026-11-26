@@ -295,7 +295,7 @@ def run(picks: list[dict], now, idx_data: dict, mkt_info: dict, regular: bool, f
             cur = MARKETS[m]["currency"]
             ld = " · ".join(f"{l['name']} {l['chg']:+.1f}%" for l in t.get("leaders", []))
             why = (notes.get(t["name"]) or {}).get("why") or (t.get("watch") or {}).get("why") \
-                or t.get("desc") or "재료 확인 전 — 예약 작업이 뉴스로 보강"
+                or "재료 확인 전 — 예약 작업이 뉴스로 보강"
             if s.get("why"):
                 why += f" / 편입 사유: {s['why']}"
             today = market_date(m, now)
