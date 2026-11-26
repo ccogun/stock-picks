@@ -46,10 +46,15 @@ LABEL = {
     "darvas": "다바스 박스 상단 돌파(52주 고가 근처, 거래량 동반)",
     "psych": "투자심리선 25% 이하에서 회복(차트분석 무작정 따라하기)",
     "weekly_bottom": "주봉 바닥권(체리형부): 큰 하락 뒤 3개월 신저가 없음 + 거래량 증가 + 저점 상승",
+    # 듬뿍아범 작도법
+    "diag_break": "빗각 저항 돌파: 낮아지는 고점을 이은 선을 거래량 급증 장대양봉으로 돌파(종가 기준)",
+    "box_retest": "박스 상단 지지 전환: 긴 박스 상단을 뚫은 뒤 그 자리로 되돌림하고 반등",
+    "fib786": "피보나치 0.786 되돌림 자리에서 반등",
+    "hvn_bounce": "과거 횡보 매물대(거래량 많이 쌓인 가격대)까지 하락 후 반등",
 }
 TREND_RULES = {"granville1", "golden", "align", "squeeze", "sar", "cci0", "rsi50", "dmi", "ichimoku",
                "double_bottom", "gap", "trend_template", "tt_breakout", "vcp", "cup_handle", "flat_base",
-               "high_tight_flag", "stage2", "ma100", "high52", "pocket_pivot", "darvas"}
+               "high_tight_flag", "stage2", "ma100", "high52", "pocket_pivot", "darvas", "diag_break"}
 
 
 def _cross_up(a: pd.Series, b) -> np.ndarray:
@@ -268,6 +273,56 @@ def signals(df: pd.DataFrame) -> dict[str, np.ndarray]:
     higher_low = l.rolling(20).min() > l.shift(20).rolling(45).min()
     vol_up = v.rolling(20).mean() > 1.2 * v.shift(20).rolling(60).mean()
     S["weekly_bottom"] = first(big_drop & no_new_low & higher_low & vol_up & (c > m50))
+
+    # ── 듬뿍아범 작도법 ──
+    op = o.to_numpy()
+    # 빗각 저항 돌파: 확정된 10일 스윙 고점 중 마지막 두 개(낮아지는 고점, 120일 이내)를 이은 선
+    hpiv = [i for i in range(10, n - 10) if hi[i] == hi[i - 10:i + 11].max()]
+    dg = np.zeros(n, bool)
+    for t in range(60, n):
+        ps = [p for p in hpiv if p + 10 <= t - 1 and p >= t - 120]
+        if len(ps) < 2:
+            continue
+        a, b = ps[-2], ps[-1]
+        if hi[b] >= hi[a] or b - a < 10:
+            continue
+        slope = (hi[b] - hi[a]) / (b - a)
+        line_t, line_p = hi[b] + slope * (t - b), hi[b] + slope * (t - 1 - b)
+        rngt = hi[t] - lo[t]
+        if (cc[t] > line_t and cc[t - 1] <= line_p and vv[t] > 2 * (va[t] or np.inf) and cc[t] > op[t]
+                and rngt > 0 and (cc[t] - op[t]) / rngt >= 0.6 and cc[t] / cc[t - 1] - 1 >= 0.04):
+            dg[t] = True
+    S["diag_break"] = dg
+
+    # 박스 상단 지지 전환
+    top_b = h.shift(40).rolling(100).max()
+    bot_b = l.shift(40).rolling(100).min()
+    broke = c.shift(5).rolling(35).max() > top_b * 1.05
+    S["box_retest"] = first((bot_b >= top_b * 0.7) & broke & (l <= top_b * 1.03) & (c >= top_b) & (c > o))
+
+    # 피보나치 0.786 되돌림
+    L = l.shift(20).rolling(100).min()
+    Hh = h.shift(5).rolling(60).max()
+    lvl = Hh - 0.786 * (Hh - L)
+    S["fib786"] = first((Hh / L >= 1.5) & (l <= lvl * 1.02) & (c >= lvl) & (c > o) & (c.shift(10) > lvl * 1.1))
+
+    # 과거 매물대 반등: 60일 고점 대비 15% 이상 하락 뒤, 1년 거래량 분포(최근 20일 제외)의 최대 매물대에 닿고 양봉
+    hv = np.zeros(n, bool)
+    hi60 = h.rolling(60).max().to_numpy()
+    tp_ = ((h + l + c) / 3).to_numpy()
+    for t in range(270, n):
+        if not (cc[t] <= hi60[t] * 0.85 and cc[t] > op[t]):
+            continue
+        seg_p, seg_v = tp_[t - 270:t - 20], vv[t - 270:t - 20]
+        below = seg_p < cc[t] * 1.05
+        if below.sum() < 30:
+            continue
+        hist, edges = np.histogram(seg_p[below], bins=20, weights=seg_v[below])
+        k = int(hist.argmax())
+        z_lo, z_hi = edges[k], edges[k + 1]
+        if lo[t] <= z_hi and cc[t] >= z_lo and lo[t - 1] > z_hi:
+            hv[t] = True
+    S["hvn_bounce"] = hv
 
     for k_ in S:
         S[k_] = np.nan_to_num(np.asarray(S[k_], dtype=float)).astype(bool)
