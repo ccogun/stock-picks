@@ -123,11 +123,16 @@ def _stops(x: dict, kind: str) -> tuple[float, float]:
 
 
 # ───────────────────────── 전통 전략 ─────────────────────────
-def _book_adopted() -> dict[str, float]:
-    """검증 통과 기법 {이름: 20일 초과수익(%p)}"""
+def _book_adopted() -> dict[str, dict[str, float]]:
+    """검증 통과 기법 {지역: {이름: 그 지역 20일 초과수익(%p)}} — 지역별 결과가 마이너스면 그 지역에선 끈다"""
     from common import DATA, load_json
     j = load_json(DATA / "book_compare.json", {})
-    return {k: (j.get("methods", {}).get(k) or {}).get("excess20", 0) for k in j.get("adopted", [])}
+    out = {}
+    for rg in ("KR", "US"):
+        bm = (j.get("byMarket") or {}).get(rg, {})
+        out[rg] = {k: bm[k]["excess20"] for k in j.get("adopted", [])
+                   if (bm.get(k) or {}).get("excess20", 0) > 0 and bm[k].get("n", 0) >= 30}
+    return out
 
 
 try:
@@ -201,9 +206,9 @@ def screen_strategies(market: str, universe: list[list[str]], data: dict, reg: d
                 sigs.append(("trendline", f"{tl['p1']}·{tl['p2']} 저점을 이은 {kind} 빗각 지지선({sup:,.0f})에서 양봉 반등",
                              45 + rs_pct / 4))
         # 『차트의 기술』 기법 — 6년 검증에서 채택된 것만(book_compare.json)
-        if BOOK:
+        if BOOK.get(MARKETS[market]["region"]):
             S = book_signals(df)
-            for k, ex in BOOK.items():
+            for k, ex in BOOK[MARKETS[market]["region"]].items():
                 if S.get(k) is not None and S[k][-1]:
                     sigs.append((f"book_{k}", BOOK_LABEL[k], 45 + rs_pct / 4 + ex * 3))
         if reg["regime"] == "하락":
