@@ -1,22 +1,22 @@
 {
  "listSample": [
   {
-   "no": 584,
-   "name": "스페이스X(SpaceX)",
-   "totalCount": 14,
-   "changeRate": "9.43",
-   "riseCount": 13,
-   "fallCount": 1,
+   "no": 591,
+   "name": "서울고속버스터미널 재개발 수혜",
+   "totalCount": 5,
+   "changeRate": "13.93",
+   "riseCount": 3,
+   "fallCount": 2,
    "steadyCount": 0
   },
   {
-   "no": 200,
-   "name": "우주항공산업(누리호/인공위성 등)",
-   "totalCount": 41,
-   "changeRate": "4.89",
-   "riseCount": 31,
-   "fallCount": 8,
-   "steadyCount": 2
+   "no": 584,
+   "name": "스페이스X(SpaceX)",
+   "totalCount": 14,
+   "changeRate": "10.08",
+   "riseCount": 13,
+   "fallCount": 1,
+   "steadyCount": 0
   }
  ],
  "detailSample": {
@@ -36,22 +36,22 @@
    {
     "stockType": "domestic",
     "stockEndType": "stock",
-    "itemCode": "009150",
-    "reutersCode": "009150",
-    "stockName": "삼성전기",
+    "itemCode": "033250",
+    "reutersCode": "033250",
+    "stockName": "체시스",
     "sosok": "0",
-    "closePrice": "812,000",
-    "compareToPreviousClosePrice": "57,000",
+    "closePrice": "4,940",
+    "compareToPreviousClosePrice": "1,130",
     "compareToPreviousPrice": {
      "code": "2",
      "text": "상승",
      "name": "RISING"
     },
-    "fluctuationsRatio": "7.55",
-    "accumulatedTradingVolume": "391,508",
-    "accumulatedTradingValue": "312,855",
-    "localTradedAt": "2026-11-26T10:32:22+09:00",
-    "marketValue": "606,513",
+    "fluctuationsRatio": "29.66",
+    "accumulatedTradingVolume": "187,641",
+    "accumulatedTradingValue": "847",
+    "localTradedAt": "2026-11-26T15:04:19+09:00",
+    "marketValue": "316",
     "nav": "N/A",
     "threeMonthEarningRate": "N/A",
     "marketStatus": "OPEN",
@@ -62,7 +62,7 @@
     },
     "tradableStatus": "tradable",
     "tradableStatusCode": "ok",
-    "tradableStatusUpdatedAt": "2026-11-26T08:01:51.134+09:00",
+    "tradableStatusUpdatedAt": "2026-11-26T08:02:06.139+09:00",
     "stockExchangeType": {
      "code": "KS",
      "zoneId": "Asia/Seoul",
@@ -78,34 +78,34 @@
      "nationName": "대한민국",
      "name": "KOSPI"
     },
-    "endUrl": "https://m.stock.naver.com/domestic/stock/009150",
-    "newPcUrl": "https://stock.naver.com/domestic/stock/009150",
-    "stockMiniImageChart": "https://financial-vn.pstatic.net/chart/mobile/mini/krx/009150_interest.png",
-    "closePriceRaw": "812000",
-    "compareToPreviousClosePriceRaw": "57000",
-    "accumulatedTradingVolumeRaw": "391508",
-    "accumulatedTradingValueRaw": "312855000000",
-    "marketValueRaw": "60651281152000"
+    "endUrl": "https://m.stock.naver.com/domestic/stock/033250",
+    "newPcUrl": "https://stock.naver.com/domestic/stock/033250",
+    "stockMiniImageChart": "https://financial-vn.pstatic.net/chart/mobile/mini/krx/033250_interest.png",
+    "compareToPreviousClosePriceRaw": "1130",
+    "accumulatedTradingVolumeRaw": "187641",
+    "closePriceRaw": "4940",
+    "accumulatedTradingValueRaw": "847000000",
+    "marketValueRaw": "31616000000"
    },
    {
     "stockType": "domestic",
     "stockEndType": "stock",
-    "itemCode": "000660",
-    "reutersCode": "000660",
-    "stockName": "SK하이닉스",
+    "itemCode": "014580",
+    "reutersCode": "014580",
+    "stockName": "태경비케이",
     "sosok": "0",
-    "closePrice": "1,085,000",
-    "compareToPreviousClosePrice": "55,000",
+    "closePrice": "3,305",
+    "compareToPreviousClosePrice": "50",
     "compareToPreviousPrice": {
      "code": "2",
      "text": "상승",
      "name": "RISING"
     },
-    "fluctuationsRatio": "5.34",
-    "accumulatedTradingVolume": "1,453,558",
-    "accumulatedTradingValue": "1,561,692",
-    "localTradedAt": "2026-11-26T10:32:20+09:00",
-    "marketValue": "7,668,770",
+    "fluctuationsRatio": "1.54",
+    "accumulatedTradingVolume": "11,354",
+    "accumulatedTradingValue": "37",
+    "localTradedAt": "2026-11-26T15:04:19+09:00",
+    "marketValue": "912",
     "nav": "N/A",
     "threeMonthEarningRate": "N/A",
     "marketStatus": "OPEN",
@@ -116,7 +116,7 @@
     },
     "tradableStatus": "tradable",
     "tradableStatusCode": "ok",
-    "tradableStatusUpdatedAt": "2026-11-26T08:01:39.704+09:00",
+    "tradableStatusUpdatedAt": "2026-11-26T08:01:56.709+09:00",
     "stockExchangeType": {
      "code": "KS",
      "zoneId": "Asia/Seoul",
@@ -132,14 +132,14 @@
      "nationName": "대한민국",
      "name": "KOSPI"
     },
-    "endUrl": "https://m.stock.naver.com/domestic/stock/000660",
-    "newPcUrl": "https://stock.naver.com/domestic/stock/000660",
-    "stockMiniImageChart": "https://financial-vn.pstatic.net/chart/mobile/mini/krx/000660_interest.png",
-    "closePriceRaw": "1085000",
-    "compareToPreviousClosePriceRaw": "55000",
-    "accumulatedTradingVolumeRaw": "1453558",
-    "accumulatedTradingValueRaw": "1561692000000",
-    "marketValueRaw": "766877015905000"
+    "endUrl": "https://m.stock.naver.com/domestic/stock/014580",
+    "newPcUrl": "https://stock.naver.com/domestic/stock/014580",
+    "stockMiniImageChart": "https://financial-vn.pstatic.net/chart/mobile/mini/krx/014580_interest.png",
+    "compareToPreviousClosePriceRaw": "50",
+    "accumulatedTradingVolumeRaw": "11354",
+    "closePriceRaw": "3305",
+    "accumulatedTradingValueRaw": "37000000",
+    "marketValueRaw": "91162145500"
    }
   ]
  }
