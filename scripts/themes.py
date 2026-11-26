@@ -345,14 +345,19 @@ def run(picks: list[dict], now, idx_data: dict, mkt_info: dict, regular: bool, f
         cand_done = {(p.get("features") or {}).get("theme") for p in picks
                      if p["method"] == "theme_cand" and p["recDate"] == today_kr}
         for t in sel:
-            if t["name"] in cand_done or t.get("picked"):
+            if t["name"] in cand_done or t.get("picked") or t["name"] in used_theme:
                 continue
             x = next((x for x in cands if x["t"] is t and x["s"]["ticker"] not in active), None)
             if x:
                 make(x, "theme_cand", "테마별 후보 (학습용 — 정식 추천 아님)")
                 t["cand"] = {"name": x["s"]["name"], "chg": round(x["chg"], 1)}
                 added.append(f"{x['s']['market']}:{x['s']['name']}(테마 후보)")
-        # 오늘 이미 기록된 후보도 카드에 표시
+        # 오늘 이미 기록된 정식 추천·후보도 카드에 표시
+        for p in picks:
+            if p["method"] == "theme" and p["recDate"] == today_kr:
+                t = next((t for t in sel if t["name"] == (p.get("features") or {}).get("theme")), None)
+                if t is not None and p["name"] not in t.get("picked", []):
+                    t.setdefault("picked", []).append(p["name"])
         for p in picks:
             if p["method"] == "theme_cand" and p["recDate"] == today_kr:
                 t = next((t for t in sel if t["name"] == (p.get("features") or {}).get("theme")), None)

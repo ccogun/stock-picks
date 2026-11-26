@@ -3750,9 +3750,9 @@
    "snap": {}
   },
   {
-   "id": "2026-11-26-KOSDAQ-theme-323350.KQ",
+   "id": "2026-11-26-KOSDAQ-theme_cand-323350.KQ",
    "market": "KOSDAQ",
-   "method": "theme",
+   "method": "theme_cand",
    "ticker": "323350.KQ",
    "name": "다원넥스뷰",
    "currency": "KRW",
@@ -3767,7 +3767,7 @@
     "차트·수급: 20일선 위 상승 추세, RSI 59 · 외국인·기관 5일 한쪽 순매수",
     "리스크: 테마주는 재료가 꺼지면 급락 — 손절 13,801원 (-7.0%), 목표 16,918원 (+14.0%), 최대 5거래일 보유"
    ],
-   "source": "이슈 테마 후발주",
+   "source": "테마별 후보 (학습용 — 정식 추천 아님)",
    "features": {
     "signal": "theme",
     "theme": "반도체 기판(FC-BGA/PCB/MLB 등)",
@@ -3775,13 +3775,13 @@
     "watch": false,
     "flow": "한쪽 순매수",
     "rsi": 59.1,
-    "regime": "하락"
+    "regime": "하락",
+    "lasting": false
    },
    "status": "active",
    "verdict": "판단 중",
    "stop": 13801.2,
    "target": 16917.6,
-   "paper": false,
    "chartNote": "차트 상태: 20일선·50일선 위에서 오르는 상승 추세 · 200일선 위. RSI 58(중립), 52주 고점 대비 -48.1%. 주황선 20일선(12,582원), 파란선 50일선(11,424원), ▲가 추천 시점입니다.",
    "lastPrice": 14570.0,
    "lastDate": "2026-11-26",
