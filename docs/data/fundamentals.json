@@ -11722,5 +11722,101 @@
   "om": 0.04377,
   "sector": "Healthcare",
   "at": "2026-11-26T15:05+09:00"
+ },
+ "271160.KQ": {
+  "per": null,
+  "fper": null,
+  "pbr": null,
+  "dy": 0.0,
+  "roe": null,
+  "de": null,
+  "payout": 0.0,
+  "om": 0.0,
+  "sector": "Industrials",
+  "at": "2026-11-26T15:09+09:00"
+ },
+ "215090.KQ": {
+  "per": null,
+  "fper": null,
+  "pbr": null,
+  "dy": 0.0,
+  "roe": -0.018070001,
+  "de": 0.04891,
+  "payout": 0.0,
+  "om": -0.04552,
+  "sector": "Technology",
+  "at": "2026-11-26T15:09+09:00"
+ },
+ "005870.KS": {
+  "per": null,
+  "fper": null,
+  "pbr": null,
+  "dy": 0.0,
+  "roe": 0.25042,
+  "de": 0.12493,
+  "payout": 0.0,
+  "om": 0.107880004,
+  "sector": "Technology",
+  "at": "2026-11-26T15:09+09:00"
+ },
+ "095190.KQ": {
+  "per": null,
+  "fper": null,
+  "pbr": null,
+  "dy": null,
+  "roe": null,
+  "de": null,
+  "payout": null,
+  "om": null,
+  "sector": null,
+  "at": "2026-11-26T15:09+09:00"
+ },
+ "017960.KS": {
+  "per": null,
+  "fper": 4.488087,
+  "pbr": null,
+  "dy": 0.79,
+  "roe": 0.16962999,
+  "de": 0.22139,
+  "payout": 0.20639999,
+  "om": 0.18365,
+  "sector": "Basic Materials",
+  "at": "2026-11-26T15:09+09:00"
+ },
+ "046120.KQ": {
+  "per": null,
+  "fper": null,
+  "pbr": null,
+  "dy": 0.0,
+  "roe": 0.095419995,
+  "de": 0.46547,
+  "payout": 0.0,
+  "om": -0.18722999,
+  "sector": "Industrials",
+  "at": "2026-11-26T15:09+09:00"
+ },
+ "221840.KQ": {
+  "per": null,
+  "fper": null,
+  "pbr": null,
+  "dy": 0.0,
+  "roe": 0.040700004,
+  "de": 1.00441,
+  "payout": 0.0,
+  "om": 0.048639998,
+  "sector": "Industrials",
+  "at": "2026-11-26T15:09+09:00"
+ },
+ "067390.KQ": {
+  "per": null,
+  "fper": null,
+  "pbr": null,
+  "dy": 0.0,
+  "roe": -0.02931,
+  "de": 0.56714,
+  "payout": 0.0,
+  "om": 0.02893,
+  "sector": "Industrials",
+  "at": "2026-11-26T15:09+09:00"
  }
 }
