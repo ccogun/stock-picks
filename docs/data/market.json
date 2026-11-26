@@ -1,33 +1,33 @@
 {
  "KOSPI": {
-  "close": 4710.65,
-  "ma50": 5888.78,
+  "close": 4711.21,
+  "ma50": 5888.8,
   "ma200": 6517.02,
-  "chg1d": 0.28,
+  "chg1d": 0.29,
   "chg20d": -20.66,
-  "fromPeak": -48.32,
+  "fromPeak": -48.31,
   "regime": "하락",
   "note": "지수가 50일선 아래 역배열 — 시장보다 강한 종목만 엄격히 선별",
   "label": "코스피",
-  "updated": "2026-11-26T17:39+09:00",
+  "updated": "2026-11-27T04:09+09:00",
   "lastScan": "2026-11-26T17:39+09:00",
   "candidates": 0,
-  "phase": "after"
+  "phase": "closed"
  },
  "KOSDAQ": {
-  "close": 655.03,
-  "ma50": 762.71,
+  "close": 655.71,
+  "ma50": 762.72,
   "ma200": 941.83,
-  "chg1d": 0.67,
-  "chg20d": -13.04,
-  "fromPeak": -46.58,
+  "chg1d": 0.78,
+  "chg20d": -12.95,
+  "fromPeak": -46.52,
   "regime": "하락",
   "note": "지수가 50일선 아래 역배열 — 시장보다 강한 종목만 엄격히 선별",
   "label": "코스닥",
-  "updated": "2026-11-26T17:39+09:00",
+  "updated": "2026-11-27T04:09+09:00",
   "lastScan": "2026-11-26T17:39+09:00",
   "candidates": 1,
-  "phase": "after"
+  "phase": "closed"
  },
  "SP500": {
   "close": 7182.78,
@@ -39,10 +39,10 @@
   "regime": "조정",
   "note": "지수가 50일선 부근에서 방향 탐색 — 돌파 신호 위주로 선별",
   "label": "S&P 500",
-  "updated": "2026-11-26T17:39+09:00",
-  "phase": "closed",
-  "lastScan": "2026-11-26T09:57+09:00",
-  "candidates": 0
+  "updated": "2026-11-27T04:09+09:00",
+  "phase": "regular",
+  "lastScan": "2026-11-27T04:09+09:00",
+  "candidates": 17
  },
  "NASDAQ": {
   "close": 23585.8,
@@ -54,9 +54,9 @@
   "regime": "조정",
   "note": "지수가 50일선 부근에서 방향 탐색 — 돌파 신호 위주로 선별",
   "label": "나스닥",
-  "updated": "2026-11-26T17:39+09:00",
-  "phase": "closed",
-  "lastScan": "2026-11-26T09:57+09:00",
-  "candidates": 0
+  "updated": "2026-11-27T04:09+09:00",
+  "phase": "regular",
+  "lastScan": "2026-11-27T04:09+09:00",
+  "candidates": 3
  }
 }

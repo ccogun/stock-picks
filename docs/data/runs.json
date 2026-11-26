@@ -917,5 +917,24 @@
    "KOSDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-27T04:09+09:00",
+  "scanned": [
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "SP500:Walt Disney Company (The)",
+   "SP500:Darden Restaurants",
+   "SP500:Marsh McLennan",
+   "SP500:eBay Inc.(strategy)",
+   "SP500:Veralto(strategy)",
+   "SP500:Skyworks Solutions(strategy)",
+   "SP500:CBRE Group(swing)",
+   "NASDAQ:AppLovin Corporation(strategy)",
+   "NASDAQ:Texas Instruments Incorporated(strategy)",
+   "NASDAQ:NVIDIA Corporation(strategy)"
+  ]
  }
 ]

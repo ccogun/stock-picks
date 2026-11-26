@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T17:40+09:00",
+ "updated": "2026-11-27T04:11+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
   "combined": {
@@ -24,7 +24,7 @@
   },
   "chart": {
    "n": 1,
-   "open": 15,
+   "open": 18,
    "hit": 0.0,
    "avg": -7.55,
    "best": -7.55,
@@ -32,7 +32,7 @@
   },
   "strategy": {
    "n": 4,
-   "open": 44,
+   "open": 50,
    "hit": 0.0,
    "avg": -10.84,
    "best": -6.35,
@@ -40,7 +40,7 @@
   },
   "swing": {
    "n": 2,
-   "open": 3,
+   "open": 4,
    "hit": 0.0,
    "avg": -10.82,
    "best": -9.53,
@@ -143,7 +143,7 @@
    },
    "chart": {
     "n": 1,
-    "open": 9,
+    "open": 12,
     "hit": 0.0,
     "avg": -7.55,
     "best": -7.55,
@@ -151,11 +151,11 @@
    },
    "strategy": {
     "n": 0,
-    "open": 12
+    "open": 15
    },
    "swing": {
     "n": 0,
-    "open": 1
+    "open": 2
    }
   },
   "NASDAQ": {
@@ -181,7 +181,7 @@
    },
    "strategy": {
     "n": 1,
-    "open": 11,
+    "open": 14,
     "hit": 0.0,
     "avg": -8.28,
     "best": -8.28,
@@ -196,7 +196,7 @@
  "bySignal": {
   "breakout": {
    "n": 0,
-   "open": 10
+   "open": 13
   },
   "pullback": {
    "n": 1,
@@ -208,7 +208,7 @@
   },
   "bollinger": {
    "n": 1,
-   "open": 7,
+   "open": 8,
    "hit": 0.0,
    "avg": -8.28,
    "best": -8.28,
@@ -244,11 +244,19 @@
   },
   "trendline": {
    "n": 0,
-   "open": 5
+   "open": 7
+  },
+  "book_bb_reentry": {
+   "n": 0,
+   "open": 2
+  },
+  "book_granville4": {
+   "n": 0,
+   "open": 1
   },
   "swing": {
    "n": 2,
-   "open": 3,
+   "open": 4,
    "hit": 0.0,
    "avg": -10.82,
    "best": -9.53,
@@ -266,7 +274,7 @@
   },
   "조정": {
    "n": 2,
-   "open": 46,
+   "open": 56,
    "hit": 0.0,
    "avg": -7.91,
    "best": -7.55,
