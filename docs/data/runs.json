@@ -782,5 +782,17 @@
   "added": [
    "KOSDAQ:루닛(strategy)"
   ]
+ },
+ {
+  "at": "2026-11-26T09:14+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ",
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "KOSDAQ:에스엠(swing)"
+  ]
  }
 ]

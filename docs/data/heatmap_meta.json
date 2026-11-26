@@ -988,5 +988,1000 @@
   "sector": "Technology",
   "cap": 246951641088.0,
   "at": "2026-11-26T09:08+09:00"
+ },
+ "015760.KS": {
+  "sector": "Utilities",
+  "cap": 16209593499648.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "APP": {
+  "sector": "Communication Services",
+  "cap": 125554507776.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "APTV": {
+  "sector": "Consumer Cyclical",
+  "cap": 7601249280.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ACGL": {
+  "sector": "Financial Services",
+  "cap": 35902189568.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ADM": {
+  "sector": "Consumer Defensive",
+  "cap": 31724775424.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ARES": {
+  "sector": "Financial Services",
+  "cap": 44462219264.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ANET": {
+  "sector": "Technology",
+  "cap": 207185362944.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "AJG": {
+  "sector": "Financial Services",
+  "cap": 74973184000.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "AIZ": {
+  "sector": "Financial Services",
+  "cap": 15982545920.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "T": {
+  "sector": "Communication Services",
+  "cap": 154736787456.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ATO": {
+  "sector": "Utilities",
+  "cap": 29490702336.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ADSK": {
+  "sector": "Technology",
+  "cap": 51578064896.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ADP": {
+  "sector": "Technology",
+  "cap": 125028204544.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "AZO": {
+  "sector": "Consumer Cyclical",
+  "cap": 54792540160.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "AVY": {
+  "sector": "Consumer Cyclical",
+  "cap": 14471012352.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "AXON": {
+  "sector": "Industrials",
+  "cap": 27935490048.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BKR": {
+  "sector": "Energy",
+  "cap": 46039117824.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BALL": {
+  "sector": "Consumer Cyclical",
+  "cap": 17486385152.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BAC": {
+  "sector": "Financial Services",
+  "cap": 334936145920.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BAX": {
+  "sector": "Healthcare",
+  "cap": 14102912000.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BDX": {
+  "sector": "Healthcare",
+  "cap": 60262858752.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BRK-B": {
+  "sector": "Financial Services",
+  "cap": 1230776565760.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BBY": {
+  "sector": "Consumer Cyclical",
+  "cap": 21513867264.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "TECH": {
+  "sector": "Healthcare",
+  "cap": 11412640768.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BIIB": {
+  "sector": "Healthcare",
+  "cap": 38646120448.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BLK": {
+  "sector": "Financial Services",
+  "cap": 176329932800.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BX": {
+  "sector": "Financial Services",
+  "cap": 146828722176.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "XYZ": {
+  "sector": "Technology",
+  "cap": 46004121600.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BE": {
+  "sector": "Industrials",
+  "cap": 45202952192.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BNY": {
+  "sector": "Financial Services",
+  "cap": 99023749120.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BA": {
+  "sector": "Industrials",
+  "cap": 130381783040.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BKNG": {
+  "sector": "Consumer Cyclical",
+  "cap": 111183339520.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BSX": {
+  "sector": "Healthcare",
+  "cap": 65400233984.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BMY": {
+  "sector": "Healthcare",
+  "cap": 125833928704.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "AVGO": {
+  "sector": "Technology",
+  "cap": 1436194177024.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BR": {
+  "sector": "Technology",
+  "cap": 21166702592.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BRO": {
+  "sector": "Financial Services",
+  "cap": 26014590976.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BF-B": {
+  "sector": "Consumer Defensive",
+  "cap": 13591559168.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BG": {
+  "sector": "Consumer Defensive",
+  "cap": 16937474048.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BXP": {
+  "sector": "Real Estate",
+  "cap": 11564646400.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CHRW": {
+  "sector": "Industrials",
+  "cap": 16790668288.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CDNS": {
+  "sector": "Technology",
+  "cap": 80911630336.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CPT": {
+  "sector": "Real Estate",
+  "cap": 9931915264.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "COF": {
+  "sector": "Financial Services",
+  "cap": 109791838208.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CAH": {
+  "sector": "Healthcare",
+  "cap": 65390870528.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CCL": {
+  "sector": "Consumer Cyclical",
+  "cap": 37649084416.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CARR": {
+  "sector": "Industrials",
+  "cap": 44098834432.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CVNA": {
+  "sector": "Consumer Cyclical",
+  "cap": 170370711552.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CASY": {
+  "sector": "Consumer Cyclical",
+  "cap": 25807806464.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CAT": {
+  "sector": "Industrials",
+  "cap": 248789385216.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CBOE": {
+  "sector": "Financial Services",
+  "cap": 36703375360.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CBRE": {
+  "sector": "Real Estate",
+  "cap": 39739379712.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CDW": {
+  "sector": "Technology",
+  "cap": 21837887488.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "COR": {
+  "sector": "Healthcare",
+  "cap": 67562356736.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CNC": {
+  "sector": "Healthcare",
+  "cap": 32050700288.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CNP": {
+  "sector": "Utilities",
+  "cap": 26773706752.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CF": {
+  "sector": "Basic Materials",
+  "cap": 17188476928.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CRL": {
+  "sector": "Healthcare",
+  "cap": 15912432640.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "SCHW": {
+  "sector": "Financial Services",
+  "cap": 161295417344.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CHTR": {
+  "sector": "Communication Services",
+  "cap": 26368923648.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CVX": {
+  "sector": "Energy",
+  "cap": 411616935936.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CMG": {
+  "sector": "Consumer Cyclical",
+  "cap": 47310065664.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CB": {
+  "sector": "Financial Services",
+  "cap": 145384980480.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CHD": {
+  "sector": "Consumer Defensive",
+  "cap": 26744791040.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CIEN": {
+  "sector": "Technology",
+  "cap": 34429689856.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CI": {
+  "sector": "Healthcare",
+  "cap": 71519870976.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CINF": {
+  "sector": "Financial Services",
+  "cap": 29523105792.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CTAS": {
+  "sector": "Industrials",
+  "cap": 90394148864.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CSCO": {
+  "sector": "Technology",
+  "cap": 371378585600.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "C": {
+  "sector": "Financial Services",
+  "cap": 187584331776.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CFG": {
+  "sector": "Financial Services",
+  "cap": 25889484800.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CLX": {
+  "sector": "Consumer Defensive",
+  "cap": 13440092160.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CME": {
+  "sector": "Financial Services",
+  "cap": 111582306304.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CMS": {
+  "sector": "Utilities",
+  "cap": 22455595008.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "KO": {
+  "sector": "Consumer Defensive",
+  "cap": 419822632960.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CTSH": {
+  "sector": "Technology",
+  "cap": 28305967104.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "COHR": {
+  "sector": "Technology",
+  "cap": 38641324032.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "COIN": {
+  "sector": "Financial Services",
+  "cap": 27461263360.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CL": {
+  "sector": "Consumer Defensive",
+  "cap": 79221784576.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CMCSA": {
+  "sector": "Communication Services",
+  "cap": 91367391232.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FIX": {
+  "sector": "Industrials",
+  "cap": 38469799936.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "COP": {
+  "sector": "Energy",
+  "cap": 159638896640.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ED": {
+  "sector": "Utilities",
+  "cap": 44679417856.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "STZ": {
+  "sector": "Consumer Defensive",
+  "cap": 23686313984.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CEG": {
+  "sector": "Utilities",
+  "cap": 82726453248.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "COO": {
+  "sector": "Healthcare",
+  "cap": 11844773888.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CPRT": {
+  "sector": "Industrials",
+  "cap": 30723325952.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GLW": {
+  "sector": "Technology",
+  "cap": 86346842112.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CPAY": {
+  "sector": "Technology",
+  "cap": 29064318976.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CSGP": {
+  "sector": "Real Estate",
+  "cap": 13687516160.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "COST": {
+  "sector": "Consumer Defensive",
+  "cap": 481597423616.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CRH": {
+  "sector": "Basic Materials",
+  "cap": 64726949888.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CRWD": {
+  "sector": "Technology",
+  "cap": 215703863296.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CCI": {
+  "sector": "Real Estate",
+  "cap": 35582988288.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CSX": {
+  "sector": "Industrials",
+  "cap": 94308253696.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CMI": {
+  "sector": "Industrials",
+  "cap": 57638641664.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "CVS": {
+  "sector": "Healthcare",
+  "cap": 103714177024.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DHR": {
+  "sector": "Healthcare",
+  "cap": 159947735040.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DRI": {
+  "sector": "Consumer Cyclical",
+  "cap": 27285620736.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DDOG": {
+  "sector": "Technology",
+  "cap": 57134985216.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DVA": {
+  "sector": "Healthcare",
+  "cap": 10238233600.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DECK": {
+  "sector": "Consumer Cyclical",
+  "cap": 11420547072.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DE": {
+  "sector": "Industrials",
+  "cap": 172835291136.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DELL": {
+  "sector": "Technology",
+  "cap": 188874522624.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DAL": {
+  "sector": "Industrials",
+  "cap": 54573830144.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DVN": {
+  "sector": "Energy",
+  "cap": 48380874752.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DXCM": {
+  "sector": "Healthcare",
+  "cap": 31641153536.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FANG": {
+  "sector": "Energy",
+  "cap": 50292084736.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DLR": {
+  "sector": "Real Estate",
+  "cap": 64074031104.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DG": {
+  "sector": "Consumer Defensive",
+  "cap": 30725300224.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DLTR": {
+  "sector": "Consumer Defensive",
+  "cap": 28298811392.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "D": {
+  "sector": "Utilities",
+  "cap": 59801694208.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DPZ": {
+  "sector": "Consumer Cyclical",
+  "cap": 11892911104.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DASH": {
+  "sector": "Consumer Cyclical",
+  "cap": 72546459648.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DOV": {
+  "sector": "Industrials",
+  "cap": 27313129472.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DOW": {
+  "sector": "Basic Materials",
+  "cap": 21470337024.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DHI": {
+  "sector": "Consumer Cyclical",
+  "cap": 41977716736.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DTE": {
+  "sector": "Utilities",
+  "cap": 28676546560.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DUK": {
+  "sector": "Utilities",
+  "cap": 102843514880.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DD": {
+  "sector": "Basic Materials",
+  "cap": 20359616512.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ETN": {
+  "sector": "Industrials",
+  "cap": 123469185024.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EBAY": {
+  "sector": "Consumer Cyclical",
+  "cap": 50722062336.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ECHO": {
+  "sector": "Communication Services",
+  "cap": 24948465664.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ECL": {
+  "sector": "Basic Materials",
+  "cap": 86633693184.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EIX": {
+  "sector": "Utilities",
+  "cap": 24391661568.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EW": {
+  "sector": "Healthcare",
+  "cap": 61156999168.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ELV": {
+  "sector": "Healthcare",
+  "cap": 84196982784.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EME": {
+  "sector": "Industrials",
+  "cap": 27526621184.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EMR": {
+  "sector": "Industrials",
+  "cap": 86256377856.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ETR": {
+  "sector": "Utilities",
+  "cap": 51280408576.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EOG": {
+  "sector": "Energy",
+  "cap": 76896395264.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EQT": {
+  "sector": "Energy",
+  "cap": 32234561536.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EFX": {
+  "sector": "Industrials",
+  "cap": 21727748096.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EQIX": {
+  "sector": "Real Estate",
+  "cap": 96832348160.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ERIE": {
+  "sector": "Financial Services",
+  "cap": 14631751680.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ESS": {
+  "sector": "Real Estate",
+  "cap": 19266035712.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EL": {
+  "sector": "Consumer Defensive",
+  "cap": 39715041280.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EG": {
+  "sector": "Financial Services",
+  "cap": 16063325184.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EVRG": {
+  "sector": "Utilities",
+  "cap": 20581771264.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "P": {
+  "sector": "Technology",
+  "cap": 31553290240.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "ES": {
+  "sector": "Utilities",
+  "cap": 27327754240.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EXC": {
+  "sector": "Utilities",
+  "cap": 48133042176.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EXE": {
+  "sector": "Energy",
+  "cap": 20040167424.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EXPE": {
+  "sector": "Consumer Cyclical",
+  "cap": 28608421888.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EXPD": {
+  "sector": "Industrials",
+  "cap": 25588445184.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "EXR": {
+  "sector": "Real Estate",
+  "cap": 35207684096.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "XOM": {
+  "sector": "Energy",
+  "cap": 644843503616.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FFIV": {
+  "sector": "Technology",
+  "cap": 18051586048.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FDS": {
+  "sector": "Financial Services",
+  "cap": 11442224128.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FICO": {
+  "sector": "Technology",
+  "cap": 14962587648.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FAST": {
+  "sector": "Industrials",
+  "cap": 60726669312.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FRT": {
+  "sector": "Real Estate",
+  "cap": 9888105472.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FDX": {
+  "sector": "Industrials",
+  "cap": 72337154048.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FDXF": {
+  "sector": "Industrials",
+  "cap": 17749669888.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FERG": {
+  "sector": "Industrials",
+  "cap": 49765752832.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FIS": {
+  "sector": "Technology",
+  "cap": 14247597056.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FITB": {
+  "sector": "Financial Services",
+  "cap": 46727520256.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FSLR": {
+  "sector": "Technology",
+  "cap": 15894312960.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FE": {
+  "sector": "Utilities",
+  "cap": 27566899200.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FISV": {
+  "sector": "기타",
+  "cap": 31805810688.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FLEX": {
+  "sector": "Technology",
+  "cap": 24838850560.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "F": {
+  "sector": "Consumer Cyclical",
+  "cap": 48597458944.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FTNT": {
+  "sector": "Technology",
+  "cap": 99156434944.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FTV": {
+  "sector": "Technology",
+  "cap": 19677274112.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FOXA": {
+  "sector": "Communication Services",
+  "cap": 36703748096.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FOX": {
+  "sector": "Communication Services",
+  "cap": 24460263424.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "BEN": {
+  "sector": "Financial Services",
+  "cap": 17219999744.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "FCX": {
+  "sector": "Basic Materials",
+  "cap": 69666144256.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GRMN": {
+  "sector": "Technology",
+  "cap": 53906509824.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "IT": {
+  "sector": "Technology",
+  "cap": 11657434112.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GE": {
+  "sector": "Industrials",
+  "cap": 327551909888.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GEHC": {
+  "sector": "Healthcare",
+  "cap": 37676646400.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GEV": {
+  "sector": "Industrials",
+  "cap": 189244112896.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GEN": {
+  "sector": "Technology",
+  "cap": 17899139072.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GNRC": {
+  "sector": "Industrials",
+  "cap": 12033163264.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GD": {
+  "sector": "Industrials",
+  "cap": 97353490432.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GIS": {
+  "sector": "Consumer Defensive",
+  "cap": 19382409216.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GM": {
+  "sector": "Consumer Cyclical",
+  "cap": 70849716224.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GPC": {
+  "sector": "Consumer Cyclical",
+  "cap": 17078677504.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GILD": {
+  "sector": "Healthcare",
+  "cap": 219217444864.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GPN": {
+  "sector": "Industrials",
+  "cap": 25412976640.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GL": {
+  "sector": "Financial Services",
+  "cap": 11745967104.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GDDY": {
+  "sector": "Technology",
+  "cap": 12750822400.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "GS": {
+  "sector": "Financial Services",
+  "cap": 231044775936.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HAL": {
+  "sector": "Energy",
+  "cap": 26145464320.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HIG": {
+  "sector": "Financial Services",
+  "cap": 37379043328.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HAS": {
+  "sector": "Consumer Cyclical",
+  "cap": 15466005504.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HCA": {
+  "sector": "Healthcare",
+  "cap": 102568304640.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "DOC": {
+  "sector": "Real Estate",
+  "cap": 15035847680.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HSIC": {
+  "sector": "Healthcare",
+  "cap": 9808084992.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HSY": {
+  "sector": "Consumer Defensive",
+  "cap": 36692992000.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HPE": {
+  "sector": "Technology",
+  "cap": 53719117824.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HLT": {
+  "sector": "Consumer Cyclical",
+  "cap": 81481097216.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HD": {
+  "sector": "Consumer Cyclical",
+  "cap": 360484110336.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HONA": {
+  "sector": "Industrials",
+  "cap": 50040303616.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HON": {
+  "sector": "Industrials",
+  "cap": 71437410304.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HRL": {
+  "sector": "Consumer Defensive",
+  "cap": 12707599360.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HST": {
+  "sector": "Real Estate",
+  "cap": 17280497664.0,
+  "at": "2026-11-26T09:15+09:00"
+ },
+ "HWM": {
+  "sector": "Industrials",
+  "cap": 83934199808.0,
+  "at": "2026-11-26T09:15+09:00"
  }
 }
