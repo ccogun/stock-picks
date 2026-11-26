@@ -4,7 +4,7 @@
    "no": 584,
    "name": "스페이스X(SpaceX)",
    "totalCount": 14,
-   "changeRate": "9.74",
+   "changeRate": "9.68",
    "riseCount": 13,
    "fallCount": 1,
    "steadyCount": 0
@@ -13,9 +13,9 @@
    "no": 200,
    "name": "우주항공산업(누리호/인공위성 등)",
    "totalCount": 41,
-   "changeRate": "5.62",
-   "riseCount": 36,
-   "fallCount": 3,
+   "changeRate": "5.49",
+   "riseCount": 35,
+   "fallCount": 4,
    "steadyCount": 2
   }
  ],
@@ -40,18 +40,18 @@
     "reutersCode": "100790",
     "stockName": "미래에셋벤처투자",
     "sosok": "1",
-    "closePrice": "19,250",
-    "compareToPreviousClosePrice": "3,810",
+    "closePrice": "19,080",
+    "compareToPreviousClosePrice": "3,640",
     "compareToPreviousPrice": {
      "code": "2",
      "text": "상승",
      "name": "RISING"
     },
-    "fluctuationsRatio": "24.68",
-    "accumulatedTradingVolume": "5,089,719",
-    "accumulatedTradingValue": "92,861",
-    "localTradedAt": "2026-11-26T09:52:14+09:00",
-    "marketValue": "10,226",
+    "fluctuationsRatio": "23.58",
+    "accumulatedTradingVolume": "5,209,736",
+    "accumulatedTradingValue": "95,170",
+    "localTradedAt": "2026-11-26T09:55:18+09:00",
+    "marketValue": "10,135",
     "nav": "N/A",
     "threeMonthEarningRate": "N/A",
     "marketStatus": "OPEN",
@@ -81,11 +81,11 @@
     "endUrl": "https://m.stock.naver.com/domestic/stock/100790",
     "newPcUrl": "https://stock.naver.com/domestic/stock/100790",
     "stockMiniImageChart": "https://financial-vn.pstatic.net/chart/mobile/mini/krx/100790_interest.png",
-    "closePriceRaw": "19250",
-    "compareToPreviousClosePriceRaw": "3810",
-    "accumulatedTradingVolumeRaw": "5089719",
-    "accumulatedTradingValueRaw": "92861000000",
-    "marketValueRaw": "1022571126500"
+    "closePriceRaw": "19080",
+    "compareToPreviousClosePriceRaw": "3640",
+    "accumulatedTradingVolumeRaw": "5209736",
+    "accumulatedTradingValueRaw": "95170000000",
+    "marketValueRaw": "1013540628240"
    },
    {
     "stockType": "domestic",
@@ -94,18 +94,18 @@
     "reutersCode": "241520",
     "stockName": "DSC인베스트먼트",
     "sosok": "1",
-    "closePrice": "6,200",
-    "compareToPreviousClosePrice": "460",
+    "closePrice": "6,180",
+    "compareToPreviousClosePrice": "440",
     "compareToPreviousPrice": {
      "code": "2",
      "text": "상승",
      "name": "RISING"
     },
-    "fluctuationsRatio": "8.01",
-    "accumulatedTradingVolume": "135,183",
-    "accumulatedTradingValue": "818",
-    "localTradedAt": "2026-11-26T09:52:16+09:00",
-    "marketValue": "1,649",
+    "fluctuationsRatio": "7.67",
+    "accumulatedTradingVolume": "145,659",
+    "accumulatedTradingValue": "883",
+    "localTradedAt": "2026-11-26T09:55:19+09:00",
+    "marketValue": "1,644",
     "nav": "N/A",
     "threeMonthEarningRate": "N/A",
     "marketStatus": "OPEN",
@@ -135,11 +135,11 @@
     "endUrl": "https://m.stock.naver.com/domestic/stock/241520",
     "newPcUrl": "https://stock.naver.com/domestic/stock/241520",
     "stockMiniImageChart": "https://financial-vn.pstatic.net/chart/mobile/mini/krx/241520_interest.png",
-    "closePriceRaw": "6200",
-    "compareToPreviousClosePriceRaw": "460",
-    "accumulatedTradingVolumeRaw": "135183",
-    "accumulatedTradingValueRaw": "818000000",
-    "marketValueRaw": "164920000000"
+    "closePriceRaw": "6180",
+    "compareToPreviousClosePriceRaw": "440",
+    "accumulatedTradingVolumeRaw": "145659",
+    "accumulatedTradingValueRaw": "883000000",
+    "marketValueRaw": "164388000000"
    }
   ]
  }
