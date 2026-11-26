@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-26T10:29+09:00",
+ "updated": "2026-11-26T10:31+09:00",
  "mode": "실전",
  "max": 3,
  "themes": [
   {
    "no": "584",
    "name": "스페이스X(SpaceX)",
-   "chg": 10.03,
-   "chg3": 12.89,
+   "chg": 9.43,
+   "chg3": 12.51,
    "up": 13,
    "flat": 0,
    "down": 1,
    "kind": "산업·기술",
-   "score": 16.48,
+   "score": 15.68,
    "desc": "일론 머스크가 화성 진출을 목표로 2002년 설립한 미국의 우주 발사체·인프라·수송 기업. 스페이스X(SpaceX)의 사업 구조는 크게 재사용 로켓 발사, 위성 인터넷 서비스 두 축으로 구성되어 있음. 스페이스X가 기업공개(IPO)를 추진함에 따라 우주 발사·위성·통신·소재·지분 보유 등으로 부각된 종목군. 스페이스X(SPCX)는 2026년6월 나스닥시장에",
    "hot": true,
    "why": "美 FCC, 스페이스X 우주 데이터센터 위성 100만기 승인(11/25). 본주 SPCX는 +1.3%에 그침",
@@ -22,61 +22,64 @@
      "name": "미래에셋벤처투자",
      "ticker": "100790.KQ",
      "market": "KOSDAQ",
-     "chg": 26.07
+     "chg": 24.62
     },
     {
      "name": "센서뷰",
      "ticker": "321370.KQ",
      "market": "KOSDAQ",
-     "chg": 20.38
+     "chg": 21.7
     },
     {
      "name": "스피어",
      "ticker": "347700.KQ",
      "market": "KOSDAQ",
-     "chg": 19.46
-    },
-    {
-     "name": "에이치브이엠",
-     "ticker": "295310.KQ",
-     "market": "KOSDAQ",
-     "chg": 18.56
+     "chg": 18.65
     },
     {
      "name": "나노팀",
      "ticker": "417010.KQ",
      "market": "KOSDAQ",
-     "chg": 18.49
+     "chg": 18.28
     },
     {
-     "name": "아주IB투자",
-     "ticker": "027360.KQ",
+     "name": "에이치브이엠",
+     "ticker": "295310.KQ",
      "market": "KOSDAQ",
-     "chg": 17.08
+     "chg": 16.95
+    },
+    {
+     "name": "와이제이링크",
+     "ticker": "209640.KQ",
+     "market": "KOSDAQ",
+     "chg": 16.48
     }
    ],
    "count": 14,
    "leaders": [
     {
      "name": "미래에셋벤처투자",
-     "chg": 26.07
+     "chg": 24.62
     },
     {
      "name": "센서뷰",
-     "chg": 20.38
+     "chg": 21.7
     }
+   ],
+   "picked": [
+    "세아베스틸지주"
    ]
   },
   {
    "no": "200",
    "name": "우주항공산업(누리호/인공위성 등)",
-   "chg": 5.35,
-   "chg3": 6.33,
-   "up": 32,
-   "flat": 1,
+   "chg": 4.89,
+   "chg3": 6.29,
+   "up": 31,
+   "flat": 2,
    "down": 8,
    "kind": "산업·기술",
-   "score": 8.52,
+   "score": 8.04,
    "desc": "우주항공산업과 관련된 종목군. 한국인 최초 우주인 탄생을 기점으로 나로호 발사(KSLV-I), 한국형 발사체(KSLV-Ⅱ) 개발사업, 누리호 발사, 인공위성 등 우주개발 사업이 활성화 될 것이라는 기대감이 커지고 있음. 24년5월 한국판 나사(NASA)인 우주항공청(KASA)이 개청한 가운데, 25년5월 과기부는 미국 스타링크와 유럽 원웹 등 저궤도 위성통",
    "hot": true,
    "why": "美 FCC 스페이스X 위성 100만기 승인(11/25)에 국내 우주항공주 동반 강세",
@@ -92,31 +95,31 @@
      "name": "센서뷰",
      "ticker": "321370.KQ",
      "market": "KOSDAQ",
-     "chg": 20.38
+     "chg": 21.7
     },
     {
      "name": "스피어",
      "ticker": "347700.KQ",
      "market": "KOSDAQ",
-     "chg": 19.46
+     "chg": 18.65
     },
     {
      "name": "에이치브이엠",
      "ticker": "295310.KQ",
      "market": "KOSDAQ",
-     "chg": 18.56
-    },
-    {
-     "name": "컨텍",
-     "ticker": "451760.KQ",
-     "market": "KOSDAQ",
-     "chg": 17.42
+     "chg": 16.95
     },
     {
      "name": "AP위성",
      "ticker": "211270.KQ",
      "market": "KOSDAQ",
      "chg": 16.03
+    },
+    {
+     "name": "컨텍",
+     "ticker": "451760.KQ",
+     "market": "KOSDAQ",
+     "chg": 15.91
     }
    ],
    "count": 39,
@@ -127,24 +130,23 @@
     },
     {
      "name": "센서뷰",
-     "chg": 20.38
+     "chg": 21.7
     }
    ],
    "cand": {
-    "name": "쎄트렉아이",
-    "chg": 8.0
+    "name": "쎄트렉아이"
    }
   },
   {
    "no": "559",
    "name": "고체산화물 연료전지(SOFC)",
-   "chg": 4.8,
-   "chg3": 2.42,
+   "chg": 4.53,
+   "chg3": 2.49,
    "up": 15,
    "flat": 0,
    "down": 0,
    "kind": "산업·기술",
-   "score": 6.01,
+   "score": 5.78,
    "desc": "고체산화물 연료전지(SOFC)는 수소를 연료로 세라믹과 같은 고체 산화물을 전해질로 사용하는 전지. 연료의 화학 에너지를 전기적 반응을 통해 전기 에너지로 변환시키는 장치로 대기 오염을 일으키지 않고, 전기 발생 효율이 높은 것이 특징임. 수소뿐만 아니라 가스와 같은 다양한 연료를 직접 전기로 만들 수 있고, 반대로 전기를 가스로도 변환할 수 있어 친환경 ",
    "hot": true,
    "top": [
@@ -158,31 +160,31 @@
      "name": "금양그린파워",
      "ticker": "282720.KQ",
      "market": "KOSDAQ",
-     "chg": 14.26
-    },
-    {
-     "name": "코세스",
-     "ticker": "089890.KQ",
-     "market": "KOSDAQ",
-     "chg": 10.68
+     "chg": 15.6
     },
     {
      "name": "비나텍",
      "ticker": "126340.KQ",
      "market": "KOSDAQ",
-     "chg": 10.55
+     "chg": 10.31
     },
     {
-     "name": "LS머트리얼즈",
-     "ticker": "417200.KQ",
+     "name": "코세스",
+     "ticker": "089890.KQ",
      "market": "KOSDAQ",
-     "chg": 6.24
+     "chg": 10.22
     },
     {
      "name": "비에이치아이",
      "ticker": "083650.KQ",
      "market": "KOSDAQ",
-     "chg": 6.18
+     "chg": 6.34
+    },
+    {
+     "name": "LS머트리얼즈",
+     "ticker": "417200.KQ",
+     "market": "KOSDAQ",
+     "chg": 6.12
     }
    ],
    "count": 15,
@@ -193,20 +195,20 @@
     },
     {
      "name": "금양그린파워",
-     "chg": 14.26
+     "chg": 15.6
     }
    ]
   },
   {
    "no": "405",
    "name": "MLCC(적층세라믹콘덴서)",
-   "chg": 4.78,
-   "chg3": 5.06,
+   "chg": 4.2,
+   "chg3": 4.97,
    "up": 11,
    "flat": 0,
    "down": 0,
    "kind": "산업·기술",
-   "score": 7.31,
+   "score": 6.69,
    "desc": "MLCC(Multi Layer Ceramic Capacitor, 적층세라믹콘덴서)란 가전제품의 필수부품으로 금속판 사이에 전기를 저장했다가 반도체에 필요한 만큼의 전기를 안정적으로 제어하여 반도체가 원활히 작동하도록 하는 전자부품임. 전기가 통하지 않는 세라믹과 전기가 통하는 (금속)니켈판을 여러 겹으로 쌓는 고난도 기술이 필요. IT 고기능화 및 전장, ",
    "hot": true,
    "top": [
@@ -214,61 +216,61 @@
      "name": "대주전자재료",
      "ticker": "078600.KQ",
      "market": "KOSDAQ",
-     "chg": 16.51
+     "chg": 16.12
     },
     {
      "name": "삼화콘덴서",
      "ticker": "001820.KS",
      "market": "KOSPI",
-     "chg": 8.76
+     "chg": 8.91
     },
     {
      "name": "삼성전기",
      "ticker": "009150.KS",
      "market": "KOSPI",
-     "chg": 8.02
+     "chg": 8.56
     },
     {
      "name": "아모텍",
      "ticker": "052710.KQ",
      "market": "KOSDAQ",
-     "chg": 7.07
+     "chg": 7.24
     },
     {
      "name": "원준",
      "ticker": "382840.KQ",
      "market": "KOSDAQ",
-     "chg": 6.1
+     "chg": 5.95
     },
     {
      "name": "코칩",
      "ticker": "126730.KQ",
      "market": "KOSDAQ",
-     "chg": 5.85
+     "chg": 5.35
     }
    ],
    "count": 11,
    "leaders": [
     {
      "name": "대주전자재료",
-     "chg": 16.51
+     "chg": 16.12
     },
     {
      "name": "삼화콘덴서",
-     "chg": 8.76
+     "chg": 8.91
     }
    ]
   },
   {
    "no": "614",
    "name": "S7(삼성전자/SK하이닉스 등)",
-   "chg": 4.34,
-   "chg3": -1.92,
+   "chg": 3.67,
+   "chg3": -1.72,
    "up": 7,
    "flat": 0,
    "down": 0,
    "kind": "산업·기술",
-   "score": 3.38,
+   "score": 2.81,
    "desc": "코스피 시총 비율 1% 이상 기업 중 종목 이니셜이 S로 시작하는 기업들로 삼성전자·SK하이닉스와 지분·업무 등에서 직간접으로 연관된 종목군.",
    "hot": true,
    "top": [
@@ -276,70 +278,64 @@
      "name": "삼성전기",
      "ticker": "009150.KS",
      "market": "KOSPI",
-     "chg": 8.02
+     "chg": 8.56
     },
     {
      "name": "SK스퀘어",
      "ticker": "402340.KS",
      "market": "KOSPI",
-     "chg": 7.23
+     "chg": 7.32
     },
     {
      "name": "SK하이닉스",
      "ticker": "000660.KS",
      "market": "KOSPI",
-     "chg": 7.2
+     "chg": 7.0
     },
     {
      "name": "삼성전자우",
      "ticker": "005935.KS",
      "market": "KOSPI",
-     "chg": 5.35
+     "chg": 5.5
     },
     {
      "name": "삼성전자",
      "ticker": "005930.KS",
      "market": "KOSPI",
-     "chg": 4.79
+     "chg": 5.09
     },
     {
      "name": "삼성생명",
      "ticker": "032830.KS",
      "market": "KOSPI",
-     "chg": 4.62
+     "chg": 4.85
     }
    ],
    "count": 7,
    "leaders": [
     {
      "name": "삼성전기",
-     "chg": 8.02
+     "chg": 8.56
     },
     {
      "name": "SK스퀘어",
-     "chg": 7.23
+     "chg": 7.32
     }
    ]
   },
   {
    "no": "608",
    "name": "반도체 기판(FC-BGA/PCB/MLB 등)",
-   "chg": 4.2,
-   "chg3": -2.6,
-   "up": 13,
-   "flat": 0,
-   "down": 1,
+   "chg": 3.52,
+   "chg3": -2.65,
+   "up": 11,
+   "flat": 1,
+   "down": 2,
    "kind": "산업·기술",
-   "score": 2.9,
+   "score": 2.2,
    "desc": "반도체 기판은 칩과 외부 회로를 연결하고 전기적 신호를 전달하는 핵심 부품으로, 패키징 공정에서 반도체 성능을 좌우하는 기반 기술. FC-BGA(Flip Chip Ball Grid Array), PCB(인쇄회로기판), MLB(다층기판) 등 다양한 형태로 구성되며, 고성능 반도체일수록 미세회로·다층화·고집적 기술이 요구. AI, 서버, 데이터센터, 고성능 컴",
    "hot": true,
    "top": [
-    {
-     "name": "심텍홀딩스",
-     "ticker": "036710.KQ",
-     "market": "KOSDAQ",
-     "chg": 13.75
-    },
     {
      "name": "태성",
      "ticker": "323280.KQ",
@@ -347,22 +343,28 @@
      "chg": 13.54
     },
     {
+     "name": "심텍홀딩스",
+     "ticker": "036710.KQ",
+     "market": "KOSDAQ",
+     "chg": 13.39
+    },
+    {
      "name": "티엘비",
      "ticker": "356860.KQ",
      "market": "KOSDAQ",
-     "chg": 11.47
+     "chg": 11.75
     },
     {
      "name": "덕산하이메탈",
      "ticker": "077360.KQ",
      "market": "KOSDAQ",
-     "chg": 10.32
+     "chg": 10.48
     },
     {
      "name": "삼성전기",
      "ticker": "009150.KS",
      "market": "KOSPI",
-     "chg": 8.02
+     "chg": 8.56
     },
     {
      "name": "대덕전자",
@@ -374,40 +376,43 @@
    "count": 14,
    "leaders": [
     {
-     "name": "심텍홀딩스",
-     "chg": 13.75
-    },
-    {
      "name": "태성",
      "chg": 13.54
+    },
+    {
+     "name": "심텍홀딩스",
+     "chg": 13.39
     }
-   ]
+   ],
+   "cand": {
+    "name": "다원넥스뷰"
+   }
   }
  ],
  "candidates": [
   {
    "name": "세아베스틸지주",
    "theme": "스페이스X(SpaceX)",
-   "chg": 4.3,
-   "score": 39.6
+   "chg": 5.0,
+   "score": 38.0
   },
   {
    "name": "쎄트렉아이",
    "theme": "우주항공산업(누리호/인공위성 등)",
-   "chg": 8.0,
-   "score": 27.2
+   "chg": 7.6,
+   "score": 26.1
   },
   {
    "name": "세아베스틸지주",
    "theme": "우주항공산업(누리호/인공위성 등)",
-   "chg": 4.3,
-   "score": 23.7
+   "chg": 5.0,
+   "score": 22.7
   },
   {
    "name": "다원넥스뷰",
    "theme": "반도체 기판(FC-BGA/PCB/MLB 등)",
-   "chg": 7.6,
-   "score": 10.3
+   "chg": 7.5,
+   "score": 8.9
   }
  ]
 }

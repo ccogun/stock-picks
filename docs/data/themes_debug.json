@@ -4,7 +4,7 @@
    "no": 584,
    "name": "스페이스X(SpaceX)",
    "totalCount": 14,
-   "changeRate": "10.03",
+   "changeRate": "9.43",
    "riseCount": 13,
    "fallCount": 1,
    "steadyCount": 0
@@ -13,10 +13,10 @@
    "no": 200,
    "name": "우주항공산업(누리호/인공위성 등)",
    "totalCount": 41,
-   "changeRate": "5.35",
-   "riseCount": 32,
+   "changeRate": "4.89",
+   "riseCount": 31,
    "fallCount": 8,
-   "steadyCount": 1
+   "steadyCount": 2
   }
  ],
  "detailSample": {
@@ -40,18 +40,18 @@
     "reutersCode": "009150",
     "stockName": "삼성전기",
     "sosok": "0",
-    "closePrice": "808,000",
-    "compareToPreviousClosePrice": "53,000",
+    "closePrice": "812,000",
+    "compareToPreviousClosePrice": "57,000",
     "compareToPreviousPrice": {
      "code": "2",
      "text": "상승",
      "name": "RISING"
     },
-    "fluctuationsRatio": "7.02",
-    "accumulatedTradingVolume": "384,238",
-    "accumulatedTradingValue": "306,967",
-    "localTradedAt": "2026-11-26T10:29:22+09:00",
-    "marketValue": "603,525",
+    "fluctuationsRatio": "7.55",
+    "accumulatedTradingVolume": "391,508",
+    "accumulatedTradingValue": "312,855",
+    "localTradedAt": "2026-11-26T10:32:22+09:00",
+    "marketValue": "606,513",
     "nav": "N/A",
     "threeMonthEarningRate": "N/A",
     "marketStatus": "OPEN",
@@ -81,11 +81,11 @@
     "endUrl": "https://m.stock.naver.com/domestic/stock/009150",
     "newPcUrl": "https://stock.naver.com/domestic/stock/009150",
     "stockMiniImageChart": "https://financial-vn.pstatic.net/chart/mobile/mini/krx/009150_interest.png",
-    "closePriceRaw": "808000",
-    "compareToPreviousClosePriceRaw": "53000",
-    "accumulatedTradingVolumeRaw": "384238",
-    "accumulatedTradingValueRaw": "306967000000",
-    "marketValueRaw": "60352506368000"
+    "closePriceRaw": "812000",
+    "compareToPreviousClosePriceRaw": "57000",
+    "accumulatedTradingVolumeRaw": "391508",
+    "accumulatedTradingValueRaw": "312855000000",
+    "marketValueRaw": "60651281152000"
    },
    {
     "stockType": "domestic",
@@ -94,18 +94,18 @@
     "reutersCode": "000660",
     "stockName": "SK하이닉스",
     "sosok": "0",
-    "closePrice": "1,088,000",
-    "compareToPreviousClosePrice": "58,000",
+    "closePrice": "1,085,000",
+    "compareToPreviousClosePrice": "55,000",
     "compareToPreviousPrice": {
      "code": "2",
      "text": "상승",
      "name": "RISING"
     },
-    "fluctuationsRatio": "5.63",
-    "accumulatedTradingVolume": "1,417,954",
-    "accumulatedTradingValue": "1,523,146",
-    "localTradedAt": "2026-11-26T10:30:00+09:00",
-    "marketValue": "7,689,974",
+    "fluctuationsRatio": "5.34",
+    "accumulatedTradingVolume": "1,453,558",
+    "accumulatedTradingValue": "1,561,692",
+    "localTradedAt": "2026-11-26T10:32:20+09:00",
+    "marketValue": "7,668,770",
     "nav": "N/A",
     "threeMonthEarningRate": "N/A",
     "marketStatus": "OPEN",
@@ -135,11 +135,11 @@
     "endUrl": "https://m.stock.naver.com/domestic/stock/000660",
     "newPcUrl": "https://stock.naver.com/domestic/stock/000660",
     "stockMiniImageChart": "https://financial-vn.pstatic.net/chart/mobile/mini/krx/000660_interest.png",
-    "closePriceRaw": "1088000",
-    "compareToPreviousClosePriceRaw": "58000",
-    "accumulatedTradingVolumeRaw": "1417954",
-    "accumulatedTradingValueRaw": "1523146000000",
-    "marketValueRaw": "768997413184000"
+    "closePriceRaw": "1085000",
+    "compareToPreviousClosePriceRaw": "55000",
+    "accumulatedTradingVolumeRaw": "1453558",
+    "accumulatedTradingValueRaw": "1561692000000",
+    "marketValueRaw": "766877015905000"
    }
   ]
  }
