@@ -29,13 +29,13 @@ DEFAULTS = {
     "pullback_in_bear": False,
     "investor_stop": 0.08,    # 투자자 방식 기본 손절·목표
     "investor_target": 0.15,
-    "theme_max": 2,           # 이슈 테마 하루 최대 추천 수 (0 = 일시 중단, 모의 기록만)
+    "theme_max": 3,           # 이슈 테마 하루 최대 추천 수 (0 = 일시 중단, 모의 기록만)
 }
 
 # 조정 가능한 범위
 BOUNDS = {
     "rs_min": (60, 90), "rs_min_bear": (75, 95), "breakout_vol": (1.2, 3.0), "pullback_vol": (0.8, 2.0),
-    "ext_gap_min": (0.01, 0.05), "weight": (-20, 20), "swing_vol": (1.5, 4.0), "flow_bonus": (0, 30), "theme_max": (0, 2),
+    "ext_gap_min": (0.01, 0.05), "weight": (-20, 20), "swing_vol": (1.5, 4.0), "flow_bonus": (0, 30), "theme_max": (0, 3),
 }
 
 

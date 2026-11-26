@@ -389,7 +389,7 @@ def track(p: dict, df: pd.DataFrame | None, idx: pd.DataFrame | None) -> None:
     if p.get("status") != "active":
         return
     exc = p.get("excess", p["ret"]) / 100
-    hold = 5 if p["method"] in ("swing", "theme") else HOLD_DAYS
+    hold = 5 if p["method"] in ("swing", "theme", "theme_cand") else HOLD_DAYS
     stop_hit = p.get("stop") and last < float(p["stop"])
     target_hit = p.get("target") and len(after) and float(after["High"].max()) >= float(p["target"])
     if stop_hit:
@@ -400,7 +400,7 @@ def track(p: dict, df: pd.DataFrame | None, idx: pd.DataFrame | None) -> None:
         p["closeReason"] = f"평가 기간 {hold}거래일 종료"
     elif target_hit:
         p["verdict"] = "잘한 추천 (목표 도달)"
-    elif days < (1 if p["method"] in ("swing", "theme") else MIN_DAYS_FOR_VERDICT):
+    elif days < (1 if p["method"] in ("swing", "theme", "theme_cand") else MIN_DAYS_FOR_VERDICT):
         p["verdict"] = "판단 중"
     elif exc >= GOOD_EXCESS:
         p["verdict"] = "잘한 추천"

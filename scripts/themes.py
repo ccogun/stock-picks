@@ -7,7 +7,7 @@
   docs/data/theme_watch.json  [{"match","why","kind","until"}]  — 곧 이슈가 될 테마(선거일·계절·행사 등)
 - 추천 규칙: 강한 테마(또는 예정 이슈 테마) 안에서 '아직 덜 오른' 후발주만. 상한가·급등 대장주 추격 금지.
   당일 +15% 미만, 대장주보다 5%p 이상 덜 오름, 20일선 위 상승 추세, RSI 75 미만, 거래대금 기준 통과,
-  외국인·기관 동반 순매도 아님, 적자·고부채 아님. 하루 최대 theme_max 종목(학습으로 0~2 조정, 0이면 모의 기록).
+  외국인·기관 동반 순매도 아님, 적자·고부채 아님. 하루 최대 theme_max 종목(학습으로 0~3 조정, 0이면 모의 기록).
 결과: docs/data/themes.json
 """
 from __future__ import annotations
@@ -242,7 +242,7 @@ def run(picks: list[dict], now, idx_data: dict, mkt_info: dict, regular: bool, f
             t["leaders"] = [{"name": s["name"], "chg": s["chg"]} for s in st[:2]]
 
     P = load_params()
-    theme_max = int(P.get("theme_max", 2))
+    theme_max = int(P.get("theme_max", 3))
     paper = theme_max <= 0
     limit = 1 if paper else theme_max
     added = []
@@ -282,16 +282,10 @@ def run(picks: list[dict], now, idx_data: dict, mkt_info: dict, regular: bool, f
         used_theme = {(p.get("features") or {}).get("theme") for p in picks if p["method"] == "theme"
                       and p["recDate"] == market_date("KOSPI", now)}
         n = sum(1 for p in picks if p["method"] == "theme" and p["recDate"] == market_date("KOSPI", now))
-        for x in cands:
-            if n >= limit:
-                break
+        today_kr = market_date("KOSPI", now)
+
+        def make(x, method, label):
             t, s, m = x["t"], x["s"], x["s"]["market"]
-            if s["ticker"] in active or t["name"] in used_theme:
-                continue
-            # 같은 재료(구성 종목이 30% 넘게 겹치는 테마)는 하루 한 종목만
-            if any(len(t["codes"] & u["codes"]) > 0.3 * min(len(t["codes"]), len(u["codes"]) or 1)
-                   for u in sel if u["name"] in used_theme and u is not t):
-                continue
             cur = MARKETS[m]["currency"]
             ld = " · ".join(f"{l['name']} {l['chg']:+.1f}%" for l in t.get("leaders", []))
             why = (notes.get(t["name"]) or {}).get("why") or (t.get("watch") or {}).get("why") \
@@ -300,7 +294,7 @@ def run(picks: list[dict], now, idx_data: dict, mkt_info: dict, regular: bool, f
                 why += f" / 편입 사유: {s['why']}"
             today = market_date(m, now)
             idx = idx_data.get(MARKETS[m]["index"])
-            p = {"id": f"{today}-{m}-theme-{s['ticker']}", "market": m, "method": "theme",
+            p = {"id": f"{today}-{m}-{method}-{s['ticker']}", "market": m, "method": method,
                  "ticker": s["ticker"], "name": s["name"], "currency": cur,
                  "recAt": now.isoformat(timespec="minutes"), "recDate": today, "recPrice": round(x["c"], 2),
                  "recIndex": float(idx["Close"].iloc[-1]) if idx is not None else None,
@@ -313,28 +307,62 @@ def run(picks: list[dict], now, idx_data: dict, mkt_info: dict, regular: bool, f
                      f"리스크: 테마주는 재료가 꺼지면 급락 — 손절 {fmt_price(x['stop'], cur)} ({(x['stop'] / x['c'] - 1) * 100:.1f}%), "
                      f"목표 {fmt_price(x['target'], cur)} ({(x['target'] / x['c'] - 1) * 100:+.1f}%), 최대 5거래일 보유",
                  ],
-                 "source": "이슈 테마 후발주" + (" (모의 — 성적 부진으로 일시 중단 중)" if paper else ""),
+                 "source": label,
                  "features": {"signal": "theme", "theme": t["name"], "category": t["kind"],
-                              "watch": bool(t.get("watch")), "flow": x["flow"], "rsi": round(x["rsi"], 1),
-                              "regime": (mkt_info.get(m) or {}).get("regime")},
+                              "watch": bool(t.get("watch")), "lasting": t["chg3"] > 0, "flow": x["flow"],
+                              "rsi": round(x["rsi"], 1), "regime": (mkt_info.get(m) or {}).get("regime")},
                  "status": "active", "verdict": "판단 중", "stop": round(x["stop"], 2),
-                 "target": round(x["target"], 2), "paper": paper,
+                 "target": round(x["target"], 2),
                  "chartNote": "이슈 테마 안에서 대장주보다 덜 오른 종목을 20일선(주황) 위 추세일 때 잡은 자리(▲)입니다. "
                               "테마주는 변동이 커서 손절선(빨간 점선)을 짧게 잡았고 5거래일이 지나면 종료합니다."}
+            if method == "theme":
+                p["paper"] = paper
             if (ef := entry_from(m, now)):
                 p.update(entry="pending", entryFrom=ef, verdict="진입 대기")
             picks.append(p)
             write_prices(s["ticker"], x["df"])
             active.add(s["ticker"])
+            return p
+
+        # ① 정식 추천: 이틀 이상 이어진 테마(3일 등락 +) 또는 예정 이슈 테마, 테마당 1종목, 하루 limit 종목
+        for x in cands:
+            if n >= limit:
+                break
+            t, s = x["t"], x["s"]
+            if s["ticker"] in active or t["name"] in used_theme or not (t.get("watch") or t["chg3"] > 0):
+                continue
+            # 같은 재료(구성 종목이 30% 넘게 겹치는 테마)는 하루 한 종목만
+            if any(len(t["codes"] & u["codes"]) > 0.3 * min(len(t["codes"]), len(u["codes"]) or 1)
+                   for u in sel if u["name"] in used_theme and u is not t):
+                continue
+            make(x, "theme", "이슈 테마 후발주" + (" (모의 — 성적 부진으로 일시 중단 중)" if paper else ""))
             used_theme.add(t["name"])
             n += 1
-            added.append(f"{m}:{s['name']}(테마)")
+            added.append(f"{s['market']}:{s['name']}(테마)")
             t.setdefault("picked", []).append(s["name"])
+
+        # ② 테마별 후보: 강한 테마마다 조건에 가장 잘 맞는 1종목(학습용, 하루 테마당 1회)
+        cand_done = {(p.get("features") or {}).get("theme") for p in picks
+                     if p["method"] == "theme_cand" and p["recDate"] == today_kr}
+        for t in sel:
+            if t["name"] in cand_done or t.get("picked"):
+                continue
+            x = next((x for x in cands if x["t"] is t and x["s"]["ticker"] not in active), None)
+            if x:
+                make(x, "theme_cand", "테마별 후보 (학습용 — 정식 추천 아님)")
+                t["cand"] = {"name": x["s"]["name"], "chg": round(x["chg"], 1)}
+                added.append(f"{x['s']['market']}:{x['s']['name']}(테마 후보)")
+        # 오늘 이미 기록된 후보도 카드에 표시
+        for p in picks:
+            if p["method"] == "theme_cand" and p["recDate"] == today_kr:
+                t = next((t for t in sel if t["name"] == (p.get("features") or {}).get("theme")), None)
+                if t is not None and "cand" not in t:
+                    t["cand"] = {"name": p["name"]}
 
     # 나중에 재료가 확인되면 진행 중 테마 추천의 '재료' 줄을 채운다
     notes = load_json(NOTES_FILE, {})
     for p in picks:
-        if p["method"] == "theme" and p["status"] == "active" and len(p.get("reasons", [])) > 1 \
+        if p["method"] in ("theme", "theme_cand") and p["status"] == "active" and len(p.get("reasons", [])) > 1 \
                 and "재료 확인 전" in p["reasons"][1]:
             w = (notes.get((p.get("features") or {}).get("theme")) or {}).get("why")
             if w:
