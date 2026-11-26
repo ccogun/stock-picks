@@ -121,8 +121,8 @@ function drawScore(){
 }
 function drawTabs(){
   const box=$("#tabs"); box.replaceChildren();
-  for(const k of ["KR","US","PAT","ALL","LEARN"]){
-    const b=el("button", state.tab===k?"on":"", k==="ALL"?"전체 기록":k==="LEARN"?"학습":k==="PAT"?"가격대 패턴":REGION[k].label);
+  for(const k of ["KR","US","MAP","PAT","ALL","LEARN"]){
+    const b=el("button", state.tab===k?"on":"", k==="ALL"?"전체 기록":k==="LEARN"?"학습":k==="PAT"?"가격대 패턴":k==="MAP"?"섹터 지도":REGION[k].label);
     b.addEventListener("click",()=>{state.tab=k; drawTabs(); drawList();}); box.append(b);
   }
 }
@@ -131,6 +131,7 @@ function drawList(){
   if(state.tab==="ALL") return drawHistory(box);
   if(state.tab==="LEARN") return drawLearn(box);
   if(state.tab==="PAT") return drawPatterns(box);
+  if(state.tab==="MAP") return drawHeatmap(box);
   const mks=(REGION[state.tab]||REGION.KR).mk;
   for(const k of mks){ const m=state.market[k]; if(!m) continue;
     const n=el("div","note"); n.append(mkb(k)); n.firstChild.style.marginLeft="0";
@@ -286,6 +287,61 @@ async function drawLearn(box){
   box.append(el("h2",null,"Claude의 복기 노트"));
   const n=el("div","card"); n.style.whiteSpace="pre-wrap"; n.style.fontSize="14px";
   n.textContent=ls||"아직 작성된 노트가 없습니다."; box.append(n);
+}
+// ── 섹터 지도(히트맵) ──
+let mapRegion="KR";
+function squarify(items,x,y,w,h){
+  const out=[]; const total=items.reduce((a,b)=>a+b.v,0); if(!total||w<=0||h<=0) return out;
+  const sc=w*h/total; let rest=items.map(it=>({...it,a:it.v*sc}));
+  const worst=(row,len)=>{const s=row.reduce((a,b)=>a+b.a,0),mx=Math.max(...row.map(r=>r.a)),mn=Math.min(...row.map(r=>r.a));
+    return Math.max(len*len*mx/(s*s),(s*s)/(len*len*mn));};
+  while(rest.length){
+    const len=Math.min(w,h); let row=[rest[0]]; let i=1;
+    while(i<rest.length && worst(row.concat(rest[i]),len)<=worst(row,len)){row.push(rest[i]); i++;}
+    const s=row.reduce((a,b)=>a+b.a,0);
+    if(w>=h){ const cw=s/h; let cy=y; row.forEach(r=>{const rh=r.a/cw; out.push({...r,x,y:cy,w:cw,h:rh}); cy+=rh;}); x+=cw; w-=cw; }
+    else { const rh=s/w; let cx=x; row.forEach(r=>{const cw2=r.a/rh; out.push({...r,x:cx,y,w:cw2,h:rh}); cx+=cw2;}); y+=rh; h-=rh; }
+    rest=rest.slice(i);
+  }
+  return out;
+}
+function heatColor(c){ const a=Math.min(Math.abs(c)/3,1);   // ±3%에서 가장 진함 (한국식: 상승 빨강, 하락 파랑)
+  if(c>0) return "rgba(229,72,77,"+(0.25+0.75*a)+")"; if(c<0) return "rgba(59,130,246,"+(0.25+0.75*a)+")"; return "rgba(120,120,130,.45)"; }
+async function drawHeatmap(box){
+  const j=await fetch("data/heatmap.json?t="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
+  const sw=el("div","tabs"); sw.style.position="static";
+  [["KR","한국"],["US","미국"]].forEach(([k,l])=>{const b=el("button",mapRegion===k?"on":"",l); b.addEventListener("click",()=>{mapRegion=k; drawList();}); sw.append(b);});
+  box.append(sw);
+  const d=j&&j[mapRegion];
+  if(!d){ box.append(el("div","empty","아직 데이터가 없습니다. 다음 매시간 갱신에서 채워집니다(종목 정보 수집에 하루 정도 걸릴 수 있어요).")); return; }
+  const n=d.sectors.reduce((a,s)=>a+s.stocks.length,0);
+  box.append(el("div","note",(mapRegion==="KR"?"코스피·코스닥":"S&P 500")+" 시가총액 상위 "+n+"종목 · 크기=시가총액, 색=전일 대비 등락(빨강 상승·파랑 하락) · "+(d.asof||"")+" 기준"));
+  const W=box.clientWidth||360, H=Math.round(Math.max(420,Math.min(760,W*1.25)));
+  const wrap=el("div"); Object.assign(wrap.style,{position:"relative",width:"100%",height:H+"px",borderRadius:"10px",overflow:"hidden",background:"#111"});
+  const info=el("div","note"); info.textContent="종목을 누르면 등락률과 가격이 보입니다.";
+  const secs=squarify(d.sectors.map(s=>({...s,v:s.cap})),0,0,W,H);
+  const fmtCap=(c,cur)=>cur==="KRW"?(c/1e12).toFixed(1)+"조원":"$"+(c/1e9).toFixed(0)+"B";
+  secs.forEach(s=>{
+    const head=s.h>40&&s.w>50?14:0;
+    const sd=el("div"); Object.assign(sd.style,{position:"absolute",left:s.x+"px",top:s.y+"px",width:s.w+"px",height:s.h+"px",outline:"2px solid #111",boxSizing:"border-box"});
+    if(head){ const lb=el("div",null,s.name+" "+pct(s.stocks.reduce((a,x)=>a+x.chg*x.cap,0)/s.cap));
+      Object.assign(lb.style,{position:"absolute",left:"3px",top:"0",fontSize:"11px",fontWeight:"700",color:"#ddd",whiteSpace:"nowrap",overflow:"hidden",width:(s.w-6)+"px"}); sd.append(lb); }
+    squarify(s.stocks.map(x=>({...x,v:x.cap})),0,head,s.w,s.h-head).forEach(r=>{
+      const t=el("div"); Object.assign(t.style,{position:"absolute",left:r.x+"px",top:r.y+"px",width:r.w+"px",height:r.h+"px",background:heatColor(r.chg),
+        outline:"1px solid #111",boxSizing:"border-box",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",overflow:"hidden",cursor:"pointer",color:"#fff",textAlign:"center",lineHeight:"1.15"});
+      const fs=Math.max(8,Math.min(20,Math.sqrt(r.w*r.h)/5));
+      if(r.w>26&&r.h>18){ const nm=el("div",null,mapRegion==="KR"?r.n:r.t.replace(".KS","").replace(".KQ","")); nm.style.fontSize=fs+"px"; nm.style.fontWeight="700"; nm.style.whiteSpace="nowrap"; t.append(nm);
+        if(r.h>fs*2.4){ const c=el("div",null,pct(r.chg)); c.style.fontSize=(fs*0.75)+"px"; t.append(c);} }
+      t.title=r.n+" "+pct(r.chg);
+      t.addEventListener("click",()=>{ info.textContent=r.n+" ("+r.t+") "+pct(r.chg)+" · "+price(r.px,mapRegion==="KR"?"KRW":"USD")+" · 시총 "+fmtCap(r.cap,mapRegion==="KR"?"KRW":"USD")+" · "+s.name; });
+      sd.append(t); });
+    wrap.append(sd); });
+  box.append(wrap, info);
+  // 섹터 요약
+  const t=el("table"); const hr=el("tr"); ["섹터","가중 등락","상승/하락"].forEach((x,i)=>hr.append(el("th",i?"r":"",x))); t.append(hr);
+  d.sectors.forEach(s=>{ const w=s.stocks.reduce((a,x)=>a+x.chg*x.cap,0)/s.cap; const r=el("tr");
+    r.append(el("td",null,s.name),el("td","r "+cls(w),pct(w)),el("td","r",s.stocks.filter(x=>x.chg>0).length+" / "+s.stocks.filter(x=>x.chg<0).length)); t.append(r); });
+  box.append(el("h2",null,"섹터별 요약"), t);
 }
 async function drawPatterns(box){
   const j=await fetch("data/patterns.json?t="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
