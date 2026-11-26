@@ -3,7 +3,9 @@
 사용법: python scripts/add_pick.py input.json
 입력 JSON: [{"market": "KOSPI", "ticker": "015760.KS", "name": "한국전력",
             "reasons": ["…5줄…"], "source": "따라 한 투자자/근거",
-            "recPrice": 30150 (선택), "stop": 27500 (선택), "target": 36000 (선택)}]
+            "recPrice": 30150 (선택), "stop": 27500 (선택), "target": 36000 (선택),
+            "method": "combined", "style": "내부자매수"}]
+method "combined"(종합) 은 docs/data/candidates.json 에 오늘 올라온 후보 종목만 가능하다.
 
 추천은 docs/data/inbox/ 에 새 파일로 저장되고, GitHub Actions(run.py)가 picks.json에 합치면서
 가격·차트·성과를 채운다. picks.json을 직접 고치지 않으므로 자동 갱신과 충돌하지 않는다.
@@ -28,6 +30,10 @@ def main(path: str) -> None:
         for k in ("ticker", "name", "reasons"):
             if not it.get(k):
                 raise SystemExit(f"{k} 누락: {it}")
+        if it.get("method") == "combined":
+            cm = (load_json(DATA / "candidates.json", {}).get("markets", {}).get(it["market"]) or {}).get("items", [])
+            if it["ticker"] not in {c["ticker"] for c in cm}:
+                raise SystemExit(f"{it['name']}: 오늘 차트 후보(candidates.json)에 없는 종목은 종합 추천 불가")
         if len(it["reasons"]) != 5:
             raise SystemExit(f"{it['name']}: 추천 사유는 정확히 5줄이어야 합니다")
         it["recAt"] = now.isoformat(timespec="minutes")

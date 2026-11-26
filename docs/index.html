@@ -59,6 +59,7 @@
   .mkb{display:inline-block;font-size:11px;font-weight:600;padding:1px 6px;border-radius:6px;margin-left:6px;vertical-align:2px;white-space:nowrap}
   .mkb-KOSPI{background:rgba(59,130,246,.15);color:#3b82f6}.mkb-KOSDAQ{background:rgba(139,124,246,.18);color:#8b7cf6}
   .mkb-SP500{background:rgba(34,197,94,.15);color:#16a34a}.mkb-NASDAQ{background:rgba(20,184,166,.15);color:#0d9488}
+details.cands{margin-top:18px;border-top:1px solid #ddd;padding-top:6px}details.cands>summary{cursor:pointer;font-weight:600;padding:10px 0;color:#555}
 </style>
 </head>
 <body>
@@ -75,7 +76,7 @@
 </div>
 <script>
 const MK = {KOSPI:"코스피",KOSDAQ:"코스닥",SP500:"S&P 500",NASDAQ:"나스닥"};
-const METHOD = {investor:"투자자 방식",chart:"차트 분석",strategy:"전통 전략",swing:"단기 스윙"};
+const METHOD = {combined:"종합 추천",investor:"투자자 방식",chart:"차트 분석",strategy:"전통 전략",swing:"단기 스윙"};
 let state = {picks:[], market:{}, tab:"KR"};
 const $ = (s)=>document.querySelector(s);
 const REGION = {KR:{label:"한국",mk:["KOSPI","KOSDAQ"]}, US:{label:"미국",mk:["SP500","NASDAQ"]}};
@@ -136,14 +137,23 @@ function drawList(){
   for(const k of mks){ const m=state.market[k]; if(!m) continue;
     const n=el("div","note"); n.append(mkb(k)); n.firstChild.style.marginLeft="0";
     n.append(document.createTextNode(" "+m.regime+" — "+m.note + (m.lastScan? " · 마지막 스캔 "+m.lastScan.replace("T"," "):""))); box.append(n); }
-  for(const meth of ["investor","chart","strategy","swing"]){
-    box.append(el("h2",null,METHOD[meth]+(meth==="swing"?" (1~5일 · 모의 검증)":"")));
-    if(meth==="swing") box.append(el("div","note","실제 매수 전 성과를 검증하는 단계입니다. 학습 탭에서 지수 대비 성과가 꾸준히 좋게 나오는지 확인하세요."));
-    const items = state.picks.filter(p=>mks.includes(p.market) && p.method===meth && p.status==="active")
+  const act=meth=>state.picks.filter(p=>mks.includes(p.market) && p.method===meth && p.status==="active")
                              .sort((a,b)=>b.recAt.localeCompare(a.recAt));
-    if(!items.length) box.append(el("div","empty", meth==="investor" ? "아직 추천이 없습니다." : "지금은 조건을 통과한 종목이 없습니다. 신호가 잡히면 바로 추가됩니다."));
-    items.forEach(p=>box.append(card(p)));
+  box.append(el("h2",null,"종합 추천"));
+  box.append(el("div","note","투자자 근거(외국인·기관 동반 순매수, 내부자 매수, 13D, 액티브 ETF 편입)와 차트 근거(돌파·눌림·지지 반등 등)가 함께 있는 종목만 고릅니다. 적자·부채비율 300% 초과 종목은 제외, 시장별 하루 최대 3종목이며 없는 날도 있습니다."));
+  const main=[...act("combined"), ...act("investor")];
+  if(!main.length) box.append(el("div","empty","지금은 두 근거가 모두 맞는 종목이 없습니다."));
+  main.forEach(p=>box.append(card(p)));
+  const det=el("details","cands"); const sm=el("summary",null,"방식별 후보 보기 (학습용 · "+["chart","strategy","swing"].reduce((n,m)=>n+act(m).length,0)+"종목)");
+  det.append(sm);
+  det.append(el("div","note","아래는 한 가지 근거만 맞은 후보입니다. 매수 추천이 아니라, 어떤 신호가 실제로 통하는지 성적을 쌓는 용도입니다."));
+  for(const meth of ["chart","strategy","swing"]){
+    det.append(el("h2",null,METHOD[meth]+(meth==="swing"?" (1~5일 · 모의 검증)":"")));
+    const items=act(meth);
+    if(!items.length) det.append(el("div","empty","지금은 조건을 통과한 종목이 없습니다."));
+    items.forEach(p=>det.append(card(p)));
   }
+  box.append(det);
   const closed = state.picks.filter(p=>mks.includes(p.market) && p.status==="closed").sort((a,b)=>(b.closedAt||"").localeCompare(a.closedAt||""));
   if(closed.length){ box.append(el("h2",null,"종료된 추천")); closed.slice(0,20).forEach(p=>box.append(card(p))); }
 }
@@ -276,7 +286,8 @@ async function drawLearn(box){
   const TECH=["chart","strategy","swing"];
   tbl("방식별",rv.overall,k=>METHOD[k],(p,k)=>p.method===k);
   tbl("신호·전략별",rv.bySignal,k=>SIG[k]||k,(p,k)=>TECH.includes(p.method)&&F(p).signal===k);
-  tbl("투자자 방식 근거 유형별",rv.byStyle,null,(p,k)=>p.method==="investor"&&F(p).style===k);
+  tbl("종합 추천 — 겹친 차트 근거 수별",rv.byOverlap,null,(p,k)=>p.method==="combined"&&((n=>n<3?"차트 근거 "+n+"개":"차트 근거 3개 이상")(F(p).nSignals||1))===k);
+  tbl("투자자 근거 유형별",rv.byStyle,null,(p,k)=>(p.method==="investor"||p.method==="combined")&&F(p).style===k);
   tbl("시장 국면별",rv.byRegime,null,(p,k)=>F(p).regime===k);
   tbl("한국 수급별 (외국인·기관 5일)",rv.byFlow,null,(p,k)=>["KOSPI","KOSDAQ"].includes(p.market)&&F(p).flow===k);
   box.append(el("h2",null,"최근 기준 변경"));
@@ -489,7 +500,7 @@ function drawHistory(box){
   [...state.picks].filter(p=>!histMine||hold[p.id]).sort((a,b)=>b.recAt.localeCompare(a.recAt)).forEach(p=>{
     const r=el("tr"); r.style.cursor="pointer";
     const nm=el("td",null,(hold[p.id]?"✓ ":"")+p.name); if(hold[p.id]) nm.style.fontWeight="700"; nm.append(mkb(p.market));
-    r.append(nm, el("td",null,({chart:"차트",investor:"투자자",strategy:"전략",swing:"스윙"}[p.method]||p.method)),
+    r.append(nm, el("td",null,({combined:"종합",chart:"차트",investor:"투자자",strategy:"전략",swing:"스윙"}[p.method]||p.method)),
       el("td",null,p.recDate.slice(5)), el("td","r "+(counting(p)?cls(p.ret):""),counting(p)?pct(p.ret):(p.entry==="pending"?"진입 대기":"집계 전")), el("td","r "+(counting(p)?cls(p.excess):""),counting(p)?pct(p.excess):"–"),
       (()=>{const v=p.verdict||"판단 중"; const td=el("td",null,(v.startsWith("잘한")?"잘함":v.startsWith("아쉬운")?"아쉬움":v)+(p.status==="closed"?"·종료":""));
         td.style.color=v.startsWith("잘한")?"var(--good)":v.startsWith("아쉬운")?"var(--bad)":""; return td;})());

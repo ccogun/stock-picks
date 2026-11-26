@@ -487,12 +487,20 @@ def ingest_inbox(picks: list[dict]) -> list[str]:
                 m = it["market"]
                 rec_at = it.get("recAt") or now_kst().isoformat(timespec="minutes")
                 day = market_date(m, rec_at) if m in MARKETS else rec_at[:10]
-                active = {p["ticker"] for p in picks if p["status"] == "active"}
-                n_day = sum(1 for p in picks if p["market"] == m and p["method"] == "investor" and p["recDate"] == day)
+                method = it.get("method", "investor") if it.get("method") in ("investor", "combined") else "investor"
+                active = {p["ticker"] for p in picks if p["status"] == "active"
+                          and (method != "combined" or p["method"] == "combined")}
+                n_day = sum(1 for p in picks if p["market"] == m and p["method"] == method and p["recDate"] == day)
                 if m not in MARKETS or it["ticker"] in active or n_day >= MAX_NEW_PER_DAY:
                     print(f"[inbox] 건너뜀: {it.get('name')} ({m})")
                     continue
-                p = {"id": f"{day}-{m}-investor-{it['ticker']}", "market": m, "method": "investor",
+                if method == "combined":   # 종합 추천은 오늘 후보 목록에 있는 종목만
+                    cm = (load_json(DATA / "candidates.json", {}).get("markets", {}).get(m) or {}).get("items", [])
+                    cand = next((c for c in cm if c["ticker"] == it["ticker"]), None)
+                    if cand is None:
+                        print(f"[inbox] 건너뜀(종합 후보 아님): {it.get('name')}")
+                        continue
+                p = {"id": f"{day}-{m}-{method}-{it['ticker']}", "market": m, "method": method,
                      "ticker": it["ticker"], "name": it["name"], "currency": MARKETS[m]["currency"],
                      "recAt": rec_at, "recDate": day, "recPrice": it.get("recPrice"),
                      "reasons": [str(r) for r in it["reasons"]][:5], "source": it.get("source", ""),
@@ -502,6 +510,13 @@ def ingest_inbox(picks: list[dict]) -> list[str]:
                 for k in ("stop", "target"):
                     if it.get(k):
                         p[k] = float(it[k])
+                if method == "combined":
+                    p.setdefault("stop", cand["stop"]); p.setdefault("target", cand["target"])
+                    p["recPrice"] = p["recPrice"] or cand["price"]
+                    p["features"].update(signal="+".join(cand["signals"]), signals=cand["signals"],
+                                         nSignals=len(cand["signals"]), rsPct=cand["rs_pct"])
+                    if cand.get("chartNote"):
+                        p["chartNote"] = cand["chartNote"]
                 if (ef := entry_from(m, rec_at)):
                     p.update(entry="pending", entryFrom=ef, verdict="진입 대기")
                 if MARKETS[m]["region"] == "KR":
@@ -556,6 +571,7 @@ def main() -> None:
             mkt_info.setdefault(m, {})["phase"] = session_phase(c["region"], now)
 
     log = {"at": now.isoformat(timespec="minutes"), "scanned": scan, "added": list(inbox_added)}
+    all_cands: dict = load_json(DATA / "candidates.json", {}).get("markets", {})
     if scan:
         from universe import get_universe
         uni = get_universe()
@@ -617,16 +633,16 @@ def main() -> None:
             mkt_info[m]["candidates"] = len(cands)
 
             # 전통 전략 + 단기 스윙 (시간외 미국은 정규장 가격이 아니라 건너뜀)
-            if cfg["region"] == "US" and phase in ("pre", "after"):
-                continue
+            chart_all = list(cands)
+            ext_us = cfg["region"] == "US" and phase in ("pre", "after")
             from fundamentals import refresh
             from strategies import screen_strategies, screen_swing, strategy_reasons, swing_reasons
             P = load_params()
             fund = refresh([t for t, _ in uni[m]])
-            groups = [("strategy", screen_strategies(m, uni[m], data, mkt_info[m], P, fund), strategy_reasons,
-                       "전통 투자 전략"),
-                      ("swing", screen_swing(m, uni[m], data, mkt_info[m], P, frac if open_ else 1.0)
-                       if phase == "regular" else [], swing_reasons, "단기 스윙(1~5일, 모의 검증)")]
+            groups = [] if ext_us else [
+                ("strategy", screen_strategies(m, uni[m], data, mkt_info[m], P, fund), strategy_reasons, "전통 투자 전략"),
+                ("swing", screen_swing(m, uni[m], data, mkt_info[m], P, frac if open_ else 1.0)
+                 if phase == "regular" else [], swing_reasons, "단기 스윙(1~5일, 모의 검증)")]
             if cfg["region"] == "KR":   # 전통 전략·단기 스윙도 동반 순매도 종목 제외
                 groups = [(mth, [o for o in lst if flow_tag(flows.get(o["ticker"])) != "동반 순매도"], fn, sr)
                           for mth, lst, fn, sr in groups]
@@ -657,6 +673,22 @@ def main() -> None:
                     active.add(o["ticker"])
                     n_today += 1
                     log["added"].append(f"{m}:{o['name']}({method})")
+
+            # ── 종합 추천: 투자자 근거 + 차트(기술적) 근거가 모두 있는 종목 ──
+            from combined import build_candidates, auto_combined
+            tech = {"chart": chart_all, "strategy": groups[0][1] if groups else [],
+                    "swing": groups[1][1] if len(groups) > 1 else []}
+            cands_c = build_candidates(m, tech, fund, flows if cfg["region"] == "KR" else {}, mkt_info[m], data,
+                                       {"chart": chart_reasons, "strategy": strategy_reasons, "swing": swing_reasons})
+            all_cands[m] = {"phase": phase, "items": cands_c}
+            for p in auto_combined(m, cands_c, picks, today, now, idx, mkt_info[m]):
+                if (ef := entry_from(m, now)):
+                    p.update(entry="pending", entryFrom=ef, verdict="진입 대기")
+                picks.append(p)
+                write_prices(p["ticker"], data[p["ticker"]])
+                log["added"].append(f"{m}:{p['name']}(종합)")
+
+    save_json(DATA / "candidates.json", {"updated": now.isoformat(timespec="minutes"), "markets": all_cands})
 
     # 추적: 진행 중 + 최근 종료 종목
     need = [p["ticker"] for p in picks if p["status"] == "active" or not p.get("lastPrice")]

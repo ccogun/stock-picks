@@ -81,19 +81,22 @@ def main() -> None:
     inv = [p for p in picks if p["method"] == "investor"]
     strat = [p for p in picks if p["method"] == "strategy"]
     swing = [p for p in picks if p["method"] == "swing"]
+    comb = [p for p in picks if p["method"] == "combined"]
     tech = chart + strat + swing
     sig = lambda p: (p.get("features") or {}).get("signal")  # noqa: E731
 
     review = {
         "updated": now.isoformat(timespec="minutes"),
         "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
-        "overall": {"investor": stats(inv), "chart": stats(chart), "strategy": stats(strat), "swing": stats(swing)},
+        "overall": {"combined": stats(comb), "investor": stats(inv), "chart": stats(chart), "strategy": stats(strat), "swing": stats(swing)},
         "byMarket": {m: {k: stats([p for p in lst if p["market"] == m])
-                         for k, lst in (("investor", inv), ("chart", chart), ("strategy", strat), ("swing", swing))}
+                         for k, lst in (("combined", comb), ("investor", inv), ("chart", chart), ("strategy", strat), ("swing", swing))}
                      for m in MARKETS},
         "bySignal": group(tech, sig),
         "byRegime": group(picks, lambda p: (p.get("features") or {}).get("regime")),
-        "byStyle": group(inv, lambda p: (p.get("features") or {}).get("style")),
+        "byOverlap": group(comb, lambda p: (lambda n: f"차트 근거 {n}개" if n < 3 else "차트 근거 3개 이상")(
+            (p.get("features") or {}).get("nSignals") or 1)),
+        "byStyle": group(inv + comb, lambda p: (p.get("features") or {}).get("style")),
         "byFlow": group([p for p in picks if p["market"] in ("KOSPI", "KOSDAQ")],
                         lambda p: (p.get("features") or {}).get("flow")),
         "stopOuts": sum(1 for p in picks if p.get("closeReason") == "손절선 이탈"),
