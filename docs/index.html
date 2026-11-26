@@ -523,8 +523,14 @@ function openDetail(p){
   const cb=el("input"); cb.type="checkbox"; cb.checked=!!hold; cb.style.width="20px"; cb.style.height="20px";
   lab.append(cb, el("span",null,"이 종목을 샀어요"));
   const row=el("div"); row.style.marginTop="8px"; row.style.display=hold?"flex":"none"; row.style.gap="8px"; row.style.alignItems="center";
-  const inp=el("input"); inp.type="number"; inp.inputMode="decimal"; inp.step="any"; inp.placeholder="매수가";
-  inp.value=hold&&hold.price?hold.price:""; Object.assign(inp.style,{flex:"1",padding:"8px",borderRadius:"8px",border:"1px solid var(--line)",background:"var(--bg)",color:"var(--text)",fontSize:"16px"});
+  const inp=el("input"); inp.type="text"; inp.inputMode="decimal"; inp.placeholder="매수가"; inp.autocomplete="off";
+  // 천 단위 쉼표: 숫자·소수점만 남기고 정수부에 쉼표
+  const fmtNum=v=>{ v=String(v).replace(/[^0-9.]/g,""); const i=v.indexOf("."); if(i>=0) v=v.slice(0,i+1)+v.slice(i+1).replace(/\./g,"");
+    const [a,b]=v.split("."); const ai=a.replace(/^0+(?=\d)/,"").replace(/\B(?=(\d{3})+(?!\d))/g,","); return b!==undefined?ai+"."+b:ai; };
+  inp.value=hold&&hold.price?fmtNum(hold.price):"";
+  inp.addEventListener("input",()=>{ const pos=inp.selectionStart, before=inp.value.slice(0,pos).replace(/[^0-9.]/g,"").length;
+    inp.value=fmtNum(inp.value); let k=0,np=0; while(np<inp.value.length&&k<before){ if(/[0-9.]/.test(inp.value[np])) k++; np++; }
+    try{ inp.setSelectionRange(np,np); }catch(e){} }); Object.assign(inp.style,{flex:"1",padding:"8px",borderRadius:"8px",border:"1px solid var(--line)",background:"var(--bg)",color:"var(--text)",fontSize:"16px"});
   const save=el("button",null,"저장"); Object.assign(save.style,{border:"1px solid var(--accent)",background:"var(--accent)",color:"#fff",borderRadius:"8px",padding:"8px 14px",fontSize:"15px"});
   row.append(el("span","sub",p.currency==="KRW"?"원":"$"),inp,save);
   const msg=el("div","meta");
@@ -535,7 +541,7 @@ function openDetail(p){
     advice(p,base).forEach(t=>adv.append(el("div",null,"• "+t)));
     adv.append(el("div","note",base?"내 매수가 기준으로 손절·목표가를 같은 비율로 환산했습니다.":"추천 가격 기준입니다. 매수가를 입력하면 내 가격 기준으로 바뀝니다."));
     adv.append(el("div","note","규칙에 따른 참고용 안내이며 투자 권유가 아닙니다.")); };
-  const persist=()=>{ const v=parseFloat(inp.value); const ok=setHold(p.id, cb.checked?{price:isNaN(v)?null:v, at:new Date().toISOString().slice(0,10)}:null);
+  const persist=()=>{ const v=parseFloat(inp.value.replace(/,/g,"")); const ok=setHold(p.id, cb.checked?{price:isNaN(v)?null:v, at:new Date().toISOString().slice(0,10)}:null);
     msg.textContent=ok?(cb.checked?"저장했어요 (이 기기에만 저장됩니다)":"매수 표시를 지웠어요"):"저장하지 못했어요 (브라우저 저장소를 쓸 수 없음)";
     drawAdv(); if(state.tab==="ALL") drawList(); };
   cb.addEventListener("change",()=>{ row.style.display=cb.checked?"flex":"none"; persist(); if(cb.checked) inp.focus(); });
