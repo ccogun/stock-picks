@@ -125,6 +125,12 @@
 3. 이 두 파일은 Actions가 쓰지 않으므로 직접 수정해 commit·push 해도 된다(push 전 `git pull --rebase`).
 4. 테마 추천 성적(review.json의 `overall.theme`, `byThemeKind`)이 나쁜 종류는 theme_watch에 올리지 않는다.
 
+## 4-3. 가격 알림 (매 실행 맨 먼저, 거래시간이 아니어도 확인)
+`docs/data/alerts.json`의 `alerts` 중 `hitAt`이 있고 `notified`가 false인 항목이 있으면:
+1. 보고 맨 위에 "🔔 가격 알림: {name} {level} 도달 ({hitAt}, 메모: {note})"를 쓰고 **반드시 알림을 보낸다.**
+2. 그 항목의 `notified`를 true로 바꿔 commit·push 한다(push 전 `git pull --rebase`).
+알림은 Actions(`scripts/alerts.py`)가 매시간 5분봉 저가·고가로 판정한다. 가격대 추가·삭제는 사용자 요청이 있을 때만.
+
 ## 5. 추천 사유 5줄 형식
 1. 투자자 근거: 누구의 어떤 매매인지, 공시 날짜 포함 (예: "CEO·CFO 등 임원 3명이 11/18 장내 매수, Form 4")
 2. 차트 근거: 후보의 `signals`를 풀어서 (예: "20일 고점 돌파 + MACD 상승 전환")

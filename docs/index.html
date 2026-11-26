@@ -140,6 +140,15 @@ function drawList(){
   for(const k of mks){ const m=state.market[k]; if(!m) continue;
     const n=el("div","note"); n.append(mkb(k)); n.firstChild.style.marginLeft="0";
     n.append(document.createTextNode(" "+m.regime+" — "+m.note + (m.lastScan? " · 마지막 스캔 "+m.lastScan.replace("T"," "):""))); box.append(n); }
+  // 가격 알림 (설정된 종목이 이 지역이면 맨 위에)
+  fetch("data/alerts.json?t="+Date.now()).then(r=>r.ok?r.json():null).then(j=>{
+    const al=((j&&j.alerts)||[]).filter(a=>(state.tab==="US")===!/\.(KS|KQ)$/.test(a.ticker));
+    if(!al.length) return; const c=el("div","card"); c.append(el("b",null,"🔔 가격 알림"));
+    al.forEach(a=>{ const d=el("div","meta"); const gap=a.last?((a.last/a.level-1)*100):null;
+      d.textContent=(a.hitAt?"✅ 도달 ":"⏳ 대기 ")+a.name+" "+(a.dir==="above"?"≥ ":"≤ ")+a.level
+        +(a.hitAt?" ("+a.hitAt.replace("T"," ").slice(5,16)+")":(gap!=null?" · 현재 "+a.last+" ("+pct(gap)+" 남음)":""))+(a.note?" · "+a.note:"");
+      c.append(d); });
+    box.prepend(c); }).catch(()=>{});
   const act=meth=>state.picks.filter(p=>mks.includes(p.market) && p.method===meth && p.status==="active")
                              .sort((a,b)=>b.recAt.localeCompare(a.recAt));
   box.append(el("h2",null,"종합 추천"));

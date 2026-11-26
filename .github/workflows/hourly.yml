@@ -40,6 +40,7 @@ jobs:
           python scripts/run.py --markets "${MK:-auto}"
           python scripts/review.py
           python scripts/heatmap.py || echo "heatmap 실패(다음 실행에 재시도)"
+          python scripts/alerts.py || echo "가격 알림 확인 실패(다음 실행에 재시도)"
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
