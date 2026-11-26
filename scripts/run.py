@@ -41,7 +41,7 @@ def download_kr(tickers: list[str], period: str) -> dict[str, pd.DataFrame]:
         import FinanceDataReader as fdr
     except ImportError:
         return {}
-    days = {"2y": 760, "5d": 12}.get(period, 400)
+    days = {"2y": 760, "3mo": 100}.get(period, 400)
     start = (now_kst() - timedelta(days=days)).strftime("%Y-%m-%d")
 
     def one(t):

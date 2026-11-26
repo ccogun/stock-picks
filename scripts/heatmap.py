@@ -56,7 +56,7 @@ def build(region: str, pool: list[list[str]], meta: dict, download) -> dict | No
     ranked = sorted([t for t in names if t in meta], key=lambda t: -meta[t]["cap"])[:TOP[region]]
     if len(ranked) < 10:
         return None
-    px = download(ranked, period="5d")
+    px = download(ranked, period="3mo")   # 시세 함수가 30거래일 이상만 받으므로
     sectors: dict[str, list] = {}
     asof = None
     for t in ranked:
