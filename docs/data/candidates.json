@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T04:22+09:00",
+ "updated": "2026-11-27T04:30+09:00",
  "markets": {
   "KOSPI": {
    "phase": "after",
@@ -712,16 +712,16 @@
      "name": "eBay Inc.",
      "price": 115.54,
      "signals": [
-      "book_bb_reentry"
+      "bollinger"
      ],
      "why": [
-      "『차트의 기술』 볼린저 하단 밖에서 밴드 안으로 재진입"
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
      ],
      "rs_pct": 88.4,
      "flow": null,
      "stop": 110.92,
      "target": 124.78,
-     "chartNote": "『차트의 기술』에 나온 매수 기법 중 6년 검증에서 평소보다 성과가 좋았던 신호가 나온 자리(▲)입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
      "trend": 0,
      "support": 1,
      "score": 18.8
@@ -1048,25 +1048,6 @@
      "trend": 0,
      "support": 1,
      "score": 18.1
-    },
-    {
-     "ticker": "PPG",
-     "name": "PPG Industries",
-     "price": 124.61,
-     "signals": [
-      "pullback"
-     ],
-     "why": [
-      "20일선 눌림 반등"
-     ],
-     "rs_pct": 79.7,
-     "flow": null,
-     "stop": 117.43,
-     "target": 138.97,
-     "chartNote": "차트의 캔들은 일봉, 주황선은 20일선, 파란선은 50일선입니다. 주가가 20일선까지 내려왔다가 다시 올라선 자리가 추천 시점(▲)이며, 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
-     "trend": 1,
-     "support": 0,
-     "score": 18.0
     },
     {
      "ticker": "SWK",
@@ -1795,16 +1776,16 @@
      "name": "Texas Instruments",
      "price": 270.19,
      "signals": [
-      "book_bb_reentry"
+      "bollinger"
      ],
      "why": [
-      "『차트의 기술』 볼린저 하단 밖에서 밴드 안으로 재진입"
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
      ],
      "rs_pct": 56.8,
      "flow": null,
      "stop": 242.36,
      "target": 325.85,
-     "chartNote": "『차트의 기술』에 나온 매수 기법 중 6년 검증에서 평소보다 성과가 좋았던 신호가 나온 자리(▲)입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
      "trend": 0,
      "support": 1,
      "score": 15.7
@@ -2570,6 +2551,25 @@
      "score": 12.9
     },
     {
+     "ticker": "GPC",
+     "name": "Genuine Parts Company",
+     "price": 123.88,
+     "signals": [
+      "book_granville1"
+     ],
+     "why": [
+      "『차트의 기술』 그랜빌 ①: 하락하던 20일선이 옆으로 눕고 주가가 상향 돌파"
+     ],
+     "rs_pct": 28.1,
+     "flow": null,
+     "stop": 116.4,
+     "target": 138.83,
+     "chartNote": "『차트의 기술』에 나온 매수 기법 중 6년 검증에서 평소보다 성과가 좋았던 신호가 나온 자리(▲)입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 12.8
+    },
+    {
      "ticker": "BNY",
      "name": "BNY Mellon",
      "price": 147.16,
@@ -2583,25 +2583,6 @@
      "flow": null,
      "stop": 139.75,
      "target": 161.98,
-     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
-     "trend": 0,
-     "support": 1,
-     "score": 12.8
-    },
-    {
-     "ticker": "GPC",
-     "name": "Genuine Parts Company",
-     "price": 123.88,
-     "signals": [
-      "bollinger"
-     ],
-     "why": [
-      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
-     ],
-     "rs_pct": 28.1,
-     "flow": null,
-     "stop": 116.4,
-     "target": 138.83,
      "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
      "trend": 0,
      "support": 1,
@@ -2701,25 +2682,6 @@
      "trend": 0,
      "support": 1,
      "score": 12.5
-    },
-    {
-     "ticker": "ADI",
-     "name": "Analog Devices",
-     "price": 333.11,
-     "signals": [
-      "book_bb_reentry"
-     ],
-     "why": [
-      "『차트의 기술』 볼린저 하단 밖에서 밴드 안으로 재진입"
-     ],
-     "rs_pct": 23.9,
-     "flow": null,
-     "stop": 297.25,
-     "target": 404.83,
-     "chartNote": "『차트의 기술』에 나온 매수 기법 중 6년 검증에서 평소보다 성과가 좋았던 신호가 나온 자리(▲)입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
-     "trend": 0,
-     "support": 1,
-     "score": 12.4
     },
     {
      "ticker": "HAL",
@@ -2893,25 +2855,6 @@
      "score": 11.6
     },
     {
-     "ticker": "CEG",
-     "name": "Constellation Energy",
-     "price": 235.28,
-     "signals": [
-      "book_disparity60"
-     ],
-     "why": [
-      "『차트의 기술』 60일 이격도 90% 아래(중기 과매도)"
-     ],
-     "rs_pct": 15.1,
-     "flow": null,
-     "stop": 228.22,
-     "target": 249.4,
-     "chartNote": "『차트의 기술』에 나온 매수 기법 중 6년 검증에서 평소보다 성과가 좋았던 신호가 나온 자리(▲)입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
-     "trend": 0,
-     "support": 1,
-     "score": 11.5
-    },
-    {
      "ticker": "ON",
      "name": "ON Semiconductor",
      "price": 62.48,
@@ -2967,25 +2910,6 @@
      "trend": 0,
      "support": 1,
      "score": 11.4
-    },
-    {
-     "ticker": "BG",
-     "name": "Bunge Global",
-     "price": 88.15,
-     "signals": [
-      "book_bb_reentry"
-     ],
-     "why": [
-      "『차트의 기술』 볼린저 하단 밖에서 밴드 안으로 재진입"
-     ],
-     "rs_pct": 11.6,
-     "flow": null,
-     "stop": 82.76,
-     "target": 98.92,
-     "chartNote": "『차트의 기술』에 나온 매수 기법 중 6년 검증에서 평소보다 성과가 좋았던 신호가 나온 자리(▲)입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
-     "trend": 0,
-     "support": 1,
-     "score": 11.2
     },
     {
      "ticker": "GOOGL",
@@ -3415,16 +3339,16 @@
      "name": "Texas Instruments Incorporated",
      "price": 270.19,
      "signals": [
-      "book_bb_reentry"
+      "bollinger"
      ],
      "why": [
-      "『차트의 기술』 볼린저 하단 밖에서 밴드 안으로 재진입"
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
      ],
      "rs_pct": 66.3,
      "flow": null,
      "stop": 242.36,
      "target": 325.85,
-     "chartNote": "『차트의 기술』에 나온 매수 기법 중 6년 검증에서 평소보다 성과가 좋았던 신호가 나온 자리(▲)입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
      "trend": 0,
      "support": 1,
      "score": 16.6
@@ -3544,25 +3468,6 @@
      "score": 15.1
     },
     {
-     "ticker": "ADI",
-     "name": "Analog Devices, Inc.",
-     "price": 333.11,
-     "signals": [
-      "book_bb_reentry"
-     ],
-     "why": [
-      "『차트의 기술』 볼린저 하단 밖에서 밴드 안으로 재진입"
-     ],
-     "rs_pct": 42.6,
-     "flow": null,
-     "stop": 297.25,
-     "target": 404.83,
-     "chartNote": "『차트의 기술』에 나온 매수 기법 중 6년 검증에서 평소보다 성과가 좋았던 신호가 나온 자리(▲)입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
-     "trend": 0,
-     "support": 1,
-     "score": 14.3
-    },
-    {
      "ticker": "SHOP",
      "name": "Shopify Inc.",
      "price": 133.4,
@@ -3599,25 +3504,6 @@
      "trend": 0,
      "support": 1,
      "score": 13.7
-    },
-    {
-     "ticker": "CEG",
-     "name": "Constellation Energy Corporation",
-     "price": 235.28,
-     "signals": [
-      "book_disparity60"
-     ],
-     "why": [
-      "『차트의 기술』 60일 이격도 90% 아래(중기 과매도)"
-     ],
-     "rs_pct": 33.7,
-     "flow": null,
-     "stop": 228.22,
-     "target": 249.4,
-     "chartNote": "『차트의 기술』에 나온 매수 기법 중 6년 검증에서 평소보다 성과가 좋았던 신호가 나온 자리(▲)입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
-     "trend": 0,
-     "support": 1,
-     "score": 13.4
     },
     {
      "ticker": "GOOGL",
