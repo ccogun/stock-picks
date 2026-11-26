@@ -59,6 +59,7 @@
   .mkb{display:inline-block;font-size:11px;font-weight:600;padding:1px 6px;border-radius:6px;margin-left:6px;vertical-align:2px;white-space:nowrap}
   .mkb-KOSPI{background:rgba(59,130,246,.15);color:#3b82f6}.mkb-KOSDAQ{background:rgba(139,124,246,.18);color:#8b7cf6}
   .mkb-SP500{background:rgba(34,197,94,.15);color:#16a34a}.mkb-NASDAQ{background:rgba(20,184,166,.15);color:#0d9488}
+  .themerec{margin:4px 0 2px;display:flex;flex-wrap:wrap;gap:6px}.themerec span{font-size:13px;padding:2px 9px;border-radius:99px;border:1px solid var(--line)}.themerec span.main{font-weight:700;border-color:#ef4444;color:#ef4444}
 details.cands{margin-top:18px;border-top:1px solid #ddd;padding-top:6px}details.cands>summary{cursor:pointer;font-weight:600;padding:10px 0;color:#555}
 </style>
 </head>
@@ -342,6 +343,15 @@ async function drawThemes(box){
     const top=el("div","row"); const left=el("div");
     left.append(el("span","name",t.name)); const kb=el("span","mkb",t.kind); kb.style.background="rgba(127,127,127,.15)"; left.append(kb);
     if(t.watch){ const w=el("span","mkb","예정 이슈"); w.style.background="rgba(245,158,11,.18)"; w.style.color="#d97706"; left.append(w); }
+    // 테마명 바로 아래: 추천 종목(정식 추천 → 후보 순), 누르면 상세
+    const recs=state.picks.filter(p=>(p.method==="theme"||p.method==="theme_cand")&&p.status==="active"&&(p.features||{}).theme===t.name)
+                          .sort((a,b)=>(a.method==="theme"?0:1)-(b.method==="theme"?0:1));
+    if(recs.length){ const r=el("div","themerec");
+      recs.forEach(p=>{ const b=el("span","linkcell"+(p.method==="theme"?" main":""),(p.method==="theme"?"추천 ":"후보 ")+p.name+(counting(p)?" "+pct(p.ret):""));
+        b.addEventListener("click",e=>{e.stopPropagation(); openDetail(p);}); r.append(b); });
+      left.append(r); }
+    else if(t.chg3<=0&&!t.watch) left.append(el("div","meta","하루짜리 테마 · 조건 맞는 종목 없음"));
+    else left.append(el("div","meta","조건 맞는 종목 없음"));
     left.append(el("div","meta","상승 "+t.up+" · 보합 "+t.flat+" · 하락 "+t.down+(t.count?" · "+t.count+"종목":"")));
     const right=el("div"); right.append(el("div","ret "+cls(t.chg),pct(t.chg))); right.append(el("div","meta","3일 "+pct(t.chg3)));
     top.append(left,right); c.append(top);
@@ -350,8 +360,6 @@ async function drawThemes(box){
     else if(t.desc) c.append(el("div","meta","테마 설명: "+t.desc));
     if(t.watch&&t.watch.until) c.append(el("div","meta","이슈 예정 ~"+t.watch.until));
     if(t.top&&t.top.length){ const ol=el("div","meta"); ol.textContent="주요 종목: "+t.top.map(s=>s.name+" "+pct(s.chg)).join(" · "); c.append(ol); }
-    if(t.picked) c.append(el("div","meta","→ 정식 추천: "+t.picked.join(", ")));
-    else if(t.cand) c.append(el("div","meta","→ 후보: "+t.cand.name+(t.cand.chg!=null?" ("+pct(t.cand.chg)+")":"")+(t.chg3>0||t.watch?"":" · 하루짜리 테마라 후보로만")));
     box.append(c);
   }
 }
