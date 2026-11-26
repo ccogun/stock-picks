@@ -389,7 +389,7 @@ def track(p: dict, df: pd.DataFrame | None, idx: pd.DataFrame | None) -> None:
     if p.get("status") != "active":
         return
     exc = p.get("excess", p["ret"]) / 100
-    hold = 5 if p["method"] == "swing" else HOLD_DAYS
+    hold = 5 if p["method"] in ("swing", "theme") else HOLD_DAYS
     stop_hit = p.get("stop") and last < float(p["stop"])
     target_hit = p.get("target") and len(after) and float(after["High"].max()) >= float(p["target"])
     if stop_hit:
@@ -400,7 +400,7 @@ def track(p: dict, df: pd.DataFrame | None, idx: pd.DataFrame | None) -> None:
         p["closeReason"] = f"평가 기간 {hold}거래일 종료"
     elif target_hit:
         p["verdict"] = "잘한 추천 (목표 도달)"
-    elif days < (1 if p["method"] == "swing" else MIN_DAYS_FOR_VERDICT):
+    elif days < (1 if p["method"] in ("swing", "theme") else MIN_DAYS_FOR_VERDICT):
         p["verdict"] = "판단 중"
     elif exc >= GOOD_EXCESS:
         p["verdict"] = "잘한 추천"
@@ -689,6 +689,13 @@ def main() -> None:
                 log["added"].append(f"{m}:{p['name']}(종합)")
 
     save_json(DATA / "candidates.json", {"updated": now.isoformat(timespec="minutes"), "markets": all_cands})
+
+    # 이슈 테마(한국): 한국 시장을 스캔한 실행에서만
+    if any(MARKETS[m]["region"] == "KR" for m in scan):
+        from themes import run as run_themes
+        open_kr, frac_kr = session_state("KR", now)
+        log["added"] += run_themes(picks, now, idx_data, mkt_info,
+                                   session_phase("KR", now) == "regular", frac_kr if open_kr else 1.0)
 
     # 추적: 진행 중 + 최근 종료 종목
     need = [p["ticker"] for p in picks if p["status"] == "active" or not p.get("lastPrice")]

@@ -20,7 +20,7 @@ WINDOW = 30   # 최근 30건 기준
 
 def outcome(p: dict) -> float | None:
     snap = p.get("snap") or {}
-    key = "5" if p.get("method") == "swing" else "10"   # 단기 스윙은 5거래일 기준
+    key = "5" if p.get("method") in ("swing", "theme") else "10"   # 단기 스윙은 5거래일 기준
     if key in snap:
         return snap[key]
     if p.get("status") == "closed":
@@ -82,20 +82,22 @@ def main() -> None:
     strat = [p for p in picks if p["method"] == "strategy"]
     swing = [p for p in picks if p["method"] == "swing"]
     comb = [p for p in picks if p["method"] == "combined"]
+    theme = [p for p in picks if p["method"] == "theme"]
     tech = chart + strat + swing
     sig = lambda p: (p.get("features") or {}).get("signal")  # noqa: E731
 
     review = {
         "updated": now.isoformat(timespec="minutes"),
         "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
-        "overall": {"combined": stats(comb), "investor": stats(inv), "chart": stats(chart), "strategy": stats(strat), "swing": stats(swing)},
+        "overall": {"combined": stats(comb), "theme": stats(theme), "investor": stats(inv), "chart": stats(chart), "strategy": stats(strat), "swing": stats(swing)},
         "byMarket": {m: {k: stats([p for p in lst if p["market"] == m])
-                         for k, lst in (("combined", comb), ("investor", inv), ("chart", chart), ("strategy", strat), ("swing", swing))}
+                         for k, lst in (("combined", comb), ("theme", theme), ("investor", inv), ("chart", chart), ("strategy", strat), ("swing", swing))}
                      for m in MARKETS},
         "bySignal": group(tech, sig),
         "byRegime": group(picks, lambda p: (p.get("features") or {}).get("regime")),
         "byOverlap": group(comb, lambda p: (lambda n: f"차트 근거 {n}개" if n < 3 else "차트 근거 3개 이상")(
             (p.get("features") or {}).get("nSignals") or 1)),
+        "byThemeKind": group(theme, lambda p: (p.get("features") or {}).get("category")),
         "byStyle": group(inv + comb, lambda p: (p.get("features") or {}).get("style")),
         "byFlow": group([p for p in picks if p["market"] in ("KOSPI", "KOSDAQ")],
                         lambda p: (p.get("features") or {}).get("flow")),
@@ -148,6 +150,16 @@ def main() -> None:
             adjust(state, "flow_bonus", vals["flow_bonus"] + 5, f"수급 동반 종목이 평균 {gap:+.1f}%p 우수 → 가산점 상향", now)
         elif gap < -2:
             adjust(state, "flow_bonus", vals["flow_bonus"] - 5, f"수급 동반 종목이 평균 {gap:+.1f}%p 열위 → 가산점 하향", now)
+
+    # ── 테마 추천 수 조정: 성적이 나쁘면 줄이고, 0이면 모의 기록만(일시 중단) ──
+    th = stats(theme[-WINDOW:])
+    if th["n"] >= MIN_N:
+        cur_max = vals.get("theme_max", DEFAULTS["theme_max"])
+        if th["avg"] < -2:
+            adjust(state, "theme_max", cur_max - 1, f"테마 추천 평균 {th['avg']:+.1f}%p 부진 → 하루 {max(cur_max - 1, 0)}종목"
+                   + (" (일시 중단, 모의 기록만)" if cur_max - 1 <= 0 else ""), now)
+        elif th["avg"] > 1 and th.get("hit", 0) >= 50:
+            adjust(state, "theme_max", cur_max + 1, f"테마 추천 평균 {th['avg']:+.1f}%p 양호 → 하루 {min(cur_max + 1, 2)}종목", now)
 
     # ── 손절 폭 조정 (투자자 방식) ──
     closed_inv = [p for p in inv if p.get("status") == "closed"][-WINDOW:]

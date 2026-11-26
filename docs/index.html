@@ -76,7 +76,7 @@ details.cands{margin-top:18px;border-top:1px solid #ddd;padding-top:6px}details.
 </div>
 <script>
 const MK = {KOSPI:"코스피",KOSDAQ:"코스닥",SP500:"S&P 500",NASDAQ:"나스닥"};
-const METHOD = {combined:"종합 추천",investor:"투자자 방식",chart:"차트 분석",strategy:"전통 전략",swing:"단기 스윙"};
+const METHOD = {combined:"종합 추천",theme:"이슈 테마",investor:"투자자 방식",chart:"차트 분석",strategy:"전통 전략",swing:"단기 스윙"};
 let state = {picks:[], market:{}, tab:"KR"};
 const $ = (s)=>document.querySelector(s);
 const REGION = {KR:{label:"한국",mk:["KOSPI","KOSDAQ"]}, US:{label:"미국",mk:["SP500","NASDAQ"]}};
@@ -122,8 +122,8 @@ function drawScore(){
 }
 function drawTabs(){
   const box=$("#tabs"); box.replaceChildren();
-  for(const k of ["KR","US","MAP","PAT","ALL","LEARN"]){
-    const b=el("button", state.tab===k?"on":"", k==="ALL"?"전체 기록":k==="LEARN"?"학습":k==="PAT"?"가격대 패턴":k==="MAP"?"섹터 지도":REGION[k].label);
+  for(const k of ["KR","US","THEME","MAP","PAT","ALL","LEARN"]){
+    const b=el("button", state.tab===k?"on":"", k==="THEME"?"테마":k==="ALL"?"전체 기록":k==="LEARN"?"학습":k==="PAT"?"가격대 패턴":k==="MAP"?"섹터 지도":REGION[k].label);
     b.addEventListener("click",()=>{state.tab=k; drawTabs(); drawList();}); box.append(b);
   }
 }
@@ -133,6 +133,7 @@ function drawList(){
   if(state.tab==="LEARN") return drawLearn(box);
   if(state.tab==="PAT") return drawPatterns(box);
   if(state.tab==="MAP") return drawHeatmap(box);
+  if(state.tab==="THEME") return drawThemes(box);
   const mks=(REGION[state.tab]||REGION.KR).mk;
   for(const k of mks){ const m=state.market[k]; if(!m) continue;
     const n=el("div","note"); n.append(mkb(k)); n.firstChild.style.marginLeft="0";
@@ -287,6 +288,7 @@ async function drawLearn(box){
   tbl("방식별",rv.overall,k=>METHOD[k],(p,k)=>p.method===k);
   tbl("신호·전략별",rv.bySignal,k=>SIG[k]||k,(p,k)=>TECH.includes(p.method)&&F(p).signal===k);
   tbl("종합 추천 — 겹친 차트 근거 수별",rv.byOverlap,null,(p,k)=>p.method==="combined"&&((n=>n<3?"차트 근거 "+n+"개":"차트 근거 3개 이상")(F(p).nSignals||1))===k);
+  tbl("이슈 테마 — 종류별",rv.byThemeKind,null,(p,k)=>p.method==="theme"&&F(p).category===k);
   tbl("투자자 근거 유형별",rv.byStyle,null,(p,k)=>(p.method==="investor"||p.method==="combined")&&F(p).style===k);
   tbl("시장 국면별",rv.byRegime,null,(p,k)=>F(p).regime===k);
   tbl("한국 수급별 (외국인·기관 5일)",rv.byFlow,null,(p,k)=>["KOSPI","KOSDAQ"].includes(p.market)&&F(p).flow===k);
@@ -318,6 +320,34 @@ function squarify(items,x,y,w,h){
 }
 function heatColor(c){ const a=Math.min(Math.abs(c)/3,1);   // ±3%에서 가장 진함 (한국식: 상승 빨강, 하락 파랑)
   if(c>0) return "rgba(229,72,77,"+(0.25+0.75*a)+")"; if(c<0) return "rgba(59,130,246,"+(0.25+0.75*a)+")"; return "rgba(120,120,130,.45)"; }
+async function drawThemes(box){
+  const j=await fetch("data/themes.json?t="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
+  box.append(el("h2",null,"테마 추천 (고위험 · 단기)"));
+  box.append(el("div","note","강한 이슈 테마(정치·선거·전쟁·계절·문화·질병·정책·산업 모두 포함) 안에서 대장주보다 덜 오른 후발주만 고릅니다. 상한가·급등주는 뒤따라 사지 않습니다. 하루 최대 "+(j?j.max:2)+"종목, 최대 5거래일 보유, 손절 짧게."
+    +(j&&j.mode==="모의"?" ※ 최근 성적 부진으로 실전 추천을 멈추고 모의 기록만 하는 중입니다.":"")));
+  const act=state.picks.filter(p=>p.method==="theme"&&p.status==="active").sort((a,b)=>b.recAt.localeCompare(a.recAt));
+  if(!act.length) box.append(el("div","empty","지금은 조건에 맞는 테마 종목이 없습니다."));
+  act.forEach(p=>box.append(card(p)));
+  box.append(el("h2",null,"지금 강한 테마"));
+  if(!j||!j.themes||!j.themes.length){ box.append(el("div","empty","아직 데이터가 없습니다. 한국 장중 매시간 갱신됩니다.")); return; }
+  box.append(el("div","note",(j.updated||"").replace("T"," ").slice(0,16)+" 기준 · 등락률은 테마 소속 종목 평균"));
+  for(const t of j.themes){
+    const c=el("div","card");
+    const top=el("div","row"); const left=el("div");
+    left.append(el("span","name",t.name)); const kb=el("span","mkb",t.kind); kb.style.background="rgba(127,127,127,.15)"; left.append(kb);
+    if(t.watch){ const w=el("span","mkb","예정 이슈"); w.style.background="rgba(245,158,11,.18)"; w.style.color="#d97706"; left.append(w); }
+    left.append(el("div","meta","상승 "+t.up+" · 보합 "+t.flat+" · 하락 "+t.down+(t.count?" · "+t.count+"종목":"")));
+    const right=el("div"); right.append(el("div","ret "+cls(t.chg),pct(t.chg))); right.append(el("div","meta","3일 "+pct(t.chg3)));
+    top.append(left,right); c.append(top);
+    const why=t.why||(t.watch&&t.watch.why)||"";
+    if(why) c.append(el("div","meta","재료: "+why+(t.whyDate?" ("+t.whyDate+")":"")));
+    else if(t.desc) c.append(el("div","meta","테마 설명: "+t.desc));
+    if(t.watch&&t.watch.until) c.append(el("div","meta","이슈 예정 ~"+t.watch.until));
+    if(t.top&&t.top.length){ const ol=el("div","meta"); ol.textContent="주요 종목: "+t.top.map(s=>s.name+" "+pct(s.chg)).join(" · "); c.append(ol); }
+    if(t.picked) c.append(el("div","meta","→ 추천: "+t.picked.join(", ")));
+    box.append(c);
+  }
+}
 async function drawHeatmap(box){
   const j=await fetch("data/heatmap.json?t="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
   const sw=el("div","tabs"); sw.style.position="static";
@@ -500,7 +530,7 @@ function drawHistory(box){
   [...state.picks].filter(p=>!histMine||hold[p.id]).sort((a,b)=>b.recAt.localeCompare(a.recAt)).forEach(p=>{
     const r=el("tr"); r.style.cursor="pointer";
     const nm=el("td",null,(hold[p.id]?"✓ ":"")+p.name); if(hold[p.id]) nm.style.fontWeight="700"; nm.append(mkb(p.market));
-    r.append(nm, el("td",null,({combined:"종합",chart:"차트",investor:"투자자",strategy:"전략",swing:"스윙"}[p.method]||p.method)),
+    r.append(nm, el("td",null,({combined:"종합",theme:"테마",chart:"차트",investor:"투자자",strategy:"전략",swing:"스윙"}[p.method]||p.method)),
       el("td",null,p.recDate.slice(5)), el("td","r "+(counting(p)?cls(p.ret):""),counting(p)?pct(p.ret):(p.entry==="pending"?"진입 대기":"집계 전")), el("td","r "+(counting(p)?cls(p.excess):""),counting(p)?pct(p.excess):"–"),
       (()=>{const v=p.verdict||"판단 중"; const td=el("td",null,(v.startsWith("잘한")?"잘함":v.startsWith("아쉬운")?"아쉬움":v)+(p.status==="closed"?"·종료":""));
         td.style.color=v.startsWith("잘한")?"var(--good)":v.startsWith("아쉬운")?"var(--bad)":""; return td;})());
