@@ -103,7 +103,7 @@ def main() -> None:
     for k, m in methods.items():
         ok = (k != "golden_fake" and m.get("n", 0) >= MIN_N and m["excess20"] >= MIN_EX
               and m["winEdge"] >= MIN_WIN and (m["early"] or 0) > 0 and (m["late"] or 0) > 0)
-        m["adopted"] = ok
+        m["adopted"] = bool(ok)
         if ok:
             adopted.append(k)
     out = {"updated": datetime.now(KST).isoformat(timespec="minutes"), "tickers": len(data),
@@ -112,7 +112,7 @@ def main() -> None:
            "adopted": sorted(adopted, key=lambda k: -methods[k]["excess20"]),
            "methods": dict(sorted(methods.items(), key=lambda kv: -(kv[1].get("excess20") or -99))),
            "byMarket": {mk: {k: summarize(v, base_win, split) for k, v in d.items()} for mk, d in by_mkt.items()}}
-    (DATA / "book_compare.json").write_text(json.dumps(out, ensure_ascii=False, indent=1))
+    (DATA / "book_compare.json").write_text(json.dumps(out, ensure_ascii=False, indent=1, default=float))
     print("평소 승률", round(base_win, 1), "채택:", out["adopted"])
     for k, m in out["methods"].items():
         print(f"{k:14s} n={m.get('n')} ex20={m.get('excess20')} win={m.get('win20')} edge={m.get('winEdge')} "

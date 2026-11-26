@@ -262,6 +262,9 @@ function openGroup(title,list,mode){
 }
 const SIG={breakout:"고점 돌파",pullback:"눌림 반등",ext:"시간외 갭",value:"가치",dividend:"고배당",quality:"퀄리티",
   reversal:"역추세(RSI)",macd:"MACD",bollinger:"볼린저밴드",swing:"단기 스윙",trendline:"빗각 지지선",zone:"지지 가격대 반등"};
+const BOOKS={"golden_fake":"가짜 골든크로스(비교)","granville1": "그랜빌①", "granville2": "그랜빌②", "granville3": "그랜빌③", "granville4": "그랜빌④", "disparity20": "20일 이격도", "disparity60": "60일 이격도", "golden": "진짜 골든크로스", "align": "정배열 전환", "squeeze": "볼린저 스퀴즈", "bb_reentry": "볼린저 재진입", "sar": "파라볼릭 SAR", "stoch": "스토캐스틱", "cci": "CCI 과매도 탈출", "cci0": "CCI 0선", "rsi50": "RSI 50", "dmi": "DMI 돌파", "ichimoku": "일목균형표", "double_bottom": "이중바닥", "gap": "돌파갭", "hammer": "망치형", "engulfing": "상승장악형", "piercing": "관통형", "morning_star": "샛별형"};
+for(const k in BOOKS) SIG["book_"+k]="책: "+BOOKS[k];
+
 async function drawLearn(box){
   box.append(el("div","note","추천 결과를 분석해 다음 추천 기준을 자동으로 조정합니다. 성과 지표는 추천 후 10거래일(단기 스윙은 5거래일) 시점의 지수 대비 초과수익이며, 표본 8건 이상일 때만 조금씩 바꿉니다."));
   const bust="?t="+Date.now();
@@ -400,6 +403,17 @@ async function drawHeatmap(box){
   box.append(el("h2",null,"섹터별 요약"), t);
 }
 async function drawPatterns(box){
+  const bk=await fetch("data/book_compare.json?t="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
+  if(bk&&bk.methods){ const c=el("div","card");
+    box.append(el("h2",null,"『차트의 기술』 기법 검증"));
+    c.append(el("div","meta","대형주 "+bk.tickers+"종목 6년, 신호 다음 날 시가 매수 → 20거래일 뒤. '초과'는 같은 종목 아무 날이나 샀을 때보다 얼마나 나았는지. 채택(✓) 기준: "+bk.rule+". 채택된 기법만 실제 추천의 차트 근거로 씁니다."));
+    const t=el("table"); const hr=el("tr"); ["기법","횟수","승률","초과","앞/뒤 3년",""].forEach((x,i)=>hr.append(el("th",i?"r":"",x))); t.append(hr);
+    Object.entries(bk.methods).forEach(([k,m])=>{ if(!m.n) return;
+      const r=el("tr"); r.append(el("td",null,(BOOKS[k]||k)),el("td","r",m.n),el("td","r",m.win20+"%"),
+        el("td","r "+cls(m.excess20),pct(m.excess20).replace("%","%p")),el("td","r",(m.early??"-")+" / "+(m.late??"-")),el("td","r",m.adopted?"✓":""));
+      t.append(r); });
+    c.append(t); c.append(el("div","meta","평소 승률 "+bk.baseWin20+"% · 매주 일요일 재검증 · "+(bk.updated||"").slice(0,10)));
+    box.append(c); }
   const j=await fetch("data/patterns.json?t="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
   box.append(el("h2",null,"대형주 지지 가격대"));
   if(!j){ box.append(el("div","empty","아직 분석 전입니다. 매일 미국 장 마감 후 갱신됩니다.")); return; }

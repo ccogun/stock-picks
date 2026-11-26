@@ -48,6 +48,8 @@ def build_candidates(market: str, tech: dict, fund: dict, flows: dict, reg: dict
     for o in tech.get("strategy", []):
         if o["signal"] in TECH_STRATEGY:
             add(o, o["signal"], "strategy", o["x"]["c"], f"{LABEL[o['signal']]} — {o['why']}")
+        elif o["signal"].startswith("book_"):
+            add(o, o["signal"], "strategy", o["x"]["c"], f"『차트의 기술』 {o['why']}")
     for o in tech.get("swing", []):
         add(o, "swing", "swing", o["x"]["c"])
 
@@ -65,7 +67,8 @@ def build_candidates(market: str, tech: dict, fund: dict, flows: dict, reg: dict
         src, o = e.pop("_src")[0]       # 손절·목표는 첫 신호(차트 → 전략 → 스윙 순) 기준
         _, extra = reason_fns[src](o, market, reg)
         e["stop"], e["target"], e["chartNote"] = extra["stop"], extra["target"], extra.get("chartNote", "")
-        e["trend"] = sum(s in TREND for s in e["signals"])
+        from booksig import TREND_RULES
+        e["trend"] = sum(s in TREND or (s.startswith("book_") and s[5:] in TREND_RULES) for s in e["signals"])
         e["support"] = len(e["signals"]) - e["trend"]
         e["score"] = round(len(e["signals"]) * 10 + {"동반 순매수": 20, "한쪽 순매수": 5}.get(e["flow"], 0)
                            + e["rs_pct"] / 10, 1)

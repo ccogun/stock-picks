@@ -57,7 +57,7 @@ def adjust(state: dict, key: str, new, reason: str, now: datetime, sub: str | No
         new = max(lo, min(hi, new))
     if sub:
         cur = {**DEFAULTS[key], **vals.get(key, {})}
-        old = cur[sub]
+        old = cur.get(sub, 0)
         if old == new:
             return
         cur[sub] = new
@@ -117,11 +117,13 @@ def main() -> None:
                                             ("value", None, 0, 0), ("dividend", None, 0, 0),
                                             ("quality", None, 0, 0), ("reversal", None, 0, 0),
                                             ("macd", None, 0, 0), ("bollinger", None, 0, 0),
-                                            ("trendline", None, 0, 0), ("zone", None, 0, 0)):
+                                            ("trendline", None, 0, 0), ("zone", None, 0, 0),
+                                            *[(b, None, 0, 0) for b in sorted({sig(p) for p in tech
+                                                                               if str(sig(p)).startswith("book_")})]):
         st = stats([p for p in tech if sig(p) == s][-WINDOW:])
         if st["n"] < MIN_N:
             continue
-        w = {**DEFAULTS["weight"], **vals.get("weight", {})}[s]
+        w = {**DEFAULTS["weight"], **vals.get("weight", {})}.get(s, 0)
         if st["hit"] < 40 and st["avg"] < 0:
             why = f"{s} 신호 최근 {st['n']}건 적중 {st['hit']}%, 평균 {st['avg']}%p → 기준 강화"
             if knob:

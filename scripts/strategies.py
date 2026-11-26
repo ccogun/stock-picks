@@ -123,6 +123,21 @@ def _stops(x: dict, kind: str) -> tuple[float, float]:
 
 
 # ───────────────────────── 전통 전략 ─────────────────────────
+def _book_adopted() -> dict[str, float]:
+    """검증 통과 기법 {이름: 20일 초과수익(%p)}"""
+    from common import DATA, load_json
+    j = load_json(DATA / "book_compare.json", {})
+    return {k: (j.get("methods", {}).get(k) or {}).get("excess20", 0) for k in j.get("adopted", [])}
+
+
+try:
+    from booksig import LABEL as BOOK_LABEL, signals as book_signals
+    BOOK = _book_adopted()
+except Exception as _e:  # noqa: BLE001
+    print("[strategies] 차트의 기술 기법 불러오기 실패:", _e)
+    BOOK, BOOK_LABEL = {}, {}
+
+
 def screen_strategies(market: str, universe: list[list[str]], data: dict, reg: dict, P: dict,
                       fund: dict) -> list[dict]:
     kr = MARKETS[market]["region"] == "KR"
@@ -185,6 +200,12 @@ def screen_strategies(market: str, universe: list[list[str]], data: dict, reg: d
                 kind = "하락" if tl["slope_pct"] < 0 else "상승"
                 sigs.append(("trendline", f"{tl['p1']}·{tl['p2']} 저점을 이은 {kind} 빗각 지지선({sup:,.0f})에서 양봉 반등",
                              45 + rs_pct / 4))
+        # 『차트의 기술』 기법 — 6년 검증에서 채택된 것만(book_compare.json)
+        if BOOK:
+            S = book_signals(df)
+            for k, ex in BOOK.items():
+                if S.get(k) is not None and S[k][-1]:
+                    sigs.append((f"book_{k}", BOOK_LABEL[k], 45 + rs_pct / 4 + ex * 3))
         if reg["regime"] == "하락":
             sigs = [s for s in sigs if s[0] in ("value", "dividend", "quality", "trendline", "zone") or rs_pct >= 60]
         for s, why, sc in sigs:
@@ -230,7 +251,8 @@ def strategy_reasons(o: dict, market: str, reg: dict) -> tuple[list[str], dict]:
     if f.get("dy"):
         extra.append(f"배당 {f['dy'] * 100:.1f}%")
     lines = [
-        f"전략: {SIG_LABEL[o['signal']]} — {o['why']}",
+        (f"전략: 『차트의 기술』 — {o['why']}" if o["signal"].startswith("book_")
+         else f"전략: {SIG_LABEL[o['signal']]} — {o['why']}"),
         "재무: " + (", ".join(extra) if extra else "재무 지표 일부 미확인") + (f" · {f['sector']}" if f.get("sector") else ""),
         f"타이밍: 주가 {pos}, RSI {x['rsi']:.0f}, 3개월 수익률 {x['r63'] * 100:+.1f}% ({label} 감시 종목 중 상위 {100 - o['rs_pct']:.0f}%)",
         f"시장 국면: {label} {reg['regime']} — {reg['note']}",
@@ -246,7 +268,8 @@ def strategy_reasons(o: dict, market: str, reg: dict) -> tuple[list[str], dict]:
             "zone": "여러 번 바닥이 됐던 가격대에 닿은 다음 날 반등을 확인하고 산 자리(▲)입니다. 가격대 아래로 "
                     "3% 넘게 내려가면 지지가 깨진 것으로 보고 종료합니다.",
             "trendline": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 "
-                         "손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다."}[o["signal"]]
+                         "손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다."}.get(
+        o["signal"], "『차트의 기술』에 나온 매수 기법 중 6년 검증에서 평소보다 성과가 좋았던 신호가 나온 자리(▲)입니다.")
     return lines, {"stop": round(stop, 2), "target": round(target, 2),
                    "chartNote": note + " 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다."}
 
