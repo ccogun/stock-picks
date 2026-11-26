@@ -28,13 +28,14 @@ UA = {"User-Agent": "Mozilla/5.0 (stock-picks bot)", "Referer": "https://finance
 BASE = "https://finance.naver.com"
 
 KIND_WORDS = [
+    ("산업·기술", "우주 위성 누리호 스페이스X 반도체 2차전지 로봇 AI 인공지능"),
     ("정치·선거", "정치 선거 대선 총선 지방선거 대통령 남북 대북 개헌 통일 인맥"),
     ("전쟁·지정학", "방위 방산 전쟁 우크라이나 러시아 재건 이스라엘 중동 국방 군사 드론 사이버 보안 테러 북한"),
     ("계절·날씨", "겨울 여름 난방 에어컨 냉방 폭염 장마 황사 미세먼지 독감 감기 빙과 김장 제설 날씨 한파 가뭄 홍수 태풍 "
                  "비료 농업 사료 수산 수능"),
     ("질병·보건", "백신 코로나 전염병 마스크 치료제 진단 엠폭스 원숭이두창 바이러스 독감 비만"),
     ("문화·소비", "엔터 콘텐츠 드라마 영화 게임 웹툰 음원 여행 항공 카지노 화장품 면세 캐릭터 아이돌 스포츠 올림픽 "
-                 "월드컵 의류 식품 음식료 주류 편의점 반려동물 K-"),
+                 "월드컵 의류 식품 음식료 주류 편의점 반려동물 K- 항공사 저가항공"),
     ("정책·제도", "정부 정책 규제 원전 부동산 건설 출산 육아 지역화폐 탄소 밸류업 지배구조 공매도 금리 "
                  "증권 은행 보험 SOC 철도"),
 ]
@@ -128,8 +129,16 @@ def fetch_theme_detail(no: str) -> dict:
         stocks.append({"code": code, "name": str(_pick(it, "stockName", "itemName", "name", default=code)),
                        "chg": _f(_pick(it, "fluctuationsRatio", "changeRate", default=0)), "mk": mk,
                        "why": str(_pick(it, "themeReason", "reason", "description", "info", default=""))[:120]})
-    info = j.get("groupInfo") or j.get("themeInfo") or {} if isinstance(j, dict) else {}
-    desc = str(_pick(info, "description", "desc", "info", default="")) if isinstance(info, dict) else ""
+    desc = ""
+    if isinstance(j, dict):
+        reasons = j.get("themeItemInfoMap") or {}
+        for st in stocks:
+            r = reasons.get(st["code"]) if isinstance(reasons, dict) else None
+            if r and not st["why"]:
+                st["why"] = re.sub(r"\s+", " ", str(r.get("description") or r.get("reason") or r.get("info") or ""
+                                                  if isinstance(r, dict) else r)).strip()[:120]
+        d = j.get("themeDescription") or (j.get("groupInfo") or {})
+        desc = str(d if isinstance(d, str) else _pick(d, "description", "desc", "themeDescription", default=""))
     dbg = load_json(DATA / "themes_debug.json", {})
     if "detailSample" not in dbg:
         dbg["detailSample"] = {"keys": list(j.keys()) if isinstance(j, dict) else None, "items": items[:2]}
@@ -220,6 +229,12 @@ def run(picks: list[dict], now, idx_data: dict, mkt_info: dict, regular: bool, f
             df = data.get(s.get("ticker"))
             if df is not None and len(df) > 2:
                 s["chg"] = round((float(df["Close"].iloc[-1]) / float(df["Close"].iloc[-2]) - 1) * 100, 2)
+        r3 = [(float(df["Close"].iloc[-1]) / float(df["Close"].iloc[-4]) - 1) * 100
+              for s in t.get("stocks", []) if (df := data.get(s.get("ticker"))) is not None and len(df) > 4]
+        if r3:
+            t["chg3"] = round(sum(r3) / len(r3), 2)
+            t["score"] = round(t["chg"] + 0.5 * t["chg3"], 2)
+        t["codes"] = {s["code"] for s in t.get("stocks", [])}
         st = sorted([s for s in t.get("stocks", []) if s.get("chg") is not None], key=lambda s: -s["chg"])
         t["top"] = [{k: s.get(k) for k in ("name", "ticker", "market", "chg")} for s in st[:6]]
         t["count"] = len(t.get("stocks", []))
@@ -273,6 +288,10 @@ def run(picks: list[dict], now, idx_data: dict, mkt_info: dict, regular: bool, f
             t, s, m = x["t"], x["s"], x["s"]["market"]
             if s["ticker"] in active or t["name"] in used_theme:
                 continue
+            # 같은 재료(구성 종목이 30% 넘게 겹치는 테마)는 하루 한 종목만
+            if any(len(t["codes"] & u["codes"]) > 0.3 * min(len(t["codes"]), len(u["codes"]) or 1)
+                   for u in sel if u["name"] in used_theme and u is not t):
+                continue
             cur = MARKETS[m]["currency"]
             ld = " · ".join(f"{l['name']} {l['chg']:+.1f}%" for l in t.get("leaders", []))
             why = (notes.get(t["name"]) or {}).get("why") or (t.get("watch") or {}).get("why") \
@@ -314,6 +333,7 @@ def run(picks: list[dict], now, idx_data: dict, mkt_info: dict, regular: bool, f
 
     for t in sel:
         t.pop("stocks", None)
+        t.pop("codes", None)
     save_json(THEMES_FILE, {"updated": now.isoformat(timespec="minutes"), "mode": "모의" if paper else "실전",
                             "max": limit, "themes": sel,
                             "candidates": [{"name": x["s"]["name"], "theme": x["t"]["name"], "chg": round(x["chg"], 1),
