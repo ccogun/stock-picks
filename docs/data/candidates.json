@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T04:09+09:00",
+ "updated": "2026-11-27T04:19+09:00",
  "markets": {
   "KOSPI": {
    "phase": "after",
@@ -3202,27 +3202,6 @@
    "phase": "regular",
    "items": [
     {
-     "ticker": "CCEP",
-     "name": "Coca-Cola Europacific Partners PLC",
-     "price": 117.99,
-     "signals": [
-      "pullback",
-      "trendline"
-     ],
-     "why": [
-      "20일선 눌림 반등",
-      "빗각 지지선 반등 — 09/23·10/29 저점을 이은 상승 빗각 지지선(117)에서 양봉 반등"
-     ],
-     "rs_pct": 83.2,
-     "flow": null,
-     "stop": 113.15,
-     "target": 127.67,
-     "chartNote": "차트의 캔들은 일봉, 주황선은 20일선, 파란선은 50일선입니다. 주가가 20일선까지 내려왔다가 다시 올라선 자리가 추천 시점(▲)이며, 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
-     "trend": 1,
-     "support": 1,
-     "score": 28.3
-    },
-    {
      "ticker": "WMT",
      "name": "Walmart Inc.",
      "price": 131.94,
@@ -3335,6 +3314,25 @@
      "trend": 1,
      "support": 0,
      "score": 18.6
+    },
+    {
+     "ticker": "CCEP",
+     "name": "Coca-Cola Europacific Partners PLC",
+     "price": 117.99,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 09/23·10/29 저점을 이은 상승 빗각 지지선(117)에서 양봉 반등"
+     ],
+     "rs_pct": 83.2,
+     "flow": null,
+     "stop": 114.45,
+     "target": 121.73,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 18.3
     },
     {
      "ticker": "META",
