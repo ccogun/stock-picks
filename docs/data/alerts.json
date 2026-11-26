@@ -1,1 +1,82 @@
-{"alerts": []}
+{
+ "alerts": [
+  {
+   "id": "soxx-113",
+   "ticker": "SOXX",
+   "name": "SOXX",
+   "level": 113.0,
+   "dir": "below",
+   "note": "1차 지지(트레이딩 롱·숏 구간 113~103)",
+   "source": "듬뿍아범 11/27 작도강의",
+   "active": true,
+   "hitAt": null,
+   "hitPrice": null,
+   "notified": false
+  },
+  {
+   "id": "soxx-103",
+   "ticker": "SOXX",
+   "name": "SOXX",
+   "level": 103.0,
+   "dir": "below",
+   "note": "2차 지지(200주선 부근)",
+   "source": "듬뿍아범 11/27 작도강의",
+   "active": true,
+   "hitAt": null,
+   "hitPrice": null,
+   "notified": false
+  },
+  {
+   "id": "soxx-87",
+   "ticker": "SOXX",
+   "name": "SOXX",
+   "level": 87.0,
+   "dir": "below",
+   "note": "피보나치 0.786 되돌림 — 듬뿍아범 '87 오면 몰빵' 구간",
+   "source": "듬뿍아범 11/27 작도강의",
+   "active": true,
+   "hitAt": null,
+   "hitPrice": null,
+   "notified": false
+  },
+  {
+   "id": "soxl-11",
+   "ticker": "SOXL",
+   "name": "SOXL",
+   "level": 11.0,
+   "dir": "below",
+   "note": "'10불대' 진입 — 듬뿍아범 SOXL 매수 관심 구간",
+   "source": "듬뿍아범 11/27 작도강의",
+   "active": true,
+   "hitAt": null,
+   "hitPrice": null,
+   "notified": false
+  },
+  {
+   "id": "amd-359",
+   "ticker": "AMD",
+   "name": "AMD",
+   "level": 359.0,
+   "dir": "below",
+   "note": "리테스트 지지 — 반등 없으면 355 아래 손절(트레이딩 관점)",
+   "source": "듬뿍아범 11/27 작도강의",
+   "active": true,
+   "hitAt": null,
+   "hitPrice": null,
+   "notified": false
+  },
+  {
+   "id": "amd-265",
+   "ticker": "AMD",
+   "name": "AMD",
+   "level": 265.0,
+   "dir": "below",
+   "note": "긴 박스 상단 = 강한 지지 — 듬뿍아범 'AMD 265 때 SOXL' 신호",
+   "source": "듬뿍아범 11/27 작도강의",
+   "active": true,
+   "hitAt": null,
+   "hitPrice": null,
+   "notified": false
+  }
+ ]
+}
