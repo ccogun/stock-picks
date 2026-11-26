@@ -516,7 +516,12 @@ async function openKiwoom(p){
   kwToast((copied?"종목코드 "+code+" 복사됨 · ":"종목코드 "+code+" · ")+"영웅문S#이 열리면 종목 검색창에 붙여넣으세요");
   const t0=Date.now();
   document.addEventListener("visibilitychange",function h(){ if(document.hidden){ document.removeEventListener("visibilitychange",h); } },{once:true});
-  location.href="heromts://";
+  // 안드로이드 크롬은 사용자 정의 주소(heromts://)를 막아서, 패키지 이름으로 앱 실행(intent) — 실패 시 플레이스토어(거기서 '열기')
+  const PKG="com.kiwoom.heromts";
+  location.href=/Android/i.test(navigator.userAgent)
+    ? "intent:#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package="+PKG
+      +";S.browser_fallback_url="+encodeURIComponent("https://play.google.com/store/apps/details?id="+PKG)+";end"
+    : "heromts://";
   setTimeout(()=>{ if(!document.hidden&&Date.now()-t0<2500) kwToast("영웅문S#이 열리지 않았어요. 앱이 설치돼 있는지 확인하세요 (코드 "+code+")"); },1800);
 }
 function openDetail(p){
