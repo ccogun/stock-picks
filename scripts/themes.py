@@ -53,48 +53,88 @@ def _get(url: str) -> str:
     return r.text
 
 
-def _pct(s: str) -> float | None:
-    m = re.search(r"([+-]?\d+(?:\.\d+)?)\s*%", s)
-    return float(m.group(1)) if m else None
+def _json(url: str):
+    r = requests.get(url, headers={**UA, "Referer": "https://m.stock.naver.com/"}, timeout=20)
+    r.raise_for_status()
+    return r.json()
 
 
-def fetch_theme_list(max_pages: int = 10) -> list[dict]:
-    out, seen = [], set()
+def _list_in(j) -> list[dict]:
+    """응답에서 가장 큰 dict 목록을 찾는다(키 이름이 바뀌어도 동작하도록)."""
+    if isinstance(j, list):
+        return [x for x in j if isinstance(x, dict)]
+    best = []
+    if isinstance(j, dict):
+        for v in j.values():
+            cand = _list_in(v) if isinstance(v, (dict, list)) else []
+            if len(cand) > len(best):
+                best = cand
+    return best
+
+
+def _pick(d: dict, *keys, default=None):
+    low = {k.lower(): v for k, v in d.items()}
+    for k in keys:
+        if k.lower() in low and low[k.lower()] not in (None, ""):
+            return low[k.lower()]
+    return default
+
+
+def _f(v) -> float:
+    try:
+        return float(str(v).replace(",", "").replace("%", "").replace("+", ""))
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def fetch_theme_list(max_pages: int = 5) -> list[dict]:
+    """네이버 모바일 JSON: /api/stocks/theme?page=N&pageSize=100"""
+    out, seen, sample = [], set(), None
     for page in range(1, max_pages + 1):
-        html = _get(f"{BASE}/sise/theme.naver?&page={page}")
+        items = _list_in(_json(f"https://m.stock.naver.com/api/stocks/theme?page={page}&pageSize=100"))
+        sample = sample or (items[:2] if items else None)
         new = 0
-        for tr in re.split(r"<tr[ >]", html):
-            m = re.search(r"sise_group_detail\.naver\?type=theme&(?:amp;)?no=(\d+)\"[^>]*>([^<]+)</a>", tr)
-            if not m or m.group(1) in seen:
+        for it in items:
+            no = str(_pick(it, "no", "themeNo", "groupNo", "id", "code", default=""))
+            name = _pick(it, "name", "themeName", "groupName")
+            if not no or not name or no in seen:
                 continue
-            seen.add(m.group(1))
-            pcts = re.findall(r"([+-]?\d+\.\d+)\s*%", tr)
-            nums = [int(x) for x in re.findall(r"<td class=\"number[^\"]*\"[^>]*>\s*(\d+)\s*</td>", tr)]
-            leaders = re.findall(r"/item/main\.naver\?code=(\d{6})\"[^>]*>([^<]+)</a>", tr)
-            out.append({"no": m.group(1), "name": m.group(2).strip(),
-                        "chg": float(pcts[0]) if pcts else 0.0, "chg3": float(pcts[1]) if len(pcts) > 1 else 0.0,
-                        "up": nums[0] if len(nums) > 0 else 0, "flat": nums[1] if len(nums) > 1 else 0,
-                        "down": nums[2] if len(nums) > 2 else 0,
-                        "leaders": [{"code": c, "name": n.strip()} for c, n in leaders[:2]]})
+            seen.add(no)
+            out.append({"no": no, "name": str(name).strip(),
+                        "chg": _f(_pick(it, "changeRate", "fluctuationsRatio", "fluctuationRate", "rate", default=0)),
+                        "chg3": _f(_pick(it, "changeRate3Days", "threeDaysChangeRate", "recent3DaysChangeRate",
+                                         "threeDayRate", default=0)),
+                        "up": int(_f(_pick(it, "riseCount", "upCount", "risingCount", "increaseCount", default=0))),
+                        "flat": int(_f(_pick(it, "steadyCount", "unchangedCount", "flatCount", default=0))),
+                        "down": int(_f(_pick(it, "fallCount", "downCount", "fallingCount", "decreaseCount", default=0)))})
             new += 1
-        if not new:
+        if not new or len(items) < 100:
             break
+    save_json(DATA / "themes_debug.json", {"listSample": sample})
     return out
 
 
 def fetch_theme_detail(no: str) -> dict:
-    html = _get(f"{BASE}/sise/sise_group_detail.naver?type=theme&no={no}")
-    stocks, seen = [], set()
-    for tr in re.split(r"<tr[ >]", html):
-        m = re.search(r"/item/main\.naver\?code=(\d{6})\"[^>]*>([^<]+)</a>", tr)
-        if not m or m.group(1) in seen:
+    j = _json(f"https://m.stock.naver.com/api/stocks/theme/{no}?page=1&pageSize=100")
+    items = _list_in(j)
+    stocks = []
+    for it in items:
+        code = str(_pick(it, "itemCode", "stockCode", "code", "reutersCode", default=""))[:6]
+        if not re.fullmatch(r"\d{6}", code):
             continue
-        seen.add(m.group(1))
-        why = re.search(r"<p class=\"info_txt\">(.*?)</p>", tr, re.S)
-        stocks.append({"code": m.group(1), "name": m.group(2).strip(), "chg": _pct(tr),
-                       "why": re.sub(r"<[^>]+>|\s+", " ", why.group(1)).strip()[:120] if why else ""})
-    desc = re.search(r"class=\"info_txt\"[^>]*>(.*?)</", html, re.S)
-    return {"stocks": stocks, "desc": re.sub(r"<[^>]+>|\s+", " ", desc.group(1)).strip()[:200] if desc else ""}
+        ex = _pick(it, "stockExchangeType", "stockExchangeName", "marketType", default="")
+        ex = str(ex.get("nameEng") or ex.get("code") or ex.get("name") if isinstance(ex, dict) else ex).upper()
+        mk = "KOSDAQ" if ("KOSDAQ" in ex or ex in ("KQ", "코스닥")) else ("KOSPI" if ("KOSPI" in ex or ex in ("KS", "코스피")) else None)
+        stocks.append({"code": code, "name": str(_pick(it, "stockName", "itemName", "name", default=code)),
+                       "chg": _f(_pick(it, "fluctuationsRatio", "changeRate", default=0)), "mk": mk,
+                       "why": str(_pick(it, "themeReason", "reason", "description", "info", default=""))[:120]})
+    info = j.get("groupInfo") or j.get("themeInfo") or {} if isinstance(j, dict) else {}
+    desc = str(_pick(info, "description", "desc", "info", default="")) if isinstance(info, dict) else ""
+    dbg = load_json(DATA / "themes_debug.json", {})
+    if "detailSample" not in dbg:
+        dbg["detailSample"] = {"keys": list(j.keys()) if isinstance(j, dict) else None, "items": items[:2]}
+        save_json(DATA / "themes_debug.json", dbg)
+    return {"stocks": stocks, "desc": desc[:200]}
 
 
 def krx_markets() -> dict[str, str]:
@@ -130,7 +170,6 @@ def build(now) -> tuple[list[dict], dict]:
     """강한 테마 + 예정 이슈 테마 선정, 테마별 종목 목록까지. (themes, 종목코드→시장)"""
     allt = fetch_theme_list()
     if not allt:
-        save_json(DATA / "themes_debug.json", {"at": now.isoformat(), "html": _get(f"{BASE}/sise/theme.naver")[:20000]})
         return [], {}
     notes = load_json(NOTES_FILE, {})
     watch = _active_watch(now)
@@ -142,7 +181,7 @@ def build(now) -> tuple[list[dict], dict]:
             t["watch"] = {"why": w.get("why", ""), "until": w.get("until"), "kind": w.get("kind")}
             if w.get("kind"):
                 t["kind"] = w["kind"]
-    hot = [t for t in allt if t["chg"] >= 2.0 and t["up"] >= max(2 * t["down"], 3)]
+    hot = [t for t in allt if t["chg"] >= 2.0 and (t["up"] + t["down"] == 0 or t["up"] >= max(2 * t["down"], 3))]
     hot = sorted(hot, key=lambda t: -t["score"])[:6]
     sel = hot + [t for t in allt if t.get("watch") and t not in hot][:6]
     with ThreadPoolExecutor(6) as ex:
@@ -170,7 +209,7 @@ def run(picks: list[dict], now, idx_data: dict, mkt_info: dict, regular: bool, f
     tick = {}
     for t in sel:
         for s in t.get("stocks", []):
-            m = mk_of.get(s["code"])
+            m = mk_of.get(s["code"]) or s.get("mk")
             if m:
                 s["market"] = m
                 s["ticker"] = s["code"] + (".KS" if m == "KOSPI" else ".KQ")
