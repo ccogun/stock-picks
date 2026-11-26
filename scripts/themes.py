@@ -271,7 +271,7 @@ def run(picks: list[dict], now, idx_data: dict, mkt_info: dict, regular: bool, f
                 if tag == "동반 순매도" or unsafe(fund.get(s["ticker"])):
                     continue
                 a = float(atr(df).iloc[-1])
-                stop = min(max(c - 1.5 * a, float(ma20.iloc[-1]) * 0.98), c * 0.95)
+                stop = min(max(c - 1.5 * a, c * 0.93), c * 0.97)   # 손절 -3% ~ -7%
                 cands.append({"t": t, "s": s, "c": c, "chg": chg, "rsi": r, "vr": vr, "flow": tag, "stop": stop,
                               "target": c + 2 * (c - stop), "df": df,
                               "score": t["score"] * 2 + min(vr, 4) * 3 + (5 if tag == "동반 순매수" else 0)
@@ -331,6 +331,14 @@ def run(picks: list[dict], now, idx_data: dict, mkt_info: dict, regular: bool, f
             added.append(f"{m}:{s['name']}(테마)")
             t.setdefault("picked", []).append(s["name"])
 
+    # 나중에 재료가 확인되면 진행 중 테마 추천의 '재료' 줄을 채운다
+    notes = load_json(NOTES_FILE, {})
+    for p in picks:
+        if p["method"] == "theme" and p["status"] == "active" and len(p.get("reasons", [])) > 1 \
+                and "재료 확인 전" in p["reasons"][1]:
+            w = (notes.get((p.get("features") or {}).get("theme")) or {}).get("why")
+            if w:
+                p["reasons"][1] = p["reasons"][1].replace("재료 확인 전 — 예약 작업이 뉴스로 보강", w)
     for t in sel:
         t.pop("stocks", None)
         t.pop("codes", None)
