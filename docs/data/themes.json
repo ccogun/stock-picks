@@ -1,7 +1,411 @@
 {
- "updated": "2026-11-26T09:48+09:00",
+ "updated": "2026-11-26T09:51+09:00",
  "mode": "실전",
  "max": 2,
- "themes": [],
- "candidates": []
+ "themes": [
+  {
+   "no": "584",
+   "name": "스페이스X(SpaceX)",
+   "chg": 9.74,
+   "chg3": 0.0,
+   "up": 13,
+   "flat": 0,
+   "down": 1,
+   "kind": "산업·기술",
+   "score": 9.74,
+   "desc": "",
+   "hot": true,
+   "top": [
+    {
+     "name": "미래에셋벤처투자",
+     "ticker": "100790.KQ",
+     "market": "KOSDAQ",
+     "chg": 26.73
+    },
+    {
+     "name": "와이제이링크",
+     "ticker": "209640.KQ",
+     "market": "KOSDAQ",
+     "chg": 20.76
+    },
+    {
+     "name": "센서뷰",
+     "ticker": "321370.KQ",
+     "market": "KOSDAQ",
+     "chg": 20.38
+    },
+    {
+     "name": "스피어",
+     "ticker": "347700.KQ",
+     "market": "KOSDAQ",
+     "chg": 18.38
+    },
+    {
+     "name": "에이치브이엠",
+     "ticker": "295310.KQ",
+     "market": "KOSDAQ",
+     "chg": 18.36
+    },
+    {
+     "name": "아주IB투자",
+     "ticker": "027360.KQ",
+     "market": "KOSDAQ",
+     "chg": 15.62
+    }
+   ],
+   "count": 14,
+   "leaders": [
+    {
+     "name": "미래에셋벤처투자",
+     "chg": 26.73
+    },
+    {
+     "name": "와이제이링크",
+     "chg": 20.76
+    }
+   ],
+   "picked": [
+    "세아베스틸지주"
+   ]
+  },
+  {
+   "no": "200",
+   "name": "우주항공산업(누리호/인공위성 등)",
+   "chg": 5.62,
+   "chg3": 0.0,
+   "up": 36,
+   "flat": 2,
+   "down": 3,
+   "kind": "문화·소비",
+   "score": 5.62,
+   "desc": "",
+   "hot": true,
+   "top": [
+    {
+     "name": "LK삼양",
+     "ticker": "225190.KQ",
+     "market": "KOSDAQ",
+     "chg": 30.67
+    },
+    {
+     "name": "센서뷰",
+     "ticker": "321370.KQ",
+     "market": "KOSDAQ",
+     "chg": 20.38
+    },
+    {
+     "name": "스피어",
+     "ticker": "347700.KQ",
+     "market": "KOSDAQ",
+     "chg": 18.38
+    },
+    {
+     "name": "에이치브이엠",
+     "ticker": "295310.KQ",
+     "market": "KOSDAQ",
+     "chg": 18.36
+    },
+    {
+     "name": "알멕",
+     "ticker": "354320.KQ",
+     "market": "KOSDAQ",
+     "chg": 17.56
+    },
+    {
+     "name": "AP위성",
+     "ticker": "211270.KQ",
+     "market": "KOSDAQ",
+     "chg": 16.16
+    }
+   ],
+   "count": 39,
+   "leaders": [
+    {
+     "name": "LK삼양",
+     "chg": 30.67
+    },
+    {
+     "name": "센서뷰",
+     "chg": 20.38
+    }
+   ],
+   "picked": [
+    "쎄트렉아이"
+   ]
+  },
+  {
+   "no": "405",
+   "name": "MLCC(적층세라믹콘덴서)",
+   "chg": 5.15,
+   "chg3": 0.0,
+   "up": 11,
+   "flat": 0,
+   "down": 0,
+   "kind": "산업·기술",
+   "score": 5.15,
+   "desc": "",
+   "hot": true,
+   "top": [
+    {
+     "name": "대주전자재료",
+     "ticker": "078600.KQ",
+     "market": "KOSDAQ",
+     "chg": 21.33
+    },
+    {
+     "name": "아모텍",
+     "ticker": "052710.KQ",
+     "market": "KOSDAQ",
+     "chg": 9.91
+    },
+    {
+     "name": "삼화콘덴서",
+     "ticker": "001820.KS",
+     "market": "KOSPI",
+     "chg": 9.21
+    },
+    {
+     "name": "삼성전기",
+     "ticker": "009150.KS",
+     "market": "KOSPI",
+     "chg": 8.29
+    },
+    {
+     "name": "코스모신소재",
+     "ticker": "005070.KS",
+     "market": "KOSPI",
+     "chg": 6.72
+    },
+    {
+     "name": "코칩",
+     "ticker": "126730.KQ",
+     "market": "KOSDAQ",
+     "chg": 6.64
+    }
+   ],
+   "count": 11,
+   "leaders": [
+    {
+     "name": "대주전자재료",
+     "chg": 21.33
+    },
+    {
+     "name": "아모텍",
+     "chg": 9.91
+    }
+   ]
+  },
+  {
+   "no": "608",
+   "name": "반도체 기판(FC-BGA/PCB/MLB 등)",
+   "chg": 4.55,
+   "chg3": 0.0,
+   "up": 12,
+   "flat": 0,
+   "down": 2,
+   "kind": "산업·기술",
+   "score": 4.55,
+   "desc": "",
+   "hot": true,
+   "top": [
+    {
+     "name": "태성",
+     "ticker": "323280.KQ",
+     "market": "KOSDAQ",
+     "chg": 15.9
+    },
+    {
+     "name": "심텍홀딩스",
+     "ticker": "036710.KQ",
+     "market": "KOSDAQ",
+     "chg": 15.36
+    },
+    {
+     "name": "덕산하이메탈",
+     "ticker": "077360.KQ",
+     "market": "KOSDAQ",
+     "chg": 13.55
+    },
+    {
+     "name": "다원넥스뷰",
+     "ticker": "323350.KQ",
+     "market": "KOSDAQ",
+     "chg": 9.75
+    },
+    {
+     "name": "티엘비",
+     "ticker": "356860.KQ",
+     "market": "KOSDAQ",
+     "chg": 8.53
+    },
+    {
+     "name": "삼성전기",
+     "ticker": "009150.KS",
+     "market": "KOSPI",
+     "chg": 8.29
+    }
+   ],
+   "count": 14,
+   "leaders": [
+    {
+     "name": "태성",
+     "chg": 15.9
+    },
+    {
+     "name": "심텍홀딩스",
+     "chg": 15.36
+    }
+   ]
+  },
+  {
+   "no": "559",
+   "name": "고체산화물 연료전지(SOFC)",
+   "chg": 4.3,
+   "chg3": 0.0,
+   "up": 15,
+   "flat": 0,
+   "down": 0,
+   "kind": "산업·기술",
+   "score": 4.3,
+   "desc": "",
+   "hot": true,
+   "top": [
+    {
+     "name": "엘티씨",
+     "ticker": "170920.KQ",
+     "market": "KOSDAQ",
+     "chg": 12.03
+    },
+    {
+     "name": "코세스",
+     "ticker": "089890.KQ",
+     "market": "KOSDAQ",
+     "chg": 9.29
+    },
+    {
+     "name": "비나텍",
+     "ticker": "126340.KQ",
+     "market": "KOSDAQ",
+     "chg": 9.12
+    },
+    {
+     "name": "금양그린파워",
+     "ticker": "282720.KQ",
+     "market": "KOSDAQ",
+     "chg": 8.78
+    },
+    {
+     "name": "한선엔지니어링",
+     "ticker": "452280.KQ",
+     "market": "KOSDAQ",
+     "chg": 8.24
+    },
+    {
+     "name": "비에이치아이",
+     "ticker": "083650.KQ",
+     "market": "KOSDAQ",
+     "chg": 7.61
+    }
+   ],
+   "count": 15,
+   "leaders": [
+    {
+     "name": "엘티씨",
+     "chg": 12.03
+    },
+    {
+     "name": "코세스",
+     "chg": 9.29
+    }
+   ]
+  },
+  {
+   "no": "481",
+   "name": "마켓컬리(kurly)",
+   "chg": 4.18,
+   "chg3": 0.0,
+   "up": 10,
+   "flat": 0,
+   "down": 0,
+   "kind": "산업·기술",
+   "score": 4.18,
+   "desc": "",
+   "hot": true,
+   "top": [
+    {
+     "name": "미래에셋벤처투자",
+     "ticker": "100790.KQ",
+     "market": "KOSDAQ",
+     "chg": 26.73
+    },
+    {
+     "name": "DSC인베스트먼트",
+     "ticker": "241520.KQ",
+     "market": "KOSDAQ",
+     "chg": 10.71
+    },
+    {
+     "name": "SK네트웍스",
+     "ticker": "001740.KS",
+     "market": "KOSPI",
+     "chg": 3.81
+    },
+    {
+     "name": "지어소프트",
+     "ticker": "051160.KQ",
+     "market": "KOSDAQ",
+     "chg": 3.73
+    },
+    {
+     "name": "케이씨피드",
+     "ticker": "025880.KQ",
+     "market": "KOSDAQ",
+     "chg": 2.55
+    },
+    {
+     "name": "흥국에프엔비",
+     "ticker": "189980.KQ",
+     "market": "KOSDAQ",
+     "chg": 0.97
+    }
+   ],
+   "count": 10,
+   "leaders": [
+    {
+     "name": "미래에셋벤처투자",
+     "chg": 26.73
+    },
+    {
+     "name": "DSC인베스트먼트",
+     "chg": 10.71
+    }
+   ]
+  }
+ ],
+ "candidates": [
+  {
+   "name": "세아베스틸지주",
+   "theme": "스페이스X(SpaceX)",
+   "chg": 5.3,
+   "score": 28.6
+  },
+  {
+   "name": "쎄트렉아이",
+   "theme": "우주항공산업(누리호/인공위성 등)",
+   "chg": 9.7,
+   "score": 23.2
+  },
+  {
+   "name": "세아베스틸지주",
+   "theme": "우주항공산업(누리호/인공위성 등)",
+   "chg": 5.3,
+   "score": 20.4
+  },
+  {
+   "name": "다원넥스뷰",
+   "theme": "반도체 기판(FC-BGA/PCB/MLB 등)",
+   "chg": 9.7,
+   "score": 15.4
+  }
+ ]
 }

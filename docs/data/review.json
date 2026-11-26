@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T09:49+09:00",
+ "updated": "2026-11-26T09:52+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
   "combined": {
@@ -8,7 +8,7 @@
   },
   "theme": {
    "n": 0,
-   "open": 0
+   "open": 2
   },
   "investor": {
    "n": 1,
@@ -51,7 +51,7 @@
    },
    "theme": {
     "n": 0,
-    "open": 0
+    "open": 1
    },
    "investor": {
     "n": 0,
@@ -81,7 +81,7 @@
    },
    "theme": {
     "n": 0,
-    "open": 0
+    "open": 1
    },
    "investor": {
     "n": 1,
@@ -238,7 +238,7 @@
  "byRegime": {
   "하락": {
    "n": 6,
-   "open": 29,
+   "open": 31,
    "hit": 0.0,
    "avg": -11.34,
    "best": -6.35,
@@ -254,7 +254,16 @@
   }
  },
  "byOverlap": {},
- "byThemeKind": {},
+ "byThemeKind": {
+  "산업·기술": {
+   "n": 0,
+   "open": 1
+  },
+  "문화·소비": {
+   "n": 0,
+   "open": 1
+  }
+ },
  "byStyle": {
   "수급": {
    "n": 0,
@@ -284,7 +293,7 @@
  "byFlow": {
   "한쪽 순매수": {
    "n": 0,
-   "open": 7
+   "open": 9
   }
  },
  "stopOuts": 8,

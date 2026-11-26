@@ -814,5 +814,18 @@
    "NASDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-26T09:51+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ",
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "KOSPI:세아베스틸지주(테마)",
+   "KOSDAQ:쎄트렉아이(테마)"
+  ]
  }
 ]

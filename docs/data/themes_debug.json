@@ -1,0 +1,146 @@
+{
+ "listSample": [
+  {
+   "no": 584,
+   "name": "스페이스X(SpaceX)",
+   "totalCount": 14,
+   "changeRate": "9.74",
+   "riseCount": 13,
+   "fallCount": 1,
+   "steadyCount": 0
+  },
+  {
+   "no": 200,
+   "name": "우주항공산업(누리호/인공위성 등)",
+   "totalCount": 41,
+   "changeRate": "5.62",
+   "riseCount": 36,
+   "fallCount": 3,
+   "steadyCount": 2
+  }
+ ],
+ "detailSample": {
+  "keys": [
+   "stockListSortType",
+   "stocks",
+   "groupInfo",
+   "themeDescription",
+   "themeItemInfoMap",
+   "totalCount",
+   "page",
+   "pageSize",
+   "localOpenTimeDesc",
+   "marketStatus"
+  ],
+  "items": [
+   {
+    "stockType": "domestic",
+    "stockEndType": "stock",
+    "itemCode": "100790",
+    "reutersCode": "100790",
+    "stockName": "미래에셋벤처투자",
+    "sosok": "1",
+    "closePrice": "19,250",
+    "compareToPreviousClosePrice": "3,810",
+    "compareToPreviousPrice": {
+     "code": "2",
+     "text": "상승",
+     "name": "RISING"
+    },
+    "fluctuationsRatio": "24.68",
+    "accumulatedTradingVolume": "5,089,719",
+    "accumulatedTradingValue": "92,861",
+    "localTradedAt": "2026-11-26T09:52:14+09:00",
+    "marketValue": "10,226",
+    "nav": "N/A",
+    "threeMonthEarningRate": "N/A",
+    "marketStatus": "OPEN",
+    "tradeStopType": {
+     "code": "1",
+     "text": "운영.Trading",
+     "name": "TRADING"
+    },
+    "tradableStatus": "tradable",
+    "tradableStatusCode": "ok",
+    "tradableStatusUpdatedAt": "2026-11-26T08:02:23.188+09:00",
+    "stockExchangeType": {
+     "code": "KQ",
+     "zoneId": "Asia/Seoul",
+     "nationType": "KOR",
+     "delayTime": 0,
+     "startTime": "0900",
+     "endTime": "1530",
+     "closePriceSendTime": "1630",
+     "nameKor": "코스닥",
+     "nameEng": "KOSDAQ",
+     "stockType": "domestic",
+     "nationCode": "KOR",
+     "nationName": "대한민국",
+     "name": "KOSDAQ"
+    },
+    "endUrl": "https://m.stock.naver.com/domestic/stock/100790",
+    "newPcUrl": "https://stock.naver.com/domestic/stock/100790",
+    "stockMiniImageChart": "https://financial-vn.pstatic.net/chart/mobile/mini/krx/100790_interest.png",
+    "closePriceRaw": "19250",
+    "compareToPreviousClosePriceRaw": "3810",
+    "accumulatedTradingVolumeRaw": "5089719",
+    "accumulatedTradingValueRaw": "92861000000",
+    "marketValueRaw": "1022571126500"
+   },
+   {
+    "stockType": "domestic",
+    "stockEndType": "stock",
+    "itemCode": "241520",
+    "reutersCode": "241520",
+    "stockName": "DSC인베스트먼트",
+    "sosok": "1",
+    "closePrice": "6,200",
+    "compareToPreviousClosePrice": "460",
+    "compareToPreviousPrice": {
+     "code": "2",
+     "text": "상승",
+     "name": "RISING"
+    },
+    "fluctuationsRatio": "8.01",
+    "accumulatedTradingVolume": "135,183",
+    "accumulatedTradingValue": "818",
+    "localTradedAt": "2026-11-26T09:52:16+09:00",
+    "marketValue": "1,649",
+    "nav": "N/A",
+    "threeMonthEarningRate": "N/A",
+    "marketStatus": "OPEN",
+    "tradeStopType": {
+     "code": "1",
+     "text": "운영.Trading",
+     "name": "TRADING"
+    },
+    "tradableStatus": "tradable",
+    "tradableStatusCode": "ok",
+    "tradableStatusUpdatedAt": "2026-11-26T08:02:39.554+09:00",
+    "stockExchangeType": {
+     "code": "KQ",
+     "zoneId": "Asia/Seoul",
+     "nationType": "KOR",
+     "delayTime": 0,
+     "startTime": "0900",
+     "endTime": "1530",
+     "closePriceSendTime": "1630",
+     "nameKor": "코스닥",
+     "nameEng": "KOSDAQ",
+     "stockType": "domestic",
+     "nationCode": "KOR",
+     "nationName": "대한민국",
+     "name": "KOSDAQ"
+    },
+    "endUrl": "https://m.stock.naver.com/domestic/stock/241520",
+    "newPcUrl": "https://stock.naver.com/domestic/stock/241520",
+    "stockMiniImageChart": "https://financial-vn.pstatic.net/chart/mobile/mini/krx/241520_interest.png",
+    "closePriceRaw": "6200",
+    "compareToPreviousClosePriceRaw": "460",
+    "accumulatedTradingVolumeRaw": "135183",
+    "accumulatedTradingValueRaw": "818000000",
+    "marketValueRaw": "164920000000"
+   }
+  ]
+ }
+}
