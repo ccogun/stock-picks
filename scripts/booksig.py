@@ -32,9 +32,24 @@ LABEL = {
     "engulfing": "하락 뒤 상승장악형 캔들",
     "piercing": "하락 뒤 관통형 캔들",
     "morning_star": "하락 뒤 샛별형 캔들",
+    # 『추세 추종 투자전략 백서』·『차트북』(오닐·미너비니·와인스타인·라이언·다바스)
+    "trend_template": "미너비니 2단계 추세 템플릿 진입(주가>50>150>200일선, 200일선 상승, 52주 고가 25% 이내)",
+    "tt_breakout": "추세 템플릿 + 거래량 동반 20일 고점(피벗) 돌파",
+    "vcp": "변동성 축소 패턴(VCP): 조정 폭·거래량이 점점 줄어든 뒤 거래량 동반 돌파",
+    "cup_handle": "컵-핸들: 12~35% 조정 후 전고점 회복, 얕은 핸들 뒤 거래량 동반 돌파",
+    "flat_base": "플랫 베이스: 상승 후 5주 이상 15% 이내 횡보, 거래량 동반 돌파",
+    "high_tight_flag": "하이 타이트 플래그: 8주 내 90%↑ 급등 후 25% 이내 깃발, 신고가 돌파",
+    "stage2": "와인스타인 2단계 진입: 30주(150일)선 상향 돌파 + 이평선 상승 전환 + 거래량",
+    "ma100": "100일선 상향 돌파(추세 추종 백서)",
+    "high52": "52주 신고가 + 거래량 증가(오닐 N)",
+    "pocket_pivot": "포켓 피벗: 상승일 거래량이 최근 10일 하락일 최대 거래량 초과, 50일선 위",
+    "darvas": "다바스 박스 상단 돌파(52주 고가 근처, 거래량 동반)",
+    "psych": "투자심리선 25% 이하에서 회복(차트분석 무작정 따라하기)",
+    "weekly_bottom": "주봉 바닥권(체리형부): 큰 하락 뒤 3개월 신저가 없음 + 거래량 증가 + 저점 상승",
 }
 TREND_RULES = {"granville1", "golden", "align", "squeeze", "sar", "cci0", "rsi50", "dmi", "ichimoku",
-               "double_bottom", "gap"}
+               "double_bottom", "gap", "trend_template", "tt_breakout", "vcp", "cup_handle", "flat_base",
+               "high_tight_flag", "stage2", "ma100", "high52", "pocket_pivot", "darvas"}
 
 
 def _cross_up(a: pd.Series, b) -> np.ndarray:
@@ -191,6 +206,68 @@ def signals(df: pd.DataFrame) -> dict[str, np.ndarray]:
     S["morning_star"] = (down.shift(1, fill_value=False) & (c2 < o2) & small1
                          & (pd.concat([o.shift(1), c.shift(1)], axis=1).max(axis=1) < c2)
                          & (c > o) & (c > (o2 + c2) / 2)).to_numpy()
+
+    # ── 추세 추종(오닐·미너비니·와인스타인·다바스) ──
+    m50, m100, m150, m200 = (c.rolling(k).mean() for k in (50, 100, 150, 200))
+    hi52, lo52 = h.rolling(250).max(), l.rolling(250).min()
+    hi20p = h.shift(1).rolling(20).max()
+    volx = v > 1.5 * vavg
+    tt = ((c > m50) & (m50 > m150) & (m150 > m200) & (m200 > m200.shift(20))
+          & (c >= 1.3 * lo52) & (c >= 0.75 * hi52))
+    S["trend_template"] = first(tt)
+    brk20 = (c > hi20p) & (c.shift(1) <= hi20p.shift(1))
+    S["tt_breakout"] = (tt & brk20 & volx).to_numpy()
+
+    def rng(a, b):   # t-a ~ t-b (b<a) 구간 고저폭
+        return h.shift(b).rolling(a - b).max() / l.shift(b).rolling(a - b).min() - 1
+    r1, r2, r3 = rng(60, 40), rng(40, 20), rng(20, 1)
+    dry = v.shift(1).rolling(10).mean() < 0.8 * v.shift(1).rolling(50).mean()
+    base_hi = h.shift(1).rolling(20).max()
+    S["vcp"] = (tt.shift(1, fill_value=False) & (r1 > r2) & (r2 > r3) & (r3 < 0.12) & dry
+                & (c > base_hi) & (c.shift(1) <= base_hi.shift(1)) & (v > 1.4 * vavg)).to_numpy()
+
+    # 컵-핸들: 30~150일 전 고점 P, 그 뒤 12~35% 조정, 최근 핸들(10일) 12% 이내, 돌파
+    P = h.shift(30).rolling(120).max()
+    trough = l.shift(10).rolling(110).min()
+    depth = 1 - trough / P
+    hh = h.shift(1).rolling(10).max()
+    hl = l.shift(1).rolling(10).min()
+    handle_ok = (hh >= 0.9 * P) & (hl >= hh * 0.88) & (v.shift(1).rolling(10).mean() < vavg.shift(10))
+    S["cup_handle"] = ((depth >= 0.12) & (depth <= 0.35) & handle_ok & (c > hh) & (c.shift(1) <= hh.shift(1))
+                       & (c >= 0.97 * P) & volx).to_numpy()
+
+    base25 = h.shift(1).rolling(25).max() / l.shift(1).rolling(25).min() - 1
+    prior_up = c.shift(26) > c.shift(90) * 1.2
+    b_hi = h.shift(1).rolling(25).max()
+    S["flat_base"] = ((base25 <= 0.15) & prior_up & (c > b_hi) & (c.shift(1) <= b_hi.shift(1)) & volx).to_numpy()
+
+    surge = c.shift(15) / l.shift(15).rolling(40).min() - 1
+    flag = h.shift(1).rolling(15).max() / l.shift(1).rolling(15).min() - 1
+    f_hi = h.shift(1).rolling(15).max()
+    S["high_tight_flag"] = ((surge >= 0.9) & (flag <= 0.25) & (c > f_hi) & (c.shift(1) <= f_hi.shift(1))).to_numpy()
+
+    S["stage2"] = (_cross_up(c, m150) & (m150 > m150.shift(5)).to_numpy()
+                   & (m150.shift(5) <= m150.shift(25) * 1.01).to_numpy() & (v > 1.5 * vavg).to_numpy())
+    S["ma100"] = _cross_up(c, m100)
+    newhi = (c >= h.shift(1).rolling(250).max()) & (h.shift(1).rolling(20).max() < h.shift(1).rolling(250).max())
+    S["high52"] = (newhi & volx).to_numpy()
+
+    down_v = v.where(c < c.shift(1), 0).shift(1).rolling(10).max()
+    S["pocket_pivot"] = ((c > c.shift(1)) & (v > down_v) & (c > m50) & (m50 > m50.shift(5))
+                         & (c / m50 < 1.08)).to_numpy()
+
+    top = h.shift(1).rolling(10).max()
+    top_age_ok = h.shift(1).rolling(3).max() < top           # 상단이 최근 3일 안 깨짐(박스 형성)
+    S["darvas"] = ((c > top) & (c.shift(1) <= top.shift(1)) & top_age_ok & (c >= 0.9 * hi52) & volx).to_numpy()
+
+    psy = (c > c.shift(1)).rolling(12).mean()
+    S["psych"] = _cross_up(psy, 0.26) & (psy.shift(1).rolling(5).min() <= 0.25).to_numpy()
+
+    big_drop = l.rolling(120).min() <= h.rolling(500, min_periods=250).max() * 0.6
+    no_new_low = l.rolling(65).min() > l.shift(65).rolling(120).min() * 0.98
+    higher_low = l.rolling(20).min() > l.shift(20).rolling(45).min()
+    vol_up = v.rolling(20).mean() > 1.2 * v.shift(20).rolling(60).mean()
+    S["weekly_bottom"] = first(big_drop & no_new_low & higher_low & vol_up & (c > m50))
 
     for k_ in S:
         S[k_] = np.nan_to_num(np.asarray(S[k_], dtype=float)).astype(bool)

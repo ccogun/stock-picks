@@ -17,6 +17,9 @@ import numpy as np
 sys.path.insert(0, __file__.rsplit("/", 1)[0])
 from booksig import LABEL, TREND_RULES, signals  # noqa: E402
 from patterns import DATA, KR, KST, US  # noqa: E402
+from common import load_json  # noqa: E402
+
+US_SET: set = set()
 
 GAP = 10
 MIN_N, MIN_EX, MIN_WIN = 60, 1.0, 2.0
@@ -54,12 +57,31 @@ def summarize(evs: list[dict], base_win: float, split) -> dict:
             "early": round(float(np.mean(early)) * 100, 2) if early else None,
             "late": round(float(np.mean(late)) * 100, 2) if late else None,
             "nEarly": len(early), "nLate": len(late),
-            "worst20": round(float(np.percentile(r20, 10)) * 100, 1)}
+            "worst20": round(float(np.percentile(r20, 10)) * 100, 1),
+            **_h40(evs, split)}
+
+
+def _h40(evs, split) -> dict:
+    e = [x for x in evs if x.get("ex40") is not None]
+    if not e:
+        return {}
+    ex = np.array([x["ex40"] for x in e])
+    r = np.array([x["r40"] for x in e])
+    early = [x["ex40"] for x in e if x["d"] < split]
+    late = [x["ex40"] for x in e if x["d"] >= split]
+    return {"excess40": round(ex.mean() * 100, 2), "win40": round((r > 0).mean() * 100, 1),
+            "early40": round(float(np.mean(early)) * 100, 2) if early else None,
+            "late40": round(float(np.mean(late)) * 100, 2) if late else None}
 
 
 def main() -> None:
-    names = {**US, **KR}
-    data = download(list(names))
+    # 검증 대상: 대형주 75종목 + 앱 감시 종목 전체(코스피200·코스닥150·S&P500·나스닥100)
+    uni = load_json(DATA / "universe.json", {}).get("markets", {})
+    us_set = set(US) | {t for m in ("SP500", "NASDAQ") for t, _ in uni.get(m, [])}
+    kr_set = set(KR) | {t for m in ("KOSPI", "KOSDAQ") for t, _ in uni.get(m, [])}
+    global US_SET
+    US_SET = us_set
+    data = download(sorted(us_set | kr_set))
     events: dict[str, list[dict]] = {}
     by_mkt: dict[str, dict[str, list]] = {"US": {}, "KR": {}}
     base_r20, base_win_n, base_n, dates = [], 0, 0, []
@@ -74,15 +96,18 @@ def main() -> None:
         r20 = np.full(n, np.nan)
         r10[:n - 11] = c[11:] / o[1:n - 10] - 1
         r20[:n - 21] = c[21:] / o[1:n - 20] - 1
+        r40 = np.full(n, np.nan)
+        r40[:n - 41] = c[41:] / o[1:n - 40] - 1
         valid = ~np.isnan(r20)
         valid[:130] = False                         # 지표가 안정된 뒤부터
         tb = float(np.nanmean(r20[valid]))          # 이 종목 평소 20일 수익
+        tb40 = float(np.nanmean(r40[valid & ~np.isnan(r40)]))
         base_r20.append(tb)
         base_win_n += int((r20[valid] > 0).sum())
         base_n += int(valid.sum())
         idx = df.index
         dates += [idx[130], idx[-21]]
-        mk = "US" if t in US else "KR"
+        mk = "US" if t in US_SET else "KR"
         for k, arr in S.items():
             last = -999
             for i in np.flatnonzero(arr & valid):
@@ -90,7 +115,9 @@ def main() -> None:
                     continue
                 last = i
                 e = {"t": t, "d": idx[i].strftime("%Y-%m-%d"), "r10": float(r10[i]), "r20": float(r20[i]),
-                     "ex20": float(r20[i] - tb)}
+                     "ex20": float(r20[i] - tb),
+                     "ex40": float(r40[i] - tb40) if not np.isnan(r40[i]) else None,
+                     "r40": float(r40[i]) if not np.isnan(r40[i]) else None}
                 events.setdefault(k, []).append(e)
                 by_mkt[mk].setdefault(k, []).append(e)
     base_win = base_win_n / max(base_n, 1) * 100
@@ -102,22 +129,29 @@ def main() -> None:
         methods.setdefault(k, {"n": 0, "label": LABEL[k]})
     adopted = []
     for k, m in methods.items():
-        ok = (k != "golden_fake" and m.get("n", 0) >= MIN_N and m["excess20"] >= MIN_EX
-              and m["winEdge"] >= MIN_WIN and (m["early"] or 0) > 0 and (m["late"] or 0) > 0)
+        ok20 = (m.get("n", 0) >= MIN_N and m["excess20"] >= MIN_EX
+                and m["winEdge"] >= MIN_WIN and (m["early"] or 0) > 0 and (m["late"] or 0) > 0)
+        # 추세 추종 기법은 오닐식 8주 보유 취지에 맞게 40일 성과로도 인정
+        ok40 = (k in TREND_RULES and m.get("n", 0) >= MIN_N and (m.get("excess40") or 0) >= 2 * MIN_EX
+                and (m.get("early40") or 0) > 0 and (m.get("late40") or 0) > 0 and m["winEdge"] >= 0)
+        ok = k != "golden_fake" and (ok20 or ok40)
+        m["by"] = "20일" if ok20 else ("40일" if ok40 else None)
         m["adopted"] = bool(ok)
         if ok:
             adopted.append(k)
     out = {"updated": datetime.now(KST).isoformat(timespec="minutes"), "tickers": len(data),
            "baseWin20": round(base_win, 1), "baseAvg20": round(float(np.mean(base_r20)) * 100, 2), "split": split,
-           "rule": f"표본 {MIN_N}건↑ · 종목 평소 대비 20일 초과수익 +{MIN_EX}%p↑ · 승률 +{MIN_WIN}%p↑ · 앞/뒤 3년 모두 플러스",
+           "rule": f"표본 {MIN_N}건↑ · 종목 평소 대비 20일 초과수익 +{MIN_EX}%p↑ · 승률 +{MIN_WIN}%p↑ · 앞/뒤 3년 모두 플러스"
+                   f" (추세 추종 기법은 40일 초과수익 +{2 * MIN_EX}%p↑·앞/뒤 플러스도 인정)",
            "adopted": sorted(adopted, key=lambda k: -methods[k]["excess20"]),
            "methods": dict(sorted(methods.items(), key=lambda kv: -(kv[1].get("excess20") or -99))),
            "byMarket": {mk: {k: summarize(v, base_win, split) for k, v in d.items()} for mk, d in by_mkt.items()}}
     (DATA / "book_compare.json").write_text(json.dumps(out, ensure_ascii=False, indent=1, default=float))
     print("평소 승률", round(base_win, 1), "채택:", out["adopted"])
     for k, m in out["methods"].items():
-        print(f"{k:14s} n={m.get('n')} ex20={m.get('excess20')} win={m.get('win20')} edge={m.get('winEdge')} "
-              f"early={m.get('early')} late={m.get('late')} {'✔' if m.get('adopted') else ''}")
+        print(f"{k:16s} n={m.get('n')} ex20={m.get('excess20')} win={m.get('win20')} edge={m.get('winEdge')} "
+              f"early={m.get('early')} late={m.get('late')} ex40={m.get('excess40')} e40={m.get('early40')}/"
+              f"{m.get('late40')} {'✔' + m['by'] if m.get('adopted') else ''}")
 
 
 if __name__ == "__main__":
