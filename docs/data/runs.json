@@ -857,5 +857,15 @@
    "KOSDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-26T10:29+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ"
+  ],
+  "added": [
+   "KOSDAQ:쎄트렉아이(테마 후보)"
+  ]
  }
 ]

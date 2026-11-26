@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T10:02+09:00",
+ "updated": "2026-11-26T10:30+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
   "combined": {
@@ -9,6 +9,10 @@
   "theme": {
    "n": 0,
    "open": 2
+  },
+  "theme_cand": {
+   "n": 0,
+   "open": 1
   },
   "investor": {
    "n": 1,
@@ -53,6 +57,10 @@
     "n": 0,
     "open": 1
    },
+   "theme_cand": {
+    "n": 0,
+    "open": 0
+   },
    "investor": {
     "n": 0,
     "open": 3
@@ -80,6 +88,10 @@
     "open": 0
    },
    "theme": {
+    "n": 0,
+    "open": 1
+   },
+   "theme_cand": {
     "n": 0,
     "open": 1
    },
@@ -121,6 +133,10 @@
     "n": 0,
     "open": 0
    },
+   "theme_cand": {
+    "n": 0,
+    "open": 0
+   },
    "investor": {
     "n": 0,
     "open": 6
@@ -148,6 +164,10 @@
     "open": 0
    },
    "theme": {
+    "n": 0,
+    "open": 0
+   },
+   "theme_cand": {
     "n": 0,
     "open": 0
    },
@@ -238,7 +258,7 @@
  "byRegime": {
   "하락": {
    "n": 6,
-   "open": 31,
+   "open": 32,
    "hit": 0.0,
    "avg": -11.34,
    "best": -6.35,
@@ -254,10 +274,20 @@
   }
  },
  "byOverlap": {},
+ "byThemeLasting": {
+  "하루짜리 테마": {
+   "n": 0,
+   "open": 2
+  },
+  "이어진 테마(3일 +)": {
+   "n": 0,
+   "open": 1
+  }
+ },
  "byThemeKind": {
   "산업·기술": {
    "n": 0,
-   "open": 2
+   "open": 3
   }
  },
  "byStyle": {
@@ -289,7 +319,7 @@
  "byFlow": {
   "한쪽 순매수": {
    "n": 0,
-   "open": 9
+   "open": 10
   }
  },
  "stopOuts": 8,
@@ -330,7 +360,7 @@
   "pullback_in_bear": false,
   "investor_stop": 0.08,
   "investor_target": 0.15,
-  "theme_max": 2
+  "theme_max": 3
  },
  "recentChanges": []
 }
