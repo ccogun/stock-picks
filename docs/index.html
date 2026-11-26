@@ -60,6 +60,7 @@
   .mkb-KOSPI{background:rgba(59,130,246,.15);color:#3b82f6}.mkb-KOSDAQ{background:rgba(139,124,246,.18);color:#8b7cf6}
   .mkb-SP500{background:rgba(34,197,94,.15);color:#16a34a}.mkb-NASDAQ{background:rgba(20,184,166,.15);color:#0d9488}
   .themerec{margin:4px 0 2px;display:flex;flex-wrap:wrap;gap:6px}.themerec span{font-size:13px;padding:2px 9px;border-radius:99px;border:1px solid var(--line)}.themerec span.main{font-weight:700;border-color:#ef4444;color:#ef4444}
+.name.kw{text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;cursor:pointer}
 details.cands{margin-top:18px;border-top:1px solid #ddd;padding-top:6px}details.cands>summary{cursor:pointer;font-weight:600;padding:10px 0;color:#555}
 </style>
 </head>
@@ -163,7 +164,9 @@ const counting=p=>(p.daysHeld||0)>=1;   // 추천일 다음 거래일 종가부�
 function card(p){
   const c=el("div","card");
   const top=el("div","row"); const left=el("div");
-  const nm=el("span","name",p.name); left.append(nm, mkb(p.market), el("span","tk",p.ticker));
+  const nm=el("span","name kw",p.name); nm.title="영웅문S#에서 열기";
+  nm.addEventListener("click",e=>{ e.stopPropagation(); openKiwoom(p); });
+  left.append(nm, mkb(p.market), el("span","tk",p.ticker));
   left.append(el("div","meta", METHOD[p.method]+" · "+p.recAt.replace("T"," ").slice(0,16)+" 추천 · "+price(p.recPrice,p.currency)));
   const right=el("div");
   if(p.entry==="pending"){ right.append(el("div","ret","진입 대기")); right.append(el("div","meta","다음 정규장 시가 기준")); }
@@ -500,8 +503,27 @@ function advice(p, base){
   return out;
 }
 
+// 키움 영웅문S# 열기: 종목별 화면으로 바로 가는 공개 링크가 없어서, 종목코드를 복사한 뒤 앱을 연다.
+function kwToast(msg){ let t=document.getElementById("kwtoast"); if(!t){ t=el("div"); t.id="kwtoast";
+    Object.assign(t.style,{position:"fixed",left:"50%",bottom:"28px",transform:"translateX(-50%)",background:"rgba(20,20,20,.92)",color:"#fff",
+      padding:"10px 14px",borderRadius:"10px",fontSize:"14px",zIndex:9999,maxWidth:"88%",textAlign:"center",lineHeight:"1.4"}); document.body.append(t); }
+  t.textContent=msg; t.style.display="block"; clearTimeout(t._h); t._h=setTimeout(()=>t.style.display="none",4000); }
+async function openKiwoom(p){
+  const code=p.currency==="KRW"?p.ticker.slice(0,6):p.ticker;
+  let copied=false;
+  try{ await navigator.clipboard.writeText(code); copied=true; }catch(e){
+    try{ const ta=document.createElement("textarea"); ta.value=code; document.body.append(ta); ta.select(); copied=document.execCommand("copy"); ta.remove(); }catch(_){} }
+  kwToast((copied?"종목코드 "+code+" 복사됨 · ":"종목코드 "+code+" · ")+"영웅문S#이 열리면 종목 검색창에 붙여넣으세요");
+  const t0=Date.now();
+  document.addEventListener("visibilitychange",function h(){ if(document.hidden){ document.removeEventListener("visibilitychange",h); } },{once:true});
+  location.href="heromts://";
+  setTimeout(()=>{ if(!document.hidden&&Date.now()-t0<2500) kwToast("영웅문S#이 열리지 않았어요. 앱이 설치돼 있는지 확인하세요 (코드 "+code+")"); },1800);
+}
 function openDetail(p){
   const {sh}=makeSheet(p.name);
+  { const b=el("button",null,"영웅문S#에서 주문하기 ↗");
+    Object.assign(b.style,{width:"100%",margin:"4px 0 10px",padding:"11px",borderRadius:"10px",border:"1px solid #e11d48",background:"#e11d48",color:"#fff",fontSize:"15px",fontWeight:"700"});
+    b.addEventListener("click",()=>openKiwoom(p)); sh.append(b); }
   { const d=el("div","meta"); d.append(mkb(p.market)); d.firstChild.style.marginLeft="0";
     d.append(document.createTextNode(" "+p.ticker+" · "+(METHOD[p.method]||p.method))); sh.append(d); }
   const info=el("div","card");
