@@ -1,7 +1,11 @@
 {
- "updated": "2026-11-26T09:15+09:00",
+ "updated": "2026-11-26T09:38+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
+  "combined": {
+   "n": 0,
+   "open": 0
+  },
   "investor": {
    "n": 1,
    "open": 13,
@@ -37,6 +41,10 @@
  },
  "byMarket": {
   "KOSPI": {
+   "combined": {
+    "n": 0,
+    "open": 0
+   },
    "investor": {
     "n": 0,
     "open": 3
@@ -59,6 +67,10 @@
    }
   },
   "KOSDAQ": {
+   "combined": {
+    "n": 0,
+    "open": 0
+   },
    "investor": {
     "n": 1,
     "open": 1,
@@ -89,6 +101,10 @@
    }
   },
   "SP500": {
+   "combined": {
+    "n": 0,
+    "open": 0
+   },
    "investor": {
     "n": 0,
     "open": 6
@@ -111,6 +127,10 @@
    }
   },
   "NASDAQ": {
+   "combined": {
+    "n": 0,
+    "open": 0
+   },
    "investor": {
     "n": 0,
     "open": 3
@@ -213,6 +233,7 @@
    "worst": -8.28
   }
  },
+ "byOverlap": {},
  "byStyle": {
   "수급": {
    "n": 0,
