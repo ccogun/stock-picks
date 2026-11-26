@@ -837,5 +837,17 @@
    "NASDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-26T09:57+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ",
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "KOSDAQ:다원넥스뷰(테마)"
+  ]
  }
 ]
