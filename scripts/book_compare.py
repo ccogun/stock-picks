@@ -94,7 +94,8 @@ def main() -> None:
                 events.setdefault(k, []).append(e)
                 by_mkt[mk].setdefault(k, []).append(e)
     base_win = base_win_n / max(base_n, 1) * 100
-    split = sorted(d.strftime("%Y-%m-%d") for d in dates)[len(dates) // 2]
+    alld = sorted(e["d"] for v in events.values() for e in v)
+    split = alld[len(alld) // 2]                   # 신호 날짜 기준 앞/뒤 절반
     methods = {k: {**summarize(v, base_win, split), "label": LABEL[k], "type": "추세" if k in TREND_RULES else "역추세"}
                for k, v in events.items()}
     for k in LABEL:
