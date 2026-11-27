@@ -142,7 +142,7 @@ function drawList(){
     n.append(document.createTextNode(" "+m.regime+" — "+m.note + (m.lastScan? " · 마지막 스캔 "+m.lastScan.replace("T"," "):""))); box.append(n); }
   // 가격 알림 (설정된 종목이 이 지역이면 맨 위에)
   fetch("data/alerts.json?t="+Date.now()).then(r=>r.ok?r.json():null).then(j=>{
-    const al=((j&&j.alerts)||[]).filter(a=>(state.tab==="US")===!/\.(KS|KQ)$/.test(a.ticker));
+    const al=((j&&j.alerts)||[]).filter(a=>a.kind!=="holding"&&(state.tab==="US")===!/\.(KS|KQ)$/.test(a.ticker));
     if(!al.length) return; const c=el("div","card"); c.append(el("b",null,"🔔 가격 알림"));
     al.forEach(a=>{ const d=el("div","meta"); const gap=a.last?((a.last/a.level-1)*100):null;
       d.textContent=(a.hitAt?"✅ 도달 ":"⏳ 대기 ")+a.name+" "+(a.dir==="above"?"≥ ":"≤ ")+a.level
@@ -473,6 +473,47 @@ function setHold(id,v){ const all=getHold(); if(v) all[id]=v; else delete all[id
   try{ localStorage.setItem(HKEY,JSON.stringify(all)); return true; }catch(e){ return false; } }
 let histMine=false;
 
+// ── 폰 알림용 동기화: 종목·매수가·날짜만 저장소 docs/data/holdings.json 에 올린다(토큰은 이 기기에만) ──
+const TKEY="sp_gh_token_v1", REPO="ccogun/stock-picks", HPATH="docs/data/holdings.json";
+function ghToken(){ try{ return localStorage.getItem(TKEY)||""; }catch(e){ return ""; } }
+function b64(str){ return btoa(unescape(encodeURIComponent(str))); }
+async function syncHoldings(){
+  const tk=ghToken(); if(!tk) return {ok:false, why:"no-token"};
+  const hold=getHold(); const items=Object.entries(hold).filter(([id,v])=>v&&v.price).map(([id,v])=>{
+    const p=state.picks.find(x=>x.id===id)||{}; return {id, ticker:p.ticker, name:p.name, market:p.market, currency:p.currency, price:+v.price, at:v.at}; })
+    .filter(x=>x.ticker);
+  const body=JSON.stringify({updated:new Date().toISOString().slice(0,16), items},null,1);
+  const api="https://api.github.com/repos/"+REPO+"/contents/"+HPATH, H={Authorization:"Bearer "+tk, Accept:"application/vnd.github+json"};
+  for(let i=0;i<2;i++){
+    let sha; const g=await fetch(api+"?ref=main",{headers:H}); if(g.status===401||g.status===403) return {ok:false, why:"auth"};
+    if(g.ok) sha=(await g.json()).sha;
+    const r=await fetch(api,{method:"PUT",headers:H,body:JSON.stringify({message:"holdings: 내 매수 동기화 (앱)",content:b64(body),sha,branch:"main"})});
+    if(r.ok){ try{ localStorage.setItem("sp_sync_at",new Date().toISOString()); }catch(e){} return {ok:true}; }
+    if(r.status===401||r.status===403) return {ok:false, why:"auth"};
+  }
+  return {ok:false, why:"fail"};
+}
+function openNotifySetup(after){
+  const {sh}=makeSheet("폰 알림 받기 설정");
+  const steps=["아래 버튼으로 GitHub 토큰 만들기 화면을 엽니다(로그인 필요).",
+    "Token name: 아무 이름 · Expiration: 1년(또는 No expiration)",
+    "Repository access: Only select repositories → ccogun/stock-picks",
+    "Permissions → Repository permissions → Contents: Read and write",
+    "Generate token → 나온 토큰(github_pat_…)을 복사해 아래에 붙여넣고 저장"];
+  const c=el("div","card"); steps.forEach((t,i)=>c.append(el("div",null,(i+1)+". "+t))); sh.append(c);
+  const go=el("a",null,"GitHub 토큰 만들기 열기 ↗"); go.href="https://github.com/settings/personal-access-tokens/new"; go.target="_blank";
+  Object.assign(go.style,{display:"block",textAlign:"center",padding:"11px",margin:"8px 0",borderRadius:"10px",border:"1px solid var(--line)"}); sh.append(go);
+  const inp=el("input"); inp.type="password"; inp.placeholder="github_pat_…"; inp.value=ghToken();
+  Object.assign(inp.style,{width:"100%",padding:"10px",borderRadius:"8px",border:"1px solid var(--line)",background:"var(--bg)",color:"var(--text)",fontSize:"15px",boxSizing:"border-box"});
+  const sv=el("button",null,"저장하고 연결 확인"); Object.assign(sv.style,{width:"100%",marginTop:"8px",padding:"11px",borderRadius:"10px",border:"none",background:"var(--accent)",color:"#fff",fontSize:"15px",fontWeight:"700"});
+  const m=el("div","meta"); sh.append(inp,sv,m);
+  sh.append(el("div","note","토큰은 이 폰 브라우저에만 저장됩니다. 저장소에는 산 종목·매수가·날짜만 올라가고(금액·수량 없음), 공개 저장소라 누구나 볼 수 있습니다. 매시간 확인해 할 일이 바뀌면(부분 손절·익절 등) 폰 알림이 갑니다."));
+  sv.addEventListener("click",async()=>{ try{ localStorage.setItem(TKEY,inp.value.trim()); }catch(e){}
+    m.textContent="연결 확인 중…"; const r=await syncHoldings();
+    m.textContent=r.ok?"✅ 연결됐어요. 산 종목을 올렸고, 이제 매시간 확인해 알림을 보냅니다.":r.why==="auth"?"❌ 토큰 권한을 확인하세요(stock-picks 저장소 · Contents 읽기/쓰기).":"❌ 올리지 못했어요. 잠시 후 다시 시도하세요.";
+    if(r.ok&&after) after(); });
+}
+
 function makeSheet(title){
   const bg=el("div","modal"); const sh=el("div","sheet"); bg.append(sh);
   const hd=el("div","sheet-head"); const x=el("button",null,"닫기");
@@ -605,7 +646,11 @@ function openDetail(p){
   // 저장 후 요약: 매수가·수익률만 크게
   const sum=el("div"); sum.style.display="none";
   const editor=el("div"); editor.append(lab,row,msg);
-  mine.append(sum,editor); sh.append(mine);
+  const nt=el("div","meta"); nt.style.marginTop="8px";
+  const drawNt=()=>{ nt.replaceChildren(); const a=el("a",null,ghToken()?"📱 폰 알림 연결됨 (설정)":"📱 폰 알림 받기 설정"); a.href="#";
+    a.addEventListener("click",e=>{ e.preventDefault(); openNotifySetup(drawNt); }); nt.append(a); };
+  drawNt();
+  mine.append(sum,editor,nt); sh.append(mine);
   const drawSum=()=>{ const hd=getHold()[p.id]; sum.replaceChildren();
     if(!(hd&&hd.price)){ sum.style.display="none"; editor.style.display=""; return; }
     sum.style.display=""; editor.style.display="none";
@@ -635,7 +680,8 @@ function openDetail(p){
     adv.append(el("div","note","규칙에 따른 참고용 안내이며 투자 권유가 아닙니다.")); };
   const persist=()=>{ const v=parseFloat(inp.value.replace(/,/g,"")); const ok=setHold(p.id, cb.checked?{price:isNaN(v)?null:v, at:new Date().toISOString().slice(0,10)}:null);
     msg.textContent=ok?(cb.checked?"":"매수 표시를 지웠어요"):"저장하지 못했어요 (브라우저 저장소를 쓸 수 없음)";
-    drawAdv(); drawSum(); if(state.tab==="ALL") drawList(); };
+    drawAdv(); drawSum(); if(state.tab==="ALL") drawList();
+    if(ghToken()) syncHoldings().then(r=>{ if(!r.ok) msg.textContent="폰 알림 동기화 실패 — 📱 설정에서 토큰을 확인하세요"; }); };
   cb.addEventListener("change",()=>{ row.style.display=cb.checked?"flex":"none"; persist(); if(cb.checked) inp.focus(); });
   save.addEventListener("click",persist);
   inp.addEventListener("keydown",e=>{ if(e.key==="Enter") persist(); });

@@ -135,6 +135,7 @@
 ## 4-3. 가격 알림 (매 실행 맨 먼저, 거래시간이 아니어도 확인)
 `docs/data/alerts.json`의 `alerts` 중 `hitAt`이 있고 `notified`가 false인 항목이 있으면:
 1. 보고 맨 위에 "🔔 가격 알림: {name} {level} 도달 ({hitAt}, 메모: {note})"를 쓰고 **반드시 알림을 보낸다.**
+   `kind`가 "holding"인 항목(내가 산 종목의 할 일 변경)은 "📌 내 종목: {msg}"로 쓰고 역시 반드시 알림을 보낸다.
 2. 그 항목의 `notified`를 true로 바꿔 commit·push 한다(push 전 `git pull --rebase`).
 알림은 Actions(`scripts/alerts.py`)가 매시간 5분봉 저가·고가로 판정한다. 가격대 추가·삭제는 사용자 요청이 있을 때만.
 
