@@ -1,1 +1,68 @@
-{"items": []}
+{
+ "updated": "2026-11-27T07:31",
+ "items": [
+  {
+   "id": "2026-11-25-KOSPI-chart-192820.KS",
+   "ticker": "192820.KS",
+   "name": "코스맥스",
+   "market": "KOSPI",
+   "currency": "KRW",
+   "price": 322500,
+   "at": "2026-11-25"
+  },
+  {
+   "id": "2026-11-25-KOSDAQ-swing-035760.KQ",
+   "ticker": "035760.KQ",
+   "name": "CJ ENM",
+   "market": "KOSDAQ",
+   "currency": "KRW",
+   "price": 52738,
+   "at": "2026-11-25"
+  },
+  {
+   "id": "2026-11-25-KOSPI-strategy-128940.KS",
+   "ticker": "128940.KS",
+   "name": "한미약품",
+   "market": "KOSPI",
+   "currency": "KRW",
+   "price": 462813,
+   "at": "2026-11-25"
+  },
+  {
+   "id": "2026-11-23-KOSDAQ-swing-035760.KQ",
+   "ticker": "035760.KQ",
+   "name": "CJ ENM",
+   "market": "KOSDAQ",
+   "currency": "KRW",
+   "price": 52689,
+   "at": "2026-11-25"
+  },
+  {
+   "id": "2026-11-26-KOSDAQ-theme_cand-323350.KQ",
+   "ticker": "323350.KQ",
+   "name": "다원넥스뷰",
+   "market": "KOSDAQ",
+   "currency": "KRW",
+   "price": 14453,
+   "at": "2026-11-26"
+  },
+  {
+   "id": "2026-11-26-KOSPI-strategy-000100.KS",
+   "ticker": "000100.KS",
+   "name": "유한양행",
+   "market": "KOSPI",
+   "currency": "KRW",
+   "price": 81985,
+   "at": "2026-11-26"
+  },
+  {
+   "id": "2026-11-27-KOSPI-combined-003670.KS",
+   "ticker": "003670.KS",
+   "name": "포스코퓨처엠",
+   "market": "KOSPI",
+   "currency": "KRW",
+   "price": 173047,
+   "at": "2026-11-27"
+  }
+ ]
+}
