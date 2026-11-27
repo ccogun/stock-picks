@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T20:02+09:00",
+ "updated": "2026-11-28T05:05+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
   "combined": {
@@ -32,7 +32,7 @@
   },
   "strategy": {
    "n": 4,
-   "open": 56,
+   "open": 62,
    "hit": 0.0,
    "avg": -10.84,
    "best": -6.35,
@@ -151,7 +151,7 @@
    },
    "strategy": {
     "n": 0,
-    "open": 15
+    "open": 18
    },
    "swing": {
     "n": 0,
@@ -181,7 +181,7 @@
    },
    "strategy": {
     "n": 1,
-    "open": 14,
+    "open": 17,
     "hit": 0.0,
     "avg": -8.28,
     "best": -8.28,
@@ -208,7 +208,7 @@
   },
   "bollinger": {
    "n": 1,
-   "open": 9,
+   "open": 10,
    "hit": 0.0,
    "avg": -8.28,
    "best": -8.28,
@@ -220,7 +220,7 @@
   },
   "value": {
    "n": 0,
-   "open": 3
+   "open": 4
   },
   "dividend": {
    "n": 2,
@@ -240,11 +240,11 @@
   },
   "reversal": {
    "n": 0,
-   "open": 2
+   "open": 3
   },
   "trendline": {
    "n": 0,
-   "open": 9
+   "open": 11
   },
   "book_bb_reentry": {
    "n": 0,
@@ -255,6 +255,10 @@
    "open": 1
   },
   "book_granville1": {
+   "n": 0,
+   "open": 1
+  },
+  "zone": {
    "n": 0,
    "open": 1
   },
@@ -278,7 +282,7 @@
   },
   "조정": {
    "n": 2,
-   "open": 57,
+   "open": 63,
    "hit": 0.0,
    "avg": -7.91,
    "best": -7.55,

@@ -1021,5 +1021,20 @@
    "NASDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-28T05:04+09:00",
+  "scanned": [
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "SP500:Viatris(strategy)",
+   "SP500:Deere & Company(strategy)",
+   "SP500:Marathon Petroleum(strategy)",
+   "NASDAQ:Marriott International, Inc.(strategy)",
+   "NASDAQ:NXP Semiconductors N.V.(strategy)",
+   "NASDAQ:PayPal Holdings, Inc.(strategy)"
+  ]
  }
 ]

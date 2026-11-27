@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T20:01+09:00",
+ "updated": "2026-11-28T05:04+09:00",
  "markets": {
   "KOSPI": {
    "phase": "after",
@@ -96,12 +96,1971 @@
    ]
   },
   "SP500": {
-   "phase": "pre",
-   "items": []
+   "phase": "regular",
+   "items": [
+    {
+     "ticker": "SWKS",
+     "name": "Skyworks Solutions",
+     "price": 86.66,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 99.6,
+     "flow": null,
+     "stop": 77.05,
+     "target": 105.88,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 20.0
+    },
+    {
+     "ticker": "REGN",
+     "name": "Regeneron Pharmaceuticals",
+     "price": 992.14,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 98.2,
+     "flow": null,
+     "stop": 932.4,
+     "target": 1111.62,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 19.8
+    },
+    {
+     "ticker": "CDW",
+     "name": "CDW Corporation",
+     "price": 179.1,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 96.8,
+     "flow": null,
+     "stop": 162.62,
+     "target": 212.05,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 19.7
+    },
+    {
+     "ticker": "MAR",
+     "name": "Marriott International",
+     "price": 421.01,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 09/09·11/20 저점을 이은 상승 빗각 지지선(412)에서 양봉 반등"
+     ],
+     "rs_pct": 95.4,
+     "flow": null,
+     "stop": 401.96,
+     "target": 459.12,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 19.5
+    },
+    {
+     "ticker": "PNR",
+     "name": "Pentair",
+     "price": 73.41,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 94.4,
+     "flow": null,
+     "stop": 69.36,
+     "target": 81.51,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 19.4
+    },
+    {
+     "ticker": "TSLA",
+     "name": "Tesla, Inc.",
+     "price": 400.0,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 90.0,
+     "flow": null,
+     "stop": 360.63,
+     "target": 478.74,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 19.0
+    },
+    {
+     "ticker": "FERG",
+     "name": "Ferguson Enterprises",
+     "price": 261.91,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 89.8,
+     "flow": null,
+     "stop": 244.41,
+     "target": 296.92,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 19.0
+    },
+    {
+     "ticker": "LOW",
+     "name": "Lowe's",
+     "price": 236.46,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 88.6,
+     "flow": null,
+     "stop": 223.22,
+     "target": 262.95,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 18.9
+    },
+    {
+     "ticker": "NXPI",
+     "name": "NXP Semiconductors",
+     "price": 253.19,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 88.2,
+     "flow": null,
+     "stop": 225.32,
+     "target": 308.92,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 18.8
+    },
+    {
+     "ticker": "EXR",
+     "name": "Extra Space Storage",
+     "price": 161.78,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 10/08·11/20 저점을 이은 상승 빗각 지지선(158)에서 양봉 반등"
+     ],
+     "rs_pct": 88.0,
+     "flow": null,
+     "stop": 155.7,
+     "target": 182.03,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 18.8
+    },
+    {
+     "ticker": "MRSH",
+     "name": "Marsh McLennan",
+     "price": 218.04,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 87.8,
+     "flow": null,
+     "stop": 208.72,
+     "target": 236.69,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 18.8
+    },
+    {
+     "ticker": "DG",
+     "name": "Dollar General",
+     "price": 138.84,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 87.5,
+     "flow": null,
+     "stop": 129.92,
+     "target": 156.69,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 18.8
+    },
+    {
+     "ticker": "RL",
+     "name": "Ralph Lauren Corporation",
+     "price": 399.88,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 87.3,
+     "flow": null,
+     "stop": 373.33,
+     "target": 452.97,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 18.7
+    },
+    {
+     "ticker": "WEC",
+     "name": "WEC Energy Group",
+     "price": 119.08,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 10/01·11/19 저점을 이은 상승 빗각 지지선(118)에서 양봉 반등"
+     ],
+     "rs_pct": 85.3,
+     "flow": null,
+     "stop": 115.26,
+     "target": 126.73,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 18.5
+    },
+    {
+     "ticker": "MO",
+     "name": "Altria",
+     "price": 76.89,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 84.5,
+     "flow": null,
+     "stop": 73.35,
+     "target": 83.96,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 18.4
+    },
+    {
+     "ticker": "ED",
+     "name": "Consolidated Edison",
+     "price": 120.18,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 09/29·11/18 저점을 이은 상승 빗각 지지선(120)에서 양봉 반등"
+     ],
+     "rs_pct": 84.1,
+     "flow": null,
+     "stop": 116.57,
+     "target": 127.39,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 18.4
+    },
+    {
+     "ticker": "STE",
+     "name": "Steris",
+     "price": 261.2,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 09/21·11/19 저점을 이은 상승 빗각 지지선(259)에서 양봉 반등"
+     ],
+     "rs_pct": 83.7,
+     "flow": null,
+     "stop": 252.72,
+     "target": 276.67,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 18.4
+    },
+    {
+     "ticker": "WAT",
+     "name": "Waters Corporation",
+     "price": 460.88,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 82.3,
+     "flow": null,
+     "stop": 433.16,
+     "target": 516.31,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 18.2
+    },
+    {
+     "ticker": "ADP",
+     "name": "Automatic Data Processing",
+     "price": 319.43,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 82.1,
+     "flow": null,
+     "stop": 306.05,
+     "target": 346.19,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 18.2
+    },
+    {
+     "ticker": "LH",
+     "name": "Labcorp",
+     "price": 370.42,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 07/30·11/18 저점을 이은 상승 빗각 지지선(368)에서 양봉 반등"
+     ],
+     "rs_pct": 81.3,
+     "flow": null,
+     "stop": 359.07,
+     "target": 393.11,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 18.1
+    },
+    {
+     "ticker": "DUK",
+     "name": "Duke Energy",
+     "price": 131.91,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 09/29·11/19 저점을 이은 상승 빗각 지지선(129)에서 양봉 반등"
+     ],
+     "rs_pct": 79.5,
+     "flow": null,
+     "stop": 127.68,
+     "target": 140.37,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 17.9
+    },
+    {
+     "ticker": "PGR",
+     "name": "Progressive Corporation",
+     "price": 239.14,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 77.5,
+     "flow": null,
+     "stop": 228.92,
+     "target": 259.59,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 17.8
+    },
+    {
+     "ticker": "AFL",
+     "name": "Aflac",
+     "price": 127.44,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 10/02·11/23 저점을 이은 상승 빗각 지지선(125)에서 양봉 반등"
+     ],
+     "rs_pct": 77.3,
+     "flow": null,
+     "stop": 122.97,
+     "target": 136.38,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 17.7
+    },
+    {
+     "ticker": "TXN",
+     "name": "Texas Instruments",
+     "price": 281.85,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 76.5,
+     "flow": null,
+     "stop": 247.28,
+     "target": 350.99,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 17.6
+    },
+    {
+     "ticker": "META",
+     "name": "Meta Platforms",
+     "price": 628.96,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 76.3,
+     "flow": null,
+     "stop": 578.05,
+     "target": 730.77,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 17.6
+    },
+    {
+     "ticker": "KO",
+     "name": "Coca-Cola Company (The)",
+     "price": 97.4,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 10/05·11/23 저점을 이은 상승 빗각 지지선(95)에서 양봉 반등"
+     ],
+     "rs_pct": 75.1,
+     "flow": null,
+     "stop": 93.78,
+     "target": 104.18,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 17.5
+    },
+    {
+     "ticker": "PSA",
+     "name": "Public Storage",
+     "price": 338.2,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 10/01·11/19 저점을 이은 상승 빗각 지지선(331)에서 양봉 반등"
+     ],
+     "rs_pct": 72.7,
+     "flow": null,
+     "stop": 325.15,
+     "target": 381.5,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 17.3
+    },
+    {
+     "ticker": "TEL",
+     "name": "TE Connectivity",
+     "price": 217.82,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 71.3,
+     "flow": null,
+     "stop": 200.87,
+     "target": 251.72,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 17.1
+    },
+    {
+     "ticker": "VMC",
+     "name": "Vulcan Materials Company",
+     "price": 295.05,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 71.5,
+     "flow": null,
+     "stop": 278.02,
+     "target": 329.1,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 17.1
+    },
+    {
+     "ticker": "JKHY",
+     "name": "Jack Henry & Associates",
+     "price": 182.035,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 70.3,
+     "flow": null,
+     "stop": 172.19,
+     "target": 201.73,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 17.0
+    },
+    {
+     "ticker": "XEL",
+     "name": "Xcel Energy",
+     "price": 81.47,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 09/25·11/19 저점을 이은 상승 빗각 지지선(80)에서 양봉 반등"
+     ],
+     "rs_pct": 69.3,
+     "flow": null,
+     "stop": 78.88,
+     "target": 86.65,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 16.9
+    },
+    {
+     "ticker": "EXC",
+     "name": "Exelon",
+     "price": 46.66,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 09/25·11/19 저점을 이은 상승 빗각 지지선(46)에서 양봉 반등"
+     ],
+     "rs_pct": 68.5,
+     "flow": null,
+     "stop": 45.1,
+     "target": 49.79,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 16.9
+    },
+    {
+     "ticker": "GPN",
+     "name": "Global Payments",
+     "price": 97.04,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 67.9,
+     "flow": null,
+     "stop": 88.16,
+     "target": 114.81,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 16.8
+    },
+    {
+     "ticker": "HON",
+     "name": "Honeywell Technologies",
+     "price": 228.48,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 65.1,
+     "flow": null,
+     "stop": 215.18,
+     "target": 255.08,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 16.5
+    },
+    {
+     "ticker": "PHM",
+     "name": "PulteGroup",
+     "price": 134.49,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 63.7,
+     "flow": null,
+     "stop": 125.89,
+     "target": 151.7,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 16.4
+    },
+    {
+     "ticker": "EMR",
+     "name": "Emerson Electric",
+     "price": 162.29,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 63.3,
+     "flow": null,
+     "stop": 150.7,
+     "target": 185.47,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 16.3
+    },
+    {
+     "ticker": "ALL",
+     "name": "Allstate",
+     "price": 272.51,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 10/05·11/19 저점을 이은 상승 빗각 지지선(269)에서 양봉 반등"
+     ],
+     "rs_pct": 63.1,
+     "flow": null,
+     "stop": 262.18,
+     "target": 293.18,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 16.3
+    },
+    {
+     "ticker": "DE",
+     "name": "Deere & Company",
+     "price": 654.24,
+     "signals": [
+      "zone"
+     ],
+     "why": [
+      "지지 가격대 반등 — 스윙 저점 2번 모인 가격대(548~581)에 어제 닿고 오늘 반등 확인"
+     ],
+     "rs_pct": 61.2,
+     "flow": null,
+     "stop": 531.13,
+     "target": 900.45,
+     "chartNote": "여러 번 바닥이 됐던 가격대에 닿은 다음 날 반등을 확인하고 산 자리(▲)입니다. 가격대 아래로 3% 넘게 내려가면 지지가 깨진 것으로 보고 종료합니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 16.1
+    },
+    {
+     "ticker": "NEE",
+     "name": "NextEra Energy",
+     "price": 84.95,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 10/01·11/23 저점을 이은 상승 빗각 지지선(84)에서 양봉 반등"
+     ],
+     "rs_pct": 61.4,
+     "flow": null,
+     "stop": 81.82,
+     "target": 100.51,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 16.1
+    },
+    {
+     "ticker": "ES",
+     "name": "Eversource Energy",
+     "price": 73.02,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 09/28·11/19 저점을 이은 상승 빗각 지지선(71)에서 양봉 반등"
+     ],
+     "rs_pct": 59.4,
+     "flow": null,
+     "stop": 70.32,
+     "target": 78.42,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 15.9
+    },
+    {
+     "ticker": "NOC",
+     "name": "Northrop Grumman",
+     "price": 561.47,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 59.0,
+     "flow": null,
+     "stop": 532.79,
+     "target": 618.82,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 15.9
+    },
+    {
+     "ticker": "CRH",
+     "name": "CRH plc",
+     "price": 98.11,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 57.4,
+     "flow": null,
+     "stop": 91.24,
+     "target": 111.85,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 15.7
+    },
+    {
+     "ticker": "MLM",
+     "name": "Martin Marietta Materials",
+     "price": 542.57,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 56.8,
+     "flow": null,
+     "stop": 509.21,
+     "target": 609.3,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 15.7
+    },
+    {
+     "ticker": "KMI",
+     "name": "Kinder Morgan",
+     "price": 32.07,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 54.8,
+     "flow": null,
+     "stop": 30.36,
+     "target": 35.49,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 15.5
+    },
+    {
+     "ticker": "L",
+     "name": "Loews Corporation",
+     "price": 111.34,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 54.2,
+     "flow": null,
+     "stop": 107.9,
+     "target": 118.22,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 15.4
+    },
+    {
+     "ticker": "URI",
+     "name": "United Rentals",
+     "price": 1042.35,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 53.4,
+     "flow": null,
+     "stop": 956.44,
+     "target": 1214.17,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 15.3
+    },
+    {
+     "ticker": "GRMN",
+     "name": "Garmin",
+     "price": 287.46,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 52.6,
+     "flow": null,
+     "stop": 268.77,
+     "target": 324.83,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 15.3
+    },
+    {
+     "ticker": "TECH",
+     "name": "Bio-Techne",
+     "price": 72.82,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 52.0,
+     "flow": null,
+     "stop": 70.64,
+     "target": 77.19,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 15.2
+    },
+    {
+     "ticker": "CPRT",
+     "name": "Copart",
+     "price": 33.2,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 51.8,
+     "flow": null,
+     "stop": 31.27,
+     "target": 37.07,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 15.2
+    },
+    {
+     "ticker": "BLK",
+     "name": "BlackRock",
+     "price": 1166.96,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 51.2,
+     "flow": null,
+     "stop": 1097.62,
+     "target": 1305.65,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 15.1
+    },
+    {
+     "ticker": "CSX",
+     "name": "CSX Corporation",
+     "price": 51.38,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 51.0,
+     "flow": null,
+     "stop": 49.02,
+     "target": 56.09,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 15.1
+    },
+    {
+     "ticker": "NDSN",
+     "name": "Nordson Corporation",
+     "price": 324.17,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 50.2,
+     "flow": null,
+     "stop": 306.66,
+     "target": 359.18,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 15.0
+    },
+    {
+     "ticker": "ELV",
+     "name": "Elevance Health",
+     "price": 393.22,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 49.6,
+     "flow": null,
+     "stop": 373.17,
+     "target": 433.32,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 15.0
+    },
+    {
+     "ticker": "CRWD",
+     "name": "CrowdStrike",
+     "price": 217.2,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 49.0,
+     "flow": null,
+     "stop": 192.75,
+     "target": 266.09,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 14.9
+    },
+    {
+     "ticker": "DECK",
+     "name": "Deckers Brands",
+     "price": 86.94,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 48.4,
+     "flow": null,
+     "stop": 80.1,
+     "target": 100.63,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 14.8
+    },
+    {
+     "ticker": "VRTX",
+     "name": "Vertex Pharmaceuticals",
+     "price": 534.57,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 08/04·11/20 저점을 이은 상승 빗각 지지선(516)에서 양봉 반등"
+     ],
+     "rs_pct": 46.6,
+     "flow": null,
+     "stop": 503.4,
+     "target": 648.02,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 14.7
+    },
+    {
+     "ticker": "IEX",
+     "name": "IDEX Corporation",
+     "price": 227.42,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 47.0,
+     "flow": null,
+     "stop": 216.25,
+     "target": 249.77,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 14.7
+    },
+    {
+     "ticker": "PM",
+     "name": "Philip Morris International",
+     "price": 187.8,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 09/08·11/23 저점을 이은 상승 빗각 지지선(181)에서 양봉 반등"
+     ],
+     "rs_pct": 44.6,
+     "flow": null,
+     "stop": 177.67,
+     "target": 208.05,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 14.5
+    },
+    {
+     "ticker": "FRT",
+     "name": "Federal Realty Investment Trust",
+     "price": 114.49,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 45.0,
+     "flow": null,
+     "stop": 110.88,
+     "target": 121.71,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 14.5
+    },
+    {
+     "ticker": "AMCR",
+     "name": "Amcor",
+     "price": 45.56,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 43.6,
+     "flow": null,
+     "stop": 43.03,
+     "target": 50.62,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 14.4
+    },
+    {
+     "ticker": "MPC",
+     "name": "Marathon Petroleum",
+     "price": 359.8,
+     "signals": [
+      "reversal"
+     ],
+     "why": [
+      "RSI 과매도 반등 — RSI 29 → 36, 과매도 구간 탈출"
+     ],
+     "rs_pct": 43.2,
+     "flow": null,
+     "stop": 334.6,
+     "target": 410.2,
+     "chartNote": "RSI가 30 아래(과매도)로 떨어졌다가 다시 올라온 반등 초입입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 14.3
+    },
+    {
+     "ticker": "ADSK",
+     "name": "Autodesk",
+     "price": 251.88,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 42.0,
+     "flow": null,
+     "stop": 231.84,
+     "target": 291.96,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 14.2
+    },
+    {
+     "ticker": "J",
+     "name": "Jacobs Solutions",
+     "price": 146.57,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 41.4,
+     "flow": null,
+     "stop": 140.73,
+     "target": 158.25,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 14.1
+    },
+    {
+     "ticker": "MSFT",
+     "name": "Microsoft",
+     "price": 492.85,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 40.2,
+     "flow": null,
+     "stop": 472.62,
+     "target": 533.32,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 14.0
+    },
+    {
+     "ticker": "TROW",
+     "name": "T. Rowe Price",
+     "price": 106.57,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 39.4,
+     "flow": null,
+     "stop": 100.06,
+     "target": 119.6,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 13.9
+    },
+    {
+     "ticker": "AMZN",
+     "name": "Amazon",
+     "price": 254.12,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 37.8,
+     "flow": null,
+     "stop": 233.6,
+     "target": 295.16,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 13.8
+    },
+    {
+     "ticker": "NVR",
+     "name": "NVR, Inc.",
+     "price": 6034.4102,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 34.1,
+     "flow": null,
+     "stop": 5606.04,
+     "target": 6891.16,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 13.4
+    },
+    {
+     "ticker": "TMUS",
+     "name": "T-Mobile US",
+     "price": 170.19,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 10/28·11/19 저점을 이은 상승 빗각 지지선(165)에서 양봉 반등"
+     ],
+     "rs_pct": 32.7,
+     "flow": null,
+     "stop": 161.12,
+     "target": 180.92,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 13.3
+    },
+    {
+     "ticker": "FDX",
+     "name": "FedEx",
+     "price": 311.6,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 33.5,
+     "flow": null,
+     "stop": 298.16,
+     "target": 338.48,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 13.3
+    },
+    {
+     "ticker": "PAYX",
+     "name": "Paychex",
+     "price": 118.13,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 30.7,
+     "flow": null,
+     "stop": 111.96,
+     "target": 130.46,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 13.1
+    },
+    {
+     "ticker": "BXP",
+     "name": "BXP, Inc.",
+     "price": 64.24,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 29.9,
+     "flow": null,
+     "stop": 60.87,
+     "target": 70.98,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 13.0
+    },
+    {
+     "ticker": "BNY",
+     "name": "BNY Mellon",
+     "price": 149.66,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 28.3,
+     "flow": null,
+     "stop": 142.25,
+     "target": 164.49,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 12.8
+    },
+    {
+     "ticker": "LVS",
+     "name": "Las Vegas Sands",
+     "price": 41.15,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 10/22·11/19 저점을 이은 상승 빗각 지지선(39)에서 양봉 반등"
+     ],
+     "rs_pct": 26.5,
+     "flow": null,
+     "stop": 39.05,
+     "target": 44.28,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 12.7
+    },
+    {
+     "ticker": "AMD",
+     "name": "Advanced Micro Devices",
+     "price": 424.54,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 07/29·11/05 저점을 이은 하락 빗각 지지선(397)에서 양봉 반등"
+     ],
+     "rs_pct": 26.1,
+     "flow": null,
+     "stop": 387.47,
+     "target": 516.02,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 12.6
+    },
+    {
+     "ticker": "APO",
+     "name": "Apollo Global Management",
+     "price": 122.97,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 25.9,
+     "flow": null,
+     "stop": 113.5,
+     "target": 141.91,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 12.6
+    },
+    {
+     "ticker": "NTRS",
+     "name": "Northern Trust",
+     "price": 169.35,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 24.3,
+     "flow": null,
+     "stop": 160.18,
+     "target": 187.69,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 12.4
+    },
+    {
+     "ticker": "MAA",
+     "name": "Mid-America Apartment Communities",
+     "price": 117.49,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 24.1,
+     "flow": null,
+     "stop": 112.61,
+     "target": 127.26,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 12.4
+    },
+    {
+     "ticker": "SW",
+     "name": "Smurfit Westrock",
+     "price": 43.59,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 22.9,
+     "flow": null,
+     "stop": 40.13,
+     "target": 50.52,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 12.3
+    },
+    {
+     "ticker": "GPC",
+     "name": "Genuine Parts Company",
+     "price": 124.0,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 22.5,
+     "flow": null,
+     "stop": 116.65,
+     "target": 138.69,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 12.2
+    },
+    {
+     "ticker": "WY",
+     "name": "Weyerhaeuser",
+     "price": 20.83,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 17.5,
+     "flow": null,
+     "stop": 19.65,
+     "target": 23.18,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 11.8
+    },
+    {
+     "ticker": "BX",
+     "name": "Blackstone Inc.",
+     "price": 121.96,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 14.9,
+     "flow": null,
+     "stop": 113.32,
+     "target": 139.24,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 11.5
+    },
+    {
+     "ticker": "STT",
+     "name": "State Street Corporation",
+     "price": 164.69,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 14.5,
+     "flow": null,
+     "stop": 155.02,
+     "target": 184.04,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 11.4
+    }
+   ]
   },
   "NASDAQ": {
-   "phase": "pre",
-   "items": []
+   "phase": "regular",
+   "items": [
+    {
+     "ticker": "REGN",
+     "name": "Regeneron Pharmaceuticals, Inc.",
+     "price": 992.14,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 95.0,
+     "flow": null,
+     "stop": 932.4,
+     "target": 1111.62,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 19.5
+    },
+    {
+     "ticker": "MAR",
+     "name": "Marriott International, Inc.",
+     "price": 421.01,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 09/09·11/20 저점을 이은 상승 빗각 지지선(412)에서 양봉 반등"
+     ],
+     "rs_pct": 93.1,
+     "flow": null,
+     "stop": 401.96,
+     "target": 459.12,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 19.3
+    },
+    {
+     "ticker": "TSLA",
+     "name": "Tesla, Inc.",
+     "price": 400.0,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 89.1,
+     "flow": null,
+     "stop": 360.63,
+     "target": 478.74,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 18.9
+    },
+    {
+     "ticker": "NXPI",
+     "name": "NXP Semiconductors N.V.",
+     "price": 253.19,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 87.1,
+     "flow": null,
+     "stop": 225.32,
+     "target": 308.92,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 18.7
+    },
+    {
+     "ticker": "ADP",
+     "name": "Automatic Data Processing, Inc.",
+     "price": 319.43,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 84.2,
+     "flow": null,
+     "stop": 306.05,
+     "target": 346.19,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 18.4
+    },
+    {
+     "ticker": "TXN",
+     "name": "Texas Instruments Incorporated",
+     "price": 281.85,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 79.2,
+     "flow": null,
+     "stop": 247.28,
+     "target": 350.99,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 17.9
+    },
+    {
+     "ticker": "META",
+     "name": "Meta Platforms, Inc.",
+     "price": 628.96,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 78.2,
+     "flow": null,
+     "stop": 578.05,
+     "target": 730.77,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 17.8
+    },
+    {
+     "ticker": "XEL",
+     "name": "Xcel Energy Inc.",
+     "price": 81.47,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 09/25·11/19 저점을 이은 상승 빗각 지지선(80)에서 양봉 반등"
+     ],
+     "rs_pct": 72.3,
+     "flow": null,
+     "stop": 78.88,
+     "target": 86.65,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 17.2
+    },
+    {
+     "ticker": "EXC",
+     "name": "Exelon Corporation",
+     "price": 46.66,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 09/25·11/19 저점을 이은 상승 빗각 지지선(46)에서 양봉 반등"
+     ],
+     "rs_pct": 71.3,
+     "flow": null,
+     "stop": 45.1,
+     "target": 49.79,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 17.1
+    },
+    {
+     "ticker": "HON",
+     "name": "Honeywell International Inc.",
+     "price": 228.48,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 69.3,
+     "flow": null,
+     "stop": 215.18,
+     "target": 255.08,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 16.9
+    },
+    {
+     "ticker": "CPRT",
+     "name": "Copart, Inc.",
+     "price": 33.2,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 61.4,
+     "flow": null,
+     "stop": 31.27,
+     "target": 37.07,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 16.1
+    },
+    {
+     "ticker": "CSX",
+     "name": "CSX Corporation",
+     "price": 51.38,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 60.4,
+     "flow": null,
+     "stop": 49.02,
+     "target": 56.09,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 16.0
+    },
+    {
+     "ticker": "CRWD",
+     "name": "CrowdStrike Holdings, Inc.",
+     "price": 217.2,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 59.4,
+     "flow": null,
+     "stop": 192.75,
+     "target": 266.09,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 15.9
+    },
+    {
+     "ticker": "VRTX",
+     "name": "Vertex Pharmaceuticals Incorporated",
+     "price": 534.57,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 08/04·11/20 저점을 이은 상승 빗각 지지선(516)에서 양봉 반등"
+     ],
+     "rs_pct": 57.4,
+     "flow": null,
+     "stop": 503.4,
+     "target": 648.02,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 15.7
+    },
+    {
+     "ticker": "ADSK",
+     "name": "Autodesk, Inc.",
+     "price": 251.88,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 54.5,
+     "flow": null,
+     "stop": 231.84,
+     "target": 291.96,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 15.4
+    },
+    {
+     "ticker": "MSFT",
+     "name": "Microsoft Corporation",
+     "price": 492.85,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 52.5,
+     "flow": null,
+     "stop": 472.62,
+     "target": 533.32,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 15.2
+    },
+    {
+     "ticker": "AMZN",
+     "name": "Amazon.com, Inc.",
+     "price": 254.12,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 50.5,
+     "flow": null,
+     "stop": 233.6,
+     "target": 295.16,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 15.1
+    },
+    {
+     "ticker": "TMUS",
+     "name": "T-Mobile US, Inc.",
+     "price": 170.19,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 10/28·11/19 저점을 이은 상승 빗각 지지선(165)에서 양봉 반등"
+     ],
+     "rs_pct": 46.5,
+     "flow": null,
+     "stop": 161.12,
+     "target": 180.92,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 14.7
+    },
+    {
+     "ticker": "PAYX",
+     "name": "Paychex, Inc.",
+     "price": 118.13,
+     "signals": [
+      "macd"
+     ],
+     "why": [
+      "MACD 상승 전환 — MACD선이 시그널선을 아래에서 위로 돌파(골든크로스)"
+     ],
+     "rs_pct": 44.6,
+     "flow": null,
+     "stop": 111.96,
+     "target": 130.46,
+     "chartNote": "단기 추세 지표(MACD)가 상승으로 돌아선 시점입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 1,
+     "support": 0,
+     "score": 14.5
+    },
+    {
+     "ticker": "SHOP",
+     "name": "Shopify Inc.",
+     "price": 141.78,
+     "signals": [
+      "bollinger"
+     ],
+     "why": [
+      "볼린저 하단 반등 — 볼린저밴드 하단을 찍고 다시 밴드 안으로 반등"
+     ],
+     "rs_pct": 43.6,
+     "flow": null,
+     "stop": 124.22,
+     "target": 176.91,
+     "chartNote": "변동성 하단(볼린저밴드 하단)까지 밀렸다가 되돌아온 자리입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 14.4
+    },
+    {
+     "ticker": "AMD",
+     "name": "Advanced Micro Devices, Inc.",
+     "price": 424.54,
+     "signals": [
+      "trendline"
+     ],
+     "why": [
+      "빗각 지지선 반등 — 07/29·11/05 저점을 이은 하락 빗각 지지선(397)에서 양봉 반등"
+     ],
+     "rs_pct": 40.6,
+     "flow": null,
+     "stop": 387.47,
+     "target": 516.02,
+     "chartNote": "두 저점을 이은 빗각 지지선에 닿은 뒤 양봉으로 반등한 자리입니다. 선이 깨지면 근거가 사라지므로 손절을 짧게 잡았고, 목표는 고점을 이은 저항선입니다. 빨간 점선(손절선) 아래로 종가가 내려가면 추천을 종료합니다.",
+     "trend": 0,
+     "support": 1,
+     "score": 14.1
+    }
+   ]
   }
  }
 }
