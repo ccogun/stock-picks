@@ -89,6 +89,16 @@
    "notified": false,
    "last": 413.81,
    "lastAt": "2026-11-25T19:55:00-05:00"
+  },
+  {
+   "id": "test-1127",
+   "kind": "holding",
+   "ticker": "TEST",
+   "name": "테스트",
+   "msg": "테스트 알림입니다 — 이 알림이 보이면 연결 성공 ✅",
+   "active": false,
+   "hitAt": "2026-11-27T16:42+09:00",
+   "notified": false
   }
  ],
  "checkedAt": "2026-11-27T16:35+09:00"
