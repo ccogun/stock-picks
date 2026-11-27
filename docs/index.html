@@ -581,7 +581,7 @@ function openDetail(p){
     const r=p.lastPrice?(p.lastPrice/hd.price-1)*100:null;
     // 한 줄: "매수가 25,000원 +3.2%" — 줄을 누르면 수정
     const d=el("div"); d.style.cursor="pointer"; d.title="눌러서 수정";
-    d.append(document.createTextNode("매수가 "+price(hd.price,p.currency)+" "));
+    d.append(document.createTextNode("매수가 "+price(hd.price,p.currency)+(p.lastPrice?" 현재가 "+price(p.lastPrice,p.currency):"")+" "));
     if(r!=null) d.append(el("span",cls(r),(r>0?"+":"")+r.toFixed(1)+"%"));
     d.addEventListener("click",()=>{ sum.style.display="none"; editor.style.display=""; msg.textContent=""; inp.focus(); });
     sum.append(d); };
