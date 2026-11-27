@@ -983,5 +983,15 @@
    "KOSDAQ:한국피아이엠(테마)",
    "KOSDAQ:바이오니아(테마)"
   ]
+ },
+ {
+  "at": "2026-11-27T15:01+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ"
+  ],
+  "added": [
+   "KOSDAQ:RFHIC(테마 후보)"
+  ]
  }
 ]
