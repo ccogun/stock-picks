@@ -579,12 +579,12 @@ function openDetail(p){
     if(!(hd&&hd.price)){ sum.style.display="none"; editor.style.display=""; return; }
     sum.style.display=""; editor.style.display="none";
     const r=p.lastPrice?(p.lastPrice/hd.price-1)*100:null;
-    const d=el("div"); Object.assign(d.style,{display:"flex",alignItems:"baseline",gap:"10px"});
-    const a=el("span",null,price(hd.price,p.currency)); a.style.fontSize="18px"; a.style.fontWeight="700";
-    const b=el("span",r==null?"":cls(r),r==null?"":pct(r)); b.style.fontSize="18px"; b.style.fontWeight="700";
-    const ed=el("button",null,"수정"); Object.assign(ed.style,{marginLeft:"auto",border:"1px solid var(--line)",background:"transparent",color:"var(--sub)",borderRadius:"8px",padding:"4px 10px",fontSize:"13px"});
-    ed.addEventListener("click",()=>{ sum.style.display="none"; editor.style.display=""; msg.textContent=""; inp.focus(); });
-    d.append(a,b,ed); sum.append(d); };
+    // 한 줄: "매수가 25,000원 +3.2%" — 줄을 누르면 수정
+    const d=el("div"); d.style.cursor="pointer"; d.title="눌러서 수정";
+    d.append(document.createTextNode("매수가 "+price(hd.price,p.currency)+" "));
+    if(r!=null) d.append(el("span",cls(r),(r>0?"+":"")+r.toFixed(1)+"%"));
+    d.addEventListener("click",()=>{ sum.style.display="none"; editor.style.display=""; msg.textContent=""; inp.focus(); });
+    sum.append(d); };
   const adv=el("div","card"); sh.append(el("h2",null,"대응 방향")); sh.append(adv);
   const drawAdv=()=>{ adv.replaceChildren(); const hd=getHold()[p.id]; const base=hd&&hd.price?+hd.price:null;
     advice(p,base).forEach(t=>adv.append(el("div",null,"• "+t)));
