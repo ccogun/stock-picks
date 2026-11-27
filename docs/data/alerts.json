@@ -98,8 +98,9 @@
    "msg": "테스트 알림입니다 — 이 알림이 보이면 연결 성공 ✅",
    "active": false,
    "hitAt": "2026-11-27T16:42+09:00",
-   "notified": false
+   "notified": true,
+   "notifiedBy": "ntfy"
   }
  ],
- "checkedAt": "2026-11-27T16:35+09:00"
+ "checkedAt": "2026-11-27T16:42+09:00"
 }
