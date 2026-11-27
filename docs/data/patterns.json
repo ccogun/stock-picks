@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T08:13+09:00",
+ "updated": "2026-11-27T12:50+09:00",
  "method": "좌우 20거래일 스윙 저점이 2번 이상 모인 ±3% 가격대. 과거 사례는 그 시점에 가격대가 이미 있던 경우만 집계(미래 정보 없음).",
  "scanned": 75,
  "items": [
@@ -107,10 +107,10 @@
    "confEvents": 2,
    "confWinRate": 0,
    "confAvgRet20": -7.5,
-   "baseline20": 0.0,
+   "baseline20": -0.0,
    "breakRate": 33,
-   "lastClose": 308500.0,
-   "distPct": -0.7,
+   "lastClose": 312000.0,
+   "distPct": 0.4,
    "status": null,
    "history": [
     {
@@ -236,30 +236,60 @@
    "near": true
   },
   {
-   "ticker": "051910.KS",
-   "name": "LG화학",
+   "ticker": "005490.KS",
+   "name": "POSCO홀딩스",
    "market": "KR",
    "currency": "KRW",
-   "center": 205250.0,
-   "low": 199092.5,
-   "high": 211407.5,
-   "pivots": 2,
-   "events": 0,
-   "winRate": null,
-   "avgRet20": null,
-   "confEvents": 0,
-   "confWinRate": null,
-   "confAvgRet20": null,
-   "baseline20": -1.0,
-   "breakRate": null,
-   "lastClose": 207000.0,
-   "distPct": 0.9,
+   "center": 257250.0,
+   "low": 249532.5,
+   "high": 264967.5,
+   "pivots": 6,
+   "events": 4,
+   "winRate": 25,
+   "avgRet20": -1.5,
+   "confEvents": 2,
+   "confWinRate": 50,
+   "confAvgRet20": 3.6,
+   "baseline20": 0.7,
+   "breakRate": 25,
+   "lastClose": 254500.0,
+   "distPct": -1.1,
    "status": null,
    "history": [
     {
-     "date": "2026-11-18",
-     "entry": 208000.0,
-     "confirmed": true
+     "date": "2022-06-14",
+     "entry": 263500.0,
+     "ret20": -15.4,
+     "broke": true,
+     "confirmed": false
+    },
+    {
+     "date": "2024-12-06",
+     "entry": 264967.5,
+     "ret20": -0.6,
+     "broke": false,
+     "confirmed": false
+    },
+    {
+     "date": "2025-04-03",
+     "entry": 264967.5,
+     "ret20": -3.6,
+     "broke": false,
+     "confirmed": true,
+     "cret20": -4.2
+    },
+    {
+     "date": "2025-10-10",
+     "entry": 263000.0,
+     "ret20": 13.7,
+     "broke": false,
+     "confirmed": true,
+     "cret20": 11.4
+    },
+    {
+     "date": "2026-11-04",
+     "entry": 264967.5,
+     "confirmed": false
     }
    ],
    "near": true
@@ -314,6 +344,35 @@
      "ret20": -16.3,
      "broke": true,
      "confirmed": false
+    }
+   ],
+   "near": true
+  },
+  {
+   "ticker": "028260.KS",
+   "name": "삼성물산",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 260000.0,
+   "low": 252200.0,
+   "high": 267800.0,
+   "pivots": 3,
+   "events": 0,
+   "winRate": null,
+   "avgRet20": null,
+   "confEvents": 0,
+   "confWinRate": null,
+   "confAvgRet20": null,
+   "baseline20": 1.7,
+   "breakRate": null,
+   "lastClose": 256000.0,
+   "distPct": -1.5,
+   "status": null,
+   "history": [
+    {
+     "date": "2026-11-17",
+     "entry": 265500.0,
+     "confirmed": true
     }
    ],
    "near": true
@@ -426,6 +485,60 @@
    "near": true
   },
   {
+   "ticker": "247540.KQ",
+   "name": "에코프로비엠",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 87650.0,
+   "low": 85020.5,
+   "high": 90279.5,
+   "pivots": 4,
+   "events": 4,
+   "winRate": 75,
+   "avgRet20": 8.2,
+   "confEvents": 2,
+   "confWinRate": 50,
+   "confAvgRet20": 7.0,
+   "baseline20": 2.8,
+   "breakRate": 25,
+   "lastClose": 89500.0,
+   "distPct": 2.1,
+   "status": null,
+   "history": [
+    {
+     "date": "2025-04-02",
+     "entry": 90279.5,
+     "ret20": 12.4,
+     "broke": false,
+     "confirmed": false
+    },
+    {
+     "date": "2025-05-20",
+     "entry": 88300.0,
+     "ret20": 2.9,
+     "broke": false,
+     "confirmed": false
+    },
+    {
+     "date": "2026-07-29",
+     "entry": 90279.5,
+     "ret20": 28.8,
+     "broke": false,
+     "confirmed": true,
+     "cret20": 20.7
+    },
+    {
+     "date": "2026-10-26",
+     "entry": 89600.0,
+     "ret20": -11.4,
+     "broke": true,
+     "confirmed": true,
+     "cret20": -6.6
+    }
+   ],
+   "near": true
+  },
+  {
    "ticker": "UBER",
    "name": "Uber",
    "market": "US",
@@ -475,104 +588,6 @@
      "ret20": 0.5,
      "broke": false,
      "confirmed": false
-    }
-   ],
-   "near": true
-  },
-  {
-   "ticker": "005490.KS",
-   "name": "POSCO홀딩스",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 257250.0,
-   "low": 249532.5,
-   "high": 264967.5,
-   "pivots": 6,
-   "events": 4,
-   "winRate": 25,
-   "avgRet20": -1.5,
-   "confEvents": 2,
-   "confWinRate": 50,
-   "confAvgRet20": 3.6,
-   "baseline20": 0.7,
-   "breakRate": 25,
-   "lastClose": 251500.0,
-   "distPct": -2.2,
-   "status": null,
-   "history": [
-    {
-     "date": "2022-06-14",
-     "entry": 263500.0,
-     "ret20": -15.4,
-     "broke": true,
-     "confirmed": false
-    },
-    {
-     "date": "2024-12-06",
-     "entry": 264967.5,
-     "ret20": -0.6,
-     "broke": false,
-     "confirmed": false
-    },
-    {
-     "date": "2025-04-03",
-     "entry": 264967.5,
-     "ret20": -3.6,
-     "broke": false,
-     "confirmed": true,
-     "cret20": -4.2
-    },
-    {
-     "date": "2025-10-10",
-     "entry": 263000.0,
-     "ret20": 13.7,
-     "broke": false,
-     "confirmed": true,
-     "cret20": 11.4
-    },
-    {
-     "date": "2026-11-04",
-     "entry": 264967.5,
-     "confirmed": false
-    }
-   ],
-   "near": true
-  },
-  {
-   "ticker": "207940.KS",
-   "name": "삼성바이오로직스",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 1395313.88,
-   "low": 1353454.46,
-   "high": 1437173.29,
-   "pivots": 2,
-   "events": 2,
-   "winRate": 0,
-   "avgRet20": -10.8,
-   "confEvents": 1,
-   "confWinRate": 0,
-   "confAvgRet20": -16.8,
-   "baseline20": 0.5,
-   "breakRate": 100,
-   "lastClose": 1363000.0,
-   "distPct": -2.3,
-   "status": null,
-   "history": [
-    {
-     "date": "2026-05-12",
-     "entry": 1437173.29,
-     "ret20": -10.5,
-     "broke": true,
-     "confirmed": false
-    },
-    {
-     "date": "2026-09-04",
-     "entry": 1437173.29,
-     "ret20": -11.1,
-     "broke": true,
-     "confirmed": true,
-     "cret20": -16.8
     }
    ],
    "near": true
@@ -634,51 +649,6 @@
    "distPct": -2.5,
    "status": null,
    "history": [],
-   "near": true
-  },
-  {
-   "ticker": "035420.KS",
-   "name": "NAVER",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 155000.0,
-   "low": 150350.0,
-   "high": 159650.0,
-   "pivots": 5,
-   "events": 2,
-   "winRate": 100,
-   "avgRet20": 7.7,
-   "confEvents": 2,
-   "confWinRate": 50,
-   "confAvgRet20": 3.9,
-   "baseline20": -0.1,
-   "breakRate": 0,
-   "lastClose": 159000.0,
-   "distPct": 2.6,
-   "status": null,
-   "history": [
-    {
-     "date": "2024-08-05",
-     "entry": 156100.0,
-     "ret20": 5.9,
-     "broke": false,
-     "confirmed": true,
-     "cret20": -0.6
-    },
-    {
-     "date": "2024-09-04",
-     "entry": 157500.0,
-     "ret20": 9.5,
-     "broke": false,
-     "confirmed": true,
-     "cret20": 8.4
-    },
-    {
-     "date": "2026-11-23",
-     "entry": 150000.0,
-     "confirmed": false
-    }
-   ],
    "near": true
   },
   {
@@ -922,6 +892,51 @@
    "near": true
   },
   {
+   "ticker": "035420.KS",
+   "name": "NAVER",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 155000.0,
+   "low": 150350.0,
+   "high": 159650.0,
+   "pivots": 5,
+   "events": 2,
+   "winRate": 100,
+   "avgRet20": 7.7,
+   "confEvents": 2,
+   "confWinRate": 50,
+   "confAvgRet20": 3.9,
+   "baseline20": -0.1,
+   "breakRate": 0,
+   "lastClose": 162700.0,
+   "distPct": 5.0,
+   "status": null,
+   "history": [
+    {
+     "date": "2024-08-05",
+     "entry": 156100.0,
+     "ret20": 5.9,
+     "broke": false,
+     "confirmed": true,
+     "cret20": -0.6
+    },
+    {
+     "date": "2024-09-04",
+     "entry": 157500.0,
+     "ret20": 9.5,
+     "broke": false,
+     "confirmed": true,
+     "cret20": 8.4
+    },
+    {
+     "date": "2026-11-23",
+     "entry": 150000.0,
+     "confirmed": false
+    }
+   ],
+   "near": true
+  },
+  {
    "ticker": "AVGO",
    "name": "Broadcom",
    "market": "US",
@@ -961,67 +976,6 @@
      "date": "2026-10-15",
      "entry": 336.35,
      "ret20": 8.3,
-     "broke": true,
-     "confirmed": false
-    }
-   ],
-   "near": false
-  },
-  {
-   "ticker": "005490.KS",
-   "name": "POSCO홀딩스",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 273500.0,
-   "low": 265295.0,
-   "high": 281705.0,
-   "pivots": 2,
-   "events": 5,
-   "winRate": 20,
-   "avgRet20": 0.4,
-   "confEvents": 2,
-   "confWinRate": 50,
-   "confAvgRet20": 3.1,
-   "baseline20": 0.7,
-   "breakRate": 40,
-   "lastClose": 251500.0,
-   "distPct": -8.0,
-   "status": null,
-   "history": [
-    {
-     "date": "2024-11-14",
-     "entry": 281705.0,
-     "ret20": -2.6,
-     "broke": false,
-     "confirmed": false
-    },
-    {
-     "date": "2025-03-31",
-     "entry": 278500.0,
-     "ret20": -5.7,
-     "broke": true,
-     "confirmed": true,
-     "cret20": -6.1
-    },
-    {
-     "date": "2025-09-01",
-     "entry": 281000.0,
-     "ret20": -1.8,
-     "broke": false,
-     "confirmed": false
-    },
-    {
-     "date": "2026-07-29",
-     "entry": 281705.0,
-     "ret20": 20.5,
-     "broke": false,
-     "confirmed": true,
-     "cret20": 12.3
-    },
-    {
-     "date": "2026-10-23",
-     "entry": 275500.0,
-     "ret20": -8.5,
      "broke": true,
      "confirmed": false
     }
@@ -1076,37 +1030,6 @@
      "date": "2026-11-05",
      "entry": 26.18,
      "confirmed": true
-    }
-   ],
-   "near": false
-  },
-  {
-   "ticker": "068270.KS",
-   "name": "셀트리온",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 237192.18,
-   "low": 230076.41,
-   "high": 244307.95,
-   "pivots": 2,
-   "events": 1,
-   "winRate": 0,
-   "avgRet20": -7.6,
-   "confEvents": 0,
-   "confWinRate": null,
-   "confAvgRet20": null,
-   "baseline20": -0.1,
-   "breakRate": 100,
-   "lastClose": 217000.0,
-   "distPct": -8.5,
-   "status": null,
-   "history": [
-    {
-     "date": "2021-04-21",
-     "entry": 238836.5,
-     "ret20": -7.6,
-     "broke": true,
-     "confirmed": false
     }
    ],
    "near": false
@@ -1262,6 +1185,74 @@
    "near": false
   },
   {
+   "ticker": "035420.KS",
+   "name": "NAVER",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 179850.0,
+   "low": 174454.5,
+   "high": 185245.5,
+   "pivots": 8,
+   "events": 6,
+   "winRate": 67,
+   "avgRet20": 7.3,
+   "confEvents": 2,
+   "confWinRate": 50,
+   "confAvgRet20": 1.3,
+   "baseline20": -0.1,
+   "breakRate": 0,
+   "lastClose": 162700.0,
+   "distPct": -9.5,
+   "status": null,
+   "history": [
+    {
+     "date": "2024-03-18",
+     "entry": 184100.0,
+     "ret20": -2.5,
+     "broke": false,
+     "confirmed": false
+    },
+    {
+     "date": "2024-05-13",
+     "entry": 184300.0,
+     "ret20": -8.6,
+     "broke": false,
+     "confirmed": true,
+     "cret20": -7.9
+    },
+    {
+     "date": "2025-04-08",
+     "entry": 179600.0,
+     "ret20": 6.3,
+     "broke": false,
+     "confirmed": false
+    },
+    {
+     "date": "2025-05-19",
+     "entry": 185245.5,
+     "ret20": 31.4,
+     "broke": false,
+     "confirmed": false
+    },
+    {
+     "date": "2026-07-09",
+     "entry": 184400.0,
+     "ret20": 13.9,
+     "broke": false,
+     "confirmed": true,
+     "cret20": 10.6
+    },
+    {
+     "date": "2026-10-08",
+     "entry": 183800.0,
+     "ret20": 3.5,
+     "broke": false,
+     "confirmed": false
+    }
+   ],
+   "near": false
+  },
+  {
    "ticker": "UNH",
    "name": "UnitedHealth",
    "market": "US",
@@ -1301,53 +1292,6 @@
      "date": "2026-11-02",
      "entry": 394.61,
      "confirmed": true
-    }
-   ],
-   "near": false
-  },
-  {
-   "ticker": "207940.KS",
-   "name": "삼성바이오로직스",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 1519085.5,
-   "low": 1473512.94,
-   "high": 1564658.06,
-   "pivots": 6,
-   "events": 3,
-   "winRate": 100,
-   "avgRet20": 7.5,
-   "confEvents": 2,
-   "confWinRate": 50,
-   "confAvgRet20": 7.5,
-   "baseline20": 0.5,
-   "breakRate": 0,
-   "lastClose": 1363000.0,
-   "distPct": -10.3,
-   "status": null,
-   "history": [
-    {
-     "date": "2025-08-20",
-     "entry": 1564658.06,
-     "ret20": 0.2,
-     "broke": false,
-     "confirmed": false
-    },
-    {
-     "date": "2025-09-22",
-     "entry": 1564658.06,
-     "ret20": 18.7,
-     "broke": false,
-     "confirmed": true,
-     "cret20": 18.9
-    },
-    {
-     "date": "2026-03-04",
-     "entry": 1516000.0,
-     "ret20": 3.7,
-     "broke": false,
-     "confirmed": true,
-     "cret20": -3.8
     }
    ],
    "near": false
@@ -1428,35 +1372,6 @@
    "near": false
   },
   {
-   "ticker": "196170.KQ",
-   "name": "알테오젠",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 190384.62,
-   "low": 184673.08,
-   "high": 196096.16,
-   "pivots": 2,
-   "events": 0,
-   "winRate": null,
-   "avgRet20": null,
-   "confEvents": 0,
-   "confWinRate": null,
-   "confAvgRet20": null,
-   "baseline20": 3.3,
-   "breakRate": null,
-   "lastClose": 169600.0,
-   "distPct": -10.9,
-   "status": null,
-   "history": [
-    {
-     "date": "2026-11-04",
-     "entry": 196096.16,
-     "confirmed": true
-    }
-   ],
-   "near": false
-  },
-  {
    "ticker": "NKE",
    "name": "Nike",
    "market": "US",
@@ -1488,100 +1403,48 @@
    "near": false
   },
   {
-   "ticker": "035420.KS",
-   "name": "NAVER",
+   "ticker": "207940.KS",
+   "name": "삼성바이오로직스",
    "market": "KR",
    "currency": "KRW",
-   "center": 179850.0,
-   "low": 174454.5,
-   "high": 185245.5,
-   "pivots": 8,
-   "events": 6,
-   "winRate": 67,
-   "avgRet20": 7.3,
+   "center": 1519085.5,
+   "low": 1473512.94,
+   "high": 1564658.06,
+   "pivots": 6,
+   "events": 3,
+   "winRate": 100,
+   "avgRet20": 7.5,
    "confEvents": 2,
    "confWinRate": 50,
-   "confAvgRet20": 1.3,
-   "baseline20": -0.1,
+   "confAvgRet20": 7.5,
+   "baseline20": 0.5,
    "breakRate": 0,
-   "lastClose": 159000.0,
-   "distPct": -11.6,
+   "lastClose": 1347000.0,
+   "distPct": -11.3,
    "status": null,
    "history": [
     {
-     "date": "2024-03-18",
-     "entry": 184100.0,
-     "ret20": -2.5,
+     "date": "2025-08-20",
+     "entry": 1564658.06,
+     "ret20": 0.2,
      "broke": false,
      "confirmed": false
     },
     {
-     "date": "2024-05-13",
-     "entry": 184300.0,
-     "ret20": -8.6,
+     "date": "2025-09-22",
+     "entry": 1564658.06,
+     "ret20": 18.7,
      "broke": false,
      "confirmed": true,
-     "cret20": -7.9
+     "cret20": 18.9
     },
     {
-     "date": "2025-04-08",
-     "entry": 179600.0,
-     "ret20": 6.3,
-     "broke": false,
-     "confirmed": false
-    },
-    {
-     "date": "2025-05-19",
-     "entry": 185245.5,
-     "ret20": 31.4,
-     "broke": false,
-     "confirmed": false
-    },
-    {
-     "date": "2026-07-09",
-     "entry": 184400.0,
-     "ret20": 13.9,
+     "date": "2026-03-04",
+     "entry": 1516000.0,
+     "ret20": 3.7,
      "broke": false,
      "confirmed": true,
-     "cret20": 10.6
-    },
-    {
-     "date": "2026-10-08",
-     "entry": 183800.0,
-     "ret20": 3.5,
-     "broke": false,
-     "confirmed": false
-    }
-   ],
-   "near": false
-  },
-  {
-   "ticker": "META",
-   "name": "Meta",
-   "market": "US",
-   "currency": "USD",
-   "center": 706.46,
-   "low": 685.27,
-   "high": 727.66,
-   "pivots": 2,
-   "events": 1,
-   "winRate": 0,
-   "avgRet20": -2.8,
-   "confEvents": 0,
-   "confWinRate": null,
-   "confAvgRet20": null,
-   "baseline20": 1.8,
-   "breakRate": 100,
-   "lastClose": 609.89,
-   "distPct": -13.7,
-   "status": null,
-   "history": [
-    {
-     "date": "2025-10-30",
-     "entry": 666.47,
-     "ret20": -2.8,
-     "broke": true,
-     "confirmed": false
+     "cret20": -3.8
     }
    ],
    "near": false
@@ -1595,16 +1458,16 @@
    "low": 347502.5,
    "high": 368997.5,
    "pivots": 10,
-   "events": 8,
-   "winRate": 50,
-   "avgRet20": 1.4,
+   "events": 9,
+   "winRate": 44,
+   "avgRet20": -0.5,
    "confEvents": 6,
    "confWinRate": 67,
    "confAvgRet20": -0.0,
-   "baseline20": 0.0,
-   "breakRate": 25,
-   "lastClose": 308500.0,
-   "distPct": -13.9,
+   "baseline20": -0.0,
+   "breakRate": 33,
+   "lastClose": 312000.0,
+   "distPct": -12.9,
    "status": null,
    "history": [
     {
@@ -1649,6 +1512,39 @@
     {
      "date": "2026-10-29",
      "entry": 356000.0,
+     "ret20": -15.2,
+     "broke": true,
+     "confirmed": false
+    }
+   ],
+   "near": false
+  },
+  {
+   "ticker": "META",
+   "name": "Meta",
+   "market": "US",
+   "currency": "USD",
+   "center": 706.46,
+   "low": 685.27,
+   "high": 727.66,
+   "pivots": 2,
+   "events": 1,
+   "winRate": 0,
+   "avgRet20": -2.8,
+   "confEvents": 0,
+   "confWinRate": null,
+   "confAvgRet20": null,
+   "baseline20": 1.8,
+   "breakRate": 100,
+   "lastClose": 609.89,
+   "distPct": -13.7,
+   "status": null,
+   "history": [
+    {
+     "date": "2025-10-30",
+     "entry": 666.47,
+     "ret20": -2.8,
+     "broke": true,
      "confirmed": false
     }
    ],
@@ -1671,8 +1567,8 @@
    "confAvgRet20": -11.4,
    "baseline20": -0.4,
    "breakRate": 33,
-   "lastClose": 31000.0,
-   "distPct": -13.9,
+   "lastClose": 30950.0,
+   "distPct": -14.0,
    "status": null,
    "history": [
     {
@@ -1802,6 +1698,100 @@
    "near": false
   },
   {
+   "ticker": "196170.KQ",
+   "name": "알테오젠",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 214615.39,
+   "low": 208176.93,
+   "high": 221053.85,
+   "pivots": 3,
+   "events": 3,
+   "winRate": 67,
+   "avgRet20": 14.2,
+   "confEvents": 2,
+   "confWinRate": 100,
+   "confAvgRet20": 23.2,
+   "baseline20": 3.3,
+   "breakRate": 33,
+   "lastClose": 182300.0,
+   "distPct": -15.1,
+   "status": null,
+   "history": [
+    {
+     "date": "2026-06-08",
+     "entry": 221053.85,
+     "ret20": 15.2,
+     "broke": false,
+     "confirmed": true,
+     "cret20": 3.4
+    },
+    {
+     "date": "2026-07-14",
+     "entry": 215000.0,
+     "ret20": 47.7,
+     "broke": false,
+     "confirmed": true,
+     "cret20": 43.1
+    },
+    {
+     "date": "2026-10-13",
+     "entry": 221053.85,
+     "ret20": -20.2,
+     "broke": true,
+     "confirmed": false
+    }
+   ],
+   "near": false
+  },
+  {
+   "ticker": "247540.KQ",
+   "name": "에코프로비엠",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 105950.0,
+   "low": 102771.5,
+   "high": 109128.5,
+   "pivots": 4,
+   "events": 3,
+   "winRate": 33,
+   "avgRet20": -10.4,
+   "confEvents": 2,
+   "confWinRate": 0,
+   "confAvgRet20": -13.2,
+   "baseline20": 2.8,
+   "breakRate": 100,
+   "lastClose": 89500.0,
+   "distPct": -15.5,
+   "status": null,
+   "history": [
+    {
+     "date": "2025-03-21",
+     "entry": 109128.5,
+     "ret20": -11.6,
+     "broke": true,
+     "confirmed": false
+    },
+    {
+     "date": "2026-07-14",
+     "entry": 109128.5,
+     "ret20": 4.8,
+     "broke": true,
+     "confirmed": true,
+     "cret20": -5.3
+    },
+    {
+     "date": "2026-10-13",
+     "entry": 109128.5,
+     "ret20": -24.4,
+     "broke": true,
+     "confirmed": true,
+     "cret20": -21.1
+    }
+   ],
+   "near": false
+  },
+  {
    "ticker": "ASML",
    "name": "ASML",
    "market": "US",
@@ -1828,6 +1818,86 @@
      "ret20": -6.3,
      "broke": true,
      "confirmed": false
+    }
+   ],
+   "near": false
+  },
+  {
+   "ticker": "012450.KS",
+   "name": "한화에어로스페이스",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 787000.0,
+   "low": 763390.0,
+   "high": 810610.0,
+   "pivots": 4,
+   "events": 2,
+   "winRate": 50,
+   "avgRet20": 11.7,
+   "confEvents": 2,
+   "confWinRate": 50,
+   "confAvgRet20": 6.0,
+   "baseline20": 5.7,
+   "breakRate": 50,
+   "lastClose": 656000.0,
+   "distPct": -16.6,
+   "status": null,
+   "history": [
+    {
+     "date": "2026-07-29",
+     "entry": 810000.0,
+     "ret20": 42.0,
+     "broke": false,
+     "confirmed": true,
+     "cret20": 33.8
+    },
+    {
+     "date": "2026-10-13",
+     "entry": 810610.0,
+     "ret20": -18.7,
+     "broke": true,
+     "confirmed": true,
+     "cret20": -21.7
+    }
+   ],
+   "near": false
+  },
+  {
+   "ticker": "051910.KS",
+   "name": "LG화학",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 264000.0,
+   "low": 256080.0,
+   "high": 271920.0,
+   "pivots": 2,
+   "events": 2,
+   "winRate": 50,
+   "avgRet20": 20.9,
+   "confEvents": 2,
+   "confWinRate": 50,
+   "confAvgRet20": 6.4,
+   "baseline20": -1.0,
+   "breakRate": 0,
+   "lastClose": 217500.0,
+   "distPct": -17.6,
+   "status": null,
+   "history": [
+    {
+     "date": "2025-10-13",
+     "entry": 271920.0,
+     "ret20": 46.0,
+     "broke": false,
+     "confirmed": true,
+     "cret20": 34.7
+    },
+    {
+     "date": "2026-06-26",
+     "entry": 271000.0,
+     "ret20": -4.1,
+     "broke": false,
+     "confirmed": true,
+     "cret20": -21.9
     }
    ],
    "near": false
@@ -1864,95 +1934,40 @@
    "near": false
   },
   {
-   "ticker": "012450.KS",
-   "name": "한화에어로스페이스",
+   "ticker": "207940.KS",
+   "name": "삼성바이오로직스",
    "market": "KR",
    "currency": "KRW",
-   "center": 787000.0,
-   "low": 763390.0,
-   "high": 810610.0,
-   "pivots": 4,
+   "center": 1395313.88,
+   "low": 1353454.46,
+   "high": 1437173.29,
+   "pivots": 2,
    "events": 2,
-   "winRate": 50,
-   "avgRet20": 11.7,
-   "confEvents": 2,
-   "confWinRate": 50,
-   "confAvgRet20": 6.0,
-   "baseline20": 5.7,
-   "breakRate": 50,
-   "lastClose": 633000.0,
-   "distPct": -19.6,
-   "status": null,
-   "history": [
-    {
-     "date": "2026-07-29",
-     "entry": 810000.0,
-     "ret20": 42.0,
-     "broke": false,
-     "confirmed": true,
-     "cret20": 33.8
-    },
-    {
-     "date": "2026-10-13",
-     "entry": 810610.0,
-     "ret20": -18.7,
-     "broke": true,
-     "confirmed": true,
-     "cret20": -21.7
-    }
-   ],
-   "near": false
-  },
-  {
-   "ticker": "247540.KQ",
-   "name": "에코프로비엠",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 87650.0,
-   "low": 85020.5,
-   "high": 90279.5,
-   "pivots": 4,
-   "events": 4,
-   "winRate": 75,
-   "avgRet20": 8.2,
-   "confEvents": 2,
-   "confWinRate": 50,
-   "confAvgRet20": 7.0,
-   "baseline20": 2.8,
-   "breakRate": 25,
-   "lastClose": 84300.0,
-   "distPct": -3.8,
+   "winRate": 0,
+   "avgRet20": -10.8,
+   "confEvents": 1,
+   "confWinRate": 0,
+   "confAvgRet20": -16.8,
+   "baseline20": 0.5,
+   "breakRate": 100,
+   "lastClose": 1347000.0,
+   "distPct": -3.5,
    "status": "가격대 하단 이탈 중",
    "history": [
     {
-     "date": "2025-04-02",
-     "entry": 90279.5,
-     "ret20": 12.4,
-     "broke": false,
+     "date": "2026-05-12",
+     "entry": 1437173.29,
+     "ret20": -10.5,
+     "broke": true,
      "confirmed": false
     },
     {
-     "date": "2025-05-20",
-     "entry": 88300.0,
-     "ret20": 2.9,
-     "broke": false,
-     "confirmed": false
-    },
-    {
-     "date": "2026-07-29",
-     "entry": 90279.5,
-     "ret20": 28.8,
-     "broke": false,
-     "confirmed": true,
-     "cret20": 20.7
-    },
-    {
-     "date": "2026-10-26",
-     "entry": 89600.0,
-     "ret20": -11.4,
+     "date": "2026-09-04",
+     "entry": 1437173.29,
+     "ret20": -11.1,
      "broke": true,
      "confirmed": true,
-     "cret20": -6.6
+     "cret20": -16.8
     }
    ],
    "near": false
@@ -2015,38 +2030,6 @@
    "near": false
   },
   {
-   "ticker": "000270.KS",
-   "name": "기아",
-   "market": "KR",
-   "currency": "KRW",
-   "center": 100000.0,
-   "low": 97000.0,
-   "high": 103000.0,
-   "pivots": 3,
-   "events": 1,
-   "winRate": 0,
-   "avgRet20": -6.7,
-   "confEvents": 1,
-   "confWinRate": 0,
-   "confAvgRet20": -12.9,
-   "baseline20": 1.1,
-   "breakRate": 0,
-   "lastClose": 96000.0,
-   "distPct": -4.0,
-   "status": "가격대 하단 이탈 중",
-   "history": [
-    {
-     "date": "2026-10-13",
-     "entry": 103000.0,
-     "ret20": -6.7,
-     "broke": false,
-     "confirmed": true,
-     "cret20": -12.9
-    }
-   ],
-   "near": false
-  },
-  {
    "ticker": "CEG",
    "name": "Constellation Energy",
    "market": "US",
@@ -2076,6 +2059,35 @@
    "near": false
   },
   {
+   "ticker": "196170.KQ",
+   "name": "알테오젠",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 190384.62,
+   "low": 184673.08,
+   "high": 196096.16,
+   "pivots": 2,
+   "events": 0,
+   "winRate": null,
+   "avgRet20": null,
+   "confEvents": 0,
+   "confWinRate": null,
+   "confAvgRet20": null,
+   "baseline20": 3.3,
+   "breakRate": null,
+   "lastClose": 182300.0,
+   "distPct": -4.2,
+   "status": "가격대 하단 이탈 중",
+   "history": [
+    {
+     "date": "2026-11-04",
+     "entry": 196096.16,
+     "confirmed": true
+    }
+   ],
+   "near": false
+  },
+  {
    "ticker": "035720.KS",
    "name": "카카오",
    "market": "KR",
@@ -2092,8 +2104,8 @@
    "confAvgRet20": 5.7,
    "baseline20": -0.4,
    "breakRate": 0,
-   "lastClose": 31000.0,
-   "distPct": -4.8,
+   "lastClose": 30950.0,
+   "distPct": -4.9,
    "status": "가격대 하단 이탈 중",
    "history": [
     {
@@ -2148,6 +2160,38 @@
      "ret20": -2.8,
      "broke": false,
      "confirmed": false
+    }
+   ],
+   "near": false
+  },
+  {
+   "ticker": "000270.KS",
+   "name": "기아",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 100000.0,
+   "low": 97000.0,
+   "high": 103000.0,
+   "pivots": 3,
+   "events": 1,
+   "winRate": 0,
+   "avgRet20": -6.7,
+   "confEvents": 1,
+   "confWinRate": 0,
+   "confAvgRet20": -12.9,
+   "baseline20": 1.1,
+   "breakRate": 0,
+   "lastClose": 94500.0,
+   "distPct": -5.5,
+   "status": "가격대 하단 이탈 중",
+   "history": [
+    {
+     "date": "2026-10-13",
+     "entry": 103000.0,
+     "ret20": -6.7,
+     "broke": false,
+     "confirmed": true,
+     "cret20": -12.9
     }
    ],
    "near": false
@@ -2241,30 +2285,62 @@
    "near": false
   },
   {
-   "ticker": "028260.KS",
-   "name": "삼성물산",
+   "ticker": "005490.KS",
+   "name": "POSCO홀딩스",
    "market": "KR",
    "currency": "KRW",
-   "center": 260000.0,
-   "low": 252200.0,
-   "high": 267800.0,
-   "pivots": 3,
-   "events": 0,
-   "winRate": null,
-   "avgRet20": null,
-   "confEvents": 0,
-   "confWinRate": null,
-   "confAvgRet20": null,
-   "baseline20": 1.7,
-   "breakRate": null,
-   "lastClose": 243500.0,
-   "distPct": -6.3,
+   "center": 273500.0,
+   "low": 265295.0,
+   "high": 281705.0,
+   "pivots": 2,
+   "events": 5,
+   "winRate": 20,
+   "avgRet20": 0.4,
+   "confEvents": 2,
+   "confWinRate": 50,
+   "confAvgRet20": 3.1,
+   "baseline20": 0.7,
+   "breakRate": 40,
+   "lastClose": 254500.0,
+   "distPct": -6.9,
    "status": "가격대 하단 이탈 중",
    "history": [
     {
-     "date": "2026-11-17",
-     "entry": 265500.0,
-     "confirmed": true
+     "date": "2024-11-14",
+     "entry": 281705.0,
+     "ret20": -2.6,
+     "broke": false,
+     "confirmed": false
+    },
+    {
+     "date": "2025-03-31",
+     "entry": 278500.0,
+     "ret20": -5.7,
+     "broke": true,
+     "confirmed": true,
+     "cret20": -6.1
+    },
+    {
+     "date": "2025-09-01",
+     "entry": 281000.0,
+     "ret20": -1.8,
+     "broke": false,
+     "confirmed": false
+    },
+    {
+     "date": "2026-07-29",
+     "entry": 281705.0,
+     "ret20": 20.5,
+     "broke": false,
+     "confirmed": true,
+     "cret20": 12.3
+    },
+    {
+     "date": "2026-10-23",
+     "entry": 275500.0,
+     "ret20": -8.5,
+     "broke": true,
+     "confirmed": false
     }
    ],
    "near": false
@@ -2310,6 +2386,37 @@
      "date": "2026-11-05",
      "entry": 115.16,
      "confirmed": true
+    }
+   ],
+   "near": false
+  },
+  {
+   "ticker": "068270.KS",
+   "name": "셀트리온",
+   "market": "KR",
+   "currency": "KRW",
+   "center": 237192.18,
+   "low": 230076.41,
+   "high": 244307.95,
+   "pivots": 2,
+   "events": 1,
+   "winRate": 0,
+   "avgRet20": -7.6,
+   "confEvents": 0,
+   "confWinRate": null,
+   "confAvgRet20": null,
+   "baseline20": -0.1,
+   "breakRate": 100,
+   "lastClose": 220000.0,
+   "distPct": -7.2,
+   "status": "가격대 하단 이탈 중",
+   "history": [
+    {
+     "date": "2021-04-21",
+     "entry": 238836.5,
+     "ret20": -7.6,
+     "broke": true,
+     "confirmed": false
     }
    ],
    "near": false
