@@ -581,8 +581,15 @@ function openDetail(p){
     const r=p.lastPrice?(p.lastPrice/hd.price-1)*100:null;
     // 한 줄: "매수가 25,000원 +3.2%" — 줄을 누르면 수정
     const d=el("div"); d.style.cursor="pointer"; d.title="눌러서 수정";
-    d.append(document.createTextNode("매수가 "+price(hd.price,p.currency)+(p.lastPrice?" 현재가 "+price(p.lastPrice,p.currency):"")+" "));
-    if(r!=null) d.append(el("span",cls(r),(r>0?"+":"")+r.toFixed(1)+"%"));
+    // 라벨은 작고 흐리게, 가격은 굵게, 수익률은 색+굵게
+    Object.assign(d.style,{display:"flex",flexWrap:"wrap",alignItems:"baseline",gap:"4px 6px"});
+    const L=t=>{ const x=el("span",null,t); Object.assign(x.style,{fontSize:"12px",color:"var(--sub)"}); return x; };
+    const V=t=>{ const x=el("span",null,t); Object.assign(x.style,{fontSize:"17px",fontWeight:"700"}); return x; };
+    d.append(L("매수가"),V(price(hd.price,p.currency)));
+    if(p.lastPrice){ const sep=el("span",null,"→"); sep.style.color="var(--sub)"; d.append(sep,L("현재가"),V(price(p.lastPrice,p.currency))); }
+    if(r!=null){ const x=el("span",cls(r),(r>0?"+":"")+r.toFixed(1)+"%");
+      Object.assign(x.style,{fontSize:"17px",fontWeight:"800",marginLeft:"4px",padding:"1px 8px",borderRadius:"6px",
+        background:r>0?"rgba(239,68,68,.14)":r<0?"rgba(59,130,246,.14)":"rgba(127,127,127,.12)"}); d.append(x); }
     d.addEventListener("click",()=>{ sum.style.display="none"; editor.style.display=""; msg.textContent=""; inp.focus(); });
     sum.append(d); };
   const adv=el("div","card"); sh.append(el("h2",null,"대응 방향")); sh.append(adv);
