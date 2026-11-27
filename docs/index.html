@@ -485,6 +485,37 @@ function kv(box,k,v,c){ const r=el("div","row"); r.style.padding="5px 0"; r.styl
   r.append(el("span","sub",k), el("b",c||"",v)); box.append(r); }
 
 // 대응 방향: 추천 손절·목표가와 지금 가격으로 판단 (참고용 규칙)
+// 내가 산 종목: 부분 손절·부분 익절·추적 손절 안내
+async function holdingPlan(p, hd){
+  let rows; try{ rows=(await fetch("data/prices/"+p.ticker.replace("^","IDX_")+".json?t="+Date.now()).then(r=>r.json())).d; }catch(e){ return null; }
+  if(!rows||rows.length<25) return null;
+  const C=rows.map(r=>r[4]), H=rows.map(r=>r[2]), L=rows.map(r=>r[3]), n=C.length, cu=p.currency;
+  const cur=p.lastPrice||C[n-1], b=+hd.price, rp=+p.recPrice||b, k=b/rp;
+  const tr=[]; for(let i=n-14;i<n;i++) tr.push(Math.max(H[i]-L[i],Math.abs(H[i]-C[i-1]),Math.abs(L[i]-C[i-1])));
+  const atr=tr.reduce((a,x)=>a+x,0)/tr.length, ma20=C.slice(n-20).reduce((a,x)=>a+x,0)/20;
+  let g=0,l=0; for(let i=n-14;i<n;i++){ const d=C[i]-C[i-1]; if(d>0) g+=d; else l-=d; } const rsi=l?100-100/(1+g/l):100;
+  const since=hd.at||p.recDate; const after=rows.filter(r=>r[0]>=since); const hiC=Math.max(b,...after.map(r=>r[4]),cur);
+  // 손절은 추천 손절선을 매수가 비율로 환산하되 최대 -8%(오닐 7~8% 원칙)로 제한
+  const stop=Math.max(p.stop?p.stop*k:b-2*atr, b*0.92), t1=Math.max(p.target?p.target*k:0, b+2*(b-stop)), t2=b+(t1-b)*1.8, R=Math.max(b-stop,1e-9);
+  const gain=(cur/b-1)*100, P=v=>price(v,cu), pc=v=>((v/b-1)*100>0?"+":"")+((v/b-1)*100).toFixed(1)+"%";
+  const below20=C[n-1]<ma20&&C[n-2]<ma20, reachedT1=hiC>=t1, trail=Math.max(b,hiC-2*atr);
+  const days=after.length, short=["swing","theme","theme_cand"].includes(p.method);
+  const o={why:[]};
+  if(cur<=stop){ o.action="전량 손절"; o.tone="down"; o.why.push("손절선 "+P(stop)+"("+pc(stop)+")을 깼습니다. 버티면 손실이 커지는 경우가 더 많습니다."); }
+  else if(reachedT1&&cur<=trail){ o.action="남은 물량 정리"; o.tone="down"; o.why.push("1차 목표를 넘긴 뒤 최고 종가 "+P(hiC)+"에서 2ATR 넘게 밀렸습니다(추적 손절선 "+P(trail)+")."); }
+  else if(cur>=t2){ o.action="1/4 추가 익절, 나머지는 추적"; o.tone="up"; o.why.push("2차 목표 "+P(t2)+"("+pc(t2)+") 도달."); o.why.push("남은 물량은 최고 종가에서 2ATR 아래 "+P(trail)+"를 깨면 정리하세요."); }
+  else if(cur>=t1){ o.action="절반 익절"; o.tone="up"; o.why.push("1차 목표 "+P(t1)+"("+pc(t1)+") 도달."); o.why.push("나머지는 손절선을 매수가 "+P(b)+"로 올리고 2차 목표 "+P(t2)+"까지 보세요."); }
+  else if(gain>0&&rsi>75&&cur>ma20+2.5*atr){ o.action="1/3 부분 익절"; o.tone="up"; o.why.push("단기 과열입니다(RSI "+rsi.toFixed(0)+", 20일선보다 평소 변동폭의 2.5배 이상 위). 급등 뒤 되돌림이 잦은 자리입니다."); o.why.push("나머지는 1차 목표 "+P(t1)+"까지 보유."); }
+  else if(reachedT1){ o.action="보유 (추적 손절)"; o.why.push("1차 목표를 넘겼던 종목입니다. 추적 손절선 "+P(trail)+" 아래로 내려가면 정리하세요."); }
+  else if(cur-b>=R){ o.action="보유 · 손절선을 매수가로 올리기"; o.tone="up"; o.why.push("손절 폭만큼 수익이 났습니다. 이제 손절선을 매수가 "+P(b)+"로 올려 본전을 지키세요."); o.why.push("1차 익절 "+P(t1)+"("+pc(t1)+")."); }
+  else if(gain>=0){ o.action="보유"; o.why.push("1차 익절 "+P(t1)+"("+pc(t1)+"), 손절 "+P(stop)+"("+pc(stop)+")."); }
+  else { const f=(b-cur)/R;
+    if(f>=0.5&&below20){ o.action="절반 부분 손절"; o.tone="down"; o.why.push("손절선까지 절반 넘게 내려왔고, 이틀 연속 20일선 아래에서 마감했습니다. 반등 근거가 약해졌습니다."); o.why.push("나머지 절반은 손절선 "+P(stop)+"("+pc(stop)+")에서 정리."); }
+    else if(f>=0.5){ o.action="경계 · 추가 매수 금지"; o.tone="down"; o.why.push("손절선 "+P(stop)+"까지 "+((cur/stop-1)*100).toFixed(1)+"% 남았습니다. 20일선("+P(ma20)+") 아래로 이틀 마감하면 절반 손절하세요."); }
+    else { o.action="보유 · 추가 매수 금지"; o.why.push("평소 흔들림 범위 안입니다. 손절 "+P(stop)+"("+pc(stop)+"), 물타기는 하지 마세요."); } }
+  if(short&&days>=5&&!/손절|정리/.test(o.action)){ o.action+=" · 보유 기한(5거래일) 지남"; o.why.push("단기 추천이라 기한이 지나면 결과와 관계없이 정리하는 게 원칙입니다."); }
+  return o;
+}
 function advice(p, base){
   const cur=p.lastPrice, cu=p.currency, rp=+p.recPrice;
   if(p.entry==="pending") return ["다음 정규장 시가에 진입가가 확정됩니다. 그 전에는 추격 매수하지 마세요."];
@@ -593,7 +624,12 @@ function openDetail(p){
     d.addEventListener("click",()=>{ sum.style.display="none"; editor.style.display=""; msg.textContent=""; inp.focus(); });
     sum.append(d); };
   const adv=el("div","card"); sh.append(el("h2",null,"대응 방향")); sh.append(adv);
-  const drawAdv=()=>{ adv.replaceChildren(); const hd=getHold()[p.id]; const base=hd&&hd.price?+hd.price:null;
+  const drawAdv=async()=>{ adv.replaceChildren(); const hd=getHold()[p.id]; const base=hd&&hd.price?+hd.price:null;
+    if(base){ const plan=await holdingPlan(p,hd);
+      if(plan){ const h=el("div"); Object.assign(h.style,{fontSize:"17px",fontWeight:"800",margin:"2px 0 6px"}); h.textContent="지금: "+plan.action;
+        if(plan.tone) h.className=plan.tone; adv.append(h); plan.why.forEach(t=>adv.append(el("div",null,"• "+t)));
+        adv.append(el("div","note","매수가·현재가·최근 일봉(평균 변동폭 ATR, 20일선, RSI)으로 매번 다시 계산합니다. 손절·분할 매도는 오닐식 손실 제한과 분할 청산 원칙을 따릅니다."));
+        adv.append(el("div","note","규칙에 따른 참고용 안내이며 투자 권유가 아닙니다.")); return; } }
     advice(p,base).forEach(t=>adv.append(el("div",null,"• "+t)));
     adv.append(el("div","note",base?"내 매수가 기준으로 손절·목표가를 같은 비율로 환산했습니다.":"추천 가격 기준입니다. 매수가를 입력하면 내 가격 기준으로 바뀝니다."));
     adv.append(el("div","note","규칙에 따른 참고용 안내이며 투자 권유가 아닙니다.")); };
