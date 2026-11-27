@@ -571,20 +571,32 @@ function openDetail(p){
   const save=el("button",null,"저장"); Object.assign(save.style,{border:"1px solid var(--accent)",background:"var(--accent)",color:"#fff",borderRadius:"8px",padding:"8px 14px",fontSize:"15px"});
   row.append(el("span","sub",p.currency==="KRW"?"원":"$"),inp,save);
   const msg=el("div","meta");
-  mine.append(lab,row,msg); sh.append(mine);
+  // 저장 후 요약: 매수가·수익률만 크게
+  const sum=el("div"); sum.style.display="none";
+  const editor=el("div"); editor.append(lab,row,msg);
+  mine.append(sum,editor); sh.append(mine);
+  const drawSum=()=>{ const hd=getHold()[p.id]; sum.replaceChildren();
+    if(!(hd&&hd.price)){ sum.style.display="none"; editor.style.display=""; return; }
+    sum.style.display=""; editor.style.display="none";
+    const r=p.lastPrice?(p.lastPrice/hd.price-1)*100:null;
+    const line=(k,v,c)=>{ const d=el("div"); Object.assign(d.style,{display:"flex",justifyContent:"space-between",alignItems:"baseline",padding:"6px 0"});
+      const a=el("span","sub",k), b=el("span",c||"",v); b.style.fontSize="22px"; b.style.fontWeight="700"; d.append(a,b); return d; };
+    sum.append(line("매수가",price(hd.price,p.currency)), line("수익률",r==null?"–":pct(r),r==null?"":cls(r)));
+    const ed=el("button",null,"수정"); Object.assign(ed.style,{marginTop:"6px",border:"1px solid var(--line)",background:"transparent",color:"var(--sub)",borderRadius:"8px",padding:"6px 12px",fontSize:"13px"});
+    ed.addEventListener("click",()=>{ sum.style.display="none"; editor.style.display=""; msg.textContent=""; inp.focus(); });
+    sum.append(ed); };
   const adv=el("div","card"); sh.append(el("h2",null,"대응 방향")); sh.append(adv);
   const drawAdv=()=>{ adv.replaceChildren(); const hd=getHold()[p.id]; const base=hd&&hd.price?+hd.price:null;
-    if(base&&p.lastPrice){ adv.append(el("div","meta "+cls(p.lastPrice/base-1),"내 매수가 "+price(base,p.currency)+" 기준 수익률 "+pct((p.lastPrice/base-1)*100))); }
     advice(p,base).forEach(t=>adv.append(el("div",null,"• "+t)));
     adv.append(el("div","note",base?"내 매수가 기준으로 손절·목표가를 같은 비율로 환산했습니다.":"추천 가격 기준입니다. 매수가를 입력하면 내 가격 기준으로 바뀝니다."));
     adv.append(el("div","note","규칙에 따른 참고용 안내이며 투자 권유가 아닙니다.")); };
   const persist=()=>{ const v=parseFloat(inp.value.replace(/,/g,"")); const ok=setHold(p.id, cb.checked?{price:isNaN(v)?null:v, at:new Date().toISOString().slice(0,10)}:null);
-    msg.textContent=ok?(cb.checked?"저장했어요 (이 기기에만 저장됩니다)":"매수 표시를 지웠어요"):"저장하지 못했어요 (브라우저 저장소를 쓸 수 없음)";
-    drawAdv(); if(state.tab==="ALL") drawList(); };
+    msg.textContent=ok?(cb.checked?"":"매수 표시를 지웠어요"):"저장하지 못했어요 (브라우저 저장소를 쓸 수 없음)";
+    drawAdv(); drawSum(); if(state.tab==="ALL") drawList(); };
   cb.addEventListener("change",()=>{ row.style.display=cb.checked?"flex":"none"; persist(); if(cb.checked) inp.focus(); });
   save.addEventListener("click",persist);
   inp.addEventListener("keydown",e=>{ if(e.key==="Enter") persist(); });
-  drawAdv();
+  drawAdv(); drawSum();
   sh.append(el("h2",null,"추천 사유·차트")); sh.append(card(p));
 }
 
