@@ -1,0 +1,52 @@
+name: quick-alerts
+
+# 가격 알림·내 종목 알림을 10분마다 확인해 즉시 폰(ntfy)으로 보낸다. 장이 닫혀 있으면 바로 끝난다.
+on:
+  workflow_dispatch:
+  push:
+    paths: ["docs/data/holdings.json", "docs/data/alerts.json", "scripts/notify.py", "scripts/holdings.py", "scripts/alerts.py"]
+  schedule:
+    - cron: "*/10 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: quick-alerts
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: 장 열림 확인
+        id: open
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import sys; sys.path.insert(0, "scripts")
+          from common import now_kst, session_phase
+          now = now_kst()
+          print("open=" + ("1" if any(session_phase(r, now) != "closed" for r in ("KR", "US")) else "0"))
+          PY
+      - if: steps.open.outputs.open == '1' || github.event_name != 'schedule'
+        run: pip install -r requirements.txt
+      - if: steps.open.outputs.open == '1' || github.event_name != 'schedule'
+        run: |
+          python scripts/alerts.py || echo "가격 알림 확인 실패"
+          python scripts/holdings.py || echo "내 종목 확인 실패"
+          python scripts/notify.py || echo "알림 발송 실패"
+      - name: Commit
+        if: steps.open.outputs.open == '1' || github.event_name != 'schedule'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/alerts.json docs/data/holdings_state.json
+          git diff --cached --quiet && exit 0
+          git commit -m "data: 알림 확인 $(TZ=Asia/Seoul date '+%m-%d %H:%M')"
+          for i in 1 2 3 4; do git pull --rebase -X theirs && git push && break; sleep 7; done

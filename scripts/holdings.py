@@ -92,9 +92,7 @@ def main() -> None:
         if df is None or len(df) < 25 or not h.get("price"):
             continue
         pick = picks.get(h["id"])
-        cur = float((pick or {}).get("lastPrice") or df["Close"].iloc[-1])
-        if pick and pick.get("lastDate") and str(df.index[-1].date()) > pick["lastDate"]:
-            cur = float(df["Close"].iloc[-1])
+        cur = float(df["Close"].iloc[-1])            # 방금 받은 시세(장중이면 실시간에 가까움)
         action, detail = plan(df, cur, h, pick)
         key = f"{h['id']}|{h['price']}"
         prev = state.get(key, {}).get("action")
