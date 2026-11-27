@@ -960,5 +960,28 @@
    "NASDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-27T11:18+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ"
+  ],
+  "added": [
+   "KOSPI:SK바이오팜(strategy)",
+   "KOSPI:포스코퓨처엠(strategy)",
+   "KOSPI:대한항공(strategy)",
+   "KOSPI:대한항공(종합)",
+   "KOSPI:포스코퓨처엠(종합)",
+   "KOSPI:카카오페이(종합)",
+   "KOSDAQ:티엘비(strategy)",
+   "KOSDAQ:SFA반도체(strategy)",
+   "KOSDAQ:케이아이엔엑스(strategy)",
+   "KOSDAQ:삼천당제약(종합)",
+   "KOSDAQ:오스코텍(종합)",
+   "KOSDAQ:지아이이노베이션(테마)",
+   "KOSDAQ:한국피아이엠(테마)",
+   "KOSDAQ:바이오니아(테마)"
+  ]
  }
 ]

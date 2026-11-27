@@ -1,14 +1,14 @@
 {
- "updated": "2026-11-27T04:31+09:00",
+ "updated": "2026-11-27T11:20+09:00",
  "metric": "10거래일 시점 지수 대비 초과수익(%p), 손절 종료는 종료 시점 값",
  "overall": {
   "combined": {
    "n": 0,
-   "open": 1
+   "open": 6
   },
   "theme": {
    "n": 0,
-   "open": 1
+   "open": 4
   },
   "theme_cand": {
    "n": 0,
@@ -32,7 +32,7 @@
   },
   "strategy": {
    "n": 4,
-   "open": 50,
+   "open": 56,
    "hit": 0.0,
    "avg": -10.84,
    "best": -6.35,
@@ -51,7 +51,7 @@
   "KOSPI": {
    "combined": {
     "n": 0,
-    "open": 0
+    "open": 3
    },
    "theme": {
     "n": 0,
@@ -71,7 +71,7 @@
    },
    "strategy": {
     "n": 1,
-    "open": 11,
+    "open": 14,
     "hit": 0.0,
     "avg": -6.35,
     "best": -6.35,
@@ -85,11 +85,11 @@
   "KOSDAQ": {
    "combined": {
     "n": 0,
-    "open": 1
+    "open": 3
    },
    "theme": {
     "n": 0,
-    "open": 0
+    "open": 3
    },
    "theme_cand": {
     "n": 0,
@@ -109,7 +109,7 @@
    },
    "strategy": {
     "n": 2,
-    "open": 10,
+    "open": 13,
     "hit": 0.0,
     "avg": -14.36,
     "best": -14.0,
@@ -208,7 +208,7 @@
   },
   "bollinger": {
    "n": 1,
-   "open": 8,
+   "open": 9,
    "hit": 0.0,
    "avg": -8.28,
    "best": -8.28,
@@ -216,7 +216,7 @@
   },
   "macd": {
    "n": 0,
-   "open": 12
+   "open": 13
   },
   "value": {
    "n": 0,
@@ -224,7 +224,7 @@
   },
   "dividend": {
    "n": 2,
-   "open": 13,
+   "open": 14,
    "hit": 0.0,
    "avg": -10.53,
    "best": -6.35,
@@ -244,13 +244,17 @@
   },
   "trendline": {
    "n": 0,
-   "open": 7
+   "open": 9
   },
   "book_bb_reentry": {
    "n": 0,
    "open": 2
   },
   "book_granville4": {
+   "n": 0,
+   "open": 1
+  },
+  "book_granville1": {
    "n": 0,
    "open": 1
   },
@@ -266,7 +270,7 @@
  "byRegime": {
   "하락": {
    "n": 6,
-   "open": 33,
+   "open": 47,
    "hit": 0.0,
    "avg": -11.34,
    "best": -6.35,
@@ -284,7 +288,7 @@
  "byOverlap": {
   "차트 근거 1개": {
    "n": 0,
-   "open": 1
+   "open": 6
   }
  },
  "byThemeLasting": {
@@ -294,19 +298,23 @@
   },
   "이어진 테마(3일 +)": {
    "n": 0,
-   "open": 1
+   "open": 4
   }
  },
  "byThemeKind": {
   "산업·기술": {
    "n": 0,
-   "open": 3
+   "open": 5
+  },
+  "질병·보건": {
+   "n": 0,
+   "open": 1
   }
  },
  "byStyle": {
   "수급": {
    "n": 0,
-   "open": 3
+   "open": 8
   },
   "액티브ETF": {
    "n": 1,
@@ -332,11 +340,11 @@
  "byFlow": {
   "한쪽 순매수": {
    "n": 0,
-   "open": 10
+   "open": 15
   },
   "동반 순매수": {
    "n": 0,
-   "open": 1
+   "open": 10
   }
  },
  "stopOuts": 8,
