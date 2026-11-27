@@ -647,7 +647,8 @@ function openDetail(p){
   const sum=el("div"); sum.style.display="none";
   const editor=el("div"); editor.append(lab,row,msg);
   const nt=el("div","meta"); nt.style.marginTop="8px";
-  const drawNt=()=>{ nt.replaceChildren(); const a=el("a",null,ghToken()?"📱 폰 알림 연결됨 (설정)":"📱 폰 알림 받기 설정"); a.href="#";
+  const drawNt=()=>{ nt.replaceChildren(); const a=el("a",null,ghToken()?"🔔 알림 켜짐 · 설정":"🔔 폰 알림 받기"); a.href="#";
+    Object.assign(a.style,{color:"var(--sub)",textDecoration:"none",fontSize:"13px"});
     a.addEventListener("click",e=>{ e.preventDefault(); openNotifySetup(drawNt); }); nt.append(a); };
   drawNt();
   mine.append(sum,editor,nt); sh.append(mine);
