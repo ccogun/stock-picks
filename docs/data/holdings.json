@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T07:55",
+ "updated": "2026-11-27T07:57",
  "items": [
   {
    "id": "2026-11-25-KOSPI-chart-192820.KS",
@@ -25,8 +25,8 @@
    "name": "한미약품",
    "market": "KOSPI",
    "currency": "KRW",
-   "price": 462813,
-   "at": "2026-11-25"
+   "price": 462350,
+   "at": "2026-11-27"
   },
   {
    "id": "2026-11-23-KOSDAQ-swing-035760.KQ",
@@ -62,6 +62,24 @@
    "market": "KOSPI",
    "currency": "KRW",
    "price": 173047,
+   "at": "2026-11-27"
+  },
+  {
+   "id": "2026-11-27-KOSPI-combined-003490.KS",
+   "ticker": "003490.KS",
+   "name": "대한항공",
+   "market": "KOSPI",
+   "currency": "KRW",
+   "price": 30075,
+   "at": "2026-11-27"
+  },
+  {
+   "id": "2026-11-26-KOSPI-strategy-011200.KS",
+   "ticker": "011200.KS",
+   "name": "HMM",
+   "market": "KOSPI",
+   "currency": "KRW",
+   "price": 22125,
    "at": "2026-11-27"
   }
  ]
