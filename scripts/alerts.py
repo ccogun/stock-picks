@@ -26,7 +26,7 @@ def main() -> None:
     since = pd.Timestamp(j.get("checkedAt") or (now - pd.Timedelta(hours=2)).isoformat())
     tickers = sorted({a["ticker"] for a in act})
     raw = yf.download(tickers, period="2d", interval="5m", prepost=True, group_by="ticker",
-                      auto_adjust=False, threads=True, progress=False)
+                      auto_adjust=False, threads=False, progress=False)
     for t in tickers:
         try:
             df = (raw[t] if isinstance(raw.columns, pd.MultiIndex) else raw).dropna(subset=["Close"])
