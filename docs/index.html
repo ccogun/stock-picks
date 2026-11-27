@@ -579,12 +579,12 @@ function openDetail(p){
     if(!(hd&&hd.price)){ sum.style.display="none"; editor.style.display=""; return; }
     sum.style.display=""; editor.style.display="none";
     const r=p.lastPrice?(p.lastPrice/hd.price-1)*100:null;
-    const line=(k,v,c)=>{ const d=el("div"); Object.assign(d.style,{display:"flex",justifyContent:"space-between",alignItems:"baseline",padding:"6px 0"});
-      const a=el("span","sub",k), b=el("span",c||"",v); b.style.fontSize="22px"; b.style.fontWeight="700"; d.append(a,b); return d; };
-    sum.append(line("매수가",price(hd.price,p.currency)), line("수익률",r==null?"–":pct(r),r==null?"":cls(r)));
-    const ed=el("button",null,"수정"); Object.assign(ed.style,{marginTop:"6px",border:"1px solid var(--line)",background:"transparent",color:"var(--sub)",borderRadius:"8px",padding:"6px 12px",fontSize:"13px"});
+    const d=el("div"); Object.assign(d.style,{display:"flex",alignItems:"baseline",gap:"10px"});
+    const a=el("span",null,price(hd.price,p.currency)); a.style.fontSize="18px"; a.style.fontWeight="700";
+    const b=el("span",r==null?"":cls(r),r==null?"":pct(r)); b.style.fontSize="18px"; b.style.fontWeight="700";
+    const ed=el("button",null,"수정"); Object.assign(ed.style,{marginLeft:"auto",border:"1px solid var(--line)",background:"transparent",color:"var(--sub)",borderRadius:"8px",padding:"4px 10px",fontSize:"13px"});
     ed.addEventListener("click",()=>{ sum.style.display="none"; editor.style.display=""; msg.textContent=""; inp.focus(); });
-    sum.append(ed); };
+    d.append(a,b,ed); sum.append(d); };
   const adv=el("div","card"); sh.append(el("h2",null,"대응 방향")); sh.append(adv);
   const drawAdv=()=>{ adv.replaceChildren(); const hd=getHold()[p.id]; const base=hd&&hd.price?+hd.price:null;
     advice(p,base).forEach(t=>adv.append(el("div",null,"• "+t)));
