@@ -1001,5 +1001,17 @@
    "KOSDAQ"
   ],
   "added": []
+ },
+ {
+  "at": "2026-11-27T18:45+09:00",
+  "scanned": [
+   "KOSPI",
+   "KOSDAQ",
+   "SP500",
+   "NASDAQ"
+  ],
+  "added": [
+   "SP500:Williams Companies"
+  ]
  }
 ]
