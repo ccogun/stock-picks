@@ -765,7 +765,7 @@
   ]
  },
  "US": {
-  "asof": "2026-11-25",
+  "asof": "2026-11-27",
   "sectors": [
    {
     "name": "기술",
@@ -775,239 +775,239 @@
       "t": "AAPL",
       "n": "Apple Inc.",
       "cap": 5167353167872,
-      "chg": 0.43,
-      "px": 355.58
+      "chg": 0.83,
+      "px": 358.54
      },
      {
       "t": "MSFT",
       "n": "Microsoft",
       "cap": 3638315450368,
-      "chg": -1.25,
-      "px": 489.93
+      "chg": 0.6,
+      "px": 492.85
      },
      {
       "t": "NVDA",
       "n": "Nvidia",
       "cap": 3605147156480,
-      "chg": -3.91,
-      "px": 149.3
+      "chg": 0.8,
+      "px": 150.49
      },
      {
       "t": "AVGO",
       "n": "Broadcom",
       "cap": 1436194177024,
-      "chg": -0.07,
-      "px": 300.86
+      "chg": 3.82,
+      "px": 312.34
      },
      {
       "t": "MU",
       "n": "Micron Technology",
       "cap": 680268201984,
-      "chg": -4.53,
-      "px": 601.25
+      "chg": 7.6,
+      "px": 646.95
      },
      {
       "t": "AMD",
       "n": "Advanced Micro Devices",
       "cap": 672006275072,
-      "chg": -1.75,
-      "px": 406.03
+      "chg": 4.56,
+      "px": 424.54
      },
      {
       "t": "PLTR",
       "n": "Palantir Technologies",
       "cap": 394169712640,
-      "chg": 1.5,
-      "px": 163.59
+      "chg": 5.24,
+      "px": 172.17
      },
      {
       "t": "CSCO",
       "n": "Cisco",
       "cap": 371378585600,
-      "chg": 0.22,
-      "px": 94.2
+      "chg": 3.01,
+      "px": 97.04
      },
      {
       "t": "ORCL",
       "n": "Oracle Corporation",
       "cap": 323867508736,
-      "chg": -5.13,
-      "px": 103.88
+      "chg": 3.13,
+      "px": 107.13
      },
      {
       "t": "PANW",
       "n": "Palo Alto Networks",
       "cap": 292390961152,
-      "chg": 0.89,
-      "px": 356.14
+      "chg": 2.98,
+      "px": 366.76
      },
      {
       "t": "INTC",
       "n": "Intel",
       "cap": 289508032512,
-      "chg": -0.6,
-      "px": 54.47
+      "chg": 5.38,
+      "px": 57.4
      },
      {
       "t": "AMAT",
       "n": "Applied Materials",
       "cap": 246951641088,
-      "chg": -3.89,
-      "px": 311.18
+      "chg": 3.49,
+      "px": 322.04
      },
      {
       "t": "TXN",
       "n": "Texas Instruments",
       "cap": 246891593728,
-      "chg": 4.55,
-      "px": 270.19
+      "chg": 4.32,
+      "px": 281.85
      },
      {
       "t": "LRCX",
       "n": "Lam Research",
       "cap": 231109115904,
-      "chg": -5.68,
-      "px": 185.01
+      "chg": 4.15,
+      "px": 192.69
      },
      {
       "t": "IBM",
       "n": "IBM",
       "cap": 230108577792,
-      "chg": 3.33,
-      "px": 243.47
+      "chg": 1.89,
+      "px": 248.08
      },
      {
       "t": "CRWD",
       "n": "CrowdStrike",
       "cap": 215703863296,
-      "chg": -0.74,
-      "px": 209.3
+      "chg": 3.77,
+      "px": 217.2
      },
      {
       "t": "ANET",
       "n": "Arista Networks",
       "cap": 207185362944,
-      "chg": -2.71,
-      "px": 163.99
+      "chg": 6.55,
+      "px": 174.73
      },
      {
       "t": "DELL",
       "n": "Dell Technologies",
       "cap": 188874522624,
-      "chg": 0.6,
-      "px": 297.06
+      "chg": 6.7,
+      "px": 316.96
      },
      {
       "t": "QCOM",
       "n": "Qualcomm",
       "cap": 180466204672,
-      "chg": 2.24,
-      "px": 168.66
+      "chg": 6.29,
+      "px": 179.27
      },
      {
       "t": "APH",
       "n": "Amphenol",
       "cap": 180453621760,
-      "chg": -0.53,
-      "px": 73.08
+      "chg": 2.82,
+      "px": 75.14
      },
      {
       "t": "KLAC",
       "n": "KLA Corporation",
       "cap": 174857551872,
-      "chg": 0.41,
-      "px": 134.2
+      "chg": 4.96,
+      "px": 140.86
      },
      {
       "t": "CRM",
       "n": "Salesforce",
       "cap": 162303836160,
-      "chg": 2.04,
-      "px": 197.21
+      "chg": 0.51,
+      "px": 198.21
      },
      {
       "t": "ADI",
       "n": "Analog Devices",
       "cap": 160781926400,
-      "chg": 6.44,
-      "px": 333.11
+      "chg": 3.87,
+      "px": 346.0
      },
      {
       "t": "ACN",
       "n": "Accenture",
       "cap": 142066450432,
-      "chg": 3.52,
-      "px": 240.49
+      "chg": 0.56,
+      "px": 241.84
      },
      {
       "t": "UBER",
       "n": "Uber",
       "cap": 135479934976,
-      "chg": 2.55,
-      "px": 66.35
+      "chg": 0.42,
+      "px": 66.63
      },
      {
       "t": "ADP",
       "n": "Automatic Data Processing",
       "cap": 125028204544,
-      "chg": 1.91,
-      "px": 316.72
+      "chg": 0.86,
+      "px": 319.43
      },
      {
       "t": "MRVL",
       "n": "Marvell Technology",
       "cap": 117806342144,
-      "chg": -0.49,
-      "px": 130.93
+      "chg": 7.34,
+      "px": 140.54
      },
      {
       "t": "STX",
       "n": "Seagate Technology",
       "cap": 108428591104,
-      "chg": -2.1,
-      "px": 472.33
+      "chg": 7.9,
+      "px": 509.66
      },
      {
       "t": "WDC",
       "n": "Western Digital",
       "cap": 101984378880,
-      "chg": -0.55,
-      "px": 272.45
+      "chg": 7.22,
+      "px": 292.11
      },
      {
       "t": "FTNT",
       "n": "Fortinet",
       "cap": 99156434944,
-      "chg": 1.86,
-      "px": 134.96
+      "chg": 3.35,
+      "px": 139.48
      },
      {
       "t": "NOW",
       "n": "ServiceNow",
       "cap": 95654436864,
-      "chg": 0.46,
-      "px": 92.16
+      "chg": 0.69,
+      "px": 92.8
      },
      {
       "t": "ADBE",
       "n": "Adobe Inc.",
       "cap": 90617438208,
-      "chg": 0.32,
-      "px": 232.83
+      "chg": 0.84,
+      "px": 234.79
      },
      {
       "t": "MSI",
       "n": "Motorola Solutions",
       "cap": 89445662720,
-      "chg": 2.06,
-      "px": 541.0
+      "chg": 0.71,
+      "px": 544.83
      },
      {
       "t": "GLW",
       "n": "Corning Inc.",
       "cap": 86346842112,
-      "chg": -1.6,
-      "px": 100.24
+      "chg": 4.83,
+      "px": 105.08
      }
     ]
    },
@@ -1019,71 +1019,71 @@
       "t": "GOOGL",
       "n": "Alphabet Inc. (Class A)",
       "cap": 3357491331072,
-      "chg": -2.13,
-      "px": 273.1
+      "chg": 0.68,
+      "px": 274.96
      },
      {
       "t": "GOOG",
       "n": "Alphabet Inc. (Class C)",
       "cap": 3331428188160,
-      "chg": -2.02,
-      "px": 270.98
+      "chg": 0.54,
+      "px": 272.44
      },
      {
       "t": "META",
       "n": "Meta Platforms",
       "cap": 1559025942528,
-      "chg": 3.4,
-      "px": 609.89
+      "chg": 3.13,
+      "px": 628.96
      },
      {
       "t": "NFLX",
       "n": "Netflix",
       "cap": 243956826112,
-      "chg": 0.92,
-      "px": 59.41
+      "chg": 2.56,
+      "px": 60.93
      },
      {
       "t": "DIS",
       "n": "Walt Disney Company (The)",
       "cap": 214528524288,
-      "chg": 2.52,
-      "px": 125.6
+      "chg": 1.31,
+      "px": 127.24
      },
      {
       "t": "VZ",
       "n": "Verizon",
       "cap": 195956604928,
-      "chg": 0.25,
-      "px": 47.28
+      "chg": 0.55,
+      "px": 47.54
      },
      {
       "t": "TMUS",
       "n": "T-Mobile US",
       "cap": 176104062976,
-      "chg": -0.63,
-      "px": 166.25
+      "chg": 2.37,
+      "px": 170.19
      },
      {
       "t": "T",
       "n": "AT&T",
       "cap": 154736787456,
-      "chg": 0.39,
-      "px": 22.97
+      "chg": 1.04,
+      "px": 23.21
      },
      {
       "t": "APP",
       "n": "AppLovin",
       "cap": 125554507776,
-      "chg": -0.57,
-      "px": 378.95
+      "chg": 5.35,
+      "px": 399.21
      },
      {
       "t": "CMCSA",
       "n": "Comcast",
       "cap": 91367391232,
-      "chg": 1.38,
-      "px": 25.73
+      "chg": 1.36,
+      "px": 26.08
      }
     ]
    },
@@ -1095,176 +1095,176 @@
       "t": "BRK-B",
       "n": "Berkshire Hathaway",
       "cap": 1230776565760,
-      "chg": 0.37,
-      "px": 579.32
+      "chg": 0.25,
+      "px": 580.79
      },
      {
       "t": "JPM",
       "n": "JPMorgan Chase",
       "cap": 841137782784,
-      "chg": -0.11,
-      "px": 316.74
+      "chg": 1.96,
+      "px": 322.96
      },
      {
       "t": "V",
       "n": "Visa Inc.",
       "cap": 791826923520,
-      "chg": 1.83,
-      "px": 424.39
+      "chg": 1.22,
+      "px": 429.56
      },
      {
       "t": "MA",
       "n": "Mastercard",
       "cap": 574950080512,
-      "chg": 1.94,
-      "px": 659.97
+      "chg": 1.06,
+      "px": 666.96
      },
      {
       "t": "BAC",
       "n": "Bank of America",
       "cap": 334936145920,
-      "chg": -0.04,
-      "px": 48.54
+      "chg": 1.09,
+      "px": 49.07
      },
      {
       "t": "MS",
       "n": "Morgan Stanley",
       "cap": 261888000000,
-      "chg": -0.73,
-      "px": 167.55
+      "chg": 1.99,
+      "px": 170.88
      },
      {
       "t": "WFC",
       "n": "Wells Fargo",
       "cap": 242969772032,
-      "chg": -0.31,
-      "px": 80.94
+      "chg": 1.66,
+      "px": 82.28
      },
      {
       "t": "GS",
       "n": "Goldman Sachs",
       "cap": 231044775936,
-      "chg": -0.62,
-      "px": 801.03
+      "chg": 1.48,
+      "px": 812.87
      },
      {
       "t": "AXP",
       "n": "American Express",
       "cap": 209473748992,
-      "chg": 1.22,
-      "px": 312.39
+      "chg": 1.28,
+      "px": 316.4
      },
      {
       "t": "C",
       "n": "Citigroup",
       "cap": 187584331776,
-      "chg": -0.46,
-      "px": 113.33
+      "chg": 1.99,
+      "px": 115.59
      },
      {
       "t": "BLK",
       "n": "BlackRock",
       "cap": 176329932800,
-      "chg": -0.36,
-      "px": 1141.86
+      "chg": 2.2,
+      "px": 1166.96
      },
      {
       "t": "SCHW",
       "n": "Charles Schwab Corporation",
       "cap": 161295417344,
-      "chg": -0.49,
-      "px": 93.45
+      "chg": 0.65,
+      "px": 94.06
      },
      {
       "t": "BX",
       "n": "Blackstone Inc.",
       "cap": 146828722176,
-      "chg": -0.34,
-      "px": 118.95
+      "chg": 2.53,
+      "px": 121.96
      },
      {
       "t": "CB",
       "n": "Chubb Limited",
       "cap": 145384980480,
-      "chg": 1.37,
-      "px": 380.51
+      "chg": 0.13,
+      "px": 381.02
      },
      {
       "t": "PGR",
       "n": "Progressive Corporation",
       "cap": 137896984576,
-      "chg": 1.28,
-      "px": 238.7
+      "chg": 0.18,
+      "px": 239.14
      },
      {
       "t": "SPGI",
       "n": "S&P Global",
       "cap": 133568520192,
-      "chg": 1.22,
-      "px": 460.74
+      "chg": 0.11,
+      "px": 461.24
      },
      {
       "t": "IBKR",
       "n": "Interactive Brokers",
       "cap": 127345082368,
-      "chg": 0.04,
-      "px": 74.74
+      "chg": 4.67,
+      "px": 78.23
      },
      {
       "t": "CME",
       "n": "CME Group",
       "cap": 111582306304,
-      "chg": 0.81,
-      "px": 311.74
+      "chg": 0.44,
+      "px": 313.1
      },
      {
       "t": "COF",
       "n": "Capital One",
       "cap": 109791838208,
-      "chg": 0.64,
-      "px": 182.52
+      "chg": 1.32,
+      "px": 184.93
      },
      {
       "t": "MRSH",
       "n": "Marsh McLennan",
       "cap": 103024934912,
-      "chg": 1.64,
-      "px": 216.66
+      "chg": 0.64,
+      "px": 218.04
      },
      {
       "t": "ICE",
       "n": "Intercontinental Exchange",
       "cap": 99370614784,
-      "chg": 1.67,
-      "px": 177.81
+      "chg": 0.38,
+      "px": 178.49
      },
      {
       "t": "BNY",
       "n": "BNY Mellon",
       "cap": 99023749120,
-      "chg": 1.34,
-      "px": 147.16
+      "chg": 1.7,
+      "px": 149.66
      },
      {
       "t": "USB",
       "n": "U.S. Bancorp",
       "cap": 91233124352,
-      "chg": 0.83,
-      "px": 58.55
+      "chg": 1.26,
+      "px": 59.29
      },
      {
       "t": "PNC",
       "n": "PNC Financial Services",
       "cap": 87422099456,
-      "chg": 0.78,
-      "px": 220.33
+      "chg": 1.08,
+      "px": 222.7
      },
      {
       "t": "KKR",
       "n": "KKR & Co.",
       "cap": 86392684544,
-      "chg": 1.08,
-      "px": 94.1
+      "chg": 1.79,
+      "px": 95.78
      }
     ]
    },
@@ -1276,85 +1276,85 @@
       "t": "AMZN",
       "n": "Amazon",
       "cap": 2643055345664,
-      "chg": -3.12,
-      "px": 244.43
+      "chg": 3.96,
+      "px": 254.12
      },
      {
       "t": "TSLA",
       "n": "Tesla, Inc.",
       "cap": 1502601543680,
-      "chg": -1.18,
-      "px": 380.14
+      "chg": 5.22,
+      "px": 400.0
      },
      {
       "t": "HD",
       "n": "Home Depot (The)",
       "cap": 360484110336,
-      "chg": 2.14,
-      "px": 361.26
+      "chg": 0.25,
+      "px": 362.15
      },
      {
       "t": "MCD",
       "n": "McDonald's",
       "cap": 200089976832,
-      "chg": 1.0,
-      "px": 283.5
+      "chg": -0.31,
+      "px": 282.62
      },
      {
       "t": "CVNA",
       "n": "Carvana",
       "cap": 170370711552,
-      "chg": 2.85,
-      "px": 67.84
+      "chg": 3.3,
+      "px": 70.08
      },
      {
       "t": "TJX",
       "n": "TJX Companies",
       "cap": 161386266624,
-      "chg": 1.55,
-      "px": 146.09
+      "chg": -1.59,
+      "px": 143.77
      },
      {
       "t": "LOW",
       "n": "Lowe's",
       "cap": 132212375552,
-      "chg": 2.0,
-      "px": 235.65
+      "chg": 0.34,
+      "px": 236.46
      },
      {
       "t": "SBUX",
       "n": "Starbucks",
       "cap": 122834370560,
-      "chg": 1.28,
-      "px": 107.74
+      "chg": 0.98,
+      "px": 108.8
      },
      {
       "t": "BKNG",
       "n": "Booking Holdings",
       "cap": 111183339520,
-      "chg": 1.95,
-      "px": 149.5
+      "chg": 0.6,
+      "px": 150.39
      },
      {
       "t": "MAR",
       "n": "Marriott International",
       "cap": 107062599680,
-      "chg": -0.11,
-      "px": 415.77
+      "chg": 1.26,
+      "px": 421.01
      },
      {
       "t": "ABNB",
       "n": "Airbnb",
       "cap": 102729170944,
-      "chg": -0.72,
-      "px": 172.15
+      "chg": 4.07,
+      "px": 179.16
      },
      {
       "t": "RCL",
       "n": "Royal Caribbean Group",
       "cap": 84015292416,
-      "chg": -1.31,
-      "px": 314.11
+      "chg": 0.39,
+      "px": 315.35
      }
     ]
    },
@@ -1366,162 +1366,162 @@
       "t": "LLY",
       "n": "Lilly (Eli)",
       "cap": 1240112955392,
-      "chg": -1.09,
-      "px": 1392.22
+      "chg": 0.01,
+      "px": 1392.38
      },
      {
       "t": "JNJ",
       "n": "Johnson & Johnson",
       "cap": 659458621440,
-      "chg": -0.91,
-      "px": 273.94
+      "chg": 0.57,
+      "px": 275.51
      },
      {
       "t": "ABBV",
       "n": "AbbVie",
       "cap": 520527642624,
-      "chg": -1.93,
-      "px": 294.48
+      "chg": -0.88,
+      "px": 291.88
      },
      {
       "t": "MRK",
       "n": "Merck & Co.",
       "cap": 345849298944,
-      "chg": -0.9,
-      "px": 140.29
+      "chg": 0.73,
+      "px": 141.32
      },
      {
       "t": "UNH",
       "n": "UnitedHealth Group",
       "cap": 310194077696,
-      "chg": 1.26,
-      "px": 346.19
+      "chg": 1.51,
+      "px": 351.41
      },
      {
       "t": "TMO",
       "n": "Thermo Fisher Scientific",
       "cap": 253996040192,
-      "chg": -1.45,
-      "px": 685.52
+      "chg": -0.36,
+      "px": 683.04
      },
      {
       "t": "AMGN",
       "n": "Amgen",
       "cap": 253817307136,
-      "chg": -0.99,
-      "px": 469.24
+      "chg": 1.03,
+      "px": 474.08
      },
      {
       "t": "GILD",
       "n": "Gilead Sciences",
       "cap": 219217444864,
-      "chg": -0.87,
-      "px": 176.74
+      "chg": 0.15,
+      "px": 177.0
      },
      {
       "t": "ABT",
       "n": "Abbott Laboratories",
       "cap": 187049689088,
-      "chg": 2.48,
-      "px": 108.0
+      "chg": 0.06,
+      "px": 108.07
      },
      {
       "t": "PFE",
       "n": "Pfizer",
       "cap": 162217836544,
-      "chg": 0.0,
-      "px": 28.46
+      "chg": 0.21,
+      "px": 28.52
      },
      {
       "t": "DHR",
       "n": "Danaher Corporation",
       "cap": 159947735040,
-      "chg": -0.76,
-      "px": 227.35
+      "chg": 0.68,
+      "px": 228.89
      },
      {
       "t": "ISRG",
       "n": "Intuitive Surgical",
       "cap": 148079263744,
-      "chg": -1.68,
-      "px": 427.18
+      "chg": 0.7,
+      "px": 430.18
      },
      {
       "t": "VRTX",
       "n": "Vertex Pharmaceuticals",
       "cap": 143025668096,
-      "chg": 0.04,
-      "px": 564.12
+      "chg": -5.24,
+      "px": 534.57
      },
      {
       "t": "SYK",
       "n": "Stryker Corporation",
       "cap": 126732034048,
-      "chg": 2.72,
-      "px": 332.9
+      "chg": 0.41,
+      "px": 334.27
      },
      {
       "t": "BMY",
       "n": "Bristol Myers Squibb",
       "cap": 125833928704,
-      "chg": -0.74,
-      "px": 61.56
+      "chg": -0.71,
+      "px": 61.12
      },
      {
       "t": "MCK",
       "n": "McKesson",
       "cap": 124383764480,
-      "chg": -0.07,
-      "px": 1077.32
+      "chg": -0.15,
+      "px": 1075.66
      },
      {
       "t": "MDT",
       "n": "Medtronic",
       "cap": 122873987072,
-      "chg": -0.07,
-      "px": 96.06
+      "chg": -0.68,
+      "px": 95.41
      },
      {
       "t": "CVS",
       "n": "CVS Health",
       "cap": 103714177024,
-      "chg": 0.46,
-      "px": 81.06
+      "chg": 1.91,
+      "px": 82.61
      },
      {
       "t": "HCA",
       "n": "HCA Healthcare",
       "cap": 102568304640,
-      "chg": 1.92,
-      "px": 491.01
+      "chg": 2.03,
+      "px": 500.97
      },
      {
       "t": "REGN",
       "n": "Regeneron Pharmaceuticals",
       "cap": 101572345856,
-      "chg": -0.53,
-      "px": 981.87
+      "chg": 1.05,
+      "px": 992.14
      },
      {
       "t": "WAT",
       "n": "Waters Corporation",
       "cap": 89409093632,
-      "chg": -1.57,
-      "px": 454.93
+      "chg": 1.31,
+      "px": 460.88
      },
      {
       "t": "MRNA",
       "n": "Moderna",
       "cap": 89356492800,
-      "chg": -2.88,
-      "px": 220.84
+      "chg": 3.53,
+      "px": 228.64
      },
      {
       "t": "ELV",
       "n": "Elevance Health",
       "cap": 84196982784,
-      "chg": -0.38,
-      "px": 389.7
+      "chg": 0.9,
+      "px": 393.22
      }
     ]
    },
@@ -1533,57 +1533,57 @@
       "t": "WMT",
       "n": "Walmart",
       "cap": 1046778478592,
-      "chg": -0.28,
-      "px": 131.94
+      "chg": 0.9,
+      "px": 133.13
      },
      {
       "t": "COST",
       "n": "Costco",
       "cap": 481597423616,
-      "chg": -0.45,
-      "px": 1086.81
+      "chg": 1.01,
+      "px": 1097.81
      },
      {
       "t": "KO",
       "n": "Coca-Cola Company (The)",
       "cap": 419822632960,
-      "chg": -0.03,
-      "px": 97.59
+      "chg": -0.19,
+      "px": 97.4
      },
      {
       "t": "PG",
       "n": "Procter & Gamble",
       "cap": 401509548032,
-      "chg": 0.44,
-      "px": 173.23
+      "chg": -0.21,
+      "px": 172.86
      },
      {
       "t": "PM",
       "n": "Philip Morris International",
       "cap": 287291408384,
-      "chg": 0.2,
-      "px": 184.32
+      "chg": 1.89,
+      "px": 187.8
      },
      {
       "t": "PEP",
       "n": "PepsiCo",
       "cap": 196139319296,
-      "chg": 0.88,
-      "px": 143.93
+      "chg": 0.47,
+      "px": 144.6
      },
      {
       "t": "MO",
       "n": "Altria",
       "cap": 126886969344,
-      "chg": 1.95,
-      "px": 76.28
+      "chg": 0.8,
+      "px": 76.89
      },
      {
       "t": "MDLZ",
       "n": "Mondelez International",
       "cap": 85836496896,
-      "chg": 1.19,
-      "px": 67.81
+      "chg": -0.06,
+      "px": 67.77
      }
     ]
    },
@@ -1595,141 +1595,141 @@
       "t": "GE",
       "n": "GE Aerospace",
       "cap": 327551909888,
-      "chg": -0.33,
-      "px": 316.98
+      "chg": 2.2,
+      "px": 323.94
      },
      {
       "t": "RTX",
       "n": "RTX Corporation",
       "cap": 264746729472,
-      "chg": 0.44,
-      "px": 196.19
+      "chg": 1.17,
+      "px": 198.48
      },
      {
       "t": "CAT",
       "n": "Caterpillar Inc.",
       "cap": 248789385216,
-      "chg": 0.57,
-      "px": 543.69
+      "chg": 3.32,
+      "px": 561.74
      },
      {
       "t": "GEV",
       "n": "GE Vernova",
       "cap": 189244112896,
-      "chg": -0.78,
-      "px": 715.0
+      "chg": 2.84,
+      "px": 735.31
      },
      {
       "t": "UNP",
       "n": "Union Pacific Corporation",
       "cap": 177312448512,
-      "chg": 2.6,
-      "px": 298.38
+      "chg": -0.16,
+      "px": 297.89
      },
      {
       "t": "DE",
       "n": "Deere & Company",
       "cap": 172835291136,
-      "chg": 4.44,
-      "px": 641.02
+      "chg": 2.06,
+      "px": 654.24
      },
      {
       "t": "LMT",
       "n": "Lockheed Martin",
       "cap": 138427219968,
-      "chg": 2.15,
-      "px": 599.24
+      "chg": 1.11,
+      "px": 605.88
      },
      {
       "t": "BA",
       "n": "Boeing",
       "cap": 130381783040,
-      "chg": 0.57,
-      "px": 164.53
+      "chg": 1.65,
+      "px": 167.24
      },
      {
       "t": "ETN",
       "n": "Eaton Corporation",
       "cap": 123469185024,
-      "chg": -0.46,
-      "px": 317.81
+      "chg": 2.55,
+      "px": 325.92
      },
      {
       "t": "PH",
       "n": "Parker Hannifin",
       "cap": 113222311936,
-      "chg": -0.92,
-      "px": 897.9
+      "chg": 1.61,
+      "px": 912.36
      },
      {
       "t": "WM",
       "n": "Waste Management",
       "cap": 98331131904,
-      "chg": 1.05,
-      "px": 247.29
+      "chg": -0.32,
+      "px": 246.49
      },
      {
       "t": "MMM",
       "n": "3M",
       "cap": 98090778624,
-      "chg": 1.44,
-      "px": 189.83
+      "chg": 0.74,
+      "px": 191.23
      },
      {
       "t": "GD",
       "n": "General Dynamics",
       "cap": 97353490432,
-      "chg": 2.48,
-      "px": 360.27
+      "chg": 0.86,
+      "px": 363.36
      },
      {
       "t": "UPS",
       "n": "United Parcel Service",
       "cap": 94913290240,
-      "chg": 0.58,
-      "px": 111.47
+      "chg": 1.04,
+      "px": 112.63
      },
      {
       "t": "CSX",
       "n": "CSX Corporation",
       "cap": 94308253696,
-      "chg": 2.16,
-      "px": 51.16
+      "chg": 0.43,
+      "px": 51.38
      },
      {
       "t": "CTAS",
       "n": "Cintas",
       "cap": 90394148864,
-      "chg": 0.84,
-      "px": 227.65
+      "chg": 0.41,
+      "px": 228.58
      },
      {
       "t": "TT",
       "n": "Trane Technologies",
       "cap": 88319893504,
-      "chg": -0.25,
-      "px": 403.48
+      "chg": 0.66,
+      "px": 406.13
      },
      {
       "t": "EMR",
       "n": "Emerson Electric",
       "cap": 86256377856,
-      "chg": 0.16,
-      "px": 157.23
+      "chg": 3.22,
+      "px": 162.29
      },
      {
       "t": "PWR",
       "n": "Quanta Services",
       "cap": 85203402752,
-      "chg": -4.1,
-      "px": 565.47
+      "chg": 2.68,
+      "px": 580.6
      },
      {
       "t": "HWM",
       "n": "Howmet Aerospace",
       "cap": 83934199808,
-      "chg": 0.11,
-      "px": 211.07
+      "chg": 3.0,
+      "px": 217.41
      }
     ]
    },
@@ -1741,43 +1741,43 @@
       "t": "XOM",
       "n": "ExxonMobil",
       "cap": 644843503616,
-      "chg": -0.09,
-      "px": 158.08
+      "chg": 1.33,
+      "px": 160.18
      },
      {
       "t": "CVX",
       "n": "Chevron Corporation",
       "cap": 411616935936,
-      "chg": 1.06,
-      "px": 210.95
+      "chg": 0.71,
+      "px": 212.45
      },
      {
       "t": "COP",
       "n": "ConocoPhillips",
       "cap": 159638896640,
-      "chg": 0.28,
-      "px": 135.02
+      "chg": 1.32,
+      "px": 136.8
      },
      {
       "t": "MPC",
       "n": "Marathon Petroleum",
       "cap": 94283177984,
-      "chg": -2.5,
-      "px": 346.27
+      "chg": 3.91,
+      "px": 359.8
      },
      {
       "t": "PSX",
       "n": "Phillips 66",
       "cap": 92088279040,
-      "chg": -0.37,
-      "px": 236.08
+      "chg": 2.56,
+      "px": 242.12
      },
      {
       "t": "VLO",
       "n": "Valero Energy",
       "cap": 90079666176,
-      "chg": -0.51,
-      "px": 323.0
+      "chg": 1.98,
+      "px": 329.39
      }
     ]
    },
@@ -1789,36 +1789,36 @@
       "t": "WELL",
       "n": "Welltower",
       "cap": 180600061952,
-      "chg": 0.42,
-      "px": 246.18
+      "chg": 1.43,
+      "px": 249.69
      },
      {
       "t": "PLD",
       "n": "Prologis",
       "cap": 123507580928,
-      "chg": -0.23,
-      "px": 127.03
+      "chg": -0.06,
+      "px": 126.95
      },
      {
       "t": "EQIX",
       "n": "Equinix",
       "cap": 96832348160,
-      "chg": -0.46,
-      "px": 978.22
+      "chg": 0.68,
+      "px": 984.87
      },
      {
       "t": "SPG",
       "n": "Simon Property Group",
       "cap": 88569421824,
-      "chg": 1.81,
-      "px": 233.98
+      "chg": 0.55,
+      "px": 235.27
      },
      {
       "t": "AMT",
       "n": "American Tower",
       "cap": 85606113280,
-      "chg": 0.96,
-      "px": 184.59
+      "chg": 0.18,
+      "px": 184.93
      }
     ]
    },
@@ -1830,29 +1830,29 @@
       "t": "LIN",
       "n": "Linde plc",
       "cap": 240839933952,
-      "chg": 1.51,
-      "px": 524.61
+      "chg": 1.52,
+      "px": 532.61
      },
      {
       "t": "NEM",
       "n": "Newmont",
       "cap": 105415761920,
-      "chg": 1.76,
-      "px": 101.44
+      "chg": 5.35,
+      "px": 106.87
      },
      {
       "t": "SHW",
       "n": "Sherwin-Williams",
       "cap": 87218118656,
-      "chg": 2.4,
-      "px": 361.02
+      "chg": 0.61,
+      "px": 363.24
      },
      {
       "t": "ECL",
       "n": "Ecolab",
       "cap": 86633693184,
-      "chg": 0.57,
-      "px": 308.89
+      "chg": 0.9,
+      "px": 311.67
      }
     ]
    },
@@ -1864,26 +1864,26 @@
       "t": "NEE",
       "n": "NextEra Energy",
       "cap": 179130925056,
-      "chg": 0.98,
-      "px": 85.41
+      "chg": -0.54,
+      "px": 84.95
      },
      {
       "t": "SO",
       "n": "Southern Company",
       "cap": 110604795904,
-      "chg": 0.95,
-      "px": 95.0
+      "chg": 0.04,
+      "px": 95.04
      },
      {
       "t": "DUK",
       "n": "Duke Energy",
       "cap": 102843514880,
-      "chg": 0.72,
-      "px": 131.9
+      "chg": 0.01,
+      "px": 131.91
      }
     ]
    }
   ]
  },
- "updated": "2026-11-28T10:44+09:00"
+ "updated": "2026-11-28T11:50+09:00"
 }
