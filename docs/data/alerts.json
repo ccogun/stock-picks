@@ -12,8 +12,8 @@
    "hitAt": null,
    "hitPrice": null,
    "notified": false,
-   "last": 131.9308,
-   "lastAt": "2026-11-27T12:35:00-05:00"
+   "last": 133.26,
+   "lastAt": "2026-11-27T16:55:00-05:00"
   },
   {
    "id": "soxx-103",
@@ -27,8 +27,8 @@
    "hitAt": null,
    "hitPrice": null,
    "notified": false,
-   "last": 131.9308,
-   "lastAt": "2026-11-27T12:35:00-05:00"
+   "last": 133.26,
+   "lastAt": "2026-11-27T16:55:00-05:00"
   },
   {
    "id": "soxx-87",
@@ -42,8 +42,8 @@
    "hitAt": null,
    "hitPrice": null,
    "notified": false,
-   "last": 131.9308,
-   "lastAt": "2026-11-27T12:35:00-05:00"
+   "last": 133.26,
+   "lastAt": "2026-11-27T16:55:00-05:00"
   },
   {
    "id": "soxl-11",
@@ -57,8 +57,8 @@
    "hitAt": null,
    "hitPrice": null,
    "notified": false,
-   "last": 34.9442,
-   "lastAt": "2026-11-27T12:35:00-05:00"
+   "last": 35.85,
+   "lastAt": "2026-11-27T16:55:00-05:00"
   },
   {
    "id": "amd-359",
@@ -72,8 +72,8 @@
    "hitAt": null,
    "hitPrice": null,
    "notified": false,
-   "last": 416.56,
-   "lastAt": "2026-11-27T12:35:00-05:00"
+   "last": 422.9,
+   "lastAt": "2026-11-27T16:55:00-05:00"
   },
   {
    "id": "amd-265",
@@ -87,8 +87,8 @@
    "hitAt": null,
    "hitPrice": null,
    "notified": false,
-   "last": 416.56,
-   "lastAt": "2026-11-27T12:35:00-05:00"
+   "last": 422.9,
+   "lastAt": "2026-11-27T16:55:00-05:00"
   },
   {
    "id": "test-1127",
@@ -102,5 +102,5 @@
    "notifiedBy": "ntfy"
   }
  ],
- "checkedAt": "2026-11-28T02:38+09:00"
+ "checkedAt": "2026-11-28T09:41+09:00"
 }
